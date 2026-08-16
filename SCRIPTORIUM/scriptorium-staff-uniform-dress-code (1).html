@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCRIPTORIUM — Staff Uniform &amp; Dress Code</title>
+<style>
+:root {
+  --bg:       #16161A;
+  --surface:  #1E1E23;
+  --surface2: #252529;
+  --border:   #333340;
+  --text:     #EAE7DF;
+  --soft:     #9A958C;
+  --dimmed:   #5A5750;
+
+  --gold:     #BFA468;
+  --gold-bg:  rgba(191,164,104,0.08);
+  --green:    #6A9C6A;
+  --green-bg: rgba(106,156,106,0.09);
+  --red:      #C45A4A;
+  --red-bg:   rgba(196,90,74,0.08);
+  --blue:     #5A8CC0;
+  --blue-bg:  rgba(90,140,192,0.08);
+
+  /* Canonical SCRIPTORIUM sub-brand accents — matched to Document 04 (Brand Identity), not Document 06's internal org-chart palette */
+  --reads:    #6B5A3E;
+  --capsule:  #4A6B7C;
+  --ink:      #8C5535;
+  --studio:   #3A3A52;
+  --mgmt:     #C45A8C;
+  --supp:     #6A8C8C;
+
+  /* A&M Munchies — its own independent palette, deliberately outside the SCRIPTORIUM system (Document 04, Section 05) */
+  --am-cream:   #EFE6D8;
+  --am-taupe:   #A68A66;
+  --am-choc:    #4A3527;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;font-size:15px;line-height:1.6;}
+.wrap{max-width:980px;margin:0 auto;padding:52px 28px 90px;}
+
+/* ─── HEADER ─── */
+.doc-header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:48px;}
+.stamp{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:3px 9px;margin-bottom:14px;border-radius:2px;}
+h1{font-family:Georgia,"Palatino Linotype",serif;font-size:32px;font-weight:600;line-height:1.2;margin:0 0 8px;color:var(--text);}
+.tagline{color:var(--soft);font-size:15px;font-style:italic;margin:0 0 18px;}
+.meta-strip{display:flex;flex-wrap:wrap;gap:20px;font-family:ui-monospace,monospace;font-size:11px;color:var(--dimmed);}
+.meta-strip b{color:var(--soft);}
+
+section{margin-bottom:52px;}
+h2{font-family:Georgia,serif;font-size:20px;color:var(--text);margin:0 0 18px;display:flex;align-items:center;gap:10px;}
+h2 .sec-tag{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);border:1px solid var(--border);padding:2px 7px;border-radius:2px;}
+h3{font-family:Georgia,serif;font-size:16px;margin:24px 0 10px;color:var(--soft);}
+p{margin:0 0 12px;}
+
+/* ─── ADVISORY ─── */
+.adv{padding:14px 20px;border-radius:0 4px 4px 0;margin:14px 0;}
+.adv p{margin:0;font-size:14px;color:var(--soft);}
+.adv p b{color:var(--text);}
+.adv.gold{background:var(--gold-bg);border-left:3px solid var(--gold);}
+.adv.red{background:var(--red-bg);border-left:3px solid var(--red);}
+.adv.green{background:var(--green-bg);border-left:3px solid var(--green);}
+.adv.blue{background:var(--blue-bg);border-left:3px solid var(--blue);}
+
+/* ─── ROLE / UNIFORM CARDS ─── */
+.role-card{border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-bottom:22px;}
+.role-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:14px 18px;background:var(--surface2);border-bottom:1px solid var(--border);}
+.role-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.role-title{font-family:Georgia,serif;font-size:17px;font-weight:600;}
+.role-count{font-family:ui-monospace,monospace;font-size:11px;padding:3px 9px;border-radius:3px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--soft);white-space:nowrap;}
+.role-body{padding:18px 20px;}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px;}
+@media(max-width:640px){.role-grid{grid-template-columns:1fr;}}
+.role-block h4{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);margin:0 0 10px;}
+.role-block ul{list-style:none;padding:0;margin:0;}
+.role-block ul li{font-size:13.5px;color:var(--soft);padding:5px 0 5px 12px;border-left:2px solid var(--border);margin-bottom:5px;line-height:1.5;}
+.role-block ul li b{color:var(--text);}
+.role-block ul li.deal{border-left-color:var(--red);color:rgba(196,90,74,0.85);}
+.role-block ul li.deal b{color:var(--red);}
+.role-block ul li.must{border-left-color:var(--gold);}
+
+/* ─── PALETTE SWATCHES ─── */
+.palette-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:16px 0;}
+.swatch{border:1px solid var(--border);border-radius:5px;overflow:hidden;background:var(--surface);}
+.swatch-color{height:56px;}
+.swatch-data{padding:9px 12px;}
+.swatch-name{font-size:12.5px;font-weight:600;color:var(--text);}
+.swatch-vals{font-family:ui-monospace,monospace;font-size:10px;color:var(--dimmed);margin-top:3px;line-height:1.5;}
+
+/* ─── SALARY / BUDGET TABLE ─── */
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;}
+th{text-align:left;padding:8px 12px;background:rgba(255,255,255,0.04);color:var(--soft);font-family:ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--border);}
+td{padding:10px 12px;border-bottom:1px solid rgba(51,51,64,0.5);vertical-align:top;color:var(--soft);}
+td:first-child{color:var(--text);font-weight:500;}
+td.num{font-family:ui-monospace,monospace;text-align:right;color:var(--gold);white-space:nowrap;}
+tr.zone-head td{background:rgba(255,255,255,0.02);color:var(--dimmed);font-family:ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-top:1px solid var(--border);}
+tr.subtotal td{border-top:1px solid var(--border);background:var(--gold-bg);font-weight:700;color:var(--gold);}
+tr:last-child td{border-bottom:none;}
+
+/* ─── BENEFITS-STYLE BLOCKS ─── */
+.ben-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:600px){.ben-grid{grid-template-columns:1fr;}}
+.ben-block{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;}
+.ben-block h4{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);margin:0 0 10px;}
+.ben-block ul{list-style:none;padding:0;margin:0;}
+.ben-block ul li{font-size:13.5px;color:var(--soft);padding:5px 0;border-bottom:1px solid rgba(51,51,64,0.35);line-height:1.5;}
+.ben-block ul li:last-child{border-bottom:none;}
+.ben-block ul li b{color:var(--text);}
+.ben-block ul li.highlight{border-left:2px solid var(--green);padding-left:8px;color:var(--text);}
+
+/* ─── CULTURE / DO-DONT RULES ─── */
+.culture-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:600px){.culture-grid{grid-template-columns:1fr;}}
+.culture-do{background:var(--green-bg);border:1px solid rgba(106,156,106,0.25);border-radius:4px;padding:16px 18px;}
+.culture-dont{background:var(--red-bg);border:1px solid rgba(196,90,74,0.2);border-radius:4px;padding:16px 18px;}
+.culture-do h4{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin:0 0 10px;}
+.culture-dont h4{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin:0 0 10px;}
+.culture-do ul,.culture-dont ul{list-style:none;padding:0;margin:0;}
+.culture-do ul li,.culture-dont ul li{font-size:13.5px;color:var(--soft);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);line-height:1.5;}
+.culture-do ul li:last-child,.culture-dont ul li:last-child{border-bottom:none;}
+
+/* ─── INTERN BLOCK ─── */
+.intern-box{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:22px 24px;margin:16px 0;}
+.intern-box .ib-title{font-family:Georgia,serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.intern-box .ib-sub{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.intern-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:14px;}
+.intern-slot{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:13px 15px;}
+.intern-slot .is-zone{font-family:ui-monospace,monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dimmed);margin-bottom:5px;}
+.intern-slot .is-role{font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.intern-slot .is-desc{font-size:12.5px;color:var(--soft);line-height:1.5;}
+
+/* ─── FUTURE / OPTIONAL BLOCK ─── */
+.future-box{background:var(--surface);border:1px dashed var(--border);border-radius:5px;padding:20px 22px;margin:14px 0;}
+.future-box .fb-eyebrow{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);margin-bottom:6px;}
+.future-box .fb-title{font-family:Georgia,serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:10px;}
+
+/* ─── PLACEMENT / PROCESS STEPS ─── */
+.process-steps{display:flex;flex-direction:column;gap:0;margin:16px 0;}
+.step{display:flex;gap:18px;padding:16px 0;border-bottom:1px solid rgba(51,51,64,0.5);}
+.step:last-child{border-bottom:none;}
+.step-num{font-family:ui-monospace,monospace;font-size:18px;font-weight:600;color:var(--gold);flex-shrink:0;width:32px;padding-top:2px;}
+.step-body .step-title{font-family:Georgia,serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.step-body .step-desc{font-size:14px;color:var(--soft);line-height:1.6;}
+.step-body .step-desc b{color:var(--text);}
+
+/* ─── AM MUNCHIES CALLOUT (independent brand look, warm neutral, deliberately un-SCRIPTORIUM) ─── */
+.am-box{background:linear-gradient(180deg, rgba(166,138,102,0.08), rgba(166,138,102,0.02));border:1px solid rgba(166,138,102,0.35);border-radius:6px;padding:22px 24px;margin:16px 0;}
+.am-box .am-title{font-family:Georgia,serif;font-size:18px;font-weight:600;color:var(--am-taupe);margin-bottom:8px;}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--border);font-size:12px;color:var(--dimmed);font-style:italic;line-height:1.7;}
+footer ol{margin:12px 0 0;padding-left:18px;}
+footer li{margin-bottom:5px;}
+footer a{color:var(--blue);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ═══ HEADER ═══ -->
+<header class="doc-header">
+  <div class="stamp">Document 11 · Staff Uniform &amp; Dress Code · Version 1.0</div>
+  <h1>SCRIPTORIUM — What Everyone Wears, and Why</h1>
+  <p class="tagline">Two uniform systems, one campus: SCRIPTORIUM's five zones and A&amp;M Munchies dressed as the genuinely separate identities Document 04 says they are · Said-ul-Ajaib, South Delhi · July 2026</p>
+  <div class="meta-strip">
+    <span>Founder: <b>Anna Thomas</b></span>
+    <span>Staff covered: <b>19 roles, Document 06 §11</b></span>
+    <span>Systems: <b>2 — SCRIPTORIUM zones · A&amp;M Munchies</b></span>
+    <span>Governing doc: <b>Brand Identity, Document 04</b></span>
+  </div>
+</header>
+
+<!-- ═══ 00 THE GOVERNING PRINCIPLE ═══ -->
+<section>
+  <h2><span class="sec-tag">00</span> The one rule everything else follows</h2>
+  <p style="color:var(--soft);">Document 04 (Brand Identity) already settled this, in language worth repeating in full here because it governs every decision in this document: <b style="color:var(--text);">"A&amp;M Munchies is not a SCRIPTORIUM sub-brand. It is a separate international café identity with its own visual language, its own colours, and its own expansion path... No A&amp;M Munchies branded element should incorporate the Garamond wordmark, the arch device, or any colour from the SCRIPTORIUM palette."</b> That rule applies to uniforms exactly as it applies to signage. So this document is really two uniform systems wearing one badge of convenience — a campus ID — and nothing else in common.</p>
+
+  <div class="adv gold">
+    <p><b>The practical consequence:</b> if you take one thing from this document, take this — never let a single vendor, a single fabric order, or a single "campus uniform" conversation collapse the two systems into one. SCRIPTORIUM zone staff (Reads, Capsule, Ink, Studio, management) dress in the dark-academia language the building itself speaks. A&amp;M Munchies staff dress in their own café identity, in their own palette, sourced and briefed separately. A vendor who doesn't understand why is the wrong vendor.</p>
+  </div>
+
+  <div class="role-grid">
+    <div class="role-block">
+      <h4>System A — SCRIPTORIUM zones</h4>
+      <ul>
+        <li><b>Covers:</b> Campus Director, Head Librarian, Library Assistant/Capsule Host, Ink Floor Manager &amp; Buyer, Floor Associates, Studio Manager, Studio Technician — 10 people</li>
+        <li><b>Palette:</b> Scriptorium Black, Kota Grey, Sandstone, Parchment, Brass hardware (Document 04's five primary colours)</li>
+        <li><b>Identity:</b> dark academia — the Gothic collegiate building, worn</li>
+      </ul>
+    </div>
+    <div class="role-block">
+      <h4>System B — A&amp;M Munchies</h4>
+      <ul>
+        <li><b>Covers:</b> Head Barista &amp; Café Manager, Junior Barista, Kitchen/Food Prep, Cashier/Service Staff — 4 people</li>
+        <li><b>Palette:</b> its own — warm cream, taupe, chocolate brown (proposed below; no SCRIPTORIUM hex appears here by rule)</li>
+        <li><b>Identity:</b> international café/patisserie — independent of the Gothic language entirely</li>
+      </ul>
+    </div>
+  </div>
+  <p style="color:var(--soft);margin-top:10px;">Security and Maintenance/Housekeeping sit outside both systems — they're covered separately in Sections 05–06, since neither is a customer-facing sub-brand role in Document 04's sense.</p>
+</section>
+
+<!-- ═══ 01 SCRIPTORIUM ZONES — SHARED FOUNDATION ═══ -->
+<section>
+  <h2><span class="sec-tag">01</span> System A — the shared foundation</h2>
+  <p style="color:var(--soft);">Every SCRIPTORIUM-zone role starts from the same base wardrobe before any zone-specific accent is added. This is deliberate: a visitor walking the Central Atrium Spine should be able to tell, at a glance, "that person works here," before they can tell which zone. The reference direction is the dark-academia silhouette in your own research — structured waistcoat, white or ecru shirt, tailored trouser, leather shoe — the same visual grammar as the Gothic building itself: dark, tailored, a little severe, warmed by brass.</p>
+
+  <div class="role-grid">
+    <div class="role-block">
+      <h4>The base pieces (all genders, same silhouette logic)</h4>
+      <ul>
+        <li class="must"><b>Shirt:</b> white or ecru cotton, full sleeve, structured collar — the one piece every SCRIPTORIUM-zone role shares without variation</li>
+        <li class="must"><b>Waistcoat:</b> single-breasted, dark (Scriptorium Black or a deep charcoal-brown reading close to Kota Grey), brass buttons — this is the piece your reference images (4, 7, 8) centre on, and it's the single most identity-carrying garment in the system</li>
+        <li class="must"><b>Trouser:</b> wide-leg or tailored straight, dark brown or charcoal, no visible branding</li>
+        <li><b>Neckwear:</b> a slim dark tie or ribbon-tie for customer-facing roles (Head Librarian, Campus Director, Floor Managers); optional for back-of-house/technical roles (Studio Technician)</li>
+        <li><b>Footwear:</b> black or dark brown leather shoe or boot — closed, low heel, quiet on Kota stone floors</li>
+      </ul>
+    </div>
+    <div class="role-block">
+      <h4>Where the reference images map</h4>
+      <ul>
+        <li><b>Image 4</b> (six mannequin outfits): the governing silhouette — waistcoat-over-shirt, circle skirt or tailored trouser, boots. This is the base wardrobe language, not a literal costume; SCRIPTORIUM staff wear a working version of it, not the styled photoshoot version</li>
+        <li><b>Image 7</b> (glasses, shirt, wide trouser, annotated book): the "scholar" register — useful specifically for the Head Librarian and Ink Floor Manager, roles where looking like someone who actually reads/writes matters to the role itself</li>
+        <li><b>Image 8</b> (argyle sweater vest, tie, bookstore): a cooler-weather layer option — the argyle vest can replace the waistcoat November–February when Delhi is genuinely cold, without breaking the silhouette</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="adv blue">
+    <p><b>Gender-neutral by design:</b> the waistcoat-shirt-trouser silhouette is specified identically for every gender — no separate "female version" with a skirt default. Anyone who prefers the circle-skirt styling from Image 4 in place of trousers may — it's offered as an option within the same silhouette, not assigned by gender. This matches the same no-assumptions approach already established in Document 06's benefits policy.</p>
+  </div>
+</section>
+
+<!-- ═══ 02 SCRIPTORIUM ZONES — ROLE BY ROLE ═══ -->
+<section>
+  <h2><span class="sec-tag">02</span> System A — zone by zone</h2>
+  <p style="color:var(--soft);">Each zone adds exactly one thing to the shared foundation: a colour accent matching its Document 04 sub-brand hue, applied in the smallest possible dose — a pin, a thread, a lining. Document 04 is explicit that zone accent colours are for "wayfinding plaques" and "sub-brand contexts," used in small doses, never as a wholesale costume change. Uniforms follow that same restraint.</p>
+
+  <div class="role-card">
+    <div class="role-head">
+      <div class="role-dot" style="background:var(--mgmt);"></div>
+      <div class="role-title">Campus Director</div>
+      <div class="role-count">1 role · all zones</div>
+    </div>
+    <div class="role-body">
+      <div class="role-grid">
+        <div class="role-block">
+          <h4>Uniform</h4>
+          <ul>
+            <li>Full base wardrobe, no zone accent — the Director moves through all five zones and shouldn't read as "belonging" to one</li>
+            <li>The only role authorised to wear a blazer over the waistcoat for external meetings (investors, TAU partnership visits, vendor walkthroughs)</li>
+          </ul>
+        </div>
+        <div class="role-block">
+          <h4>Identifying mark</h4>
+          <ul>
+            <li>Brass arch-device pin (Section 03) with no accent ribbon — the "neutral" version, signalling cross-zone authority at a glance to both staff and visitors</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-head">
+      <div class="role-dot" style="background:var(--reads);"></div>
+      <div class="role-title">Head Librarian &amp; Library Assistant / Capsule Host</div>
+      <div class="role-count">3 roles · Reads + Capsule</div>
+    </div>
+    <div class="role-body">
+      <div class="role-grid">
+        <div class="role-block">
+          <h4>Uniform</h4>
+          <ul>
+            <li>Full base wardrobe — this zone is where the dark-academia silhouette is most literal, since Reads is the building's own identity worn as clothing</li>
+            <li>Head Librarian: the Image 7 "scholar" register is closest — glasses (if worn) read as intentional here, not incidental</li>
+            <li>Capsule Host duties (quieter, more transactional, checking guests into pods) suit the plainer end of the base wardrobe — waistcoat and shirt without a tie reads correctly for this half of the combined role</li>
+          </ul>
+        </div>
+        <div class="role-block">
+          <h4>Identifying mark</h4>
+          <ul>
+            <li>Accent: <b>Reads brown (#6B5A3E)</b> pin ribbon or waistcoat lining visible at the collar</li>
+            <li>Capsule-specific duties: a small <b style="color:var(--capsule);">Capsule slate-blue (#4A6B7C)</b> secondary thread on the cuff, since this one role genuinely spans both sub-brands</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-head">
+      <div class="role-dot" style="background:var(--ink);"></div>
+      <div class="role-title">Ink Floor Manager &amp; Buyer / Floor Associates</div>
+      <div class="role-count">4 roles · Ink, 3 floors</div>
+    </div>
+    <div class="role-body">
+      <div class="role-grid">
+        <div class="role-block">
+          <h4>Uniform</h4>
+          <ul>
+            <li>Full base wardrobe. Ink is modelled on G.Itoya Ginza — gallery-retail precision — so fit and pressing matter more here than in any other zone; a wrinkled waistcoat undercuts the "each floor is a complete world" premise from the Architecture Brief</li>
+            <li>No apron — Ink associates handle paper stock and fine writing instruments, not food or mess; an apron would read as the wrong register entirely</li>
+          </ul>
+        </div>
+        <div class="role-block">
+          <h4>Identifying mark</h4>
+          <ul>
+            <li>Accent: <b style="color:var(--ink);">Ink terracotta-copper (#8C5535)</b> pin ribbon</li>
+            <li>Optional: a small fountain-pen-nib lapel pin in brass (a nod to the Pen Wall) alongside the arch device — the one zone where a second small pin is appropriate, since Ink's whole identity is instruments</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-head">
+      <div class="role-dot" style="background:var(--studio);"></div>
+      <div class="role-title">Studio Manager &amp; Studio Technician</div>
+      <div class="role-count">2 roles · Studio</div>
+    </div>
+    <div class="role-body">
+      <div class="role-grid">
+        <div class="role-block">
+          <h4>Uniform</h4>
+          <ul>
+            <li>Modified base wardrobe: <b>waistcoat optional, not required</b> — Studio is the one zone the Brand Identity document explicitly says is "no parchment visible here," precision-studio register rather than Gothic-collegiate. A fitted dark shirt (no waistcoat) reads correctly and is more practical for a technician who is occasionally under a desk running cable</li>
+            <li>Studio Technician specifically: base wardrobe swapped for a well-fitted dark polo or crew-neck plus the same dark trouser — waistcoats and cable management don't mix</li>
+          </ul>
+        </div>
+        <div class="role-block">
+          <h4>Identifying mark</h4>
+          <ul>
+            <li>Accent: <b style="color:var(--studio);">Studio deep-indigo (#3A3A52)</b> pin ribbon — the coolest, most desaturated accent in the system, matching the zone's own "no parchment" restraint</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 03 THE BRASS PIN ═══ -->
+<section>
+  <h2><span class="sec-tag">03</span> The brass pin — one badge, five ribbons</h2>
+  <p style="color:var(--soft);">Document 04 already anticipates exactly this use case: the arch device alone, in brass, is specified for "minimal contexts" where the full wordmark is impractical — a staff uniform is precisely that context. One small enamel or embroidered pin, worn on the left side of the waistcoat, does the entire job of identifying "this person works at SCRIPTORIUM" without printing the wordmark on fabric at all.</p>
+  <div class="ben-grid">
+    <div class="ben-block">
+      <h4>The pin itself</h4>
+      <ul>
+        <li class="highlight"><b>Single pointed Gothic arch</b>, brass finish, no fill — identical geometry to the "device only · brass · minimal contexts" mark in Document 04</li>
+        <li>~18–22mm — small enough to read as jewellery, not a corporate badge</li>
+        <li>Same pin for every SCRIPTORIUM-zone role; the ribbon behind it carries the zone colour, not the pin itself</li>
+      </ul>
+    </div>
+    <div class="ben-block">
+      <h4>Why a ribbon, not a coloured pin</h4>
+      <ul>
+        <li>Keeps the brass consistent — a gold-on-gold pin in five different accent metals would look like five different vendors, not one campus</li>
+        <li>A ribbon or thread is cheap to produce in five colours and cheap to replace if a zone's role changes — the pin itself is the durable, reordered-rarely piece</li>
+        <li>Reads correctly at conversational distance (close enough to greet a visitor) without needing wayfinding-plaque-scale colour blocking</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 04 A&M MUNCHIES ═══ -->
+<section>
+  <h2><span class="sec-tag">04</span> System B — A&amp;M Munchies, its own identity</h2>
+  <div class="am-box">
+    <div class="am-title">A separate café, that happens to sit inside SCRIPTORIUM</div>
+    <p style="color:var(--soft);">Everything below is proposed fresh, built from your own reference images (9, 10, 11) rather than adapted from the SCRIPTORIUM palette — because Document 04 forbids the adaptation. If A&amp;M Munchies later produces its own brand identity document (the same way SCRIPTORIUM has Document 04), that document should supersede this section; until then, this is the working uniform spec.</p>
+  </div>
+
+  <h3>Proposed A&amp;M Munchies palette</h3>
+  <div class="palette-row">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#EFE6D8;"></div>
+      <div class="swatch-data"><div class="swatch-name">Munchies Cream</div><div class="swatch-vals">#EFE6D8<br><em>Shirt / coat base</em></div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#A68A66;"></div>
+      <div class="swatch-data"><div class="swatch-name">Munchies Taupe</div><div class="swatch-vals">#A68A66<br><em>Apron / trouser</em></div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#4A3527;"></div>
+      <div class="swatch-data"><div class="swatch-name">Munchies Chocolate</div><div class="swatch-vals">#4A3527<br><em>Trim / straps / scarf</em></div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFFFFF;border-bottom:1px solid rgba(0,0,0,0.15);"></div>
+      <div class="swatch-data"><div class="swatch-name">Service White</div><div class="swatch-vals">#FFFFFF<br><em>Front-of-house coat</em></div></div>
+    </div>
+  </div>
+  <p style="color:var(--soft);font-size:13.5px;">This is warm, food-forward, and international-café coded — cream, taupe, and chocolate brown, pulled directly from Images 9, 10, and 11 rather than from any SCRIPTORIUM swatch. No brass, no arch device, no Garamond.</p>
+
+  <div class="role-grid" style="margin-top:20px;">
+    <div class="role-block">
+      <h4>Front of house — Head Barista &amp; Café Manager, Junior Barista, Cashier/Service</h4>
+      <ul>
+        <li class="must"><b>Image 10 direction:</b> crisp white double-breasted chef/service coat, striped bib apron (pinstripe reads as "café," not "kitchen line"), a fabric neck-tie or scarf in Munchies Chocolate — this is the most photographable option and the one closest to A&amp;M Munchies' café-not-canteen positioning</li>
+          <li><b>Image 11 alternative</b> (more feminine/patisserie register): puff-sleeve coat with contrast trim, paisley neck scarf, tan half-apron — better suited if A&amp;M Munchies leans bakery/patisserie rather than espresso-bar</li>
+        <li>Pick one direction campus-wide rather than mixing — the two images are different enough in tone (bistro vs. patisserie) that combining them will look like two cafés, not one</li>
+      </ul>
+    </div>
+    <div class="role-block">
+      <h4>Back of house — Kitchen / Food Prep</h4>
+      <ul>
+        <li class="must">Plain white or cream chef coat, no puff sleeves, no scarf — food-safety register takes priority over café-aesthetic register in the kitchen specifically</li>
+        <li class="must">Full-length apron in Munchies Taupe (<b>Image 9 direction</b> — the crossback taupe apron with dark straps is the right functional silhouette: crossback distributes weight better than neck-tie aprons for a full shift)</li>
+        <li>Closed-toe, closed-heel, slip-resistant shoes — non-negotiable for anyone working a kitchen line, and worth stating plainly rather than assuming it's obvious</li>
+        <li>Hair fully restrained (net, cap, or tied+covered) — standard commercial-kitchen hygiene practice, and expected under FSSAI food-safety norms for any licensed food establishment (see Document 08's FSSAI reference)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CO-BRANDING TAG (FUTURE / OPTIONAL) ═══ -->
+<section>
+  <div class="future-box">
+    <div class="fb-eyebrow">Optional · only if A&amp;M Munchies pursues an apparel partner</div>
+    <div class="fb-title">If you collaborate with a uniform or apparel brand: three tag placements, ranked</div>
+    <p style="color:var(--soft);">Your own research (Images 2–3) already worked out the placement logic well — recorded here so it isn't lost, and ranked for A&amp;M Munchies' specific case:</p>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">The Apron Chest (recommended default)</div>
+          <div class="step-desc">A single woven or leather patch on the apron chest, both logos side-by-side or stacked. Best fit for A&amp;M Munchies because it keeps the collaboration on the <b>apron</b> — the one garment that's genuinely A&amp;M Munchies' own — rather than printing a second brand onto the coat, which is the piece doing the most identity work.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">The Sleeve Hit</div>
+          <div class="step-desc">Main A&amp;M Munchies logo front chest, partner logo on the right sleeve only. Good if the partner is a primary supplier (a roastery, a dairy brand) rather than an equal co-brand — same logic Document 08 already uses for supplier relationships.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">The Back Yoke</div>
+          <div class="step-desc">Collaboration tag below the collar, visible mainly to the queue behind the counter. Lowest-commitment option — worth using for a short-term or seasonal collaboration rather than a permanent supplier relationship.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 05 SECURITY ═══ -->
+<section>
+  <h2><span class="sec-tag">05</span> Security — two directions, now a simple choice</h2>
+  <div class="adv green">
+    <p><b>Resolved since the last draft of this document:</b> SCRIPTORIUM now hires security staff directly rather than through an agency (Document 06, Section 08) — one of the reasons for the change was exactly this uniform question. A directly-employed guard wears whatever SCRIPTORIUM commissions, the same way every other role in this document does. There's no agency contract to negotiate around; Direction A below is simply an ordering decision now, not a negotiation.</p>
+  </div>
+
+  <div class="role-grid">
+    <div class="role-block">
+      <h4>Direction A — Private security register (Image 5)</h4>
+      <ul>
+        <li>Black windbreaker/jacket with "SECURITY" in reflective or white text across the chest, black cap (same text), aviator sunglasses, earpiece, tie</li>
+        <li>Reads as premium private security — hotel, embassy, high-end retail. Matches SCRIPTORIUM's positioning as a premium campus better than a generic mall-guard look</li>
+        <li>Less weather-adaptable — the windbreaker is a single layer; needs a separate summer version for Delhi's April–June heat</li>
+      </ul>
+    </div>
+    <div class="role-block">
+      <h4>Direction B — Structured tactical register (Image 6)</h4>
+      <ul>
+        <li>Cargo-style uniform shirt and trousers, shoulder patches/badges, belt, combat-style boots, cap</li>
+        <li>Reads as more visibly "on duty" and procedural — better if the priority is visible deterrence over premium-hospitality signalling</li>
+        <li>More layers and pockets make it more adaptable across seasons, but it's a harder visual match to a Gothic-collegiate/K-drama-café campus aesthetic — this is the one uniform in the whole document that doesn't need to match the building</li>
+      </ul>
+    </div>
+  </div>
+  <div class="adv gold">
+    <p><b>Recommendation:</b> Direction A — it matches the "quality across every touchpoint" standard the rest of this campus is held to, and there's no longer an agency constraint standing in the way of it. Security is often the very first staff member a visitor encounters at the gate, so the first impression carries real weight. Budget it the same way every other role's uniform is budgeted in Section 11 below, rather than as an agency pass-through cost.</p>
+  </div>
+  <p style="color:var(--soft);font-size:13.5px;">The recruitment, physical-assessment, and training process behind these two people — now that SCRIPTORIUM runs it directly — is covered in Document 13 (Safety &amp; Security), not here; this section stays focused on what they wear.</p>
+</section>
+
+<!-- ═══ 06 MAINTENANCE & HOUSEKEEPING ═══ -->
+<section>
+  <h2><span class="sec-tag">06</span> Maintenance &amp; Housekeeping</h2>
+  <p style="color:var(--soft);">No reference images covered this role, so this is proposed from function rather than styled from inspiration — which is the right way to build it anyway, since these two people move through every zone doing physically demanding, often unglamorous work all day.</p>
+  <div class="ben-grid">
+    <div class="ben-block">
+      <h4>The uniform</h4>
+      <ul>
+        <li><b>Utility shirt + trouser set</b> in Kota Grey — durable poly-cotton, not the tailored fabric used elsewhere, since this role needs to move, kneel, and carry all day</li>
+        <li>No waistcoat, no tie — pure function</li>
+        <li>Small embroidered arch device on the chest (same brass mark as System A, no accent ribbon) — enough to identify as SCRIPTORIUM staff without any garment that would restrict movement</li>
+      </ul>
+    </div>
+    <div class="ben-block">
+      <h4>Practical notes</h4>
+      <ul>
+        <li>Provide 3 sets rather than the standard 2 (Section 07) — this role is hardest on fabric and most likely to need a same-day change after a spill or repair job</li>
+        <li>Include a weather layer: a lightweight rain shell for monsoon garden/pond maintenance work (cross-references Document 10's seasonal maintenance calendar)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 07 TAU INTERNS ═══ -->
+<section>
+  <h2><span class="sec-tag">07</span> TAU interns</h2>
+  <div class="intern-box">
+    <div class="ib-title">Interns wear the uniform of wherever they're placed</div>
+    <div class="ib-sub">No separate intern wardrobe</div>
+    <p style="color:var(--soft);">A TAU intern placed in Ink wears the Ink uniform (Section 02); one placed in A&amp;M Munchies wears the A&amp;M Munchies uniform (Section 04). The only addition is a small secondary pin — a plain brass dot below the main pin — signalling "intern" to other staff without saying so to visitors, who should experience the intern as a fully capable member of that zone, not a trainee wearing a different costume.</p>
+    <div class="intern-grid">
+      <div class="intern-slot">
+        <div class="is-zone">Any SCRIPTORIUM zone</div>
+        <div class="is-role">Zone uniform + intern pin</div>
+        <div class="is-desc">Full base wardrobe and zone accent per Section 02, plus the small brass dot</div>
+      </div>
+      <div class="intern-slot">
+        <div class="is-zone">A&amp;M Munchies</div>
+        <div class="is-role">Café uniform + intern pin</div>
+        <div class="is-desc">Same Section 04 uniform as permanent café staff — the intern pin is small enough to work against the cream/taupe palette too</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 08 UNIVERSAL DRESS CODE ═══ -->
+<section>
+  <h2><span class="sec-tag">08</span> Universal dress code — grooming and presentation</h2>
+  <p style="color:var(--soft);">Kept short and function-driven on purpose. The uniform already does the work of looking like SCRIPTORIUM; the grooming code exists to protect hygiene and safety, not to police personal appearance beyond that.</p>
+  <div class="culture-grid">
+    <div class="culture-do">
+      <h4>Required</h4>
+      <ul>
+        <li>Uniform clean and pressed at the start of every shift — visible wrinkles or stains are a same-day fix, not a next-shift one</li>
+        <li>Hair restrained/tied back for any food-adjacent or kitchen role (Section 04) — this is a hygiene rule, not a style rule, and applies regardless of length or gender</li>
+        <li>Closed-toe shoes for Kitchen/Food Prep, Maintenance, and Security — safety-driven, non-negotiable for these three roles specifically</li>
+        <li>Name badge or pin visible and facing forward</li>
+      </ul>
+    </div>
+    <div class="culture-dont">
+      <h4>Not permitted</h4>
+      <ul>
+        <li>Personal outerwear (hoodies, jackets not part of the uniform system) worn over the uniform on the floor during visitor hours</li>
+        <li>Strong fragrance in the Reads or Ink zones specifically — both are quiet, close-proximity browsing environments where scent carries further than in the café or Studio</li>
+        <li>Visible SCRIPTORIUM uniform pieces worn off-site in a way that implies an official campus appearance (a media interview, a personal social post presented as if speaking for SCRIPTORIUM) without the Campus Director's sign-off — this mirrors the brand-voice control already established in Document 04</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 09 RELIGIOUS & CULTURAL ACCOMMODATION ═══ -->
+<section>
+  <h2><span class="sec-tag">09</span> Religious and cultural accommodation</h2>
+  <div class="adv green">
+    <p><b>This section exists because it needs to be explicit, not assumed.</b> SCRIPTORIUM's staff policies already commit to festival bonuses regardless of religion and to inclusive policies that require no personal disclosure (Document 06). The uniform system extends the same principle: nothing above is designed to be worn instead of religious or cultural dress — it's designed to be worn <i>with</i> it.</p>
+  </div>
+  <div class="ben-grid">
+    <div class="ben-block">
+      <h4>Explicitly accommodated, no approval needed</h4>
+      <ul>
+        <li>Hijab, in the zone's accent colour or a neutral matching the base wardrobe (black, charcoal, cream) — treated as a uniform piece, not an exception to one</li>
+        <li>Turban/pagri, worn as the staff member's own choice of colour</li>
+        <li>Bindi, tilak, mangalsutra, kara, cross pendant, or other religious jewellery worn discreetly with the uniform</li>
+        <li>Beard length or style kept or grown for religious reasons — exempt from any grooming expectation elsewhere in this document</li>
+      </ul>
+    </div>
+    <div class="ben-block">
+      <h4>How this is handled operationally</h4>
+      <ul>
+        <li>No staff member is asked to state a religious reason to receive an accommodation — the accommodation is available on request, full stop, matching the "no personal disclosure" standard already set elsewhere</li>
+        <li>Prayer breaks are scheduled around, not instead of, floor coverage — the Campus Director builds this into shift planning the same way meal breaks already are</li>
+        <li>Kitchen/Food Prep hijab or turban options use food-safe fabric and a secure style compatible with the hair-restraint requirement in Section 08 — worth specifying with the uniform vendor directly rather than treating it as a bolt-on</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 10 WEATHER ADAPTATION ═══ -->
+<section>
+  <h2><span class="sec-tag">10</span> Delhi's seasons, on the uniform</h2>
+  <p style="color:var(--soft);">The same climate logic that runs through the Architecture Brief and Landscape documents applies to fabric choice — a waistcoat that's correct in December is a liability in June.</p>
+  <table>
+    <thead><tr><th>Season</th><th>Adjustment</th><th>Applies to</th></tr></thead>
+    <tbody>
+      <tr><td>Peak summer (Apr–Jun, up to 44°C)</td><td>Lightweight cotton/linen-blend base layer beneath the waistcoat; waistcoat itself optional for back-of-house and Studio roles during this window</td><td>All System A roles</td></tr>
+      <tr><td>Monsoon (Jul–Sep)</td><td>A spare uniform set kept on-site for a same-day change after a soaking; Maintenance gets a rain shell (Section 06)</td><td>All roles, especially Maintenance and outdoor-adjacent café staff</td></tr>
+      <tr><td>Winter (Nov–Feb)</td><td>Argyle sweater-vest (Image 8) permitted as a waistcoat substitute; A&amp;M Munchies front-of-house may add a chocolate-brown cardigan under the coat</td><td>All roles</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ 11 SOURCING, BUDGET & LAUNDERING ═══ -->
+<section>
+  <h2><span class="sec-tag">11</span> Sourcing, budget, and laundering</h2>
+  <p style="color:var(--soft);">Treat every figure below the way Document 08 treats every other price in this ecosystem: indicative, cross-checked against multiple India-market listings as of July 2026, and to be confirmed with an actual vendor quotation before committing. Get a minimum of three quotations for the initial bulk order, same as Document 08's standing rule for custom items.</p>
+
+  <table>
+    <thead><tr><th>Category</th><th>Roles</th><th>Count</th><th>Est. cost/set</th><th>Sets/person</th><th>Initial total</th></tr></thead>
+    <tbody>
+      <tr class="zone-head"><td colspan="6">System A — SCRIPTORIUM zones</td></tr>
+      <tr><td>Base wardrobe (shirt+waistcoat+trouser)</td><td>Campus Director, Head Librarian, Library Asst/Capsule Host, Ink Manager, Floor Associates, Studio Manager</td><td class="num">8</td><td class="num">₹2,100–3,500</td><td class="num">2</td><td class="num">₹33,600–56,000</td></tr>
+      <tr><td>Modified (no waistcoat)</td><td>Studio Technician</td><td class="num">1</td><td class="num">₹1,200–2,000</td><td class="num">2</td><td class="num">₹2,400–4,000</td></tr>
+      <tr class="zone-head"><td colspan="6">System B — A&amp;M Munchies</td></tr>
+      <tr><td>Front-of-house set</td><td>Head Barista &amp; Café Manager, Junior Barista, Cashier/Service</td><td class="num">3</td><td class="num">₹950–2,100</td><td class="num">2</td><td class="num">₹5,700–12,600</td></tr>
+      <tr><td>Kitchen set (coat+apron+shoes)</td><td>Kitchen/Food Prep</td><td class="num">1</td><td class="num">₹1,200–2,500</td><td class="num">3</td><td class="num">₹3,600–7,500</td></tr>
+      <tr class="zone-head"><td colspan="6">Outside both systems</td></tr>
+      <tr><td>Maintenance/Housekeeping utility set</td><td>Maintenance/Housekeeping</td><td class="num">2</td><td class="num">₹500–1,000</td><td class="num">3</td><td class="num">₹3,000–6,000</td></tr>
+      <tr><td>Security</td><td>Security</td><td class="num">2</td><td class="num">₹1,000–2,500</td><td class="num">2</td><td class="num">₹4,000–10,000</td></tr>
+      <tr class="subtotal"><td colspan="5"><b>Total initial issue, all roles</b></td><td class="num"><b>≈₹52,300–96,100</b></td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--soft);font-size:13px;">Brass pins, ribbons, and embroidery are priced separately by the vendor doing the base garments — usually a modest per-unit add (typically ₹50–150/pin in bulk) rather than a distinct line item worth its own table row.</p>
+
+  <div class="ben-grid" style="margin-top:16px;">
+    <div class="ben-block">
+      <h4>Laundering</h4>
+      <ul>
+        <li class="highlight"><b>Kitchen and Maintenance uniforms: campus-laundered</b>, not staff-laundered — food-safety and hygiene standards are hard to guarantee on a home wash cycle, and this is standard practice at any serious F&amp;B operation</li>
+        <li>System A base wardrobe (waistcoat, shirt, trouser): staff-laundered is acceptable given the lower soil/spill exposure, with a care-instruction card issued alongside the uniform</li>
+        <li>A&amp;M Munchies front-of-house whites: campus-laundered if budget allows — white shows soil fastest and represents the café's first impression</li>
+      </ul>
+    </div>
+    <div class="ben-block">
+      <h4>Replacement policy</h4>
+      <ul>
+        <li>Standard replacement cycle: 12 months for base wardrobe pieces, 6 months for kitchen aprons/coats (higher wear, more frequent hot-water laundering)</li>
+        <li>Damage beyond repair (not normal wear) replaced immediately, at campus cost, no questions asked — this is the same "quality over convenience" standard the rest of Document 06 holds staffing decisions to</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  This document is the founding uniform and dress-code record for SCRIPTORIUM. It should be read alongside Document 04 (Brand Identity — the source of the A&amp;M Munchies separation rule and the five-colour/four-accent palette), Document 06 (Staff Planning — the role list and headcount this document maps against), and Document 08 (Sourcing &amp; Procurement — the same three-quotation standard applied here). All prices are July 2026 indicative market figures; confirm with actual vendor quotations before committing to a bulk order. Deviations from the two-system principle in Section 00 require the founder's explicit approval, per the same version-control standard Document 04 sets for all brand decisions.
+  <ol>
+    <li>Jaquar — <a href="https://www.jaquar.com/en/jaquar-sanitary-ware">jaquar.com/en/jaquar-sanitary-ware</a> (referenced for cross-document consistency with Document 02's washroom fixture revision)</li>
+    <li>IndiaMART — <a href="https://dir.indiamart.com/impcat/chef-uniform.html">Chef uniform price listings</a>: ₹275–1,200/piece depending on fabric and finish</li>
+    <li>IndiaMART — <a href="https://dir.indiamart.com/impcat/restaurant-uniform.html">Restaurant/café staff uniform listings</a>: ₹180–1,150/piece</li>
+    <li>IndiaMART — <a href="https://dir.indiamart.com/impcat/security-guard-uniform.html">Security guard uniform listings</a>: ₹180–600/piece standard, up to ₹2,000–3,500 for branded formal sets with tie</li>
+    <li>UniformTailor.in — <a href="https://uniformtailor.in/uniform-by-profession/security-uniforms">Custom security uniform sourcing</a>, no minimum order, Pan-India delivery, bulk pricing for agencies</li>
+    <li>Nirmala Overseas — <a href="https://www.nirmalaoverseas.com/chef-uniform.html">Chef apron and kitchen uniform components</a>, wholesale/manufacturer pricing</li>
+  </ol>
+</footer>
+
+</div>
+</body>
+</html>

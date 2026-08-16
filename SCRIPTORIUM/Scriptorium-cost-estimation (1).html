@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cost Estimation Framework — The Study Campus, South Delhi</title>
+<style>
+:root {
+  --bg:       #16161A;
+  --surface:  #1E1E23;
+  --surface2: #252529;
+  --border:   #333340;
+  --text:     #EAE7DF;
+  --soft:     #9A958C;
+  --dimmed:   #5A5750;
+
+  --gold:     #BFA468;
+  --gold-bg:  rgba(191,164,104,0.08);
+  --green:    #6A9C6A;
+  --green-bg: rgba(106,156,106,0.08);
+  --red:      #C45A4A;
+  --red-bg:   rgba(196,90,74,0.08);
+  --blue:     #5A8CC0;
+  --blue-bg:  rgba(90,140,192,0.08);
+  --orange:   #C47A52;
+  --orange-bg:rgba(196,122,82,0.08);
+  --purple:   #9370B8;
+  --purple-bg:rgba(147,112,184,0.08);
+
+  --lib:    #BFA468;
+  --cafe:   #7FA87F;
+  --pod:    #6A9CC5;
+  --stat:   #C47A52;
+  --cyber:  #9370B8;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;font-size:15px;line-height:1.6;}
+.wrap{max-width:980px;margin:0 auto;padding:52px 28px 90px;}
+
+/* ─── HEADER ─── */
+.doc-header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:48px;}
+.stamp{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:3px 9px;margin-bottom:14px;border-radius:2px;}
+h1{font-family:Georgia,"Palatino Linotype",serif;font-size:32px;font-weight:600;line-height:1.2;margin:0 0 8px;color:var(--text);}
+.tagline{color:var(--soft);font-size:15px;font-style:italic;margin:0 0 18px;}
+.meta-strip{display:flex;flex-wrap:wrap;gap:20px;font-family:ui-monospace,monospace;font-size:11px;color:var(--dimmed);}
+.meta-strip b{color:var(--soft);}
+
+/* ─── SECTIONS ─── */
+section{margin-bottom:52px;}
+h2{font-family:Georgia,serif;font-size:20px;color:var(--text);margin:0 0 18px;display:flex;align-items:center;gap:10px;}
+h2 .sec-tag{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);border:1px solid var(--border);padding:2px 7px;border-radius:2px;}
+h3{font-family:Georgia,serif;font-size:16px;margin:24px 0 10px;color:var(--soft);}
+p{margin:0 0 12px;}
+
+/* ─── LOCATION CARDS ─── */
+.loc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin:16px 0;}
+.loc-card{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:15px 16px;}
+.loc-card .lc-label{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dimmed);margin-bottom:5px;}
+.loc-card .lc-val{font-family:Georgia,serif;font-size:19px;color:var(--gold);font-weight:600;line-height:1.2;}
+.loc-card .lc-note{font-size:12px;color:var(--soft);margin-top:4px;line-height:1.4;}
+
+/* ─── ADVISORY BLOCK ─── */
+.advisory{background:var(--gold-bg);border-left:3px solid var(--gold);padding:15px 20px;border-radius:0 4px 4px 0;margin:16px 0;}
+.advisory.warn{background:var(--red-bg);border-color:var(--red);}
+.advisory.info{background:var(--blue-bg);border-color:var(--blue);}
+.advisory.go{background:var(--green-bg);border-color:var(--green);}
+.advisory p{margin:0;font-size:14px;color:var(--soft);}
+.advisory p b{color:var(--text);}
+
+/* ─── SCENARIO TABLE ─── */
+.scenario-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0;}
+@media(max-width:700px){.scenario-wrap{grid-template-columns:1fr;}}
+.scenario{background:var(--surface);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
+.scenario .sc-head{padding:13px 16px;display:flex;flex-direction:column;gap:4px;}
+.scenario .sc-label{font-family:ui-monospace,monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);}
+.scenario .sc-title{font-family:Georgia,serif;font-size:15px;font-weight:600;}
+.scenario .sc-body{padding:13px 16px;font-size:13px;color:var(--soft);line-height:1.55;}
+.scenario .sc-total{padding:10px 16px;font-family:ui-monospace,monospace;font-size:12px;border-top:1px solid var(--border);}
+.scenario.rec{border-color:var(--gold);}
+.scenario.rec .sc-head{background:var(--gold-bg);}
+.scenario.rec .sc-label{color:var(--gold);}
+.scenario.rec .sc-title{color:var(--gold);}
+
+/* ─── PHASE BLOCKS ─── */
+.phase{background:var(--surface);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-bottom:20px;}
+.phase-head{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--border);background:var(--surface2);}
+.phase-pill{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:3px;flex-shrink:0;}
+.phase-title{font-family:Georgia,serif;font-size:16px;font-weight:600;flex:1;}
+.phase-range{font-family:ui-monospace,monospace;font-size:13px;color:var(--gold);white-space:nowrap;}
+.phase-body{padding:16px 18px;}
+
+/* ─── COST TABLE ─── */
+table.cost{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;}
+table.cost th{text-align:left;padding:8px 12px;background:rgba(255,255,255,0.04);color:var(--soft);font-family:ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--border);}
+table.cost td{padding:10px 12px;border-bottom:1px solid rgba(51,51,64,0.5);vertical-align:top;color:var(--soft);}
+table.cost td:first-child{color:var(--text);font-weight:500;}
+table.cost td.amt{color:var(--gold);font-family:ui-monospace,monospace;font-size:13px;white-space:nowrap;text-align:right;}
+table.cost td.rng{color:var(--soft);font-size:12px;white-space:nowrap;text-align:right;}
+table.cost tr:last-child td{border-bottom:none;}
+table.cost .subtotal td{border-top:1px solid var(--border);background:rgba(191,164,104,0.06);}
+table.cost .subtotal td{color:var(--gold);font-weight:600;font-family:ui-monospace,monospace;font-size:12px;}
+
+/* ─── ZONE COST BADGE ─── */
+.zone-row{display:flex;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px solid rgba(51,51,64,0.5);}
+.zone-row:last-child{border-bottom:none;}
+.zone-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.zone-name{flex:1;color:var(--text);font-size:14px;}
+.zone-spec{color:var(--soft);font-size:12.5px;flex:2;line-height:1.45;}
+.zone-cost{font-family:ui-monospace,monospace;font-size:13px;color:var(--gold);white-space:nowrap;text-align:right;}
+
+/* ─── SUMMARY BOX ─── */
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:16px 0;}
+@media(max-width:620px){.summary-grid{grid-template-columns:1fr;}}
+.sum-block{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:16px 18px;}
+.sum-block .sb-label{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);margin-bottom:6px;}
+.sum-block .sb-val{font-family:Georgia,serif;font-size:24px;color:var(--gold);font-weight:600;line-height:1.2;}
+.sum-block .sb-sub{font-size:12.5px;color:var(--soft);margin-top:5px;line-height:1.45;}
+
+/* ─── REVENUE SKETCH ─── */
+.rev-table{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin:14px 0;}
+.rev-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:13px 15px;}
+.rev-card .rc-stream{font-family:ui-monospace,monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dimmed);margin-bottom:4px;}
+.rev-card .rc-range{font-family:Georgia,serif;font-size:16px;color:var(--green);font-weight:600;}
+.rev-card .rc-note{font-size:11.5px;color:var(--soft);margin-top:3px;line-height:1.4;}
+
+/* ─── PAYBACK BAR ─── */
+.payback{margin:18px 0;background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:16px 18px;}
+.payback-label{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);margin-bottom:12px;}
+.bar-track{background:rgba(255,255,255,0.04);border-radius:3px;height:28px;position:relative;overflow:hidden;margin-bottom:6px;}
+.bar-fill{height:100%;display:flex;align-items:center;padding:0 10px;font-family:ui-monospace,monospace;font-size:11px;letter-spacing:0.5px;}
+.bar-label{font-size:12px;color:var(--soft);margin-top:3px;}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--border);font-size:12px;color:var(--dimmed);font-style:italic;line-height:1.7;}
+footer a{color:var(--blue);text-decoration:none;}
+footer ol{margin:14px 0 0;padding-left:18px;}
+footer li{margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ═══ HEADER ═══ -->
+<header class="doc-header">
+  <div class="stamp">Document 03 · Cost Estimation Framework · Pre-Design Stage</div>
+  <h1>The Study Campus — Phased Investment Plan</h1>
+  <p class="tagline">Anchored to the Said-ul-Ajaib / Saket Metro corridor, South Delhi — June 2026 pricing</p>
+  <div class="meta-strip">
+    <span>Founder: <b>Anna Thomas</b></span>
+    <span>Pricing basis: <b>June 2026 market data</b></span>
+    <span>Location: <b>Said-ul-Ajaib / South Delhi metro belt</b></span>
+    <span>Accuracy: <b>±20% at pre-design stage — tighten after architect BOQ</b></span>
+    <span>Working capital: <b>Revised per Staff Plan §11b — June 2026</b></span>
+  </div>
+  <div class="advisory warn" style="margin-top:20px;">
+    <p><b>Revision notice (June 2026):</b> Working capital figures have been updated to reflect the revised staff payroll structure from Staff Planning Document §11b. Staff payroll 6-month buffer revised from ₹21–30L to ₹34–35L (Year 1 annual payroll ₹69.4L ÷ 12 = ₹5.78L/month). Working capital total revised from ₹68–99L to ₹1.1–1.4 crore. Project totals revised accordingly: conservative ₹20.5 crore, full-spec ₹28 crore (Scenario B, own plot). Without land: ₹16.5–21.5 crore. All other phase estimates unchanged.</p>
+  </div>
+</header>
+
+<!-- ═══ WHY SAID-UL-AJAIB ═══ -->
+<section>
+  <h2><span class="sec-tag">Location</span> Why Said-ul-Ajaib is a strong choice</h2>
+  <p style="color:var(--soft);">Said-ul-Ajaib is an urban village in South Delhi that sits in a genuinely rare sweet spot: close enough to Saket's infrastructure and footfall to benefit from it, but still priced at village-land rates significantly below Saket proper. Its proximity to multiple metro stations and — critically — the Garden of Five Senses directly adjacent makes it perhaps the best possible site for a campus with a pond and landscape ambition.</p>
+
+  <div class="loc-grid">
+    <div class="loc-card">
+      <div class="lc-label">Saket Metro (Yellow Line)</div>
+      <div class="lc-val">0.83 km</div>
+      <div class="lc-note">Walking distance — the single most important catchment driver for a study campus</div>
+    </div>
+    <div class="loc-card">
+      <div class="lc-label">Qutab Minar Metro</div>
+      <div class="lc-val">1.26 km</div>
+      <div class="lc-note">Second metro access point; expands catchment to Yellow + Magenta line users</div>
+    </div>
+    <div class="loc-card">
+      <div class="lc-label">Garden of Five Senses</div>
+      <div class="lc-val">0.29 km</div>
+      <div class="lc-note">DDA landscaped park adjacent to the village — your campus pond sits in the same green belt; planning synergy</div>
+    </div>
+    <div class="loc-card">
+      <div class="lc-label">Avg. land rate (Neb Sarai / village belt)</div>
+      <div class="lc-val">₹5,600–8,000</div>
+      <div class="lc-note">Per sq ft. Compare: Saket is ₹19,300/sq ft — the village belt is a dramatic discount for the same metro access</div>
+    </div>
+    <div class="loc-card">
+      <div class="lc-label">Rental rate (commercial)</div>
+      <div class="lc-val">₹34–55/sq ft</div>
+      <div class="lc-note">Per month. Said-ul-Ajaib avg. ₹34; nearby Shivalik Colony ₹41; Navjeevan Vihar ₹55</div>
+    </div>
+    <div class="loc-card">
+      <div class="lc-label">DLF Avenue / Saket Mall cluster</div>
+      <div class="lc-val">2.25 km</div>
+      <div class="lc-note">Your stationery and café are not competing with Saket's malls — they're serving the same audience before and after mall visits</div>
+    </div>
+  </div>
+
+  <div class="advisory go">
+    <p><b>The strategic logic:</b> UPSC, DU, IIT-Delhi, and IGNOU students all converge on the Saket–Qutab Minar metro belt. Self-study paid libraries in this corridor charge ₹1,600–3,500/month per seat and are consistently full. Said-ul-Ajaib sits at the centre of this demand, with land at roughly one-third the cost of Saket proper — the gap between what you pay for land and what your users are willing to pay for quality study space is where the business case lives.</p>
+  </div>
+
+  <div class="advisory warn">
+    <p><b>Critical zoning check before shortlisting any specific plot:</b> Urban village land in Delhi (lal dora) has complex title and zoning issues. Confirm three things with a property lawyer before making any offer: (1) whether the plot falls on a notified mixed-use street or is within a local shopping centre zone under MPD-2021, (2) whether the title is clear and the plot is not sub-judice, and (3) whether conversion from village use to commercial use has been regularised or needs DDA/MCD sanction. Lal dora plots cannot be registered under normal Delhi land records — they use a different legal regime. Get a specialist, not a general property broker, to advise on this.</p>
+  </div>
+</section>
+
+<!-- ═══ THREE SCENARIOS ═══ -->
+<section>
+  <h2><span class="sec-tag">Structure</span> Three property scenarios — pick your entry point</h2>
+  <p style="color:var(--soft);">The biggest single variable in this project's capital requirement is whether you own the land, lease a built space, or build in phases on a smaller lease. Each has a fundamentally different risk profile and capital need.</p>
+
+  <div class="scenario-wrap">
+    <div class="scenario">
+      <div class="sc-head">
+        <div class="sc-label">Scenario A</div>
+        <div class="sc-title" style="color:var(--blue);">Lease & Fit-Out</div>
+      </div>
+      <div class="sc-body">Lease a large existing commercial building near Saket Metro — ideally a bare-shell or warm-shell space of 8,000–12,000 sq ft — and fit it out to spec. Cheapest entry, fastest to open. The trade-off: you cannot build the library's double-height void or the stationery tower if they aren't already in the structure; your architectural ambition is capped by what the landlord built. Also, lease security risk — you're building ₹5–7 crore of fit-out in someone else's property.</div>
+      <div class="sc-total" style="color:var(--blue);">Est. total: ₹8–12 crore + ₹40–65 lakh/month rent</div>
+    </div>
+    <div class="scenario rec">
+      <div class="sc-head">
+        <div class="sc-label">Scenario B — Recommended for this vision</div>
+        <div class="sc-title">Own Plot, Build to Spec</div>
+      </div>
+      <div class="sc-body">Purchase a 6,000–8,000 sq ft plot in the Said-ul-Ajaib / Neb Sarai / Freedom Fighters Enclave village belt, then design and build from ground up. Only this scenario allows the Gothic library double-height void, the 3-floor stationery tower, the solar lantern roofline, and the backyard pond to be built exactly as designed. Highest capital requirement, but you own a South Delhi asset that appreciates. Long-term this is the strongest financial position.</div>
+      <div class="sc-total" style="color:var(--gold);">Est. total: ₹22–32 crore all-in</div>
+    </div>
+    <div class="scenario">
+      <div class="sc-head">
+        <div class="sc-label">Scenario C</div>
+        <div class="sc-title" style="color:var(--green);">Phased Start — Lease First, Build Later</div>
+      </div>
+      <div class="sc-body">Open the café + study library core (Phase 1 only) in a leased South Delhi space to prove the model and build revenue, then use operating profit + bank loan against the concept to purchase land and build the full campus in phases 3–5 years later. Significantly de-risks the capital commitment. The full architectural vision is deferred, not abandoned. Operationally sensible for a first-time operator.</div>
+      <div class="sc-total" style="color:var(--green);">Phase 1: ₹1.5–2.5 crore · Full build: Scenario B timeline</div>
+    </div>
+  </div>
+
+  <p style="color:var(--soft);font-size:13.5px;">The rest of this document prices Scenario B in full — the complete, own-plot build. If Scenario C is the chosen path, use only the Phase 1 rows initially and treat the rest as a 5-year capital plan.</p>
+</section>
+
+<!-- ═══ PHASE 0: LAND ═══ -->
+<section>
+  <h2><span class="sec-tag">Phase 0</span> Land acquisition</h2>
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-pill" style="background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold);">Phase 0</div>
+      <div class="phase-title">Plot Purchase — Said-ul-Ajaib / South Delhi Village Belt</div>
+      <div class="phase-range">₹4.5 – 8.5 crore</div>
+    </div>
+    <div class="phase-body">
+      <p style="color:var(--soft);">Target plot size: <b>6,000–8,000 sq ft</b>. This accommodates the full building footprint (~4,500 sq ft), colonnade, backyard pond, and setbacks. Smaller plots compromise either the pond or the stationery tower footprint. Larger than 8,000 sq ft is ideal but not required.</p>
+      <table class="cost">
+        <thead><tr><th>Cost item</th><th>Basis</th><th style="text-align:right;">Low</th><th style="text-align:right;">High</th></tr></thead>
+        <tbody>
+          <tr><td>Plot purchase (7,000 sq ft × ₹6,500/sq ft avg.)</td><td>Village belt, South Delhi — Neb Sarai ₹5,600, Freedom Fighters Enclave ₹6,900, Sainik Farm ₹6,250/sq ft on market</td><td class="rng">₹3.5 cr</td><td class="rng">₹5.6 cr</td></tr>
+          <tr><td>Stamp duty (6% on commercial property in Delhi)</td><td>Calculated on circle rate value or transaction value, whichever is higher; South Delhi market rate is 30–80% above circle rate</td><td class="rng">₹25 L</td><td class="rng">₹45 L</td></tr>
+          <tr><td>Registration charges (1%)</td><td>Standard Delhi property registration</td><td class="rng">₹4 L</td><td class="rng">₹8 L</td></tr>
+          <tr><td>Property lawyer + title search + due diligence</td><td>Especially important for lal dora village land; lump-sum fee</td><td class="rng">₹2 L</td><td class="rng">₹5 L</td></tr>
+          <tr><td>Land use conversion / commercial sanction (if required)</td><td>Depends on plot's current classification; may require DDA/MCD conversion charges</td><td class="rng">₹10 L</td><td class="rng">₹30 L</td></tr>
+          <tr class="subtotal"><td colspan="2">Phase 0 Total</td><td class="rng">₹3.9 cr</td><td class="rng">₹6.4 cr</td></tr>
+        </tbody>
+      </table>
+      <div class="advisory info" style="margin-top:14px;">
+        <p><b>Note on circle rates:</b> Commercial property circle rates in Delhi are calculated by multiplying the residential land rate by a factor (typically 1.5×–2×). Said-ul-Ajaib falls in category E–F for residential (₹46,200–₹92,400 per sq m). The actual market transaction price for village land is typically negotiated directly with the owner and varies widely from the circle rate. Always get three independent valuations before making an offer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PHASE 1: CIVIL STRUCTURE ═══ -->
+<section>
+  <h2><span class="sec-tag">Phase 1</span> Civil construction — shell and core</h2>
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-pill" style="background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange);">Phase 1</div>
+      <div class="phase-title">Structure, Basement, Gothic Library Void, Stationery Tower Shell</div>
+      <div class="phase-range">₹5.5 – 7.5 crore</div>
+    </div>
+    <div class="phase-body">
+      <p style="color:var(--soft);">This is raw civil work only — foundations, structural frame, walls, roof shell, and the basement waterproofing. Finishes and fit-out come in Phase 2. <b>Delhi 2026 premium commercial construction ranges ₹3,000–4,500/sq ft for standard framed structures;</b> the library's double-height void adds structural complexity (larger span beams, mezzanine load calculations) pushing its zone to ₹5,500–7,000/sq ft.</p>
+      <table class="cost">
+        <thead><tr><th>Zone / element</th><th>Area / qty</th><th style="text-align:right;">Rate</th><th style="text-align:right;">Estimate</th></tr></thead>
+        <tbody>
+          <tr><td>Library tower shell — double-height void, mezzanine slab, clerestory lantern superstructure</td><td>~2,500 sq ft footprint, 14m height</td><td class="rng">₹6,000/sq ft</td><td class="rng">₹1.5 cr</td></tr>
+          <tr><td>Café + cyber café + atrium spine ground floor shell</td><td>~2,500 sq ft</td><td class="rng">₹3,800/sq ft</td><td class="rng">₹95 L</td></tr>
+          <tr><td>Stationery tower — 3 floor RC frame, 9m height</td><td>~500 sq ft footprint × 3 floors = 1,500 sq ft</td><td class="rng">₹4,500/sq ft</td><td class="rng">₹67 L</td></tr>
+          <tr><td>Capsule wing — upper floor slab and walls</td><td>~4,000 sq ft</td><td class="rng">₹3,500/sq ft</td><td class="rng">₹1.4 cr</td></tr>
+          <tr><td>Basement — excavation, retaining walls, waterproof raft foundation, drainage channel</td><td>~4,000 sq ft</td><td class="rng">₹2,800/sq ft</td><td class="rng">₹1.12 cr</td></tr>
+          <tr><td>Exterior jaali screen terracotta panels (east + west facades)</td><td>~800 sq ft of screen</td><td class="rng">₹2,500/sq ft</td><td class="rng">₹20 L</td></tr>
+          <tr><td>Colonnade / verandah structure and deep overhangs</td><td>Lump</td><td class="rng">—</td><td class="rng">₹25 L</td></tr>
+          <tr><td>Structural engineer fees (mandatory for double-height void and mezzanine)</td><td>~1.5% of civil cost</td><td class="rng">—</td><td class="rng">₹10 L</td></tr>
+          <tr class="subtotal"><td colspan="3">Phase 1 Total</td><td class="rng">₹5.7 – 7.2 cr</td></tr>
+        </tbody>
+      </table>
+      <div class="advisory warn" style="margin-top:14px;">
+        <p><b>The mezzanine is the structural commitment:</b> Delhi 2026 construction costs add 15–25% for double-height voids and complex cantilever spans. The library mezzanine ring must be sized for live load (people + bookshelves) and appears in the structural engineer's calculations at the very first design stage — it cannot be added later without prohibitive cost. Commission the structural engineer before finalising the building plan, not after.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PHASE 2: FIT-OUT ═══ -->
+<section>
+  <h2><span class="sec-tag">Phase 2</span> Interior fit-out — zone by zone</h2>
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-pill" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue);">Phase 2</div>
+      <div class="phase-title">Finishes, Furniture, Joinery, Lighting, Acoustic Treatment</div>
+      <div class="phase-range">₹6.5 – 8.5 crore</div>
+    </div>
+    <div class="phase-body">
+      <p style="color:var(--soft);">Fit-out costs are calculated per net sq ft of each zone and represent finished interior work: flooring, wall finishes, joinery, lighting, built-in furniture, and acoustic treatment. Premium restaurant and Gothic institutional interiors are at the high end of Delhi's commercial fit-out range (₹4,500–₹8,000/sq ft). Standard commercial fit-out in Delhi NCR starts at ₹1,800–2,500/sq ft for basic, ₹2,500–4,500 for standard branded spaces.</p>
+
+      <div style="margin:14px 0;">
+        <div class="zone-row">
+          <div class="zone-dot" style="background:var(--lib)"></div>
+          <div class="zone-name">Open Library — Gothic Collegiate</div>
+          <div class="zone-spec">Stone plaster walls, Kadappa floor, dark walnut teak shelving, coffered plaster ceiling over concrete slab, mezzanine wrought-iron railings (custom commission), green reading lamps, cast-iron chandeliers, rolling ladders on brass tracks. Wing-back chairs, heavy oak tables. This is the most labour-intensive zone — expect 35–40% of cost to be skilled artisan work (stone carvers, ironworkers). 2,500 sq ft × ₹7,500/sq ft</div>
+          <div class="zone-cost">₹1.88 cr</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-dot" style="background:var(--cafe)"></div>
+          <div class="zone-name">Café — K-Drama Modern</div>
+          <div class="zone-spec">Terrazzo floor (white cement, sage + terracotta aggregate), board-marked exposed concrete ceiling, floor-to-ceiling pivot glass panels, indoor plant wall (self-irrigating system), open kitchen counter with pass-through, step-up platform seating, long bar stools at window. Brass hardware throughout. Commercial-grade materials required. 1,000 sq ft × ₹7,000/sq ft</div>
+          <div class="zone-cost">₹70 L</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-dot" style="background:var(--pod)"></div>
+          <div class="zone-name">Study Capsule Wing — Japanese Pod</div>
+          <div class="zone-spec">20 custom pods (white fibreglass shell + birch desk interior + frosted sliding panel + LED indicator strip), quieting passage acoustic felt corridor, pale grey epoxy floor, charcoal acoustic ceiling tiles, mini-split HVAC + ERV installation, numbered pod doors, wayfinding typography. Pod fabrication is the dominant cost line — ₹1.5–2 lakh per pod × 20 pods. 4,000 sq ft × ₹7,500/sq ft</div>
+          <div class="zone-cost">₹3 cr</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-dot" style="background:var(--stat)"></div>
+          <div class="zone-name">Stationery Tower — 3 Floors (Itoya model)</div>
+          <div class="zone-spec">All three floors: matte white walls, warm oak shelving, pale oak engineered wood floor (continuous across all levels), 3000K spotlight track lighting, central try-tables per floor, custom open-tread oak stair with brass handrail, living plant wall on FL.2 Craft & Art floor, floor identity plaques. 1,500 sq ft total × ₹6,000/sq ft</div>
+          <div class="zone-cost">₹90 L</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-dot" style="background:var(--cyber)"></div>
+          <div class="zone-name">Cyber Café — Dark Professional Studio</div>
+          <div class="zone-spec">Dark charcoal acoustic ceiling tiles, dark epoxy floor, charcoal acoustic felt partition clusters (1.5m high, 4-station clusters), monitor arm infrastructure at every desk, full cable management channels routed into desk surfaces, standing desk stations (20% of total), under-desk neutral cool LED strip per station, precision cooling supply/return ductwork. 1,500 sq ft × ₹6,500/sq ft</div>
+          <div class="zone-cost">₹98 L</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-dot" style="background:#D4CFC5"></div>
+          <div class="zone-name">Central Atrium Spine</div>
+          <div class="zone-spec">Black Kota stone floor (continuous), exposed brick side walls, double-height skylight system (motorised operable vents, UV-filtering glazing), dark steel + teak bench run, wayfinding signage in single typeface throughout. 700 sq ft × ₹9,000/sq ft (skylight is the expensive element)</div>
+          <div class="zone-cost">₹63 L</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-dot" style="background:#4A3828"></div>
+          <div class="zone-name">Basement Fit-Out (Storage Only)</div>
+          <div class="zone-spec">Heavy-duty damp-proofing membrane, dehumidifier installation, heavy shelving for book and stationery stock, server rack housings (cyber café equipment housed here), structured cabling trunking to upper floors, emergency lighting, fire suppression. 4,000 sq ft × ₹2,200/sq ft</div>
+          <div class="zone-cost">₹88 L</div>
+        </div>
+      </div>
+
+      <table class="cost" style="margin-top:14px;">
+        <tbody>
+          <tr class="subtotal"><td colspan="2">Phase 2 Total (midpoint)</td><td class="rng">₹6.5 – 8.5 cr</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PHASE 3: SUSTAINABILITY ═══ -->
+<section>
+  <h2><span class="sec-tag">Phase 3</span> Sustainability systems</h2>
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-pill" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green);">Phase 3</div>
+      <div class="phase-title">Solar, HVAC/ERV, Rainwater Harvesting, Pond, Landscape</div>
+      <div class="phase-range">₹1.2 – 1.7 crore</div>
+    </div>
+    <div class="phase-body">
+      <table class="cost">
+        <thead><tr><th>System</th><th>Specification</th><th style="text-align:right;">Estimate</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Solar array — commercial flat roof installation</td>
+            <td>25 kW on-grid system, wing flat roofs only (library lantern roof excluded). Commercial rate ₹65,000–85,000/kW before any benefit. Note: PM Surya Ghar subsidy is residential only — commercial premises do not qualify. Instead, claim 40% accelerated depreciation in Year 1 under Income Tax Act, which effectively gives a ~₹4–5 lakh tax saving on this investment. Net metering via BSES Rajdhani/Yamuna. Estimated payback 4–6 years at commercial tariff rates.</td>
+            <td class="rng">₹18 – 21 L</td>
+          </tr>
+          <tr>
+            <td>HVAC — full campus (multiple systems)</td>
+            <td>Ducted system for library + café (concealed in coffered ceiling and concrete slab), mini-splits for capsule pod bays (1 per 3–4 pods), precision cooling unit for cyber café (hot-aisle/cold-aisle, separate circuit), separate AHU for basement. Total campus cooling load approximately 20–25 tons. Multi-brand split of systems as per MEP engineer specification.</td>
+            <td class="rng">₹35 – 45 L</td>
+          </tr>
+          <tr>
+            <td>Energy Recovery Ventilator (ERV) — capsule wing</td>
+            <td>Critical for sealed pods. ERV delivers fresh air and exhausts stale CO₂ without wasting cooled temperature. One commercial-grade ERV unit for the full capsule corridor. Without this, pods become uncomfortable within 30–40 minutes — the system is non-optional.</td>
+            <td class="rng">₹6 – 9 L</td>
+          </tr>
+          <tr>
+            <td>Rainwater harvesting system</td>
+            <td>Rooftop RWH mandatory in Delhi for any plot ≥100 sq m. First-flush diverter → filter → recharge structure integrated with the pond. Pipe network from all roof catchment areas. System verification by Delhi Jal Board required before construction NOC is issued for plots over 100 sqm.</td>
+            <td class="rng">₹4 – 6 L</td>
+          </tr>
+          <tr>
+            <td>Backyard pond construction</td>
+            <td>Rainwater-fed, not borewell-fed (avoids CGWA NOC requirement). Rubble/brick construction with pond liner, filter and circulation pump, aeration system (prevents mosquito complaints under MCD anti-malaria bylaws). Native planting: Arjuna tree canopy, Water Hyacinth + Lotus on water surface, Kaner along edges. Approximate surface area: 300–400 sq ft pond, 800 sq ft total landscaped zone.</td>
+            <td class="rng">₹8 – 12 L</td>
+          </tr>
+          <tr>
+            <td>Landscape — backyard + colonnade planters</td>
+            <td>Colonnade planters: Ashoka trees, Bougainvillea on west jaali, Kaner. Backyard gravel-and-planting surround to pond. Permeable paving for backyard (supports groundwater recharge). Landscape architect fee included.</td>
+            <td class="rng">₹6 – 9 L</td>
+          </tr>
+          <tr class="subtotal"><td colspan="2">Phase 3 Total</td><td class="rng">₹77 L – ₹1.02 cr</td></tr>
+        </tbody>
+      </table>
+      <div class="advisory info" style="margin-top:14px;">
+        <p><b>On commercial solar subsidy:</b> The PM Surya Ghar Muft Bijli Yojana (₹78,000 subsidy per 3kW) applies to residential consumers only. For a commercial premises like this campus, you instead benefit from: (a) accelerated depreciation of 40% on solar plant in Year 1 under the Income Tax Act, reducing your effective investment by roughly ₹6–8 lakhs on a 25kW system, (b) net metering credits from BSES offsetting your monthly electricity bill, and (c) Delhi's Generation Based Incentive (GBI) of ₹2–3 per unit generated. Collectively these can reduce effective solar cost by 25–30% over the first three years — not as dramatic as the residential subsidy, but still strong economics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PHASE 4: EQUIPMENT ═══ -->
+<section>
+  <h2><span class="sec-tag">Phase 4</span> Equipment, furniture & initial book stock</h2>
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-pill" style="background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple);">Phase 4</div>
+      <div class="phase-title">Hardware, Kitchen, Library Furniture, Stationery Fixtures, Security</div>
+      <div class="phase-range">₹1.2 – 1.7 crore</div>
+    </div>
+    <div class="phase-body">
+      <table class="cost">
+        <thead><tr><th>Item</th><th>Specification</th><th style="text-align:right;">Estimate</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Cyber café hardware — 20 premium stations</td>
+            <td>Per-seat spec: Intel Core i7 14th gen, RTX 4060 Ti or above, 32GB RAM, 1TB NVMe SSD, 27" IPS or OLED 165Hz monitor, mechanical keyboard (Cherry MX), high-quality gaming mouse, ergonomic chair. Delhi premium gaming cafés run RTX 4070-tier rigs. Priced at Nehru Place market rates. Per-seat build: ₹90,000–1,30,000. Note: minimum acceptable spec for a premium study campus in 2026 is RTX 4060/144Hz — anything below reads as a legacy café.</td>
+            <td class="rng">₹18 – 26 L</td>
+          </tr>
+          <tr>
+            <td>Cyber café networking + server infrastructure</td>
+            <td>Managed 1Gbps fiber connection (Jio Enterprise / ACT), PoE managed switch, structured cabling through basement conduits to each station, UPS (10kVA for cyber zone), server rack for user data management, firewall, content filter (required by cyber café regulations). Booking and billing software licence (GG Circuit or similar).</td>
+            <td class="rng">₹8 – 12 L</td>
+          </tr>
+          <tr>
+            <td>Café kitchen equipment</td>
+            <td>Commercial espresso machine (La Marzocco or La Pavoni, 2-group head — the machine everyone photographs), commercial burr grinders × 2, under-counter refrigeration, display cake stand + chiller, commercial dishwasher, 4-burner induction hob (for light food), exhaust hood + external duct, stainless steel prep surfaces, POS terminal.</td>
+            <td class="rng">₹18 – 28 L</td>
+          </tr>
+          <tr>
+            <td>Library furniture (not included in fit-out)</td>
+            <td>10 × heavy oak study tables, 40 × dark leather wing-back reading chairs, 6 × low side tables for the mezzanine, 4 × rolling library ladders (brass track, custom-fabricated — these are bespoke items, not off-shelf), 60 × arc-style wireless-charging reading lamps (individual at each seat — see Document 02's lighting revision), 3 × cast-iron pendant chandeliers (sourced from Moradabad or custom), reference dictionary stands. These are loose items not included in fit-out.</td>
+            <td class="rng">₹25 – 40 L</td>
+          </tr>
+          <tr>
+            <td>Library book collection — initial</td>
+            <td>Target: 5,000–8,000 books across general fiction, Indian history, UPSC/competitive exam material, science, and children's section. Sourced from Daryaganj Sunday market + wholesale publishers. Budget approximately ₹200–300 per book average. This is a starting collection; donations, exchange programmes, and library memberships grow it over time.</td>
+            <td class="rng">₹10 – 24 L</td>
+          </tr>
+          <tr>
+            <td>Stationery retail display fixtures</td>
+            <td>Modular wall shelving systems (3 floors), central try-tables (2 per floor), 3000K spotlight track systems, Pen Wall custom back-panel (illuminated per-peg display), Paper Sample Wall tactile mounting system, cash counter with LED underlighting, signage and wayfinding. These are custom-fabricated items — factor 8–10 weeks lead time from a commercial furniture fabricator.</td>
+            <td class="rng">₹15 – 22 L</td>
+          </tr>
+          <tr>
+            <td>Initial stationery inventory</td>
+            <td>Opening inventory across all three floors: writing instruments, inks, notebooks, specialty paper, art supplies. Sourced from Natraj Pencils, Camlin, Faber-Castell India distributors, and specialty importers in Chandni Chowk. Working capital for inventory — does not depreciate, becomes revenue.</td>
+            <td class="rng">₹8 – 15 L</td>
+          </tr>
+          <tr>
+            <td>Ink book counter opening inventory</td>
+            <td>New line, added with the book counter (Document 09, Section 09): NCERT and curriculum textbooks, competitive exam preparation (JEE/NEET/CUET, UPSC/CAT), and a foundational college shelf. Sourced at wholesale from Nai Sarak (Document 08). Working capital, not capex — confirm against actual wholesaler quotations once the title list is finalised.</td>
+            <td class="rng">₹4 – 8 L</td>
+          </tr>
+          <tr>
+            <td>Security, access control, CCTV</td>
+            <td>Biometric entry at capsule wing (an operational choice for booking/access management, not a specific regulatory mandate), CCTV throughout all zones + basement, fire alarm system (linked to Delhi Fire Service NOC requirements), panic buttons in capsule pods. <b>Note on the legal basis, corrected from an earlier draft:</b> the campus's CCTV obligation comes from the Delhi Police Eating House Licence (mandatory because A&amp;M Munchies serves food) — functional CCTV with a minimum 30-day recording backup, checked as a licensing condition — not from the IT Act's Cyber Cafe Rules, which separately require a one-year user-log register in the Studio zone but don't themselves mandate CCTV. Document 13 (Safety &amp; Security) has the full breakdown of what's required where and why.</td>
+            <td class="rng">₹8 – 12 L</td>
+          </tr>
+          <tr class="subtotal"><td colspan="2">Phase 4 Total</td><td class="rng">₹1.1 – 1.9 cr</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PHASE 5: PROFESSIONAL FEES + LICENSING ═══ -->
+<section>
+  <h2><span class="sec-tag">Phase 5</span> Professional fees, licensing & statutory costs</h2>
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-pill" style="background:rgba(100,100,130,0.15);color:#8080A0;border:1px solid #4A4A60;">Phase 5</div>
+      <div class="phase-title">Architect, MEP, Statutory Approvals, All Licenses</div>
+      <div class="phase-range">₹80 L – 1.1 crore</div>
+    </div>
+    <div class="phase-body">
+      <table class="cost">
+        <thead><tr><th>Item</th><th>Basis</th><th style="text-align:right;">Estimate</th></tr></thead>
+        <tbody>
+          <tr><td>Architect fees (design + supervision)</td><td>Typically 8–12% of construction cost for a custom complex building with multiple zones; 10% of ₹6 cr civil = ₹60 L. Negotiate a fee-for-service structure once design is defined.</td><td class="rng">₹50 – 75 L</td></tr>
+          <tr><td>MEP (Mechanical, Electrical, Plumbing) engineer</td><td>Mandatory for cyber café heat-load calculation, solar integration, ERV sizing, and fire safety engineering. Typically 2–3% of construction cost.</td><td class="rng">₹12 – 20 L</td></tr>
+          <tr><td>Building plan sanction (MCD/DDA)</td><td>Scrutiny fees based on FAR and floor area; approximate for this scale.</td><td class="rng">₹2 – 5 L</td></tr>
+          <tr><td>Fire NOC (Delhi Fire Service)</td><td>Fee varies by floor area and occupancy classification; includes inspection visits.</td><td class="rng">₹1 – 2 L</td></tr>
+          <tr><td>Completion / Occupancy certificate</td><td>Issued by MCD after construction; fee based on built-up area.</td><td class="rng">₹1 – 2 L</td></tr>
+          <tr><td>FSSAI license (café)</td><td>Central license for turnover above ₹20 lakh/year: approximately ₹7,500/year. Include 3-year upfront.</td><td class="rng">₹0.25 L</td></tr>
+          <tr><td>Eating house license (Police Commissioner)</td><td>South Delhi licensing police jurisdiction.</td><td class="rng">₹0.5 – 1 L</td></tr>
+          <tr><td>Cyber café registration + police clearance</td><td>Municipal authority + local police station. Valid ~2 years.</td><td class="rng">₹0.5 L</td></tr>
+          <tr><td>Shop & Establishment registration, GST, trade license</td><td>State Labour Dept + GNCTD + MCD/NDMC.</td><td class="rng">₹0.5 – 1 L</td></tr>
+          <tr><td>Delhi Jal Board RWH verification + NOC</td><td>Mandatory before construction NOC for plots over 100 sqm. Minimal fee but requires system installation first.</td><td class="rng">₹0.25 L</td></tr>
+          <tr><td>Legal and CA fees (entity setup, GST structuring, contracts)</td><td>Recommend Private Limited Company structure for a project of this scale for liability protection and banking access.</td><td class="rng">₹3 – 5 L</td></tr>
+          <tr><td>Insurance (contractor's all-risk during construction + commercial property post-opening)</td><td>Mandatory for any bank-financed project.</td><td class="rng">₹3 – 5 L</td></tr>
+          <tr class="subtotal"><td colspan="2">Phase 5 Total</td><td class="rng">₹75 L – ₹1.15 cr</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WORKING CAPITAL ═══ -->
+<section>
+  <h2><span class="sec-tag">Capital</span> Working capital — first 6 months pre-revenue</h2>
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-pill" style="background:rgba(90,90,60,0.2);color:#A0A060;border:1px solid #606040;">Working Capital</div>
+      <div class="phase-title">Staff, Utilities, Marketing, Contingency Before Cash Flow Positive</div>
+      <div class="phase-range">₹1.1 crore – 1.4 crore</div>
+    </div>
+    <div class="phase-body">
+      <table class="cost">
+        <thead><tr><th>Item</th><th>Basis</th><th style="text-align:right;">6-month estimate</th></tr></thead>
+        <tbody>
+          <tr><td>Staff payroll — full team</td><td>Revised per Staff Planning Document §11b (June 2026). Full team including statutory benefits, EPF/ESIC employer contributions, retention bonuses, and POSH ICC external member fee. Year 1 annual payroll = ₹69.4L, equivalent to ₹5.78L/month. Six-month pre-revenue buffer calculated at this rate. Previous figure (₹3.5–5L/month) predated the full compliance and retention cost structure.</td><td class="rng">₹34 – 35 L</td></tr>
+          <tr><td>Utilities — electricity, water, internet</td><td>South Delhi BSES commercial tariff + fiber internet (₹8,000/month for 1Gbps dedicated). Pre-revenue period with solar only partially offsetting. Estimate ₹1.5–2.5 lakh/month.</td><td class="rng">₹9 – 15 L</td></tr>
+          <tr><td>Branding + launch marketing</td><td>Campus identity design (logo, typeface, signage system), website, social media content production, opening event, flyers in Saket Metro + JNU + DU. One-time.</td><td class="rng">₹8 – 14 L</td></tr>
+          <tr><td>Soft launch + operational ramp</td><td>3 months of partial operations before full opening — test phase, staff training, systems debugging.</td><td class="rng">₹10 – 15 L</td></tr>
+          <tr><td>Contingency reserve (10% of total project)</td><td>Standard project contingency; critical for a complex multi-zone construction project with custom elements (mezzanine ironwork, terracotta jaali, pod fabrication).</td><td class="rng">₹20 – 25 L</td></tr>
+          <tr class="subtotal"><td colspan="2">Working Capital Total</td><td class="rng">₹1.1 – 1.4 cr</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TOTAL SUMMARY ═══ -->
+<section>
+  <h2><span class="sec-tag">Summary</span> Total investment — all phases</h2>
+
+  <div class="summary-grid">
+    <div class="sum-block">
+      <div class="sb-label">Conservative estimate</div>
+      <div class="sb-val">₹20.5 crore</div>
+      <div class="sb-sub">Land at lower end of village belt pricing; tighter fit-out spec; 20-seat cyber café; 5,000-book opening collection</div>
+    </div>
+    <div class="sum-block">
+      <div class="sb-label">Full-spec estimate</div>
+      <div class="sb-val">₹28 crore</div>
+      <div class="sb-sub">Prime village plot; full Gothic fit-out spec; top-tier cyber café hardware; complete Itoya-model stationery; 8,000-book collection</div>
+    </div>
+  </div>
+
+  <table class="cost" style="margin-top:16px;">
+    <thead><tr><th>Phase</th><th>Description</th><th style="text-align:right;">Low</th><th style="text-align:right;">High</th></tr></thead>
+    <tbody>
+      <tr><td>Phase 0</td><td>Land acquisition (7,000 sq ft, South Delhi village belt)</td><td class="rng">₹3.9 cr</td><td class="rng">₹6.4 cr</td></tr>
+      <tr><td>Phase 1</td><td>Civil construction — structure, basement, Gothic void, tower shell</td><td class="rng">₹5.5 cr</td><td class="rng">₹7.5 cr</td></tr>
+      <tr><td>Phase 2</td><td>Interior fit-out — all five zones + atrium spine</td><td class="rng">₹6.5 cr</td><td class="rng">₹8.5 cr</td></tr>
+      <tr><td>Phase 3</td><td>Solar, HVAC, ERV, rainwater + pond, landscape</td><td class="rng">₹77 L</td><td class="rng">₹1.02 cr</td></tr>
+      <tr><td>Phase 4</td><td>Equipment, hardware, kitchen, furniture, books, inventory</td><td class="rng">₹1.1 cr</td><td class="rng">₹1.9 cr</td></tr>
+      <tr><td>Phase 5</td><td>Professional fees, statutory approvals, all licenses</td><td class="rng">₹75 L</td><td class="rng">₹1.15 cr</td></tr>
+      <tr><td>Working capital</td><td>6–8 months staff, utilities, marketing, contingency (revised per Staff Plan §11b)</td><td class="rng">₹1.1 cr</td><td class="rng">₹1.4 cr</td></tr>
+      <tr class="subtotal"><td colspan="2"><b>Total (Scenario B — own plot, full build)</b></td><td class="rng"><b>₹20.5 cr</b></td><td class="rng"><b>₹28 cr</b></td></tr>
+    </tbody>
+  </table>
+
+  <div class="advisory warn" style="margin-top:16px;">
+    <p><b>Without the land cost</b> (if the plot is already owned by family / leased): ₹16.5–21.5 crore for the build + fit-out + equipment + working capital. This is a realistic figure for a bank-financed commercial construction project with a clear business plan. Many commercial properties in this scale in South Delhi are financed through a combination of promoter equity (30–40%), SME / LAP (Loan Against Property) loans, and MSME construction financing. A CA specialising in commercial real estate can structure the funding across these three channels.</p>
+  </div>
+</section>
+
+<!-- ═══ REVENUE SKETCH ═══ -->
+<section>
+  <h2><span class="sec-tag">Revenue</span> Illustrative monthly revenue — at steady state</h2>
+  <p style="color:var(--soft);">These are not business plan projections — they're a sanity-check to frame when the project becomes cash-flow positive. All figures assume 60–70% occupancy at steady state (typically month 9–18 for a well-located South Delhi study destination).</p>
+  <div class="rev-table">
+    <div class="rev-card">
+      <div class="rc-stream">Study Capsules</div>
+      <div class="rc-range" style="color:var(--pod);">₹4–7 L/mo</div>
+      <div class="rc-note">20 pods × ₹2,500–4,000/month membership. Comparable Delhi self-study libs run ₹1,600–3,500/seat/mo. Premium for soundproofed rented-book pod: ₹3,000–4,500.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rc-stream">Café</div>
+      <div class="rc-range" style="color:var(--cafe);">₹3–6 L/mo</div>
+      <div class="rc-note">South Delhi café with study campus footfall. Avg. ticket ₹150–300. 50–80 covers/day. Margins 60–70% on beverages, 30–40% on food.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rc-stream">Cyber Café</div>
+      <div class="rc-range" style="color:var(--cyber);">₹1.5–3 L/mo</div>
+      <div class="rc-note">₹100–200/hr × 20 stations × avg. 4 hrs/day at 70% occupancy. Delhi premium cyber/gaming cafés charge ₹150–250/hr for RTX 4070-tier.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rc-stream">Stationery Retail</div>
+      <div class="rc-range" style="color:var(--stat);">₹2–4 L/mo</div>
+      <div class="rc-note">Retail margin 40–60%. Monthly GMV ₹4–7 L on campus footfall + walk-ins from metro corridor. Workshop events add ₹30–50k/event × 4/month.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rc-stream">Open Library (indirect)</div>
+      <div class="rc-range" style="color:var(--lib);">₹0 direct</div>
+      <div class="rc-note">Free zone — revenue driver through footfall into café and stationery. Consider optional "library card" donation model: ₹500/year for a bookmark and priority access to rented book capsule queue.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rc-stream">Events + Space Hire</div>
+      <div class="rc-range" style="color:var(--green);">₹50k–1.5 L/mo</div>
+      <div class="rc-note">Stationery FL.2 workshop events, library evening talks, private capsule wing bookings for study groups, café after-hours private hire.</div>
+    </div>
+  </div>
+
+  <div class="payback" style="margin-top:18px;">
+    <div class="payback-label">Illustrative monthly revenue build-up</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:13%;background:rgba(106,156,197,0.4);color:#acd;">Capsules · ₹5.5L</div>
+    </div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:22%;background:rgba(127,168,127,0.4);color:#aca;">+ Café · ₹4.5L → ₹10L</div>
+    </div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:30%;background:rgba(147,112,184,0.4);color:#cac;">+ Cyber · ₹2.5L → ₹12.5L</div>
+    </div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:40%;background:rgba(196,122,82,0.4);color:#da9;">+ Stationery · ₹3L → ₹15.5L</div>
+    </div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:50%;background:rgba(191,164,104,0.4);color:#ca9;">+ Events ₹1L → ₹16.5L/month</div>
+    </div>
+    <div class="bar-label" style="color:var(--soft);font-size:12px;margin-top:8px;">Illustrative steady-state midpoint. At ₹16–17L/month gross revenue, monthly operating costs (staff ₹5.8L + utilities ₹2L + maintenance ₹1L + loan EMI on ₹10cr loan at 11% ≈ ₹1.1L = ~₹9.9–10.9L/month), leaving ₹5–7L/month operating surplus. Staff figure revised per Staff Plan §11b (₹69.4L annual ÷ 12). Return on build cost (excluding land) at this rate: 7–9 years. Land appreciates independently.</div>
+  </div>
+</section>
+
+<!-- ═══ WHAT COMES NEXT ═══ -->
+<section>
+  <h2><span class="sec-tag">Next Steps</span> Priority sequence from here</h2>
+  <table class="cost">
+    <thead><tr><th>#</th><th>Action</th><th>Why now</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Engage a South Delhi property lawyer to advise on lal dora / urban village title risks before any plot negotiations</td><td>Title risk in village land is the most common reason projects stall — this is a 2-week, ₹20,000 step that gates everything else</td></tr>
+      <tr><td>2</td><td>Shortlist 3–5 specific plots in the Said-ul-Ajaib / Neb Sarai / Freedom Fighters Enclave belt and get independent valuations on each</td><td>Market price here is negotiated, not listed — valuations from different sources protect you from overpaying by 30–40%</td></tr>
+      <tr><td>3</td><td>Appoint an architect with commercial mixed-use experience in Delhi (specifically ask for Gothic or heritage-adjacent institutional projects in their portfolio)</td><td>The library's double-height void and Gothic detailing require an architect who has done this before — standard residential/commercial architects are not equipped for it</td></tr>
+      <tr><td>4</td><td>Commission MEP engineer simultaneously with architect — not after</td><td>The solar chimney atrium, ERV system, and cyber café heat load all need to be designed into the structure from day one, not retrofitted</td></tr>
+      <tr><td>5</td><td>Verify the specific plot's mixed-use zoning status under MPD-2021 with MCD before signing any purchase agreement</td><td>This is the regulatory decision that gates whether you can legally run all five components from this address</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ SOURCES ═══ -->
+<footer>
+  <b>Sources & references (June 2026)</b>
+  <ol>
+    <li>Square Yards — <a href="https://www.squareyards.com/said-ul-ajaib-in-delhi-overview-94994">Said-ul-Ajaib locality overview, property rates and metro distances</a></li>
+    <li>99acres — <a href="https://www.99acres.com/saidul-ajaib-south-delhi-overview-piffid">Property listings and rental rates, Saidul Ajaib South Delhi</a></li>
+    <li>Delhi NCR Times — <a href="https://delhincrtimes.com/delhi-news/delhi-circle-rate-2026-area-wise-complete-guide/">Delhi Circle Rate 2026 area-wise guide including South Delhi categories</a></li>
+    <li>99acres — <a href="https://www.99acres.com/articles/circle-rates-in-delhi.html">Circle rates in Delhi, commercial multipliers and stamp duty</a></li>
+    <li>Construction Estimator India — <a href="https://constructionestimatorindia.com/residential-construction-cost-per-sq-ft-in-delhi/">Construction cost per sq ft Delhi 2026, premium and luxury tiers</a></li>
+    <li>AECORD — <a href="https://aecord.com/blog/construction-cost-per-square-foot-india-2026">Construction cost per sq ft India 2026, metropolitan city breakdown</a></li>
+    <li>JK Cement — <a href="https://www.jkcement.com/blog/construction-budgeting/construction-cost-per-sq-ft-india-2026/">Construction cost per sq ft India 2026, interior add-on costs</a></li>
+    <li>Kriaan — <a href="https://kriaan.com/blog/interior-design-cost-in-delhi/">Interior design cost in Delhi 2026, commercial restaurant premium</a></li>
+    <li>Sparrow PMC — <a href="https://sparrowpmc.com/retail-store-fit-out-cost-in-india-2026-guide/">Retail store fit-out cost India 2026, ₹1,500–₹7,000+/sq ft range</a></li>
+    <li>Best of Exports — <a href="https://bestofexports.com/cafe-opening-cost-in-india/">Café opening cost India 2025–26, Delhi metro-area rent and setup costs</a></li>
+    <li>FinLaw / Game Center Guide — <a href="https://finlaw.in/blog/how-to-start-a-game-center-business-in-2025-step-by-step-guide">Gaming center setup costs India 2025, ₹15–25L for 10–15 stations</a></li>
+    <li>Gaming Nation — <a href="https://gamingnation.in/gaming-cafes-india/">Gaming café pricing India 2026, ₹80–200/hr tier-1 cities</a></li>
+    <li>Bluebird Solar — <a href="https://bluebirdsolar.com/blogs/all/solar-panel-system-price-and-subsidy-in-delhi">Solar panel price and subsidy Delhi 2026, GBI and net metering</a></li>
+    <li>4ERenew — <a href="https://www.4erenew.com/price-installing-solar-panels-india/">Solar installation cost India 2026, PM Surya Ghar residential-only subsidy structure</a></li>
+    <li>Kondaas — <a href="https://kondaas.com/solar-panel-price-trend-2024-vs-2025-vs-2026/">Solar panel price trend 2024–2026, commercial accelerated depreciation benefit</a></li>
+    <li>Achievers' Library — <a href="https://www.achieverslibrary.com/">Delhi self-study library pricing benchmarks, ₹1,600–3,500/seat/month</a></li>
+  </ol>
+</footer>
+
+</div>
+</body>
+</html>

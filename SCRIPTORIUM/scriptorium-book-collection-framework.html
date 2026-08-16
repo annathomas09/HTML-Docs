@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCRIPTORIUM — Book Collection Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── BRAND TOKENS ─── */
+:root {
+  --black:      #1C1A18;
+  --parchment:  #EDE7D4;
+  --brass:      #B8924A;
+  --kota:       #4A5248;
+  --sandstone:  #C8A87A;
+  --sand-deep:  #A07850;
+  --reads:      #6B5A3E;
+  --rule:       rgba(184,146,74,0.30);
+  --rule-h:     rgba(28,26,24,0.10);
+  --note-bg:    rgba(184,146,74,0.07);
+  --note-border:rgba(184,146,74,0.35);
+  --warn-bg:    rgba(140,85,53,0.07);
+  --warn-border:rgba(140,85,53,0.32);
+  --go-bg:      rgba(74,82,72,0.07);
+  --go-border:  rgba(74,82,72,0.28);
+}
+
+/* ─── RESET ─── */
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:#D4C9A8;}
+body{
+  background:var(--parchment);
+  color:var(--black);
+  font-family:'EB Garamond',Georgia,'Palatino Linotype',serif;
+  font-size:17px;
+  line-height:1.68;
+  max-width:920px;
+  margin:0 auto;
+  padding:80px 72px 120px;
+  box-shadow:0 0 80px rgba(0,0,0,0.16);
+  min-height:100vh;
+}
+@media(max-width:700px){body{padding:40px 24px 80px;}}
+
+/* ─── TYPE ─── */
+.eyebrow{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--brass);margin-bottom:10px;display:block;
+}
+h1{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:42px;font-weight:500;letter-spacing:0.10em;
+  font-variant:small-caps;line-height:1.1;margin-bottom:10px;
+}
+h2{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:25px;font-weight:500;letter-spacing:0.07em;
+  font-variant:small-caps;color:var(--black);margin-bottom:18px;
+}
+h3{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:18px;font-weight:600;color:var(--black);
+  margin-bottom:10px;font-style:italic;
+}
+h4{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--brass);margin:22px 0 10px;
+}
+p{margin-bottom:14px;color:var(--kota);}
+p b,p strong{color:var(--black);font-weight:600;}
+p em{color:var(--black);}
+ul,ol{padding-left:22px;margin-bottom:14px;color:var(--kota);}
+li{margin-bottom:6px;line-height:1.6;}
+li b{color:var(--black);}
+
+/* ─── LAYOUT ─── */
+section{margin-bottom:64px;padding-bottom:64px;border-bottom:1px solid var(--rule-h);}
+section:last-of-type{border-bottom:none;}
+.rule{height:1px;background:var(--rule);margin:28px 0;}
+
+/* ─── HEADER ─── */
+.doc-header{margin-bottom:72px;padding-bottom:44px;border-bottom:2px solid var(--black);}
+.header-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;}
+.header-meta{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--kota);line-height:1.8;text-align:right;}
+.wordmark{font-family:'EB Garamond',Georgia,serif;font-variant:small-caps;font-size:44px;font-weight:500;letter-spacing:0.16em;line-height:1;margin-bottom:8px;}
+.tagline-doc{font-family:'EB Garamond',Georgia,serif;font-size:16px;color:var(--kota);font-style:italic;}
+.revision-box{background:var(--note-bg);border-left:3px solid var(--brass);padding:13px 18px;border-radius:0 3px 3px 0;margin-top:18px;}
+.revision-box p{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--kota);line-height:1.6;margin:0;}
+.revision-box p b{color:var(--black);}
+
+/* ─── ADVISORY BOXES ─── */
+.adv{padding:17px 21px;border-radius:0 4px 4px 0;margin:18px 0;}
+.adv p{margin:0 0 10px;font-size:15.5px;}
+.adv p:last-child{margin:0;}
+.adv.gold{background:var(--note-bg);border-left:3px solid var(--brass);}
+.adv.kota{background:var(--go-bg);border-left:3px solid var(--kota);}
+.adv.ink{background:var(--warn-bg);border-left:3px solid var(--sand-deep);}
+
+/* ─── PRINCIPLE BLOCKS ─── */
+.principle{border:1px solid var(--rule);border-radius:4px;padding:22px 26px;margin:20px 0;background:rgba(237,231,212,0.45);}
+.p-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--brass);margin-bottom:8px;}
+.p-statement{font-family:'EB Garamond',Georgia,serif;font-size:20px;font-weight:500;font-style:italic;color:var(--black);line-height:1.4;margin-bottom:10px;}
+.p-note{font-size:15px;color:var(--kota);margin:0;}
+
+/* ─── SECTION GRID (ratios) ─── */
+.section-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;}
+@media(max-width:640px){.section-grid{grid-template-columns:1fr;}}
+.section-card{border:1px solid var(--rule);border-radius:4px;overflow:hidden;}
+.sc-head{padding:12px 16px;border-bottom:1px solid var(--rule);}
+.sc-name{font-family:'EB Garamond',Georgia,serif;font-variant:small-caps;font-size:16px;font-weight:600;letter-spacing:0.05em;color:var(--black);}
+.sc-count{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--brass);margin-top:2px;}
+.sc-body{padding:12px 16px;font-size:13.5px;color:var(--kota);line-height:1.55;}
+.sc-body b{color:var(--black);}
+
+/* ─── FLOOR PLAN MAP ─── */
+.floor-map{border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin:18px 0;}
+.fm-floor{border-bottom:1px solid var(--rule);}
+.fm-floor:last-child{border-bottom:none;}
+.fm-label{padding:9px 16px;background:rgba(28,26,24,0.04);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--kota);border-bottom:1px solid var(--rule-h);}
+.fm-zones{display:flex;gap:0;}
+.fm-zone{flex:1;padding:12px 16px;border-right:1px solid var(--rule-h);font-size:13.5px;color:var(--kota);}
+.fm-zone:last-child{border-right:none;}
+.fm-zone-name{font-weight:600;color:var(--black);margin-bottom:4px;font-size:14px;}
+@media(max-width:600px){.fm-zones{flex-direction:column;}.fm-zone{border-right:none;border-bottom:1px solid var(--rule-h);}.fm-zone:last-child{border-bottom:none;}}
+
+/* ─── CURATION PAIRS ─── */
+.curation-pair{margin:20px 0;padding:18px 0;border-bottom:1px solid var(--rule-h);}
+.curation-pair:last-child{border-bottom:none;}
+.cp-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--kota);margin-bottom:10px;}
+.cp-in{background:var(--go-bg);border-left:3px solid var(--kota);padding:11px 15px;margin-bottom:8px;font-size:15px;border-radius:0 3px 3px 0;}
+.cp-out{background:var(--warn-bg);border-left:3px solid rgba(140,85,53,0.5);padding:11px 15px;font-size:15px;color:var(--kota);border-radius:0 3px 3px 0;font-style:italic;}
+
+/* ─── ACQUISITION TABLE ─── */
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 18px;}
+th{text-align:left;background:rgba(28,26,24,0.05);color:var(--black);padding:9px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--rule);font-weight:500;}
+td{padding:11px 14px;border-bottom:1px solid var(--rule-h);vertical-align:top;color:var(--kota);}
+td:first-child{color:var(--black);font-weight:500;}
+tr:last-child td{border-bottom:none;}
+td.brass{color:var(--brass);font-family:'IBM Plex Mono',monospace;font-size:12.5px;}
+
+/* ─── CAPSULE COLLECTION ─── */
+.capsule-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:14px 0;}
+@media(max-width:640px){.capsule-grid{grid-template-columns:1fr 1fr;}}
+.cap-card{border:1px solid var(--rule);border-radius:4px;padding:14px 15px;}
+.cap-theme{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--brass);margin-bottom:7px;}
+.cap-name{font-family:'EB Garamond',Georgia,serif;font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;}
+.cap-desc{font-size:13px;color:var(--kota);line-height:1.5;}
+
+/* ─── PROGRAMME TIMELINE ─── */
+.prog-row{display:flex;gap:18px;padding:16px 0;border-bottom:1px solid var(--rule-h);align-items:flex-start;}
+.prog-row:last-child{border-bottom:none;}
+.prog-when{flex-shrink:0;width:110px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--brass);line-height:1.5;}
+.prog-content h3{margin-bottom:5px;font-size:16px;}
+.prog-content p{font-size:14px;margin-bottom:6px;}
+.prog-content p:last-child{margin:0;}
+
+/* ─── WEEDING CRITERIA ─── */
+.weed-row{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--rule-h);align-items:flex-start;font-size:14px;}
+.weed-row:last-child{border-bottom:none;}
+.weed-verdict{flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px;}
+.verdict-remove{background:var(--warn-bg);color:var(--sand-deep);border:1px solid var(--warn-border);}
+.verdict-keep{background:var(--go-bg);color:var(--kota);border:1px solid var(--go-border);}
+.verdict-review{background:var(--note-bg);color:var(--brass);border:1px solid var(--note-border);}
+.weed-desc{color:var(--kota);}
+.weed-desc b{color:var(--black);}
+
+/* ─── FOOTER ─── */
+footer{margin-top:80px;padding-top:30px;border-top:1px solid var(--black);font-size:13px;color:var(--kota);line-height:1.7;}
+.ft-wordmark{font-family:'EB Garamond',Georgia,serif;font-variant:small-caps;font-size:18px;letter-spacing:0.16em;color:var(--black);margin-bottom:8px;}
+footer ol{padding-left:18px;margin-top:10px;}
+footer li{margin-bottom:5px;}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="doc-header">
+  <div class="header-row">
+    <div>
+      <span class="eyebrow">Document 09 · Book Collection Framework</span>
+      <div class="wordmark">Scriptorium</div>
+      <div class="tagline-doc">A place where knowledge is held, worked with, and made.</div>
+    </div>
+    <div class="header-meta">
+      Prepared June 2026<br>
+      Founder: Anna Thomas<br>
+      Campus: Said-ul-Ajaib, South Delhi<br>
+      Zone: SCRIPTORIUM Reads<br>
+      Status: Founding framework
+    </div>
+  </div>
+  <div class="revision-box">
+    <p><b>Scope of this document:</b> This is the founding collection framework for SCRIPTORIUM Reads — the open library that anchors the campus. It covers: the governing philosophy of the collection, how the room is physically organised, the section-by-section ratios and their rationale, the curation criteria (what belongs and what does not), the acquisition process and budget, the rotation and weeding policy, the separate rented book collection for the Capsule Wing, and the reading programme. The author and title lists in Document 08 (Sourcing &amp; Procurement Guide, Section 06) are the purchasing reference; this document is the framework those lists serve. The Head Librarian hired per Document 06 is responsible for implementing this framework — they should receive it on their first day.</p>
+  </div>
+</header>
+
+<!-- ═══ 01 THE GOVERNING PHILOSOPHY ═══ -->
+<section>
+  <span class="eyebrow">01 · The Governing Philosophy</span>
+  <h2>What SCRIPTORIUM Reads is for</h2>
+
+  <p>SCRIPTORIUM Reads is a free, open-access library. Anyone who walks through the door may sit and read, regardless of whether they pay for anything else on the campus. There is no membership fee for the reading room, no entry charge, no obligation to buy a coffee or book a pod. This is not a gesture of generosity — it is a business decision. The library is the reason people come to SCRIPTORIUM at all. Once they are inside, a portion will become paying customers in the café, the capsule wing, the stationery floors, and the studio. The library earns its floor space by generating footfall that the other four revenue streams convert.</p>
+
+  <p>This function — drawing people in without charging them — only works if the library is worth coming to on its own terms. A library stocked primarily with competitive examination reference material is a coaching annexe. It draws a specific, narrow audience who have come to study, not to browse, and who leave when their study session ends. SCRIPTORIUM Reads is designed for a different relationship with its visitors: one where a person comes in for a UPSC reference book, stays because they found a Romila Thapar on the shelf next to it, and returns the following week because the place felt like somewhere worth being.</p>
+
+  <div class="principle">
+    <div class="p-label">The governing principle</div>
+    <div class="p-statement">The collection is organised by what is interesting, not by what is useful for an examination.</div>
+    <div class="p-note">This means the library leads with fiction, history, and ideas — not with competitive exam preparation material. The exam reference section is well-stocked, current, and easy to find. It is not the first thing a visitor sees, and it is not the frame through which the library presents itself. A student who discovers Amitav Ghosh on the shelf next to the NCERT history set is the visitor SCRIPTORIUM Reads is built for.</div>
+  </div>
+
+  <div class="rule"></div>
+  <h3>What this library is not</h3>
+
+  <p>It is not a coaching centre's reference room. It is not a school library. It is not a circulating library in the traditional sense — books in the open collection are for reading in the library, not for borrowing home. It is not a digital library or a repository of PDFs. It is not comprehensive in the academic sense — it does not attempt to hold every title in every field. It is curated: every book on the shelf was chosen by someone who read it, and its presence is a statement that it is worth reading.</p>
+
+  <p>The distinction between SCRIPTORIUM Reads and the Capsule Wing's rented book collection is important and is addressed in Section 07. The open library is a space of discovery and residence. The capsule collection is a tool for concentrated work. These are different collections with different selection criteria, managed separately.</p>
+</section>
+
+<!-- ═══ 02 THE COLLECTION IDENTITY ═══ -->
+<section>
+  <span class="eyebrow">02 · Collection Identity</span>
+  <h2>The five commitments of SCRIPTORIUM Reads</h2>
+
+  <p>These are not aspirational statements. They are operational commitments — each one has a consequence for what gets shelved, what gets purchased, and what gets removed. The Head Librarian should be able to apply every one of them to any acquisition decision without asking the founder.</p>
+
+  <div class="curation-pair">
+    <div class="cp-label">Commitment 01 — The collection represents the full breadth of Indian writing</div>
+    <div class="cp-in">✓ The collection includes translated fiction from Hindi, Bengali, Malayalam, Kannada, Tamil, Telugu, Marathi, and Urdu. Indian writing in translation is not a supplementary category — it is half of what Indian literature is. A library in South Delhi that stocks only English-language Indian fiction has misread the literary map of this country.</div>
+    <div class="cp-out">✗ "We don't have many readers for Hindi fiction" is not a curation argument. It is a self-fulfilling prediction. The collection shapes the audience as much as the audience shapes the collection.</div>
+  </div>
+
+  <div class="curation-pair">
+    <div class="cp-label">Commitment 02 — The collection is genuinely international in scope</div>
+    <div class="cp-in">✓ The fiction section holds writers from Japan, Nigeria, Chile, Poland, South Korea, Germany, Colombia, Egypt, Turkey, and the United States — not as token representation, but as the natural result of choosing the best books regardless of where they were written. A library that only stocks English-language literature has decided that literature happens in one language, which is wrong.</div>
+    <div class="cp-out">✗ "International" does not mean "American and British." The Neapolitan novels of Elena Ferrante, Liu Cixin's Three-Body Problem, Han Kang's The Vegetarian, and Olga Tokarczuk's Flights are international literature. James Patterson and Danielle Steel are not the target.</div>
+  </div>
+
+  <div class="curation-pair">
+    <div class="cp-label">Commitment 03 — The collection takes genre fiction seriously</div>
+    <div class="cp-in">✓ Science fiction, fantasy, mystery, and crime are shelved with the same care as literary fiction. Le Guin, Asimov, Clarke, Tolkien, Agatha Christie, Stieg Larsson, and their contemporary successors belong in a serious general library. The distinction between "literary" and "genre" fiction is a publishing category, not a quality judgment. Ted Chiang's <em>Stories of Your Life and Others</em> belongs on the same shelf as Borges' <em>Ficciones</em>, and both are there.</div>
+    <div class="cp-out">✗ A library that stocks only literary prize-winners is a library that has confused prestige with quality and forgotten that pleasure is a legitimate reason to read.</div>
+  </div>
+
+  <div class="curation-pair">
+    <div class="cp-label">Commitment 04 — The collection includes books that ask difficult questions</div>
+    <div class="cp-in">✓ Hannah Arendt on totalitarianism. B.R. Ambedkar on caste. Howard Zinn on American history. Romila Thapar on ancient India. Audrey Truschke on Aurangzeb. These books belong in a library precisely because they are not comfortable. A library that only stocks books everyone already agrees with is not a library — it is a gift shop. Intellectual disagreement between books on the same shelf is a sign of health, not controversy.</div>
+    <div class="cp-out">✗ The collection does not editorially endorse any book it stocks. Stocking Ambedkar and Gandhi side by side is not a contradiction — it is the point. SCRIPTORIUM Reads does not take political positions; it provides the materials for readers to form their own.</div>
+  </div>
+
+  <div class="curation-pair">
+    <div class="cp-label">Commitment 05 — The collection is for everyone who walks in</div>
+    <div class="cp-in">✓ A child who comes in with a parent should find a picture book section worth sitting with. A student who comes for UPSC reference should find the reference section easy to use and well-stocked. A person who has never been a reader and walks in out of curiosity should find a book that makes them want to start. The collection serves all of these people simultaneously — not by being all things to all people, but by being deep enough that each person finds what they came for.</div>
+    <div class="cp-out">✗ The collection does not condescend to any of these visitors. It does not assume the competitive exam student only wants revision material, or that the casual visitor only wants popular fiction. People are more interesting than their category.</div>
+  </div>
+</section>
+
+<!-- ═══ 03 PHYSICAL ORGANISATION ═══ -->
+<section>
+  <span class="eyebrow">03 · Physical Organisation</span>
+  <h2>How the room is arranged</h2>
+
+  <p>The architecture of SCRIPTORIUM Reads (as specified in Document 02) is a double-height Gothic reading room with a mezzanine gallery, rolling ladder access to the top shelves, cast-iron chandeliers, and clerestory windows. The organisation of the collection within this room has to work with the architecture — the sections that benefit from natural light go below the clerestory windows; the sections that need quiet concentration go on the mezzanine; the sections that draw the most casual browsing go at eye level near the entrance.</p>
+
+  <div class="floor-map">
+    <div class="fm-floor">
+      <div class="fm-label">Mezzanine Level — Quiet Concentration Zone</div>
+      <div class="fm-zones">
+        <div class="fm-zone">
+          <div class="fm-zone-name">Philosophy & Ideas</div>
+          Western philosophy, Indian philosophy, essays and cultural criticism. The mezzanine is the quietest part of the room — the section that rewards slow reading goes here.
+        </div>
+        <div class="fm-zone">
+          <div class="fm-zone-name">History — World</div>
+          World history, global politics, economics and society. Heavy reading that benefits from the elevated remove of the mezzanine and the long sightlines it offers over the room below.
+        </div>
+        <div class="fm-zone">
+          <div class="fm-zone-name">Science & Popular Science</div>
+          Physics, mathematics, biology, technology, environment. The clerestory light falls best on the mezzanine in the morning — the natural light reading condition for these books.
+        </div>
+      </div>
+    </div>
+    <div class="fm-floor">
+      <div class="fm-label">Ground Floor, West Wall — The Browsing Wall (most prominent from entrance)</div>
+      <div class="fm-zones">
+        <div class="fm-zone">
+          <div class="fm-zone-name">Indian Literary Fiction</div>
+          The first section a visitor sees from the entrance. English-language Indian fiction and translated Indian fiction shelved together, organised by language of origin — English, Hindi, Bengali, Malayalam, Kannada, Tamil, Telugu, Urdu, Marathi, Rajasthani. This is the opening argument of the library.
+        </div>
+        <div class="fm-zone">
+          <div class="fm-zone-name">International Literary Fiction</div>
+          Immediately adjacent to the Indian literary section — the wall continues without a visual break. The transition from Indian to international writing is not a border; it is a continuation. Organised by author's country of origin, then alphabetically by author.
+        </div>
+      </div>
+    </div>
+    <div class="fm-floor">
+      <div class="fm-label">Ground Floor, East Wall — History, Biography & Arts</div>
+      <div class="fm-zones">
+        <div class="fm-zone">
+          <div class="fm-zone-name">Indian History</div>
+          From the Indus Valley to 1947 and beyond. This shelf will be used heavily by UPSC aspirants — it is positioned on the east wall, visible from the entrance but not leading the room. Romila Thapar and the NCERT history sets are on the same wall, within arm's reach of each other.
+        </div>
+        <div class="fm-zone">
+          <div class="fm-zone-name">Biography & Memoir</div>
+          Indian and international figures, shelved together. A visitor looking for Gandhi's autobiography finds it next to Mandela's, and next to that is Primo Levi. The proximity is intentional.
+        </div>
+        <div class="fm-zone">
+          <div class="fm-zone-name">Arts, Architecture & Craft</div>
+          Architecture, typography, Indian craft traditions, and books about writing. This section is physically close to the stationery tower entrance — a visitor moving from the library to SCRIPTORIUM Ink passes this shelf on the way.
+        </div>
+      </div>
+    </div>
+    <div class="fm-floor">
+      <div class="fm-label">Ground Floor, Alcove — Genre Fiction & Children's</div>
+      <div class="fm-zones">
+        <div class="fm-zone">
+          <div class="fm-zone-name">Genre Fiction</div>
+          Science fiction, fantasy, mystery and crime. An alcove section — slightly set apart from the main fiction walls, with its own seating nook. Genre readers often want to browse at their own pace; the alcove gives them a degree of privacy without separating them from the room.
+        </div>
+        <div class="fm-zone">
+          <div class="fm-zone-name">Children's & Young Adult</div>
+          At the far end of the ground floor, near the window overlooking the pond. Low shelving (reachable by a child standing) for the picture book and early reader section; standard shelving for YA. A reading mat and two small chairs for young visitors. The only section in the library where the furniture changes scale.
+        </div>
+      </div>
+    </div>
+    <div class="fm-floor">
+      <div class="fm-label">Ground Floor, Reference Corner — Visible but Not Dominant</div>
+      <div class="fm-zones">
+        <div class="fm-zone">
+          <div class="fm-zone-name">Competitive Examination Reference</div>
+          UPSC, JEE, NEET, CAT, CLAT, IELTS, Board reference. A clearly signposted corner with good lighting and a dedicated study table — functional, well-stocked, easy to use. Not the first thing a visitor sees. Not placed at the entrance. A student looking for Laxmikant will find it immediately; a visitor who has never heard of Laxmikant will not feel that the library is primarily for someone else.
+        </div>
+        <div class="fm-zone">
+          <div class="fm-zone-name">The New Arrivals Shelf</div>
+          A dedicated low shelf near the librarian's desk holding the most recent 30–40 acquisitions. Facing outward (covers visible, not spines). Changed whenever new books arrive — never left stale. This is the librarian's editorial statement: what SCRIPTORIUM Reads thinks is worth reading right now.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="adv gold">
+    <p><b>On signage:</b> Section signs follow the SCRIPTORIUM brand voice — precise, unhurried, typeset in EB Garamond on brass-framed plaques. They name the section without explaining what it is. "Indian Literary Fiction" — not "Fiction by Indian authors including bestsellers and award winners!" A library that over-explains its sections does not trust its visitors. SCRIPTORIUM does.</p>
+  </div>
+</section>
+
+<!-- ═══ 04 SECTION RATIOS ═══ -->
+<section>
+  <span class="eyebrow">04 · Section Ratios</span>
+  <h2>How the 6,000–8,000 volumes are distributed</h2>
+
+  <p>These ratios reflect the collection philosophy in numerical form. They are targets for the opening collection and should be reviewed annually — the ratios are not fixed forever, they respond to what the collection is actually used for. If, by Year 2, the children's section is consistently the busiest part of the library, the ratio should shift to reflect that. The Head Librarian makes the case for ratio adjustments to the founder annually.</p>
+
+  <div class="section-grid">
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">Indian Literary Fiction</div>
+        <div class="sc-count">700 – 900 volumes · 11–12% of collection</div>
+      </div>
+      <div class="sc-body">The largest single section. <b>Equal weighting between English-language Indian fiction and Indian fiction in translation.</b> No language of Indian writing is treated as supplementary. Minimum 80 titles in Hindi translation, 40 in Malayalam, 40 in Bengali, 30 in Tamil, 20 in Kannada, 20 in Telugu, 20 in Urdu, 15 in Marathi. Multiple copies of high-demand titles (Arundhati Roy, Amitav Ghosh, Premchand) — minimum 3 copies of any title that is likely to be simultaneously in use.</div>
+    </div>
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">International Literary Fiction</div>
+        <div class="sc-count">600 – 750 volumes · 9–10% of collection</div>
+      </div>
+      <div class="sc-body">The second largest section. <b>Deliberately international in geography</b> — not dominated by British and American literature. Target distribution: Americas 25%, Europe 35%, Asia 25%, Africa and Middle East 15%. Translations from at least 20 languages represented. Latin American magical realism, Japanese contemporary fiction, African postcolonial literature, and Eastern European writing all have substantial presences. Popular international fiction (Murakami, Ferrante, Han Kang) in multiple copies.</div>
+    </div>
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">Indian History</div>
+        <div class="sc-count">550 – 700 volumes · 8–9% of collection</div>
+      </div>
+      <div class="sc-body">The most-used non-fiction section. <b>Covers all periods and all schools of historiography</b> — ancient, medieval, early modern, colonial, and post-independence. Multiple perspectives on contested periods: the Mughal era, the colonial period, Partition, and post-Partition are each represented by historians from different interpretive traditions. The UPSC aspirant and the independent reader are both served. Romila Thapar and the NCERT history sets on the same wall is the point.</div>
+    </div>
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">World History</div>
+        <div class="sc-count">400 – 550 volumes · 6–7% of collection</div>
+      </div>
+      <div class="sc-body">Global history, not Eurocentric history. <b>The Silk Roads are as prominent as the World Wars.</b> Economic history, social history, and people's history have as much shelf space as political and military history. Peter Frankopan's framing of world history from the East, Amitav Ghosh's ecological history, and Howard Zinn's history from below are all represented — the point is that history looks different depending on where you are standing when you tell it.</div>
+    </div>
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">Science & Popular Science</div>
+        <div class="sc-count">400 – 520 volumes · 6–7% of collection</div>
+      </div>
+      <div class="sc-body">Physics, mathematics, cosmology, biology, evolution, technology, AI, and environmental science. <b>The benchmark for inclusion is whether a non-specialist reader can engage with it.</b> Feynman's Lectures are included for the physics student; Carlo Rovelli's Seven Brief Lessons on Physics is included for everyone else. The environment section is proportionally larger than most general libraries give it — climate science, ecological collapse, and the Anthropocene are not specialist topics in 2026; they are the central questions.</div>
+    </div>
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">Philosophy & Ideas</div>
+        <div class="sc-count">350 – 470 volumes · 5–6% of collection</div>
+      </div>
+      <div class="sc-body">Western philosophy, Indian philosophy, essays, and cultural criticism. <b>Indian philosophical traditions are given equal shelf space to Western traditions</b> — Nagarjuna, Radhakrishnan, Krishnamurti, Aurobindo, and Tagore sit alongside Plato, Kant, Foucault, and Arendt. The essays section (Orwell, Baldwin, Didion, Sontag, Arundhati Roy) is treated as a literary form in its own right, not as an appendix to either fiction or philosophy.</div>
+    </div>
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">Genre Fiction</div>
+        <div class="sc-count">450 – 600 volumes · 7–8% of collection</div>
+      </div>
+      <div class="sc-body">Science fiction, speculative fiction, fantasy (including Indian mythological retelling), mystery and crime. <b>Genre fiction is not a lesser category.</b> Le Guin, Asimov, Clarke, Tolkien, Pratchett, Gaiman, Christie, and Conan Doyle are in this library because they are worth reading — not because they are popular, though many of them are. Indian mythological retelling (Devdutt Pattanaik, Amish Tripathi, Ashok Banker, Anand Neelakantan) is a substantial sub-section of the fantasy shelves.</div>
+    </div>
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">Biography & Memoir</div>
+        <div class="sc-count">350 – 450 volumes · 5–6% of collection</div>
+      </div>
+      <div class="sc-body">Indian and international figures, shelved together. <b>The Indian biography section is proportionally larger than in most general libraries</b> — Gandhi, Ambedkar, Nehru, and Tagore in multiple editions; contemporary Indian figures (Ramachandra Guha's Gandhi biographies; Sunil Khilnani's Incarnations); memoirs by Indian artists, scientists, and thinkers. International memoir (Mandela, Primo Levi, Viktor Frankl, Anne Frank) is in the same section — biography does not have a nationality.</div>
+    </div>
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">Arts, Architecture & Craft</div>
+        <div class="sc-count">250 – 350 volumes · 4% of collection</div>
+      </div>
+      <div class="sc-body">Architecture, typography, graphic design, Indian craft traditions, textile and material culture, and books about writing as a craft. <b>This section exists nowhere else in a South Delhi study space.</b> Juhani Pallasmaa, Robert Bringhurst, Pupul Jayakar, Kapila Vatsyayan, and B.V. Doshi on the same shelf: this is the section that tells the visitor what kind of place SCRIPTORIUM is. Physically closest to the stationery tower entrance.</div>
+    </div>
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">Children's & Young Adult</div>
+        <div class="sc-count">450 – 600 volumes · 7–8% of collection</div>
+      </div>
+      <div class="sc-body">Picture books (including bilingual Indian-language titles from Tulika Publishers and Pratham Books), early readers, middle grade (Roald Dahl, C.S. Lewis, Rowling, Pullman), and YA (Indian and international). <b>Indian children's literature is the anchor</b> — Ruskin Bond's collected children's stories, Sudha Murty's series, Ranjit Lal's Delhi-set fiction. The YA section includes books that take young readers seriously: Philip Pullman's His Dark Materials, Markus Zusak's The Book Thief, Khaled Hosseini.</div>
+    </div>
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">Competitive Examination Reference</div>
+        <div class="sc-count">350 – 450 volumes · 5–6% of collection</div>
+      </div>
+      <div class="sc-body"><b>Well-stocked, current, and easy to use — but one section among ten, not the defining purpose of the room.</b> UPSC (Laxmikant, NCERT complete set, Spectrum, Ramesh Singh Economics, Bipan Chandra, Romila Thapar), JEE/NEET reference, CAT/GMAT, CLAT, IELTS/GRE, SSC and Banking, and Board exam reference (Class X and XII, all subjects). Updated annually — the Head Librarian replaces outdated editions at the start of each academic year.</div>
+    </div>
+    <div class="section-card">
+      <div class="sc-head">
+        <div class="sc-name">New Arrivals & Librarian's Picks</div>
+        <div class="sc-count">30 – 50 volumes displayed at any time (rotated)</div>
+      </div>
+      <div class="sc-body">Not a permanent section — a rotating display near the librarian's desk. <b>The librarian's editorial voice.</b> Books displayed face-out (cover visible), changed with every new acquisition batch. The Librarian's Pick — one book per month, chosen by the Head Librarian, with a handwritten note card explaining why — sits at the front of this display. This is the one place in the library where SCRIPTORIUM explicitly makes a recommendation.</div>
+    </div>
+  </div>
+
+  <div class="adv kota">
+    <p><b>On multiple copies:</b> The default is one copy per title. Multiple copies (2–3) are purchased only for titles that are simultaneously in high demand — the complete NCERT set, Laxmikant, key UPSC reference texts, and the most-read fiction titles (Roy, Ghosh, Premchand). A library that has three copies of Laxmikant and one copy of Amitav Ghosh has revealed its priorities. Buy multiples for both.</p>
+  </div>
+</section>
+
+<!-- ═══ 05 CURATION CRITERIA ═══ -->
+<section>
+  <span class="eyebrow">05 · Curation Criteria</span>
+  <h2>What belongs in SCRIPTORIUM Reads — and what does not</h2>
+
+  <p>The Head Librarian has acquisition authority within the annual budget. Every acquisition decision should pass the following tests. These are applied to every book — whether purchased new from a publisher, sourced secondhand from Daryaganj, or donated by a visitor.</p>
+
+  <h3>The five acquisition tests</h3>
+
+  <table>
+    <thead>
+      <tr><th>Test</th><th>The question</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>The quality test</td>
+        <td>Is this a book worth reading — not a book that is popular, but a book that repays the time spent on it?</td>
+        <td>This is a judgment call, and judgment calls are why the Head Librarian is hired for taste. Bestseller lists are a signal, not a criterion. A book can be on the bestseller list and belong in SCRIPTORIUM Reads; it can also be on the bestseller list and not belong here. Sales figures do not determine quality.</td>
+      </tr>
+      <tr>
+        <td>The representation test</td>
+        <td>Does this acquisition reinforce a gap or fill one?</td>
+        <td>If the Indian fiction section has 15 titles in English and 2 in Hindi, the next Indian fiction acquisition should almost certainly be in Hindi. The Head Librarian tracks representation gaps by language, geography, and subject matter and addresses them actively — not by purchasing bad books to fill quotas, but by seeking out good books in underrepresented categories.</td>
+      </tr>
+      <tr>
+        <td>The condition test</td>
+        <td>Is this copy in a condition that represents SCRIPTORIUM Reads at its standard?</td>
+        <td>Applied primarily to Daryaganj secondhand purchases. A book with a cracked spine, missing pages, significant underlining throughout, or water damage does not go on the shelf regardless of its literary merit. SCRIPTORIUM Reads is not a charity library. The physical condition of the collection is part of the environment — a damaged book degrades the room. Exception: a rare or important title that is otherwise unavailable may be kept in reference condition (not circulating, in a protective cover).</td>
+      </tr>
+      <tr>
+        <td>The currency test</td>
+        <td>Is this the current edition, where edition matters?</td>
+        <td>For competitive examination reference (Laxmikant, Ramesh Singh, NCERT): the current edition is mandatory — an out-of-date polity reference is worse than no reference. For literary fiction and history: older editions are acceptable and often desirable (a 1970s Penguin Classics edition of Dostoevsky is not an outdated edition — it is the correct one). The currency test applies primarily to reference material.</td>
+      </tr>
+      <tr>
+        <td>The collection balance test</td>
+        <td>Does this acquisition take the collection closer to the ratios in Section 04, or further from them?</td>
+        <td>If the philosophy section is already at its ratio and a new philosophy title arrives, it is still acquired — good books are acquired regardless of whether the section is at its target. But if a section is substantially below its ratio (the Hindi fiction count is 30 when it should be 80), the Head Librarian prioritises filling that gap in the next acquisition cycle rather than buying more of what is already well-stocked.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rule"></div>
+  <h3>What SCRIPTORIUM Reads explicitly does not stock</h3>
+
+  <div class="curation-pair">
+    <div class="cp-label">Celebrity memoir and commercial autobiography with no intellectual content</div>
+    <div class="cp-in">✓ Barack Obama's Dreams from My Father — a thoughtful, well-written memoir with genuine literary and political substance. Malcolm X's Autobiography — one of the important documents of the 20th century. Nelson Mandela's Long Walk to Freedom.</div>
+    <div class="cp-out">✗ Celebrity ghost-written autobiographies produced primarily as brand extension exercises. A book that exists because the subject is famous, not because the subject has something worth reading. The test: would this book be published if the subject were not famous? If the answer is no, it probably does not belong here.</div>
+  </div>
+
+  <div class="curation-pair">
+    <div class="cp-label">Self-help and motivational content without intellectual depth</div>
+    <div class="cp-in">✓ Viktor Frankl's Man's Search for Meaning — a book that emerged from genuine extremity and has genuine philosophical depth. Gurcharan Das's India Unbound — a memoir and reflection on Indian development that earns its place in ideas. Anne Lamott's Bird by Bird — a book about writing that is also a book about living.</div>
+    <div class="cp-out">✗ The genre of "7 habits / 10 rules / 5 things successful people do before 6am" productivity books. Not because self-improvement is illegitimate, but because this genre is comprehensively served by Amazon, every airport bookshop, and every other library in Delhi. SCRIPTORIUM Reads does not need to stock what is already everywhere. Exception: books in this category that have genuine intellectual content and have influenced public discourse over time (e.g., Cal Newport's Deep Work, which has a serious argument about attention and knowledge work).</div>
+  </div>
+
+  <div class="curation-pair">
+    <div class="cp-label">Political party promotional material and ideological pamphlets</div>
+    <div class="cp-in">✓ Books <em>about</em> political parties, political history, and political movements — from any perspective, academic or journalistic. Books by political figures that are autobiographical or analytical. Primary historical documents of political movements.</div>
+    <div class="cp-out">✗ Material produced primarily to advance a contemporary political party's platform or electoral interests, regardless of which party. SCRIPTORIUM Reads does not take political positions. The collection can hold books that disagree with each other on political questions — it should, and does. It does not hold promotional material.</div>
+  </div>
+
+  <div class="curation-pair">
+    <div class="cp-label">Outdated reference material</div>
+    <div class="cp-in">✓ A 2024 edition of Laxmikant. Current-year UPSC previous papers. The current NCERT complete set.</div>
+    <div class="cp-out">✗ A 2019 edition of Laxmikant sitting next to the 2024 edition. Outdated editions of competitive examination reference material are not supplementary — they are actively misleading for students who do not notice the date. When a new edition replaces an old one on the shelf, the old edition is removed, not kept "just in case."</div>
+  </div>
+</section>
+
+<!-- ═══ 06 ACQUISITION PROCESS ═══ -->
+<section>
+  <span class="eyebrow">06 · Acquisition Process</span>
+  <h2>How the collection is built and refreshed</h2>
+
+  <p>The opening collection of 6,000–8,000 volumes is built in the six months before opening, per the procurement timeline in Document 08, Section 07. Once the campus is open, the collection grows through an annual acquisition cycle supplemented by a small standing fund for in-year additions and a donations programme.</p>
+
+  <h4>Five-Year Acquisition Plan — Overview</h4>
+  <p>The table below cross-references the business plan's revenue and EBITDA trajectory (Document 05) to ensure the acquisition budget is proportionate to the campus's financial position in each year. The acquisition budget is not a fixed percentage of revenue — it is sized to what the collection actually needs in each phase of its development. In Years 1–2, when EBITDA is negative, the acquisition budget is conservative and targeted. From Year 3, when EBITDA turns positive, it grows to reflect the collection's expansion ambitions.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Period</th>
+        <th>Acquisition budget</th>
+        <th>Volumes added</th>
+        <th>Running total</th>
+        <th>Business plan context</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pre-launch<br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--kota);">M−6 to M0</span></td>
+        <td class="brass">₹12 – 24 L</td>
+        <td>6,000 – 8,000</td>
+        <td>6,000 – 8,000</td>
+        <td>Capital expenditure, not OpEx — funded from Tranche C working capital facility. Split across three channels: Daryaganj secondhand (2,000–3,000 volumes at ₹30–200/book), Nai Sarak wholesale (2,000–3,000 volumes at trade pricing), Bahri Sons trade account (500–1,000 volumes at 25–30% below MRP). See Document 08 §06 for full channel breakdown. Collection must be fully shelved and catalogued in Koha by the soft-launch date (M−2).</td>
+      </tr>
+      <tr>
+        <td>Year 1<br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--kota);">Campus revenue: ₹105.8 L · EBITDA: −₹49.8 L</span></td>
+        <td class="brass">₹1.5 – 2 L</td>
+        <td>350 – 500</td>
+        <td>6,350 – 8,500</td>
+        <td>EBITDA is deeply negative in Year 1 — the acquisition budget is held lean and surgical. No exploratory purchasing. Every acquisition fills a documented gap or replaces a damaged copy. Funded from the marketing and programming OpEx line in the business plan (Document 05).</td>
+      </tr>
+      <tr>
+        <td>Year 2<br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--kota);">Campus revenue: ₹179 L · EBITDA: −₹2.6 L</span></td>
+        <td class="brass">₹1.8 – 2.5 L</td>
+        <td>450 – 600</td>
+        <td>6,800 – 9,100</td>
+        <td>EBITDA approaches breakeven. Acquisition budget increases modestly. The first full annual weed is conducted in Q4 Year 2, and the weeded titles are replaced in the Year 3 acquisition order. The children's section begins its first targeted expansion based on 12 months of observed demand.</td>
+      </tr>
+      <tr>
+        <td>Year 3<br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--kota);">Campus revenue: ₹244 L · EBITDA: +₹37 L</span></td>
+        <td class="brass">₹2.5 – 3.5 L</td>
+        <td>600 – 850</td>
+        <td>7,400 – 9,950</td>
+        <td>EBITDA turns positive for the first time. The acquisition budget increases meaningfully. A dedicated translated Indian fiction drive begins — the target of 80 Hindi titles, 40 Malayalam titles, and 40 Bengali titles (Section 04) is reviewed and gaps filled. The reading programme events budget (Section 09) is also funded from Year 3 EBITDA — these two budgets grow together.</td>
+      </tr>
+      <tr>
+        <td>Year 4<br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--kota);">Campus revenue: ₹279 L · EBITDA: +₹54.5 L</span></td>
+        <td class="brass">₹3 – 4 L</td>
+        <td>700 – 950</td>
+        <td>8,100 – 10,900</td>
+        <td>EBITDA growing strongly. The collection approaches or crosses 10,000 volumes for the first time — a milestone that justifies a second dedicated Koha audit and a full recataloguing check. The arts, architecture and craft section (currently the smallest non-reference section) receives a targeted expansion — this section defines SCRIPTORIUM Reads for visitors who come from the stationery floors.</td>
+      </tr>
+      <tr>
+        <td>Year 5<br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--kota);">Campus revenue: ₹319 L · EBITDA: +₹73.8 L</span></td>
+        <td class="brass">₹3.5 – 5 L</td>
+        <td>800 – 1,100</td>
+        <td>8,900 – 12,000</td>
+        <td>The campus is fully operationally self-sustaining. The collection target of 10,000–12,000 volumes by Year 5 is achievable at this acquisition rate, supplemented by the donations programme. Year 5 is also when the Head Librarian proposes the first significant collection review — not a weed, but a strategic assessment of whether the section ratios in Section 04 still reflect how the campus is being used, and whether the collection's scope should expand into any new areas (regional language original-script texts, academic journals, large-format art books, or a rare books section).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Year-by-Year Acquisition Priorities</h4>
+  <p>The overview table gives budgets and volumes. This section gives the specific focus of each year's acquisition — what sections are prioritised, what the Head Librarian is looking for, and what decisions are made at each annual cycle.</p>
+
+  <table>
+    <thead>
+      <tr><th style="width:12%;">Year</th><th style="width:28%;">Primary focus</th><th style="width:32%;">Section priorities</th><th>Key decisions</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pre-launch</td>
+        <td>Build the opening collection from scratch across all twelve sections simultaneously. No section is left below 60% of its target ratio at launch.</td>
+        <td>Indian Literary Fiction (English) · Indian History · Competitive Exam Reference · Children's &amp; YA · International Fiction</td>
+        <td>The Head Librarian is hired at M−4 and personally conducts the Daryaganj acquisition visits (minimum 4 visits). The exam reference section is purchased new from Nai Sarak wholesale — no secondhand exam reference, as currency is critical. Fiction and history can be sourced secondhand if condition is excellent.</td>
+      </tr>
+      <tr>
+        <td>Year 1</td>
+        <td>Gap-filling only. No section expansion. Identify the three most underused sections and the three most overstretched (insufficient copies of high-demand titles) and address both.</td>
+        <td>Multiple copies of high-demand titles · Translated Indian Fiction (first targeted Hindi additions) · Competitive Exam Reference annual update (UPSC new editions)</td>
+        <td>By Month 6, the Head Librarian submits a Usage Report to the founder — which sections are heavily used, which are rarely touched, and what the first year's acquisition should address. This report drives the Year 1 acquisition order. The UPSC reference section is updated fully — all outdated editions replaced — before the pre-UPSC Prelims rush (typically April–May).</td>
+      </tr>
+      <tr>
+        <td>Year 2</td>
+        <td>First meaningful section expansions. Children's section responds to observed demand. Translated Indian fiction drive begins in earnest. First full annual weed conducted.</td>
+        <td>Children's &amp; YA expansion · Hindi literary fiction (target: 50 titles by end of Year 2) · Malayalam translation (target: 25 titles) · World History (Latin American and African historiography specifically) · Science (environment and climate)</td>
+        <td>The first annual weed (Section 07) is conducted by the Head Librarian and one Library Associate in Q4 Year 2. Weeded titles are listed and the replacements are budgeted into the Year 3 acquisition order. The Read &amp; Return donations programme (see below) should be generating 50–100 donated volumes per year by end of Year 2 — these are tracked separately from the purchased acquisition.</td>
+      </tr>
+      <tr>
+        <td>Year 3</td>
+        <td>The translated Indian fiction drive reaches its targets. A dedicated international fiction geography audit ensures the non-Western world is well-represented. The arts and craft section grows for the first time since launch.</td>
+        <td>Translated Indian Fiction (all language targets from Section 04 to be met) · International Fiction (Africa, Latin America, Middle East, Southeast Asia specifically) · Arts, Architecture &amp; Craft · Biography (Indian figures — expanded beyond the founding collection) · Philosophy (Indian traditions deepened)</td>
+        <td>Year 3 is when the Head Librarian proposes the first reading circle book list for Year 4 — a full year's 12 titles, chosen to represent the collection's scope and to introduce visitors to sections they might not have found on their own. The reading circle list drives a small targeted acquisition (3–4 copies of each reading circle title).</td>
+      </tr>
+      <tr>
+        <td>Year 4</td>
+        <td>The collection passes 10,000 volumes. A full Koha audit is conducted — every book physically checked against the digital catalogue to correct errors accumulated over four years. The capsule collection is reviewed and three pod themes are refreshed.</td>
+        <td>Arts, Architecture &amp; Craft (second expansion) · Science (mathematics and popular philosophy of science) · Genre Fiction (speculative and Indian science fiction specifically — a fast-growing area of Indian writing) · Children's (bilingual and regional language picture books)</td>
+        <td>The three pod themes with the lowest booking rates (identified from the GG Circuit booking data) are refreshed — the books are replaced, not just reshuffled. The Head Librarian proposes new themes based on what the campus's visitors are demonstrably interested in.</td>
+      </tr>
+      <tr>
+        <td>Year 5</td>
+        <td>Strategic collection review. The Head Librarian prepares a five-year collection report for the founder — section usage data, donation programme impact, reading circle feedback, and a proposal for the collection's next five years. The report includes a recommendation on whether any new collection areas should be opened.</td>
+        <td>All sections reviewed · Potential new areas: original-script regional language texts (Devanagari Hindi, Malayalam script, Tamil script), academic journals (physical subscriptions), large-format illustrated art and architecture books, rare and antiquarian Indian titles</td>
+        <td>The five-year report is the document that governs the collection from Year 6 onward. It replaces this document for its scope — the founding framework has served its purpose; the collection now has five years of real use data to build on. The founder and Head Librarian co-author the next framework together.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Channel Mix by Year</h4>
+  <p>The sourcing channels for acquisitions shift as the collection matures — the opening collection is built heavily on Daryaganj secondhand, while later years lean toward publisher direct and donations as the collection's specific gaps become more precise.</p>
+
+  <table>
+    <thead>
+      <tr><th>Channel</th><th>Pre-launch</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Daryaganj secondhand market</td>
+        <td class="brass">40–50%</td>
+        <td class="brass">25–30%</td>
+        <td class="brass">20–25%</td>
+        <td class="brass">15–20%</td>
+        <td class="brass">10–15%</td>
+        <td class="brass">10%</td>
+      </tr>
+      <tr>
+        <td>Nai Sarak wholesale / publisher direct</td>
+        <td class="brass">30–35%</td>
+        <td class="brass">40–45%</td>
+        <td class="brass">40%</td>
+        <td class="brass">40–45%</td>
+        <td class="brass">40–45%</td>
+        <td class="brass">40%</td>
+      </tr>
+      <tr>
+        <td>Bahri Sons / Fact &amp; Fiction trade accounts</td>
+        <td class="brass">15–20%</td>
+        <td class="brass">20–25%</td>
+        <td class="brass">25%</td>
+        <td class="brass">25–30%</td>
+        <td class="brass">25–30%</td>
+        <td class="brass">25%</td>
+      </tr>
+      <tr>
+        <td>Amazon India (gap fills, imports)</td>
+        <td class="brass">5%</td>
+        <td class="brass">10%</td>
+        <td class="brass">10%</td>
+        <td class="brass">10%</td>
+        <td class="brass">10%</td>
+        <td class="brass">10%</td>
+      </tr>
+      <tr>
+        <td>Donations programme (Read &amp; Return)</td>
+        <td class="brass">—</td>
+        <td class="brass">Supplementary</td>
+        <td class="brass">Supplementary</td>
+        <td class="brass">Supplementary</td>
+        <td class="brass">Supplementary</td>
+        <td class="brass">Supplementary</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="adv gold">
+    <p><b>Why Daryaganj's share falls over time:</b> The opening collection benefits enormously from Daryaganj — a Head Librarian who knows the market can build 2,000–3,000 high-quality volumes in six Sunday visits at a fraction of new book cost. But as the collection becomes more specific in its gaps — "we need more Malayalam fiction in translation" or "we need the current edition of Laxmikant" — Daryaganj becomes less efficient. Specific gaps require specific sources. By Year 4, the bulk of the acquisition budget goes to publisher direct and the Bahri Sons trade account where specific titles can be ordered reliably.</p>
+  </div>
+
+  <h4>The Standing Fund — In-Year Acquisitions</h4>
+  <p>Separate from the annual acquisition cycle, the Head Librarian holds a standing discretionary fund for books that cannot wait. The fund grows with the campus's financial health:</p>
+
+  <table>
+    <thead>
+      <tr><th>Year</th><th>Monthly standing fund</th><th>Annual equivalent</th><th>Approval required</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Year 1</td>
+        <td class="brass">₹4,000 – 6,000/month</td>
+        <td class="brass">₹48,000 – 72,000</td>
+        <td>Head Librarian's discretion. Reported monthly to founder. No individual purchase above ₹3,000 without a brief written note of rationale.</td>
+      </tr>
+      <tr>
+        <td>Year 2</td>
+        <td class="brass">₹5,000 – 7,000/month</td>
+        <td class="brass">₹60,000 – 84,000</td>
+        <td>Same as Year 1.</td>
+      </tr>
+      <tr>
+        <td>Year 3</td>
+        <td class="brass">₹6,000 – 9,000/month</td>
+        <td class="brass">₹72,000 – 1.08 L</td>
+        <td>Head Librarian's discretion. Monthly report continues. The threshold for written rationale rises to ₹5,000 per purchase as the fund grows.</td>
+      </tr>
+      <tr>
+        <td>Year 4</td>
+        <td class="brass">₹7,000 – 10,000/month</td>
+        <td class="brass">₹84,000 – 1.2 L</td>
+        <td>Head Librarian's discretion.</td>
+      </tr>
+      <tr>
+        <td>Year 5</td>
+        <td class="brass">₹8,000 – 12,000/month</td>
+        <td class="brass">₹96,000 – 1.44 L</td>
+        <td>Head Librarian's discretion. By Year 5, the Head Librarian's curation judgment is well-established — the approval threshold is removed. Any purchase is at their discretion within the monthly budget.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The standing fund is used for: a significant new Indian novel on the week of release; a newly translated work that a visitor has asked about; a book that three or more people have requested through the library's feedback system; a replacement copy of a high-demand title that has been damaged; or an important secondhand find at Daryaganj that appears between the scheduled annual visits.</p>
+
+  <h4>Collection Growth Milestones</h4>
+  <table>
+    <thead>
+      <tr><th>Milestone</th><th>Target date</th><th>Action triggered</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>6,000 volumes shelved and catalogued</td>
+        <td class="brass">Soft-launch (M−2)</td>
+        <td>Campus opens for soft-launch visitors. Koha OPAC terminal activated at the library entrance.</td>
+      </tr>
+      <tr>
+        <td>8,000 volumes</td>
+        <td class="brass">End of Year 1</td>
+        <td>First full usage audit — Head Librarian reviews Koha circulation data and identifies the five most and five least used sections. Year 2 acquisition order is built from this data.</td>
+      </tr>
+      <tr>
+        <td>All section ratio targets met</td>
+        <td class="brass">End of Year 2</td>
+        <td>Every section is at or above 80% of its target volume from Section 04. The translated Indian fiction language targets (Hindi: 80, Malayalam: 40, Bengali: 40, Tamil: 30, Kannada: 20, Telugu: 20, Urdu: 20, Marathi: 15) are met. First full annual weed completed.</td>
+      </tr>
+      <tr>
+        <td>10,000 volumes</td>
+        <td class="brass">Year 4</td>
+        <td>Full physical Koha audit — every book physically verified against the digital catalogue. A milestone event in the library: the 10,000th book is announced on the Instagram account (one post, a photograph of the book and a single sentence about what it is). No ceremony. No press release.</td>
+      </tr>
+      <tr>
+        <td>12,000 volumes</td>
+        <td class="brass">Year 5 – Year 6</td>
+        <td>The five-year strategic collection review is completed. The founding framework (this document) is superseded by the Year 6 framework, authored by the Head Librarian and the founder jointly. At this scale, the collection is large enough to consider a rare and special collections section — a small locked case for antiquarian Indian titles, first editions, and donated library collections from individual scholars.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>The Donations Programme</h4>
+  <p>Post-opening, SCRIPTORIUM Reads accepts book donations from visitors and members with the following conditions, which should be clearly communicated at the donation point:</p>
+  <ul>
+    <li><b>Every donated book is reviewed by the Head Librarian before shelving.</b> Not every donation is accepted — the curation criteria of Section 05 apply to donated books as much as purchased ones.</li>
+    <li><b>Accepted donations are acknowledged</b> with a handwritten note of thanks. A small bookplate reading "Donated to SCRIPTORIUM Reads by [name], [year]" is placed inside the front cover.</li>
+    <li><b>Declined donations are returned to the donor</b> with a brief explanation. The library does not accept everything to avoid offending the donor — that would be dishonest about what the library is.</li>
+    <li><b>The Read &amp; Return membership tier</b> (to be established in Year 1) admits members who donate a minimum of 5 books meeting the collection criteria to a lightweight membership status with minor privileges (reserved seating priority, early access to events). This grows the collection while building membership.</li>
+  </ul>
+</section>
+
+<!-- ═══ 07 ROTATION AND WEEDING ═══ -->
+<section>
+  <span class="eyebrow">07 · Rotation & Weeding</span>
+  <h2>Keeping the collection alive</h2>
+
+  <p>A library that never removes books becomes a warehouse. The collection must breathe — new material comes in, and material that has stopped serving the collection's purpose goes out. This is called weeding in library science, and it is as important as acquisition. A shelf crowded with unused, outdated, or damaged books makes the books that matter harder to find.</p>
+
+  <p>SCRIPTORIUM Reads weeds the collection once per year, in the six weeks before the annual acquisition order. The Head Librarian conducts the weed with one Library Associate. The criteria are as follows:</p>
+
+  <div class="weed-row">
+    <span class="weed-verdict verdict-remove">Remove</span>
+    <div class="weed-desc"><b>Outdated examination reference.</b> Any competitive exam reference that has been superseded by a new edition. No exceptions — an old Laxmikant next to the new one is a trap for a student who picks up the wrong one. Remove, do not donate to another library (the same problem transfers).</div>
+  </div>
+  <div class="weed-row">
+    <span class="weed-verdict verdict-remove">Remove</span>
+    <div class="weed-desc"><b>Physically damaged beyond acceptable standard.</b> Cracked spine, missing pages, significant water damage, or covers that have separated from the text block. If a title is worth keeping, order a replacement copy before removing the damaged one. If the title is not worth replacing, remove without replacement.</div>
+  </div>
+  <div class="weed-row">
+    <span class="weed-verdict verdict-remove">Remove</span>
+    <div class="weed-desc"><b>Books that have not been touched in two consecutive years</b> and whose absence would not constitute a gap in the collection. Tracked through the catalogue's date-of-last-use record. Exception: reference works and classics that are used infrequently but whose presence is important (a collected edition of Ambedkar's writings does not need to be constantly in use to belong here).</div>
+  </div>
+  <div class="weed-row">
+    <span class="weed-verdict verdict-review">Review</span>
+    <div class="weed-desc"><b>Books that feel dated in framing or perspective</b> without having been formally superseded. A 1985 economics textbook, a 1990s science book that has been overtaken by subsequent research, a biography written before significant new archival material became available. These go to the Head Librarian for a judgment call — some dated books remain important documents; others simply mislead.</div>
+  </div>
+  <div class="weed-row">
+    <span class="weed-verdict verdict-keep">Keep</span>
+    <div class="weed-desc"><b>All literary fiction, regardless of circulation.</b> A novel is not outdated. Premchand's Godan does not become less worth reading because it was published in 1936. The circulation test does not apply to fiction — a novel that has not been touched in two years may be exactly the book a visitor next month has been looking for.</div>
+  </div>
+  <div class="weed-row">
+    <span class="weed-verdict verdict-keep">Keep</span>
+    <div class="weed-desc"><b>Primary sources and foundational texts</b> regardless of how often they circulate. Ambedkar's Annihilation of Caste, Gandhi's My Experiments with Truth, Nehru's Discovery of India, Tagore's Gitanjali. These are not removed under any weeding protocol.</div>
+  </div>
+  <div class="weed-row">
+    <span class="weed-verdict verdict-keep">Keep</span>
+    <div class="weed-desc"><b>Books that visitors have specifically requested</b> or commented on in the library feedback system. A book that someone walked in looking for is a book that serves a real need, even if the catalogue shows low overall use.</div>
+  </div>
+
+  <div class="adv kota" style="margin-top:18px;">
+    <p><b>What happens to removed books:</b> Books removed for physical damage are recycled or disposed of — they are not donated in damaged condition, as that passes the problem along. Books removed for other reasons are offered to the donation programme of a local school library or a nonprofit library (Kutumb Foundation, Sakshat, Delhi Public Library branches). They are never sold. SCRIPTORIUM Reads does not run a book sale — that is a different kind of library.</p>
+  </div>
+</section>
+
+<!-- ═══ 08 THE CAPSULE COLLECTION ═══ -->
+<section>
+  <span class="eyebrow">08 · The Capsule Collection</span>
+  <h2>The rented book collection for SCRIPTORIUM Capsule</h2>
+
+  <p>The study pods of SCRIPTORIUM Capsule each contain a small built-in shelf of 8–10 rented books, available to the pod user during their session. This is a separate collection from SCRIPTORIUM Reads — it is curated for a different purpose, managed differently, and stocked with different titles.</p>
+
+  <p>A pod user is paying for concentrated, uninterrupted work time. The books in the pod are there for reference during study, for reading during breaks, or as the focus of the session itself. They are not browsing books — they are working tools and companions for a specific kind of focused use.</p>
+
+  <h3>The Capsule Collection — Curation Principles</h3>
+
+  <ul>
+    <li><b>Each pod has a themed collection</b> — not a random selection of 8 books, but a curated set around a theme that gives the pod an identity. A visitor who returns regularly can request a specific pod because they know what its shelf holds.</li>
+    <li><b>The themes span the campus's interests</b> — not all pods are stocked with exam reference. One pod holds a collection on Indian history. Another holds literary essays. Another holds popular science. Another holds the foundational texts of Indian political thought. A pod devoted entirely to exam reference is available — but it is one among many.</li>
+    <li><b>The capsule collection is managed separately from the open library</b> — books in the pods do not circulate to the main floor and vice versa. The Head Librarian tracks pod books as a separate inventory.</li>
+    <li><b>Pod books are checked on every pod return</b> — condition, completeness, whether anything was left behind. A damaged pod book is replaced immediately. A missing pod book is invoiced to the last pod user at cost plus 20%.</li>
+  </ul>
+
+  <h3>The Twelve Pod Themes (20 pods — some themes repeat)</h3>
+
+  <div class="capsule-grid">
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 01</div>
+      <div class="cap-name">The Indian Story</div>
+      <div class="cap-desc">8 books on Indian history and civilisation — Romila Thapar, William Dalrymple, Manu Pillai, Ramachandra Guha. For the visitor who wants to understand the country they are sitting in.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 02</div>
+      <div class="cap-name">The Examined Life</div>
+      <div class="cap-desc">Philosophy and ideas — Plato, Amartya Sen, J. Krishnamurti, Hannah Arendt, Viktor Frankl, Bertrand Russell. For the session that is about thinking, not just studying.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 03</div>
+      <div class="cap-name">UPSC Core</div>
+      <div class="cap-desc">Laxmikant, NCERT Polity and History, Ramesh Singh Economy, Bipan Chandra, Spectrum, and Romila Thapar's Early India. The pod that UPSC aspirants will book first — and find next to The Indian Story.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 04</div>
+      <div class="cap-name">The Writer's Pod</div>
+      <div class="cap-desc">Books about writing and language — Strunk & White, Stephen King's On Writing, Natalie Goldberg, Anne Lamott, Ursula Le Guin's Steering the Craft, Orwell's Essays. For anyone working on something that requires words.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 05</div>
+      <div class="cap-name">The Physical World</div>
+      <div class="cap-desc">Popular science and nature — Feynman's Six Easy Pieces, Carlo Rovelli, Elizabeth Kolbert, Robin Wall Kimmerer, Bill Bryson, Rachel Carson. The pod that reminds a student what they are studying science for.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 06</div>
+      <div class="cap-name">Indian Fiction</div>
+      <div class="cap-desc">8 novels by Indian writers in English and translation — Premchand, Arundhati Roy, Amitav Ghosh, Ismat Chughtai, O.V. Vijayan, Perumal Murugan, Anuradha Roy, Mahasweta Devi. For the pod session that is about reading, not preparing.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 07</div>
+      <div class="cap-name">World at War</div>
+      <div class="cap-desc">20th-century conflict and its aftermath — Antony Beevor's Stalingrad, Timothy Snyder's Bloodlands, Primo Levi's If This Is a Man, Orlando Figes on Russia, Barbara Tuchman's The Guns of August. For the UPSC aspirant and the general reader both.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 08</div>
+      <div class="cap-name">CAT & Management</div>
+      <div class="cap-desc">CAT quantitative aptitude, verbal ability, and logical reasoning — Arun Sharma, Nishit Sinha, Time Institute series, plus two business books of genuine intellectual substance (Ha-Joon Chang's Bad Samaritans, Michael Lewis's The Big Short).</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 09</div>
+      <div class="cap-name">The Republic</div>
+      <div class="cap-desc">Indian political thought and democracy — Ambedkar's Annihilation of Caste, Nehru's Discovery of India, Ramachandra Guha's India After Gandhi, Amartya Sen's The Argumentative Indian, and the Constitution of India (pocket edition). The pod for understanding what India is and what it was meant to be.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 10</div>
+      <div class="cap-name">The Long View</div>
+      <div class="cap-desc">Big-picture history and ideas — Yuval Noah Harari's Sapiens, Peter Frankopan's The Silk Roads, Jared Diamond's Guns Germs and Steel, David Graeber's Debt, Eric Hobsbawm's Age of Extremes. For the session where the detail of the subject calls for its wider context.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 11</div>
+      <div class="cap-name">JEE / NEET Science</div>
+      <div class="cap-desc">H.C. Verma's Concepts of Physics (both volumes), NCERT Chemistry (Class XI and XII), DC Pandey series (selected), plus one popular science book (Feynman's Six Easy Pieces) — because a student who only ever reads reference material is a student who has forgotten why physics is interesting.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Pod Theme 12</div>
+      <div class="cap-name">Stories from Elsewhere</div>
+      <div class="cap-desc">Eight novels from outside India and the English-speaking world — García Márquez, Kafka, Ferrante, Han Kang, Orhan Pamuk, Olga Tokarczuk, Chinua Achebe, Haruki Murakami. The pod that takes a student somewhere they have not been before without leaving Said-ul-Ajaib.</div>
+    </div>
+  </div>
+
+  <div class="adv gold" style="margin-top:6px;">
+    <p><b>Pod theme distribution (20 pods):</b> UPSC Core (3 pods), The Indian Story (2 pods), Indian Fiction (2 pods), World at War (2 pods), The Republic (2 pods), The Long View (2 pods), Stories from Elsewhere (2 pods), The Examined Life (1 pod), The Writer's Pod (1 pod), The Physical World (1 pod), CAT & Management (1 pod), JEE/NEET Science (1 pod). This distribution can be adjusted based on observed booking patterns after the first three months of operation.</p>
+  </div>
+</section>
+
+<!-- ═══ 09 SCRIPTORIUM INK'S BOOK RETAIL COUNTER ═══ -->
+<section>
+  <span class="eyebrow">09 · The Ink Book Counter</span>
+  <h2>SCRIPTORIUM Ink sells the books SCRIPTORIUM Reads deliberately doesn't</h2>
+
+  <p>SCRIPTORIUM Ink now stocks and sells school and college books — NCERT and curriculum textbooks, competitive exam preparation, guides, and workbooks — positioning the stationery tower as a genuine one-stop destination for a student's practical needs. This is a new retail category, not a new library. It changes nothing about Section 01's governing philosophy for Reads; it exists specifically <i>because</i> that philosophy is worth protecting, by giving the exam-utility function its own home instead of asking Reads to be both things at once.</p>
+
+  <div class="principle">
+    <div class="p-label">The governing principle, restated for Ink</div>
+    <div class="p-statement">Reads is organised by what is interesting. Ink's book counter is organised by what a syllabus requires.</div>
+    <div class="p-note">These are inverse selection criteria on purpose. Reads' entire identity rests on not being "a coaching centre's reference room" or "a school library" (Section 01). Every one of those things Reads explicitly refuses to be is exactly what the Ink counter is for. Splitting them this way means Reads keeps its identity intact <i>and</i> SCRIPTORIUM captures the transactional textbook trade — Ink was always the retail zone; this is a natural product-line extension of Ink, not a mandate that changes what Reads or Capsule already do.</div>
+  </div>
+
+  <h3>What the Ink book counter sells</h3>
+  <div class="capsule-grid" style="grid-template-columns:1fr 1fr;">
+    <div class="cap-card">
+      <div class="cap-theme">Curriculum</div>
+      <div class="cap-name">NCERT &amp; School Textbooks</div>
+      <div class="cap-desc">Full NCERT set, Classes 6–12, all core subjects, refreshed every academic year. CBSE-aligned guide books and workbooks (Oswaal, MTG, Arihant's All-in-One series) sit alongside the plain textbooks — a student can buy the syllabus copy and the guide in one visit.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Competitive</div>
+      <div class="cap-name">JEE / NEET / CUET Preparation</div>
+      <div class="cap-desc">H.C. Verma, DC Pandey's Objective series, MTG's Fingertips line, and current-year CUET guides — the same category Capsule's JEE/NEET Science pod (Section 08) already references thematically, now available to actually take home and keep.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">Competitive</div>
+      <div class="cap-name">UPSC / CAT / State PSC</div>
+      <div class="cap-desc">Laxmikant, Spectrum, Ramesh Singh, Ambedkar and Nehru's core texts where they double as both exam-relevant and Section 02's "difficult questions" commitment, Arihant's UPSC combos, current affairs digests, and CAT quant/verbal series (Arun Sharma, Nishit Sinha) — mirroring Capsule's UPSC Core and CAT &amp; Management pods, again as books to own rather than borrow for a session.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-theme">College entry</div>
+      <div class="cap-name">Foundational College Texts</div>
+      <div class="cap-desc">Introductory texts for the most common first-year college subjects at nearby institutions — economics, commerce, and law primers, plus a small foundational shelf relevant to TAU's own eventual programme areas once those are confirmed.</div>
+    </div>
+  </div>
+
+  <h3>Where the philosophy stays separate — the same distinction Section 01 already draws for Capsule</h3>
+  <div class="curation-pair">
+    <div class="cp-label">What does not change in SCRIPTORIUM Reads</div>
+    <div class="cp-in">✓ Reads stays free, open, curated by intellectual interest, and read-in-library only. The Ink counter existing doesn't add a single exam-reference title to Reads' shelves, and doesn't turn any Reads book into a for-sale item. A visitor who wants to buy the NCERT History set they were reading in Reads walks to Ink to do it — the two collections don't merge, the way Capsule's rented pods and Reads' open shelves already don't merge.</div>
+    <div class="cp-out">✗ "Since Ink sells textbooks now, maybe Reads should stock more exam material too" is exactly the drift Section 01 warns against. The whole point of building Ink's counter was to take that pressure off Reads permanently, not to let it back in through a side door.</div>
+  </div>
+
+  <h3>Physical placement</h3>
+  <p>Recommended: <b>Ink's first floor</b> — currently paper, notebooks, and correspondence (Document 02, Document 04) — rather than the ground floor (writing instruments, the Pen Wall's street-facing showcase) or the second floor (drawing, painting, craft). The first floor is already organised around the written page as a working document, which is the closest existing thematic cousin to a textbook or workbook; putting the book counter here keeps each of Ink's three floors a coherent "complete world" in G.Itoya's own sense, rather than diluting the ground floor's pure instrument-and-ink identity that's specifically designed to stop foot traffic from the street. See Document 02 for the specific footprint note.</p>
+
+  <div class="adv kota">
+    <p><b>Sourcing and pricing sit in Document 08, not here.</b> This section defines the collection; Document 08 covers wholesale channels (the same Nai Sarak market Reads already uses for its own exam reference section, per Section 06, just at retail-inventory scale) and margin structure. Unlike Reads (free) and Capsule (bundled into the pod fee), the Ink book counter is a standard retail sale at normal bookstore margins — the first genuinely transactional book revenue line in the whole SCRIPTORIUM ecosystem.</p>
+  </div>
+</section>
+
+<!-- ═══ 10 THE READING PROGRAMME ═══ -->
+<section>
+  <span class="eyebrow">10 · The Reading Programme</span>
+  <h2>Events, engagement, and the library as a place of encounter</h2>
+
+  <p>SCRIPTORIUM Reads is not only a collection of books. It is a room in which things happen. The reading programme — events, talks, circles, and encounters with writers — is what transforms a library from a storage space into a living institution. It also generates the kind of word-of-mouth that no social media strategy produces: the person who attended an evening talk by a historian whose book they then picked up off the shelf and read in the mezzanine is the person who tells five people about SCRIPTORIUM.</p>
+
+  <p>The reading programme is not a marketing exercise. Events happen because they are worth having, not because they drive footfall metrics. The two consequences — being worth having, and generating word-of-mouth — are related: events that are genuinely good produce exactly the organic visibility that Document 07 describes. Events that are designed primarily as marketing produce empty chairs and a social media post that nobody shares.</p>
+
+  <div class="rule"></div>
+
+  <div class="prog-row">
+    <div class="prog-when">Monthly</div>
+    <div class="prog-content">
+      <h3>The Librarian's Pick Evening</h3>
+      <p>Once a month, the Head Librarian presents the month's Librarian's Pick to whoever comes to sit and listen. Not a formal lecture — a 20-minute conversation in the reading room about what the book is, why it was chosen, and what it opened up. Free to attend, open to all. The Head Librarian's voice is what makes this an event rather than an announcement. No slides, no microphone. The room is the event.</p>
+    </div>
+  </div>
+
+  <div class="prog-row">
+    <div class="prog-when">Monthly</div>
+    <div class="prog-content">
+      <h3>The Reading Circle</h3>
+      <p>A book discussion group that meets monthly. One title per month, chosen two months in advance (so participants have time to read it). The title is announced in the library and on the Instagram account. Open to anyone. No registration required — participants simply arrive. The Head Librarian facilitates, not leads. The goal is discussion, not consensus. Titles rotate across fiction, non-fiction, Indian writing, and translated writing — the circle reflects the collection's scope.</p>
+      <p>The first year's reading circle titles should be chosen before opening and announced as a year's programme — this gives the campus an intellectual calendar from day one and gives potential regular visitors a reason to plan their attendance in advance.</p>
+    </div>
+  </div>
+
+  <div class="prog-row">
+    <div class="prog-when">Quarterly</div>
+    <div class="prog-content">
+      <h3>An Evening with a Writer or Thinker</h3>
+      <p>Four times a year, SCRIPTORIUM Reads hosts a writer, historian, scientist, or thinker for an evening conversation. Not a reading — a conversation, facilitated by the Head Librarian or by a guest facilitator. The invitation criteria mirror the social media strategy in Document 07: invite people whose work is genuinely connected to what SCRIPTORIUM Reads holds, not people who are merely famous. A JNU historian who has written on Delhi's Mughal past, speaking in the library that holds Dalrymple and Thapar on the same shelf, is the correct event. A Bollywood celebrity reading from their memoir is not.</p>
+      <p>Capacity: 30–40 people (the reading room's seating). Free to attend. No ticket sales. First come, first seated. This keeps the event casual, prevents it from becoming a ticketed commercial show, and maintains the register of SCRIPTORIUM Reads as a place of genuine intellectual encounter.</p>
+    </div>
+  </div>
+
+  <div class="prog-row">
+    <div class="prog-when">Annually</div>
+    <div class="prog-content">
+      <h3>The SCRIPTORIUM Reads Annual List</h3>
+      <p>Once a year — in January, to coincide with the start of the academic year — the Head Librarian publishes a list of 20 books chosen from the collection that they recommend for the year ahead. Not a "best books" list. Not a "books you must read before you die" list. A specific, personal list — 20 books the Head Librarian thinks the people who come to SCRIPTORIUM Reads in the next 12 months should consider. The list is printed as a single-sheet insert and placed in the front of each recommended book in the library. Visitors take the insert; they do not take the book. The list is also posted on the Instagram account — once, without commentary beyond the list itself.</p>
+    </div>
+  </div>
+
+  <div class="prog-row">
+    <div class="prog-when">Ongoing</div>
+    <div class="prog-content">
+      <h3>The Librarian's Note Cards</h3>
+      <p>At any time, the Head Librarian may place a small handwritten card inside the front cover of a book on the shelf — a one- or two-sentence note about what the book is, why it is there, or what it connects to on nearby shelves. These are not reviews. They are the kind of thing a good librarian says when you ask them what you should read next. The note cards are unsigned — they speak for the library, not for the librarian as a named individual. A visitor who finds a note card that accurately describes what they are looking for will return. This is the library's version of the conversation that makes a bookshop worth visiting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 11 CATALOGUE & SYSTEMS ═══ -->
+<section>
+  <span class="eyebrow">11 · Catalogue & Systems</span>
+  <h2>How the collection is tracked and found</h2>
+
+  <p>SCRIPTORIUM Reads uses a modified Dewey Decimal classification system — modified because the standard Dewey system, while internationally recognised, was designed in 1876 by an American librarian and has structural biases that underweight non-Western knowledge traditions. The modifications below address the most significant of these without abandoning the system's navigability.</p>
+
+  <h3>The Classification Framework</h3>
+
+  <table>
+    <thead>
+      <tr><th>Section</th><th>Classification basis</th><th>Shelving order</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Indian Literary Fiction (English)</td>
+        <td>Author's surname, alphabetical</td>
+        <td>A–Z by author. Sub-divided by language of original composition where known, within the same A–Z sequence.</td>
+      </tr>
+      <tr>
+        <td>Indian Literary Fiction (Translated)</td>
+        <td>Language of original, then author surname</td>
+        <td>Bengali · Hindi · Kannada · Malayalam · Marathi · Rajasthani · Tamil · Telugu · Urdu — each sub-section A–Z by author. The language grouping allows readers to browse by tradition.</td>
+      </tr>
+      <tr>
+        <td>International Literary Fiction</td>
+        <td>Author's country of origin, then author surname</td>
+        <td>Geographic grouping: Africa · Americas (Latin) · Americas (North) · Asia (East) · Asia (South &amp; Southeast) · Europe (Eastern) · Europe (Western) · Middle East · Oceania. Within each group, A–Z by author.</td>
+      </tr>
+      <tr>
+        <td>Genre Fiction</td>
+        <td>Genre, then author surname</td>
+        <td>Crime &amp; Mystery · Fantasy · Science Fiction &amp; Speculative — each A–Z by author. Indian mythological retelling sits within Fantasy as a named sub-section.</td>
+      </tr>
+      <tr>
+        <td>History (Indian)</td>
+        <td>Chronological period, then author surname</td>
+        <td>Ancient India · Medieval India · Mughal Period · Colonial Period · Freedom Movement · Post-Independence · Partition (separate sub-section). Within each period, A–Z by author.</td>
+      </tr>
+      <tr>
+        <td>History (World)</td>
+        <td>Geographic focus, then chronological, then author</td>
+        <td>Africa · Americas · Asia (excl. India) · Europe · Middle East · Thematic (global / transnational histories). Thematic world histories (Harari, Frankopan, Diamond) sit in their own sub-section at the front of the world history shelves.</td>
+      </tr>
+      <tr>
+        <td>Philosophy</td>
+        <td>Tradition, then author surname</td>
+        <td>Indian Philosophy · Western Philosophy (Ancient) · Western Philosophy (Modern) · Essays &amp; Cultural Criticism. The Indian Philosophy sub-section appears first — this is the modification from standard Dewey, which subordinates non-Western philosophy structurally.</td>
+      </tr>
+      <tr>
+        <td>Science</td>
+        <td>Discipline, then author</td>
+        <td>Biology &amp; Evolution · Cosmology &amp; Physics · Environment &amp; Ecology · Mathematics · Technology &amp; AI. Popular science and academic texts are shelved together within each discipline — the level of the reader is not used as a classification criterion.</td>
+      </tr>
+      <tr>
+        <td>Competitive Examination Reference</td>
+        <td>Examination type, then subject, then author</td>
+        <td>UPSC (subject sub-sections) · JEE/NEET · CAT/GMAT · CLAT · IELTS/GRE/TOEFL · SSC/Bank · Board Exam (Class X &amp; XII). Within each exam type, subject-grouped and then A–Z by author/series name.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Library Management Software</h3>
+  <p>The catalogue is maintained on <strong>Koha</strong> — the world's most widely used open-source library management system, used by thousands of public and academic libraries globally. Koha is free to use (open source), runs on a standard web server, and handles cataloguing, OPAC (online public access catalogue — the searchable catalogue a visitor can use), circulation tracking, and acquisition management. The Head Librarian or Library Associate sets up and maintains the Koha installation. Delhi University's library science department (DLIS) has faculty experienced with Koha — the Head Librarian hire from that pipeline will already know the system.</p>
+  <p>The visitor-facing OPAC is available on a single dedicated terminal at the library entrance — a visitor who wants to find a specific book types the title or author into the terminal and sees which shelf it is on. No login required. No membership required. The OPAC is the library's navigation system, open to everyone.</p>
+
+  <h3>The Physical Catalogue Card — The Analogue Layer</h3>
+  <p>Every book in SCRIPTORIUM Reads has a catalogue card tucked into a pocket inside the back cover — a small card in the tradition of the card catalogue, recording: title, author, year of publication, section and shelf code, and the Head Librarian's brief note on what the book is. This is not a replacement for the digital catalogue — it is a supplement for visitors who prefer not to use a terminal, and it is the visual language of a library that takes its own books seriously. The cards are handwritten or cleanly typed, in EB Garamond at 10pt on acid-free card. They are replaced when they become illegible.</p>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="ft-wordmark">Scriptorium</div>
+  Book Collection Framework · Document 09 · Version 1.0 · June 2026<br>
+  This document is the founding collection framework for SCRIPTORIUM Reads. It must be read alongside Document 08 (Sourcing &amp; Procurement Guide, Section 06) which contains the author and title lists, and Document 06 (Staff Planning) which defines the Head Librarian role responsible for implementing this framework. Deviations from this framework — changes to section ratios, curation criteria, or the reading programme — require the founder's explicit approval and a version-controlled update to this document.<br><br>
+  <b>Cross-references within the SCRIPTORIUM planning package</b>
+  <ol>
+    <li>Document 01 — Regulatory &amp; Compliance Dossier: the open library operates under the general Shop &amp; Establishment registration; the rented pod book system has a separate liability consideration addressed in Document 01</li>
+    <li>Document 02 — Architecture Brief: Section 03 of this document (physical organisation) is built directly on the library zone specification in Document 02; any architectural change to the library zone requires a corresponding update to Section 03</li>
+    <li>Document 03 — Cost Estimation: book stock budget ₹12–24L (opening); annual acquisition budget ₹1.5–3L from Year 1 is in the marketing and programming OpEx line of Document 05</li>
+    <li>Document 05 — Business Plan: SCRIPTORIUM Reads is the primary footfall driver for all five revenue streams; the collection quality is a direct input to the business model's revenue assumptions</li>
+    <li>Document 06 — Staff Planning: the Head Librarian role (Section 04 of Document 06) is the implementing authority for this framework; the Library Associates are the day-to-day custodians of the collection</li>
+    <li>Document 07 — Digital Presence Strategy: books in the collection, the librarian's note cards, and the new arrivals shelf are all natural sources of social media content; Document 07 governs how that content is produced</li>
+    <li>Document 08 — Sourcing &amp; Procurement Guide: Section 06 contains the full author and title lists organised by genre; that section is the purchasing reference that this framework governs</li>
+  </ol>
+</footer>
+
+</div>
+</body>
+</html>
