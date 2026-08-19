@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5-Year Business Plan & Financial Model — The Study Campus, Delhi</title>
+<style>
+:root {
+  --bg:       #16161A;
+  --surface:  #1E1E23;
+  --surface2: #252529;
+  --border:   #333340;
+  --text:     #EAE7DF;
+  --soft:     #9A958C;
+  --dimmed:   #5A5750;
+
+  --gold:     #BFA468;
+  --gold-bg:  rgba(191,164,104,0.08);
+  --green:    #6A9C6A;
+  --green-bg: rgba(106,156,106,0.09);
+  --red:      #C45A4A;
+  --red-bg:   rgba(196,90,74,0.08);
+  --blue:     #5A8CC0;
+  --blue-bg:  rgba(90,140,192,0.08);
+  --orange:   #C47A52;
+  --orange-bg:rgba(196,122,82,0.08);
+  --purple:   #9370B8;
+
+  --lib:   #BFA468;
+  --cafe:  #7FA87F;
+  --pod:   #6A9CC5;
+  --stat:  #C47A52;
+  --cyber: #9370B8;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;font-size:15px;line-height:1.6;}
+.wrap{max-width:1020px;margin:0 auto;padding:52px 28px 90px;}
+
+/* ─── HEADER ─── */
+.doc-header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:48px;}
+.stamp{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:3px 9px;margin-bottom:14px;border-radius:2px;}
+h1{font-family:Georgia,"Palatino Linotype",serif;font-size:32px;font-weight:600;line-height:1.2;margin:0 0 8px;color:var(--text);}
+.tagline{color:var(--soft);font-size:15px;font-style:italic;margin:0 0 18px;}
+.meta-strip{display:flex;flex-wrap:wrap;gap:20px;font-family:ui-monospace,monospace;font-size:11px;color:var(--dimmed);}
+.meta-strip b{color:var(--soft);}
+
+section{margin-bottom:52px;}
+h2{font-family:Georgia,serif;font-size:20px;color:var(--text);margin:0 0 18px;display:flex;align-items:center;gap:10px;}
+h2 .sec-tag{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);border:1px solid var(--border);padding:2px 7px;border-radius:2px;}
+h3{font-family:Georgia,serif;font-size:16px;margin:24px 0 10px;color:var(--soft);}
+p{margin:0 0 12px;}
+
+/* ─── ADVISORY ─── */
+.adv{padding:14px 20px;border-radius:0 4px 4px 0;margin:14px 0;}
+.adv p{margin:0;font-size:14px;}
+.adv p b{color:var(--text);}
+.adv.gold{background:var(--gold-bg);border-left:3px solid var(--gold);}
+.adv.green{background:var(--green-bg);border-left:3px solid var(--green);}
+.adv.red{background:var(--red-bg);border-left:3px solid var(--red);}
+.adv.blue{background:var(--blue-bg);border-left:3px solid var(--blue);}
+
+/* ─── ASSUMPTION TABLE ─── */
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;}
+th{text-align:left;padding:8px 12px;background:rgba(255,255,255,0.04);color:var(--soft);font-family:ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--border);}
+td{padding:10px 12px;border-bottom:1px solid rgba(51,51,64,0.5);vertical-align:top;color:var(--soft);}
+td:first-child{color:var(--text);font-weight:500;}
+td.num{font-family:ui-monospace,monospace;text-align:right;white-space:nowrap;}
+td.pos{color:var(--green) !important;font-family:ui-monospace,monospace;text-align:right;}
+td.neg{color:var(--red) !important;font-family:ui-monospace,monospace;text-align:right;}
+td.gold{color:var(--gold) !important;font-family:ui-monospace,monospace;text-align:right;}
+tr.total td{border-top:2px solid var(--border);background:rgba(191,164,104,0.06);font-weight:700;}
+tr.total td.pos{color:var(--green)!important;font-weight:700;}
+tr.total td.neg{color:var(--red)!important;font-weight:700;}
+tr.total td.gold{color:var(--gold)!important;font-weight:700;}
+tr.sub td{border-top:1px solid var(--border);background:rgba(255,255,255,0.02);font-style:italic;}
+tr:last-child td{border-bottom:none;}
+
+/* ─── 5 YEAR TABLE ─── */
+.yr-table th.yr{text-align:right;background:rgba(255,255,255,0.04);}
+.yr-table td.label{color:var(--text);padding-left:10px;}
+.yr-table td.indent{color:var(--soft);padding-left:24px;font-size:13px;}
+.yr-table tr.section-head td{background:rgba(191,164,104,0.05);color:var(--gold);font-family:ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-top:1px solid var(--border);}
+
+/* ─── CAPITAL STRUCTURE ─── */
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0;}
+@media(max-width:700px){.cap-grid{grid-template-columns:1fr;}}
+.cap-card{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:16px 18px;}
+.cap-card .cc-label{font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);margin-bottom:5px;}
+.cap-card .cc-val{font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.2;margin-bottom:4px;}
+.cap-card .cc-sub{font-size:12.5px;color:var(--soft);line-height:1.5;}
+
+/* ─── GST STRIP ─── */
+.gst-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:14px 0;}
+.gst-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:13px 15px;}
+.gst-card .gs-stream{font-family:ui-monospace,monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dimmed);margin-bottom:5px;}
+.gst-card .gs-rate{font-family:Georgia,serif;font-size:20px;font-weight:600;margin-bottom:3px;}
+.gst-card .gs-note{font-size:12px;color:var(--soft);line-height:1.45;}
+
+/* ─── REVENUE CARDS ─── */
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;margin:14px 0;}
+.rev-card{background:var(--surface);border:1px solid var(--border);border-radius:5px;overflow:visible;}
+.rev-card .rc-head{
+  padding:12px 16px;display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid var(--border);background:var(--surface2);
+  border-radius:5px 5px 0 0;
+}
+.rev-card .rc-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.rev-card .rc-name{font-family:Georgia,serif;font-size:15px;font-weight:600;flex:1;}
+.rev-card .rc-gst{font-family:ui-monospace,monospace;font-size:10px;color:var(--dimmed);}
+.rev-card .rc-body{padding:14px 16px;}
+.rc-body > p{font-size:13px;color:var(--soft);margin-bottom:10px;line-height:1.5;}
+.rev-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:6px 0;border-bottom:1px solid rgba(51,51,64,0.4);
+}
+.rev-row:last-child{border-bottom:none;}
+.rev-label{font-size:13px;color:var(--soft);flex:1;min-width:0;}
+.rev-val{
+  font-family:ui-monospace,monospace;font-size:13px;font-weight:600;
+  white-space:nowrap;flex-shrink:0;margin-left:16px;
+}
+.rev-row.dimmed .rev-label{font-size:12px;color:var(--dimmed);}
+.rev-row.dimmed .rev-val{font-size:12px;color:var(--dimmed);font-weight:400;}
+
+/* ─── BREAK EVEN VIZ ─── */
+.be-wrap{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:20px 22px;margin:14px 0;}
+.be-label{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);margin-bottom:14px;}
+.be-bar{margin-bottom:10px;}
+.be-bar-label{font-size:12.5px;color:var(--soft);margin-bottom:4px;display:flex;justify-content:space-between;}
+.be-track{background:rgba(255,255,255,0.04);border-radius:3px;height:26px;overflow:hidden;}
+.be-fill{height:100%;display:flex;align-items:center;padding:0 10px;font-family:ui-monospace,monospace;font-size:11px;transition:width 0.3s;}
+
+/* ─── LOAN TABLE ─── */
+.loan-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:640px){.loan-grid{grid-template-columns:1fr;}}
+.loan-card{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:16px 18px;}
+.loan-card .lc-label{font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--dimmed);margin-bottom:8px;}
+.loan-card .lc-title{font-family:Georgia,serif;font-size:16px;font-weight:600;margin-bottom:10px;}
+.loan-card table{margin:0;}
+.loan-card td{padding:5px 8px;font-size:13px;border-bottom:1px solid rgba(51,51,64,0.4);}
+.loan-card td:first-child{color:var(--soft);}
+.loan-card tr:last-child td{border-bottom:none;}
+
+/* ─── RISK TABLE ─── */
+.risk-row{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid rgba(51,51,64,0.4);}
+.risk-row:last-child{border-bottom:none;}
+.risk-sev{font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:3px;flex-shrink:0;margin-top:2px;}
+.sev-h{background:rgba(196,90,74,0.15);color:var(--red);border:1px solid rgba(196,90,74,0.3);}
+.sev-m{background:rgba(196,122,82,0.15);color:var(--orange);border:1px solid rgba(196,122,82,0.3);}
+.sev-l{background:rgba(106,156,106,0.15);color:var(--green);border:1px solid rgba(106,156,106,0.3);}
+.risk-content .risk-title{font-weight:600;color:var(--text);font-size:14px;margin-bottom:3px;}
+.risk-content .risk-mit{font-size:13px;color:var(--soft);line-height:1.5;}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--border);font-size:12px;color:var(--dimmed);font-style:italic;line-height:1.7;}
+footer ol{margin:12px 0 0;padding-left:18px;}
+footer li{margin-bottom:6px;}
+footer a{color:var(--blue);text-decoration:none;}
+
+/* ─── PLAIN ENGLISH BOXES ─── */
+.plain-box{
+  background:rgba(90,140,192,0.06);
+  border:1px solid rgba(90,140,192,0.2);
+  border-radius:5px;
+  padding:18px 22px;
+  margin:16px 0;
+}
+.plain-box .pb-title{
+  font-family:Georgia,serif;
+  font-size:13px;font-weight:600;
+  color:#5A8CC0;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.plain-box .pb-title::before{
+  content:"↳";font-size:14px;
+}
+.plain-box p{margin:0 0 8px;font-size:13.5px;color:var(--soft);}
+.plain-box p:last-child{margin-bottom:0;}
+.plain-box p b{color:var(--text);}
+.plain-box .pb-example{
+  background:rgba(255,255,255,0.03);
+  border-left:2px solid rgba(90,140,192,0.3);
+  padding:8px 12px;margin-top:8px;
+  font-size:13px;color:var(--soft);font-style:italic;
+}
+
+.glossary-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;margin:16px 0;
+}
+@media(max-width:640px){.glossary-grid{grid-template-columns:1fr;}}
+.gloss-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:14px 16px;
+}
+.gloss-card .gc-term{
+  font-family:ui-monospace,monospace;
+  font-size:11px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:6px;
+}
+.gloss-card .gc-def{
+  font-size:13.5px;color:var(--soft);line-height:1.55;
+}
+.gloss-card .gc-def b{color:var(--text);}
+.gloss-card .gc-def em{color:var(--gold);font-style:normal;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ═══ HEADER ═══ -->
+<header class="doc-header">
+  <div class="stamp">Document 05 · Business Plan · Financial Model · 5-Year Projection</div>
+  <h1>The Study Campus — P&amp;L, Break-Even &amp; ROI Model</h1>
+  <p class="tagline">Said-ul-Ajaib / South Delhi metro corridor · June 2026 pricing · Scenario B (own-plot, full build)</p>
+  <div class="meta-strip">
+    <span>Founder: <b>Anna Thomas</b></span>
+    <span>Model basis: <b>June 2026 market data</b></span>
+    <span>Accuracy: <b>±25% at pre-design stage</b></span>
+    <span>Lending rates: <b>SBI 8.80% · HDFC 10.75%+ p.a.</b></span>
+    <span>GST regime: <b>GST 2.0, effective September 22, 2025</b></span>
+    <span>Staff OpEx: <b>Revised per Staff Plan §11b — June 2026</b></span>
+  </div>
+  <div class="adv red" style="margin-top:20px;">
+    <p><b>Revision notice (June 2026):</b> Staff payroll figures have been updated across the entire P&amp;L to reflect the revised figures from Staff Planning Document Section 11b. Key changes: Staff OpEx revised from ₹55–76L to ₹69.4–92.0L (Years 1–5). Operating break-even shifts from ₹12.8L/month (Month 18–20) to ₹14.4L/month (Month 22–25). EBITDA figures, PBT, Net Cash Position, and working capital reserve have all been updated accordingly. All other assumptions remain unchanged.</p>
+  </div>
+</header>
+
+<!-- ═══ 00 PLAIN ENGLISH GUIDE ═══ -->
+<section>
+  <h2><span class="sec-tag">00</span> How to read this document — start here</h2>
+  <p style="color:var(--soft);">This document contains financial projections for SCRIPTORIUM, the study campus planned for Said-ul-Ajaib, South Delhi. It is written for Anna as the founder, not for an accountant or a bank manager. If you have never read a business financial model before, this section explains every term used throughout the document in plain language, with examples. Read this section before reading anything else.</p>
+
+  <div class="adv gold">
+    <p><b>The one question this entire document answers:</b> Can SCRIPTORIUM pay its own way? Specifically — will the money coming in from visitors (capsule fees, café sales, stationery, cyber café, events) eventually be enough to cover the money going out (staff wages, electricity, bank loan repayments, maintenance) — and if so, when? Everything in this document is in service of answering that question as honestly as possible.</p>
+  </div>
+
+  <h3>The numbers you will see throughout — what they mean</h3>
+  <p style="color:var(--soft);">All figures in this document are in Indian Rupees. Two abbreviations are used constantly:</p>
+  <div class="adv blue" style="margin-bottom:18px;">
+    <p><b>₹1 Lakh (L)</b> = ₹1,00,000 (one hundred thousand rupees). When you see "₹5.5 L/month," that means five and a half lakh rupees per month — ₹5,50,000.<br><br>
+    <b>₹1 Crore (cr)</b> = ₹1,00,00,000 (one hundred lakh = ten million rupees). When you see "₹10 crore," that means ten crore rupees — ₹10,00,00,000.</p>
+  </div>
+
+  <h3>Glossary — every financial term used in this document</h3>
+  <div class="glossary-grid">
+
+    <div class="gloss-card">
+      <div class="gc-term">Revenue</div>
+      <div class="gc-def">The total money coming <b>in</b> to the business from customers. If 10 people book a capsule at ₹3,500/month each, the capsule revenue that month is ₹35,000. Revenue is counted <em>before</em> any costs are deducted. It is not profit — it is just the top line of money arriving.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">Revenue Stream</div>
+      <div class="gc-def">A separate way of earning money. SCRIPTORIUM has five: study capsule memberships, café sales, stationery retail, cyber café fees, and events/workshops. Each stream earns money independently. If one is slow, the others can compensate — which is exactly why having five matters.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">COGS — Cost of Goods Sold</div>
+      <div class="gc-def">The <b>direct cost of what you sold</b>, and nothing else. For the café: the cost of the coffee beans, milk, and food that went into what the customer bought. For stationery: the wholesale price of the pens and notebooks sold that day. Staff wages and electricity are NOT in COGS — those go under Operating Expenses.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">Gross Profit &amp; Gross Margin</div>
+      <div class="gc-def"><b>Gross Profit</b> = Revenue minus COGS. It is what is left after paying for the thing you sold, before paying for anything else. <b>Gross Margin %</b> is that number expressed as a percentage of revenue. SCRIPTORIUM's blended gross margin is ~74%, meaning out of every ₹100 earned, ₹74 remains after the direct cost of goods.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">Operating Expenses (OpEx)</div>
+      <div class="gc-def">All the costs of <b>running the business day to day</b> that are not directly tied to a specific sale: staff wages, electricity, internet, insurance, CA/accountant fees, marketing, maintenance. These costs exist whether you sell one capsule membership or a hundred that month.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">EBITDA</div>
+      <div class="gc-def">Earnings Before Interest, Tax, Depreciation, and Amortisation. Think of it as <b>what the business actually keeps after paying everyone who works for it and everything it uses to run</b> — but before paying the bank or the government. It is calculated as: Revenue minus COGS minus OpEx. It is <em>very different from Revenue</em>: Revenue is all money arriving; EBITDA is what survives after staff wages, electricity, marketing, and maintenance have all been paid. <b>EBITDA positive = campus operations are self-sustaining.</b> EBITDA negative = the campus costs more to run day-to-day than it earns, and cash must be injected from outside. Example: if SCRIPTORIUM earns ₹20L in a month and pays ₹18L in staff + utilities + maintenance, EBITDA = ₹2L.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">EBIT</div>
+      <div class="gc-def">Earnings Before Interest and Tax. This is <b>EBITDA minus Depreciation</b>. Because Depreciation is a non-cash accounting charge (see Depreciation above), EBIT is mostly used for tax calculations and for comparing SCRIPTORIUM's performance against other businesses in the same industry. It is less useful for day-to-day management than EBITDA, but a bank or investor will often look at EBIT when evaluating the business because it accounts for the write-down of assets over time.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">PAT — Profit After Tax</div>
+      <div class="gc-def">The <b>final bottom line of the P&amp;L</b> — the number at the very end of the table after every single cost (COGS, OpEx, Depreciation, loan interest, and income tax) has been subtracted from revenue. In this model, PAT is <b>negative in all 5 years</b> due to high depreciation and loan interest charges. A negative PAT does NOT mean SCRIPTORIUM is losing cash from operations — it means the accounting treatment of the building's cost makes the P&amp;L look like a loss on paper. The real cash test is always EBITDA vs. EMI, not PAT. PAT becomes positive once depreciation charges reduce in later years and the loan balance reduces.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">Footfall</div>
+      <div class="gc-def"><b>The number of people physically entering the campus</b> in a given period — daily, weekly, or monthly. Footfall is the engine that drives all five revenue streams: more people walking in means more capsule bookings, more café purchases, more stationery sales, more cyber café sessions, and more workshop sign-ups. <b>SCRIPTORIUM Reads (the free open library) is the primary footfall driver</b> — it brings people through the door who did not necessarily intend to spend money, and a portion of them convert to paying customers across the other zones. This is why the library being free is a business decision, not just a social one. Monitoring weekly footfall vs. revenue conversion rate per zone is one of the most important operational habits for the campus manager.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">Depreciation</div>
+      <div class="gc-def">A legal accounting method of <b>spreading the cost of a big purchase over many years</b>. If you spend ₹8 crore fitting out the campus, accounting rules say you cannot count all ₹8 crore as a cost in Year 1 — you must spread it over 10 years (₹80 lakh/year). This ₹80 lakh annual depreciation is <em>not extra money leaving your account</em> — the cash already left when you paid for the fit-out. It is a paper number, not a real cash outflow.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">Finance Cost / Interest</div>
+      <div class="gc-def">The interest portion of your bank loan repayments. When you borrow ₹10 crore at 10% per year, you pay ₹1 crore in interest in Year 1. This IS real cash leaving your account — unlike depreciation. The interest portion shrinks over time as the loan principal reduces.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">Profit Before Tax (PBT)</div>
+      <div class="gc-def">What is left after subtracting <em>everything</em> — COGS, OpEx, depreciation, and interest — from revenue. In this model, PBT is <b>negative in all five years</b>. This does not mean the business is failing. It means depreciation (a paper cost) and loan interest (a real cost) are together larger than EBITDA in the early years. This is completely normal for a ₹20+ crore property-backed project.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">EMI</div>
+      <div class="gc-def">Equated Monthly Instalment — the <b>fixed monthly bank loan repayment</b>. For a ₹10 crore loan at 10% over 20 years, the EMI is approximately ₹9.65 lakh every month, without exception. Each EMI payment contains both interest (reducing every month) and principal repayment (increasing every month).</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">Break-Even</div>
+      <div class="gc-def">The <b>monthly revenue level at which income exactly equals costs</b>. Below break-even, the business loses money every month and you need to inject cash to keep it running. Above break-even, it sustains itself. SCRIPTORIUM has two break-even points: the <em>operating</em> break-even (covering day-to-day costs, reached around Month 22–25) and the <em>debt-service</em> break-even (covering day-to-day costs plus the full EMI, reached around Year 6–7).</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">Working Capital</div>
+      <div class="gc-def">The <b>cash buffer you need before the business starts paying its own way</b>. Think of it as petrol in the tank before the engine starts earning. SCRIPTORIUM needs approximately ₹1.1 crore–₹1.4 crore in working capital to cover staff, utilities, and marketing during the first 6–8 months before revenues reach operating break-even.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">GMV (Gross Merchandise Value)</div>
+      <div class="gc-def">Used only for the stationery stream. GMV is the <b>total value of everything sold</b> at retail price before deducting the cost of those goods. If you sell ₹6.5 lakh of pens and notebooks in a month, the GMV is ₹6.5 lakh. The gross profit after buying that stock (at ~55% of GMV) is approximately ₹2.9 lakh.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">GST — Goods and Services Tax</div>
+      <div class="gc-def"><b>A tax the government requires you to collect from customers on most sales, and pass on to the government.</b> You are not paying this tax yourself — you are collecting it on the government's behalf. Example: a customer pays ₹180 for a coffee. If GST is 5%, then ₹8.57 of that ₹180 belongs to the government. You keep ₹171.43. At the end of the month, you send the government all the GST you collected. GST rates differ by what you sell — café food is 5%, pens are 18%, notebooks are 0%.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">ITC — Input Tax Credit</div>
+      <div class="gc-def"><b>The right to get back the GST you paid when buying things for your business</b>, by deducting it from the GST you collected from customers. Example: SCRIPTORIUM buys a gaming monitor for ₹30,000 + 18% GST = ₹35,400 total paid. With ITC, the ₹5,400 GST paid on that purchase is a credit — deducted from the GST collected from cyber café customers. Net GST payment to government = GST collected minus ₹5,400. <b>The café does NOT get ITC</b> — the government's rule for standalone restaurants specifically blocks Input Tax Credit. This means every rupee of GST paid when buying café equipment, gas, cleaning supplies, or ingredients is a permanent cost that cannot be recovered. This is why café pricing must be calculated more carefully than the other zones.</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">LAP / CGTMSE / Udyam</div>
+      <div class="gc-def"><b>LAP</b> = Loan Against Property — a bank loan where your land or building is the security/guarantee. <b>CGTMSE</b> = a government scheme that guarantees MSME loans so banks will lend without extra collateral, up to ₹5 crore. <b>Udyam Registration</b> = the free government registration that makes you an official MSME and unlocks access to these preferential loan rates. Without Udyam, you pay commercial rates (14%+) instead of MSME rates (8.8–12%).</div>
+    </div>
+
+    <div class="gloss-card">
+      <div class="gc-term">Occupancy Rate</div>
+      <div class="gc-def">For the study capsule wing specifically: <b>what percentage of the 20 pods are booked at any given time</b>. 40% occupancy = 8 pods out of 20 booked. The model projects 40% in Year 1, rising to 78% in Year 3. Most well-run paid study libraries in Delhi operate above 80% occupancy once established.</div>
+    </div>
+
+  </div>
+
+  <h3>The three numbers to keep in your head</h3>
+  <p style="color:var(--soft);">Everything else in this document is detail. These three numbers are the ones that determine whether SCRIPTORIUM works:</p>
+
+  <div class="adv gold">
+    <p><b>₹14.4 lakh/month</b> — the operating break-even. This is the monthly revenue level at which the campus covers all its day-to-day costs (staff, utilities, maintenance, marketing) from its own income. The model shows SCRIPTORIUM crossing this line around Month 22–25. Below this number, you are injecting cash every month. Above it, the campus runs itself.</p>
+  </div>
+  <div class="adv blue">
+    <p><b>₹9.65 lakh/month</b> — the bank loan EMI. This is the fixed monthly repayment on the ₹10 crore construction loan, every month for 20 years, regardless of how the business is performing. It does not pause during a slow month. Everything in the financial model is built around the question of when EBITDA is large enough to cover this number on top of operating costs.</p>
+  </div>
+  <div class="adv green">
+    <p><b>Year 3</b> — when positive EBITDA begins covering a meaningful portion of the EMI gap. By Year 3, the campus generates ₹37.0 lakh in EBITDA annually, is fully operationally self-sustaining, and the gap between EBITDA and the EMI is being funded by a reducing working capital reserve rather than fresh cash injection. From Year 3 onward, the project is on a clear trajectory to full debt-service self-sufficiency by Year 6–7.</p>
+  </div>
+
+  <div class="plain-box" style="margin-top:20px;">
+    <div class="pb-title">Why Profit Before Tax is negative in all 5 years — and why that is fine</div>
+    <p>The 5-year P&L table shows negative Profit Before Tax (PBT) in every year. For someone reading a financial model for the first time, this looks alarming. It is not. Here is what is actually happening:</p>
+    <p>The fit-out costs ₹8 crore. Accounting rules say this must be spread over 10 years as depreciation — ₹80 lakh per year of paper cost on the P&L, even though the cash already left your account when the work was done. Add ₹98 lakh of loan interest in Year 1. Together, depreciation plus interest = ₹178 lakh of charges against the P&L in Year 1 alone. EBITDA in Year 1 is negative ₹35 lakh. So PBT = −35 − 178 = −₹213 lakh on paper.</p>
+    <p>The real test is <b>EBITDA vs. EMI</b>. EBITDA is the real cash the operations generate. EMI is the real cash the bank collects. In Year 3, EBITDA = +₹37 lakh. EMI = ₹115.8 lakh. Gap = ₹78.8 lakh that year, funded from reserves. By Year 6–7, EBITDA at continued 12% growth covers the EMI entirely. At that point, the property is also worth significantly more than it was in 2026.</p>
+    <div class="pb-example">In short: the business is healthy from Year 2 onward on an operating basis. The negative PBT is an accounting artefact of depreciation, not evidence of failure.</div>
+  </div>
+</section>
+
+<!-- ═══ 01 CAPITAL STRUCTURE ═══ -->
+<section>
+  <h2><span class="sec-tag">01</span> Capital structure — how the ₹22–28 crore is funded</h2>
+  <p style="color:var(--soft);">A project of this scale in India is typically financed across three channels. The exact split depends on whether the land is already held by family (which dramatically reduces the loan quantum) and on the promoter's CIBIL score and existing collateral.</p>
+
+  <div class="cap-grid">
+    <div class="cap-card">
+      <div class="cc-label">Tranche A — Promoter Equity</div>
+      <div class="cc-val" style="color:var(--gold);">₹7–10 crore</div>
+      <div class="cc-sub"><b>30–40% of total project cost.</b> Can include family land value (if already owned), personal savings, and family contribution. If the Said-ul-Ajaib plot is already held by family, this tranche effectively absorbs the entire land cost (₹4–7 cr) and the capital requirement reduces significantly. A <b>Private Limited Company</b> is the recommended entity — it separates personal liability from business liability, is required for bank financing at this scale, and allows clean equity transfer if a co-investor joins later.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cc-label">Tranche B — Secured Construction Loan / LAP</div>
+      <div class="cc-val" style="color:var(--blue);">₹10–14 crore</div>
+      <div class="cc-sub"><b>Loan Against Property (LAP) or commercial construction loan, secured against the plot.</b> SBI's MSME loan rates start at <b>8.80% p.a.</b>; HDFC starts at <b>10.75% p.a.</b> For a Udyam-registered Pvt. Ltd. company, SBI or a PSU bank (PNB, Bank of Baroda) is typically the most cost-effective lender. SIDBI direct lending starts from 7.82% for priority-sector MSME projects. Realistic rate for a first-time commercial borrower with clear title and a project report: <b>9.5–11% p.a.</b>, tenure 15–20 years. EMI on ₹10 crore at 10% for 20 years: approximately <b>₹9.65 lakh/month.</b></div>
+    </div>
+    <div class="cap-card">
+      <div class="cc-label">Tranche C — MSME Working Capital / OD Facility</div>
+      <div class="cc-val" style="color:var(--green);">₹2.5–3.5 crore</div>
+      <div class="cc-sub"><b>Overdraft facility or short-term MSME loan for equipment, inventory, and the ramp-up loss buffer.</b> Drawn down in tranches as needed — not all at once. Interest rate: <b>11–13% p.a.</b> under CGTMSE scheme (Government-backed, no collateral required on this tranche up to ₹5 crore). MUDRA's Tarun category covers up to ₹10 lakh at preferential rates for the first small tranche. Working capital requirement has been revised upward to ₹1.1 cr–₹1.4 cr to reflect the extended ramp-up period (Month 22–25 break-even). Register on Udyam portal before applying — Udyam Registration is required for all MSME scheme access and is free.</div>
+    </div>
+  </div>
+
+  <div class="adv blue" style="margin-top:4px;">
+    <p><b>If the land is already family-owned:</b> Total external borrowing drops to approximately ₹12–16 crore (construction + fit-out + equipment + working capital). At 10% for 20 years, the LAP on ₹10 crore = ₹9.65L/month EMI. This is the number everything else in this model must be built around — your business must generate enough cash to cover this EMI, operating costs, and still leave a margin for reinvestment and owner salary.</p>
+  </div>
+</section>
+
+<!-- ═══ 02 KEY ASSUMPTIONS ═══ -->
+<section>
+  <h2><span class="sec-tag">02</span> Key financial assumptions</h2>
+  <table>
+    <thead><tr><th>Assumption</th><th>Value</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td>Primary LAP / construction loan</td><td class="num">₹10 cr @ 10% p.a., 20 yr</td><td>SBI SME segment rate; 10% midpoint between SBI 8.80% floor and HDFC 10.75% floor</td></tr>
+      <tr><td>Monthly EMI (Tranche B)</td><td class="num">₹9.65 L/month</td><td>Calculated at 10%/12 monthly rate over 240 months</td></tr>
+      <tr><td>Working capital OD (Tranche C)</td><td class="num">₹2 cr @ 12%, drawn as needed</td><td>CGTMSE-backed, no additional collateral</td></tr>
+      <tr><td>Occupancy — study capsules</td><td class="num">Yr1: 40% · Yr2: 62% · Yr3: 78%</td><td>Delhi self-study library benchmarks; premium pods ramp slower than open-shelf</td></tr>
+      <tr><td>Café daily covers (at steady state)</td><td class="num">50–80 covers/day</td><td>South Delhi metro-adjacent café benchmarks; campus captive audience boosts weekday covers</td></tr>
+      <tr><td>Café net profit margin</td><td class="num">20–28%</td><td>Well-managed Indian café: 20–35% net; 5–12% industry average (Dineopen, Petpooja 2026)</td></tr>
+      <tr><td>Beverage gross margin (café)</td><td class="num">70–80%</td><td>Industry benchmark: cappuccino costs ₹20–25 to make, sells at ₹150–180 (Restaurant India)</td></tr>
+      <tr><td>Stationery gross margin</td><td class="num">42–50%</td><td>Retail stationery margin on mixed basket; lower on 0%-GST notebooks, higher on pens + art</td></tr>
+      <tr><td>Cyber café revenue per station</td><td class="num">₹150–200/hr</td><td>Premium Delhi/Gurugram cyber cafés 2026; RTX 4070-tier stations justify premium</td></tr>
+      <tr><td>Capsule booking rate</td><td class="num">₹3,000–4,500/month (membership)</td><td>Delhi self-study library ₹1,600–3,500/seat; premium soundproofed pod with rented books: 30–40% premium</td></tr>
+      <tr><td>Annual revenue growth (Yr 3 onward)</td><td class="num">12–15%</td><td>Conservative for established South Delhi study campus with growing metro catchment</td></tr>
+      <tr><td>Inflation on operating costs</td><td class="num">6–8% p.a.</td><td>CPI-aligned; Delhi commercial rent inflation has run 8–12% p.a. (Dineopen 2026)</td></tr>
+      <tr><td>Depreciation (fit-out, equipment)</td><td class="num">10% p.a. SLM on fit-out; 25% on equipment</td><td>Income Tax Act Schedule II; solar at 40% accelerated (Year 1 only)</td></tr>
+      <tr><td>Tax rate</td><td class="num">22% (Pvt. Ltd., Section 115BAA)</td><td>New tax regime for domestic companies; no MAT applicable below ₹1 cr PAT threshold initially</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ 03 GST BY REVENUE STREAM ═══ -->
+<section>
+  <h2><span class="sec-tag">03</span> GST treatment — every revenue stream, correctly</h2>
+  <p style="color:var(--soft);">Getting GST wrong is the most common and most expensive early mistake for multi-service businesses. The campus has five different GST treatments across its revenue streams, all updated for GST 2.0 effective September 22, 2025. Appoint a CA before opening — the mixed-rate stationery inventory alone requires careful HSN-code-level classification.</p>
+
+  <div class="gst-grid">
+    <div class="gst-card">
+      <div class="gs-stream">Open Library</div>
+      <div class="gs-rate" style="color:var(--lib);">0% / Nil</div>
+      <div class="gs-note">Free service — no GST applicable. No revenue generated, so no GST obligation. Donated books: exempt. Optional library card donations: below ₹40L annual threshold, likely exempt; check with CA once turnover is determined.</div>
+    </div>
+    <div class="gst-card">
+      <div class="gs-stream">Café — Food &amp; Beverages</div>
+      <div class="gs-rate" style="color:var(--cafe);">5% (no ITC)</div>
+      <div class="gs-note">Standalone café/restaurant: 5% GST (2.5% CGST + 2.5% SGST). <b>No Input Tax Credit allowed</b> — GST paid on kitchen equipment, supplies, utilities is a sunk cost. You cannot reclaim it. Price your menu knowing 5% is passed to customer and not recoverable on inputs. Packaged bottled water sold from café: 18% GST (separate HSN). Alcohol: state excise, not GST (requires separate licence).</div>
+    </div>
+    <div class="gst-card">
+      <div class="gs-stream">Study Capsules (rental/subscription)</div>
+      <div class="gs-rate" style="color:var(--pod);">18% (with ITC)</div>
+      <div class="gs-note">Service — rental/subscription for private accommodation space. HSN 9963 (accommodation services) or 997212 (licensing of intellectual property, depending on how the booking is structured). 18% GST applies. <b>ITC is claimable</b> on pod construction inputs, HVAC, ERV, and furnishings related to the capsule wing — this is a meaningful advantage vs. the café. Rented books component: price separately as a library rental; check ITC chain with CA.</div>
+    </div>
+    <div class="gst-card">
+      <div class="gs-stream">Stationery Retail</div>
+      <div class="gs-rate" style="color:var(--stat);">0% / 5% / 18% mixed</div>
+      <div class="gs-note">Most complex stream. Post-GST 2.0 (Sept 22, 2025): <b>Nil (0%):</b> Notebooks, exercise books, pencils, crayons, erasers, sharpeners, atlases, printed maps. <b>5%:</b> Geometry sets, colour/maths boxes. <b>18%:</b> Pens (all types — ballpoint, gel, fountain; HSN 9608), highlighters, markers, staplers, paper clips, art supplies, inks, wax seals. <b>You can claim ITC on all stationery purchases</b> (unlike the café). This reduces your effective input cost meaningfully on the 18%-GST items.</div>
+    </div>
+    <div class="gst-card">
+      <div class="gs-stream">Cyber Café (internet/IT services)</div>
+      <div class="gs-rate" style="color:var(--cyber);">18% (with ITC)</div>
+      <div class="gs-note">Internet/IT service provider: 18% GST on charges to users (HSN 998314 — internet access services). <b>ITC claimable</b> on hardware, server equipment, networking gear, and software licences. Membership packages: same 18% rate. Hourly access fees: 18% GST. This is the highest-margin zone for ITC recovery — the hardware investment (₹18–26L) generates significant ITC in Year 1.</div>
+    </div>
+    <div class="gst-card">
+      <div class="gs-stream">Events / Workshop / Space Hire</div>
+      <div class="gs-rate" style="color:var(--green);">18% (with ITC)</div>
+      <div class="gs-note">Event space rental and workshop fees: 18% GST (SAC 997212 or 9963 depending on format). <b>ITC claimable</b> on event-related inputs. If workshop is run by an educational institution with formal recognition, some services may attract exemptions — consult CA on specific workshop structure before pricing.</div>
+    </div>
+  </div>
+
+  <div class="adv red">
+    <p><b>Critical:</b> The café's 5% no-ITC rule is the most important single GST fact in this business. Every rupee of GST you pay on café-related supplies — kitchen equipment, gas cylinders, cleaning materials, even a portion of rent if it's on a GST invoice — cannot be recovered. Budget your café margins accordingly. A well-run standalone café in India effectively carries a 3–5% unrecoverable tax drag on inputs. This is why the capsule wing (18% with ITC) and cyber café (18% with ITC) are your strategically stronger revenue streams from a tax perspective, even if the café is the visible face of the campus.</p>
+  </div>
+</section>
+
+<!-- ═══ 04 REVENUE STREAM DETAIL ═══ -->
+<section>
+  <h2><span class="sec-tag">04</span> Revenue stream detail — monthly targets by year</h2>
+  <p style="color:var(--soft);">Each stream has its own ramp curve. The capsule wing and café ramp on customer habit formation (3–6 months); the cyber café ramps on word-of-mouth among students and working professionals who discover it (6–9 months); stationery ramps on seasonal cycles (back-to-school, exam season) and repeat visit habits.</p>
+
+  <div class="rev-grid">
+
+    <div class="rev-card">
+      <div class="rc-head">
+        <div class="rc-dot" style="background:#6A9CC5;"></div>
+        <div class="rc-name" style="color:#6A9CC5;">Study Capsules</div>
+        <div class="rc-gst">GST 18% · ITC ✓</div>
+      </div>
+      <div class="rc-body">
+        <p>20 pods × avg. ₹3,500/month membership + hourly walk-in top-up. Month-to-month members billed at end of month; hourly walk-in charged at ₹80–120/hr.</p>
+        <div class="rev-row"><span class="rev-label">Year 1 avg/month</span><span class="rev-val" style="color:#6A9CC5;">₹2.8 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 2 avg/month</span><span class="rev-val" style="color:#6A9CC5;">₹4.4 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 3 avg/month</span><span class="rev-val" style="color:#6A9CC5;">₹5.5 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 4 avg/month</span><span class="rev-val" style="color:#6A9CC5;">₹6.2 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 5 avg/month</span><span class="rev-val" style="color:#6A9CC5;">₹7.0 L</span></div>
+        <div class="rev-row dimmed"><span class="rev-label">Gross margin</span><span class="rev-val">~85% (low COGS — rented books, electricity)</span></div>
+      </div>
+    </div>
+
+    <div class="rev-card">
+      <div class="rc-head">
+        <div class="rc-dot" style="background:#7FA87F;"></div>
+        <div class="rc-name" style="color:#7FA87F;">Café (A&amp;M Munchies)</div>
+        <div class="rc-gst">GST 5% · No ITC ✗</div>
+      </div>
+      <div class="rc-body">
+        <p>Avg. ticket ₹180–250. Target 50 covers/day Year 1, 80/day by Year 3. Beverage gross margin 70–80%; food 55–65%. Net margin target: 22–28% after all opex.</p>
+        <div class="rev-row"><span class="rev-label">Year 1 avg/month</span><span class="rev-val" style="color:#7FA87F;">₹2.7 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 2 avg/month</span><span class="rev-val" style="color:#7FA87F;">₹4.2 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 3 avg/month</span><span class="rev-val" style="color:#7FA87F;">₹5.5 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 4 avg/month</span><span class="rev-val" style="color:#7FA87F;">₹6.2 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 5 avg/month</span><span class="rev-val" style="color:#7FA87F;">₹7.0 L</span></div>
+        <div class="rev-row dimmed"><span class="rev-label">Blended gross margin</span><span class="rev-val">~68% (beverage-heavy menu)</span></div>
+      </div>
+    </div>
+
+    <div class="rev-card">
+      <div class="rc-head">
+        <div class="rc-dot" style="background:#C47A52;"></div>
+        <div class="rc-name" style="color:#C47A52;">Stationery — 3 Floors</div>
+        <div class="rc-gst">GST 0–18% mixed · ITC ✓</div>
+      </div>
+      <div class="rc-body">
+        <p>Retail GMV shown. Gross profit = GMV × ~45% margin after mixed COGS. Seasonal spike in July–August (back to school) and Jan–Feb (board exam season) — budget for ₹8–10L GMV in those months by Year 2.</p>
+        <div class="rev-row"><span class="rev-label">Year 1 GMV/month</span><span class="rev-val" style="color:#C47A52;">₹2.5 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 2 GMV/month</span><span class="rev-val" style="color:#C47A52;">₹4.5 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 3 GMV/month</span><span class="rev-val" style="color:#C47A52;">₹6.5 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 4 GMV/month</span><span class="rev-val" style="color:#C47A52;">₹7.5 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 5 GMV/month</span><span class="rev-val" style="color:#C47A52;">₹8.5 L</span></div>
+        <div class="rev-row dimmed"><span class="rev-label">Gross margin on GMV</span><span class="rev-val">~45% (mixed 0%/18% GST basket)</span></div>
+        <p style="margin-top:10px;font-size:12.5px;color:var(--dimmed);font-style:italic;"><b>Not yet reflected above:</b> the Ink book counter (Document 09, Section 09) is a new addition to this revenue stream — the GMV figures here predate it and don't yet carry its incremental contribution. It should genuinely amplify the exact back-to-school and board-exam seasonality already noted, since a family buying notebooks for the new term is now also buying the NCERT set in the same visit. Printed books are 0%-GST/nil-rated, which is likely the actual driver behind the "mixed 0%/18%" basket assumption already built into the margin line above. Worth a dedicated revenue-projection pass once the book counter has a few months of real sales data, rather than a number invented here without any.</p>
+      </div>
+    </div>
+
+    <div class="rev-card">
+      <div class="rc-head">
+        <div class="rc-dot" style="background:#9370B8;"></div>
+        <div class="rc-name" style="color:#9370B8;">Cyber Café</div>
+        <div class="rc-gst">GST 18% · ITC ✓</div>
+      </div>
+      <div class="rc-body">
+        <p>20 stations × ₹150–200/hr. Avg. session 2.5–3 hrs. Target utilisation 50% by Year 2. Revenue ramps on student word-of-mouth, exam-season spikes (April–May, Oct–Nov), and proximity to JNU/DU metro corridor.</p>
+        <div class="rev-row"><span class="rev-label">Year 1 avg/month</span><span class="rev-val" style="color:#9370B8;">₹75 k</span></div>
+        <div class="rev-row"><span class="rev-label">Year 2 avg/month</span><span class="rev-val" style="color:#9370B8;">₹1.5 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 3 avg/month</span><span class="rev-val" style="color:#9370B8;">₹2.2 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 4 avg/month</span><span class="rev-val" style="color:#9370B8;">₹2.6 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 5 avg/month</span><span class="rev-val" style="color:#9370B8;">₹3.0 L</span></div>
+        <div class="rev-row dimmed"><span class="rev-label">Gross margin</span><span class="rev-val">~70% (after power, maintenance, staff)</span></div>
+      </div>
+    </div>
+
+    <div class="rev-card">
+      <div class="rc-head">
+        <div class="rc-dot" style="background:#6A9C6A;"></div>
+        <div class="rc-name" style="color:#6A9C6A;">Events &amp; Space Hire</div>
+        <div class="rc-gst">GST 18% · ITC ✓</div>
+      </div>
+      <div class="rc-body">
+        <p>Stationery FL.2 workshops (origami, watercolour, bookbinding), library evening talks, after-hours café hire, private group capsule booking. Priced at ₹500–2,000/head for workshops; ₹15,000–50,000 for after-hours private hire.</p>
+        <div class="rev-row"><span class="rev-label">Year 1 avg/month</span><span class="rev-val" style="color:#6A9C6A;">₹40 k</span></div>
+        <div class="rev-row"><span class="rev-label">Year 2 avg/month</span><span class="rev-val" style="color:#6A9C6A;">₹90 k</span></div>
+        <div class="rev-row"><span class="rev-label">Year 3 avg/month</span><span class="rev-val" style="color:#6A9C6A;">₹1.5 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 4 avg/month</span><span class="rev-val" style="color:#6A9C6A;">₹1.8 L</span></div>
+        <div class="rev-row"><span class="rev-label">Year 5 avg/month</span><span class="rev-val" style="color:#6A9C6A;">₹2.2 L</span></div>
+        <div class="rev-row dimmed"><span class="rev-label">Gross margin</span><span class="rev-val">~75% (low marginal cost per event)</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ 05 FIVE-YEAR P&L ═══ -->
+<section>
+  <h2><span class="sec-tag">05</span> 5-year profit &amp; loss projection</h2>
+  <p style="color:var(--soft);">All figures in ₹ Lakhs. Revenue is shown net of GST collected (i.e., the amount that is yours — not the tax you pass to the government). COGS includes raw material, direct stationery inventory cost, and rented book procurement only. Gross Profit = Revenue – COGS. Operating Expenses covers staff, utilities, maintenance, marketing, insurance, and CA/legal fees. EBITDA = Gross Profit – OpEx. Depreciation is calculated per Income Tax Act schedules. EBIT = EBITDA – Depreciation. Finance costs = EMI interest component only (principal repayment is balance sheet, not P&amp;L). PBT = EBIT – Finance Cost. PAT = PBT × (1 – 22% tax rate), applied only when PBT is positive.</p>
+
+  <div class="plain-box">
+    <div class="pb-title">How to read this table — row by row</div>
+    <p><b>Revenue rows (at the top):</b> Money coming in from each source — capsules, café, stationery sales, cyber café, events. These grow each year as more people discover SCRIPTORIUM.</p>
+    <p><b>COGS rows:</b> The direct cost of what was sold — café ingredients, stationery stock bought at wholesale. Not staff or electricity — just the goods themselves.</p>
+    <p><b>Gross Profit:</b> Revenue minus COGS. At ~74% gross margin, for every ₹100 earned, ₹74 remains after the cost of goods. The other ₹26 went to buying the café supplies and stationery stock.</p>
+    <p><b>OpEx rows:</b> All running costs — staff wages, electricity, internet, marketing, insurance, CA fees, licences. These are fairly fixed regardless of how busy the campus is in any given month.</p>
+    <p><b>EBITDA:</b> The most important line. <em>Negative in Year 1 (the campus costs more to run than it earns). Turns slightly positive in Year 2. Grows strongly from Year 3 onward.</em> This is the real cash position of the operations before the bank is paid.</p>
+    <p><b>Depreciation rows:</b> These are paper costs only — not cash leaving the account. They make PBT look worse than the cash reality. See Section 00 for the full explanation.</p>
+    <p><b>Finance cost rows:</b> The interest on the bank loans — this IS real cash leaving the account each month as part of the EMI.</p>
+    <p><b>PBT (Profit Before Tax):</b> Negative in all 5 years due to depreciation and interest. This is expected and is explained fully in Section 00. Focus on EBITDA instead for the true picture of how the business is performing.</p>
+    <p><b>Net Cash Position:</b> EBITDA minus the total annual EMI. Shows how much additional cash needs to be drawn from the working capital reserve each year. The gap narrows every year and closes around Year 6–7.</p>
+  </div>
+
+  <div style="overflow-x:auto;">
+  <table class="yr-table">
+    <thead>
+      <tr>
+        <th style="text-align:left;min-width:220px;">Line item</th>
+        <th class="yr">Year 1</th>
+        <th class="yr">Year 2</th>
+        <th class="yr">Year 3</th>
+        <th class="yr">Year 4</th>
+        <th class="yr">Year 5</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- REVENUE -->
+      <tr class="section-head"><td colspan="6">Revenue (net of GST collected)</td></tr>
+      <tr><td class="indent">Study Capsules</td><td class="num">33.6</td><td class="num">52.8</td><td class="num">66.0</td><td class="num">74.4</td><td class="num">84.0</td></tr>
+      <tr><td class="indent">Café</td><td class="num">32.4</td><td class="num">50.4</td><td class="num">66.0</td><td class="num">74.4</td><td class="num">84.0</td></tr>
+      <tr><td class="indent">Stationery (GMV net of GST)</td><td class="num">26.0</td><td class="num">46.8</td><td class="num">67.6</td><td class="num">78.0</td><td class="num">88.4</td></tr>
+      <tr><td class="indent">Cyber Café</td><td class="num">9.0</td><td class="num">18.0</td><td class="num">26.4</td><td class="num">31.2</td><td class="num">36.0</td></tr>
+      <tr><td class="indent">Events &amp; Space Hire</td><td class="num">4.8</td><td class="num">10.8</td><td class="num">18.0</td><td class="num">21.6</td><td class="num">26.4</td></tr>
+      <tr class="total"><td class="label"><b>Total Revenue</b></td><td class="gold">105.8</td><td class="gold">178.8</td><td class="gold">244.0</td><td class="gold">279.6</td><td class="gold">318.8</td></tr>
+
+      <!-- COGS -->
+      <tr class="section-head"><td colspan="6">Cost of Goods Sold</td></tr>
+      <tr><td class="indent">Café COGS (~32% of café rev)</td><td class="num">10.4</td><td class="num">16.1</td><td class="num">21.1</td><td class="num">23.8</td><td class="num">26.9</td></tr>
+      <tr><td class="indent">Stationery COGS (~55% of GMV)</td><td class="num">14.3</td><td class="num">25.7</td><td class="num">37.2</td><td class="num">42.9</td><td class="num">48.6</td></tr>
+      <tr><td class="indent">Book rental stock replenishment</td><td class="num">3.0</td><td class="num">4.0</td><td class="num">5.0</td><td class="num">5.5</td><td class="num">6.0</td></tr>
+      <tr class="sub"><td class="label">Total COGS</td><td class="num">27.7</td><td class="num">45.8</td><td class="num">63.3</td><td class="num">72.2</td><td class="num">81.5</td></tr>
+
+      <tr class="total"><td class="label"><b>Gross Profit</b></td><td class="gold">78.1</td><td class="gold">133.0</td><td class="gold">180.7</td><td class="gold">207.4</td><td class="gold">237.3</td></tr>
+      <tr><td class="label" style="color:var(--soft);font-size:12.5px;">Gross Margin %</td><td class="num" style="color:var(--soft);font-size:12.5px;">73.8%</td><td class="num" style="color:var(--soft);font-size:12.5px;">74.4%</td><td class="num" style="color:var(--soft);font-size:12.5px;">74.1%</td><td class="num" style="color:var(--soft);font-size:12.5px;">74.2%</td><td class="num" style="color:var(--soft);font-size:12.5px;">74.5%</td></tr>
+
+      <!-- OPEX -->
+      <tr class="section-head"><td colspan="6">Operating Expenses</td></tr>
+      <tr><td class="indent">Staff payroll (inc. PF, ESIC, statutory benefits, retention bonuses)</td><td class="num">69.4</td><td class="num">74.8</td><td class="num">81.2</td><td class="num">86.6</td><td class="num">92.0</td></tr>
+      <tr><td class="indent">Electricity, water, internet</td><td class="num">28.0</td><td class="num">30.0</td><td class="num">32.0</td><td class="num">34.5</td><td class="num">37.0</td></tr>
+      <tr><td class="indent">Marketing &amp; promotions</td><td class="num">15.0</td><td class="num">14.0</td><td class="num">12.0</td><td class="num">12.0</td><td class="num">13.0</td></tr>
+      <tr><td class="indent">Maintenance, housekeeping, repairs</td><td class="num">8.0</td><td class="num">9.0</td><td class="num">10.0</td><td class="num">11.0</td><td class="num">12.0</td></tr>
+      <tr><td class="indent">Insurance (property + liability)</td><td class="num">2.5</td><td class="num">2.8</td><td class="num">3.0</td><td class="num">3.3</td><td class="num">3.5</td></tr>
+      <tr><td class="indent">CA, legal, compliance, GST filing</td><td class="num">3.5</td><td class="num">3.5</td><td class="num">4.0</td><td class="num">4.0</td><td class="num">4.5</td></tr>
+      <tr><td class="indent">Licence renewals (cyber café, FSSAI, etc.)</td><td class="num">1.5</td><td class="num">1.5</td><td class="num">1.5</td><td class="num">1.5</td><td class="num">1.5</td></tr>
+      <tr class="sub"><td class="label">Total OpEx</td><td class="num">127.9</td><td class="num">135.6</td><td class="num">143.7</td><td class="num">152.9</td><td class="num">163.5</td></tr>
+
+      <tr class="total"><td class="label"><b>EBITDA</b></td><td class="neg">–49.8</td><td class="neg">–2.6</td><td class="pos">+37.0</td><td class="pos">+54.5</td><td class="pos">+73.8</td></tr>
+      <tr><td class="label" style="color:var(--soft);font-size:12.5px;">EBITDA Margin %</td><td class="num" style="color:var(--red);font-size:12.5px;">–47.1%</td><td class="num" style="color:var(--red);font-size:12.5px;">–1.5%</td><td class="num" style="color:var(--green);font-size:12.5px;">+15.2%</td><td class="num" style="color:var(--green);font-size:12.5px;">+19.5%</td><td class="num" style="color:var(--green);font-size:12.5px;">+23.2%</td></tr>
+
+      <!-- DEPRECIATION & FINANCE -->
+      <tr class="section-head"><td colspan="6">Depreciation &amp; Finance</td></tr>
+      <tr><td class="indent">Depreciation — fit-out (10% SLM on ₹8 cr)</td><td class="num">80.0</td><td class="num">80.0</td><td class="num">80.0</td><td class="num">80.0</td><td class="num">80.0</td></tr>
+      <tr><td class="indent">Depreciation — equipment (25% on ₹1.5 cr)</td><td class="num">37.5</td><td class="num">28.1</td><td class="num">21.1</td><td class="num">15.8</td><td class="num">11.8</td></tr>
+      <tr><td class="indent">Depreciation — solar (40% Yr1, 10% thereafter)</td><td class="num">7.5</td><td class="num">1.9</td><td class="num">1.7</td><td class="num">1.5</td><td class="num">1.4</td></tr>
+      <tr><td class="indent">Finance cost — interest on ₹10 cr LAP</td><td class="num">98.0</td><td class="num">95.5</td><td class="num">93.0</td><td class="num">90.0</td><td class="num">87.0</td></tr>
+      <tr><td class="indent">Finance cost — OD/WC facility interest</td><td class="num">18.0</td><td class="num">15.0</td><td class="num">12.0</td><td class="num">8.0</td><td class="num">4.0</td></tr>
+
+      <tr class="total"><td class="label"><b>Profit Before Tax (PBT)</b></td><td class="neg">–290.8</td><td class="neg">–223.1</td><td class="neg">–170.8</td><td class="neg">–140.8</td><td class="neg">–110.6</td></tr>
+
+      <tr><td colspan="6" style="padding:6px 12px;color:var(--dimmed);font-size:12px;font-style:italic;">PBT is negative in all 5 years due to high depreciation and finance costs — this is expected and tax-efficient. The business generates positive EBITDA from Year 2 (operating cash positive). Depreciation is non-cash — actual cash position is EBITDA minus EMI principal + interest, which turns positive in Year 3.</td></tr>
+
+      <!-- CASH POSITION -->
+      <tr class="section-head"><td colspan="6">Operating Cash Flow (EBITDA – Total EMI outflow)</td></tr>
+      <tr><td class="indent">EBITDA (from above)</td><td class="num">–49.8</td><td class="num">–2.6</td><td class="num">+37.0</td><td class="num">+54.5</td><td class="num">+73.8</td></tr>
+      <tr><td class="indent">Total EMI outflow p.a. (₹9.65L/month × 12)</td><td class="num">115.8</td><td class="num">115.8</td><td class="num">115.8</td><td class="num">115.8</td><td class="num">115.8</td></tr>
+      <tr class="total"><td class="label"><b>Net Cash Position (pre-tax)</b></td><td class="neg">–165.6</td><td class="neg">–118.4</td><td class="neg">–78.8</td><td class="neg">–61.3</td><td class="neg">–42.0</td></tr>
+      <tr><td colspan="6" style="padding:8px 12px;"><div class="adv gold" style="margin:4px 0;"><p><b>The gap explained:</b> The negative cash position is not a sign the business fails — it reflects that the ₹10 cr loan creates a large fixed EMI burden in the early years. This gap must be funded from the working capital reserve (Tranche C) and, increasingly, from the owner's equity buffer. By Year 6–7, as the loan principal reduces and EBITDA grows, the EMI is fully covered from operations. The underlying land and building continue appreciating throughout.</p></div></td></tr>
+
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ═══ 06 BREAK-EVEN ═══ -->
+<section>
+  <h2><span class="sec-tag">06</span> Break-even analysis</h2>
+
+  <h3>Operating break-even (EBITDA positive)</h3>
+  <p style="color:var(--soft);">The operating break-even is the monthly revenue at which the business covers all cash operating costs (staff, utilities, marketing, maintenance) before accounting for depreciation, debt service, or taxes. This is the most practically important milestone — it means the campus runs itself without injecting fresh cash every month.</p>
+
+  <table>
+    <thead><tr><th>Component</th><th>Value</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td>Total fixed monthly operating costs</td><td class="num">₹10.66 L/month</td><td>₹127.9L annual ÷ 12 months; includes all staff (revised), utilities, marketing, CA/legal</td></tr>
+      <tr><td>Blended contribution margin</td><td class="num">~73.8%</td><td>Revenue less direct COGS only; weighted across all five streams</td></tr>
+      <tr><td>Operating break-even revenue</td><td class="gold num">₹14.4 L/month</td><td>Fixed costs ÷ contribution margin = ₹10.66L ÷ 0.738</td></tr>
+      <tr><td>₹14.4L/month annualised</td><td class="gold num">₹1.74 crore/year</td><td>This is the operating break-even revenue target</td></tr>
+      <tr><td>Model achieves this in</td><td class="pos num">Late Year 3 / Early Year 4</td><td>Year 3 revenue = ₹2.44 cr — campus crosses ₹1.74 cr target around Month 22–25</td></tr>
+    </tbody>
+  </table>
+
+  <div class="be-wrap" style="margin-top:18px;">
+    <div class="be-label">Monthly revenue vs. operating break-even — trajectory by year</div>
+    <div class="be-bar">
+      <div class="be-bar-label"><span>Year 1 avg. — ₹8.8L/month</span><span style="color:var(--red);">▼ Below break-even</span></div>
+      <div class="be-track"><div class="be-fill" style="width:68%;background:rgba(196,90,74,0.35);color:var(--red);">₹8.8L</div></div>
+    </div>
+    <div class="be-bar">
+      <div class="be-bar-label"><span>Year 2 avg. — ₹14.9L/month</span><span style="color:var(--gold);">▲ Crosses break-even around Month 22–25</span></div>
+      <div class="be-track"><div class="be-fill" style="width:82%;background:rgba(191,164,104,0.30);color:var(--gold);">₹14.9L</div></div>
+    </div>
+    <div class="be-bar">
+      <div class="be-bar-label"><span>Year 3 avg. — ₹20.3L/month</span><span style="color:var(--green);">▲ Strong operating surplus</span></div>
+      <div class="be-track"><div class="be-fill" style="width:90%;background:rgba(106,156,106,0.30);color:var(--green);">₹20.3L</div></div>
+    </div>
+    <div class="be-bar">
+      <div class="be-bar-label"><span style="color:var(--dimmed);font-size:12px;">Break-even line: ₹14.4L/month</span><span style="color:var(--dimmed);font-size:12px;">← target</span></div>
+      <div class="be-track"><div class="be-fill" style="width:79%;background:rgba(255,255,255,0.06);color:var(--dimmed);border-right:2px solid var(--gold);">₹14.4L</div></div>
+    </div>
+  </div>
+
+  <h3>Debt service break-even (EMI fully covered from EBITDA)</h3>
+  <p style="color:var(--soft);">A separate, harder milestone — the point at which EBITDA alone covers the full monthly EMI of ₹9.65L, leaving no gap to fill from reserves.</p>
+  <table>
+    <tbody>
+      <tr><td>Monthly EMI (Tranche B, ₹10 cr at 10% over 20 yr)</td><td class="num">₹9.65 L/month</td></tr>
+      <tr><td>Monthly operating costs</td><td class="num">₹10.66 L/month</td></tr>
+      <tr><td>Combined monthly fixed cash requirement</td><td class="gold num">₹20.31 L/month</td></tr>
+      <tr><td>Revenue required at 73.8% contribution margin</td><td class="gold num">₹27.5 L/month ≈ ₹3.3 cr/year</td></tr>
+      <tr><td>Model achieves this in</td><td class="pos num">Year 6–7 at 12–15% revenue growth</td></tr>
+    </tbody>
+  </table>
+  <div class="adv blue">
+    <p><b>This is normal for property-backed commercial projects in India.</b> A debt-service break-even at Year 6–7 is standard for projects where significant capital is borrowed against real estate. The land asset appreciates alongside the business — even if you sold the property in Year 5, the land value alone would have grown (South Delhi commercial property has historically appreciated 8–12% p.a.). The economic argument for the project is not just the P&amp;L; it is the P&amp;L plus the balance sheet.</p>
+  </div>
+</section>
+
+<!-- ═══ 07 LOAN STRUCTURING ═══ -->
+<section>
+  <h2><span class="sec-tag">07</span> Recommended loan structuring</h2>
+
+  <div class="loan-grid">
+    <div class="loan-card">
+      <div class="lc-label">Tranche B — Primary Mortgage</div>
+      <div class="lc-title" style="color:var(--blue);">₹10 crore · LAP / Construction Loan</div>
+      <table>
+        <tr><td>Recommended lender</td><td class="num" style="color:var(--text);">SBI (SME segment) or PNB</td></tr>
+        <tr><td>Rate target</td><td class="num" style="color:var(--text);">9.5–10.5% p.a. (floating, RLLR-linked)</td></tr>
+        <tr><td>Tenure</td><td class="num" style="color:var(--text);">20 years</td></tr>
+        <tr><td>Security</td><td class="num" style="color:var(--text);">Mortgage of the commercial plot + building</td></tr>
+        <tr><td>Monthly EMI</td><td class="gold num">₹9.38–9.92 L/month</td></tr>
+        <tr><td>Total interest over 20 yr</td><td class="num" style="color:var(--red);">~₹12.5–14 cr</td></tr>
+        <tr><td>Udyam Registration</td><td class="num" style="color:var(--green);">Mandatory — file first</td></tr>
+        <tr><td>Pre-requisite document</td><td class="num" style="color:var(--text);">Detailed project report (DPR) + 5-yr projections</td></tr>
+      </table>
+    </div>
+
+    <div class="loan-card">
+      <div class="lc-label">Tranche C — Working Capital</div>
+      <div class="lc-title" style="color:var(--green);">₹2 crore · OD / CGTMSE-Backed</div>
+      <table>
+        <tr><td>Recommended scheme</td><td class="num" style="color:var(--text);">CGTMSE (Credit Guarantee Fund Trust for MSEs)</td></tr>
+        <tr><td>Rate target</td><td class="num" style="color:var(--text);">11–12% p.a.</td></tr>
+        <tr><td>Tenure</td><td class="num" style="color:var(--text);">5–7 years; OD facility preferred</td></tr>
+        <tr><td>Collateral</td><td class="num" style="color:var(--green);">None required — government-guaranteed</td></tr>
+        <tr><td>Max without collateral</td><td class="num" style="color:var(--text);">Up to ₹5 crore under CGTMSE</td></tr>
+        <tr><td>Draw strategy</td><td class="num" style="color:var(--text);">Draw in tranches as needed — don't draw all at once; interest only on utilised portion</td></tr>
+        <tr><td>AGF (Annual Guarantee Fee)</td><td class="num" style="color:var(--text);">0.37–1.35% p.a. on guaranteed amount</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="adv gold">
+    <p><b>Sequencing matters:</b> Register on the Udyam portal before approaching any bank — every MSME scheme (CGTMSE, Mudra, SBI SME) requires an Udyam Registration Certificate. The registration is free, online, and takes about 30 minutes. Without it, you pay commercial loan rates (14%+) instead of MSME priority-sector rates (8.8–12%). On a ₹12 crore borrowing at 10% vs. 14%, the difference is approximately ₹48 lakh/year in interest cost — real money. File the Udyam registration before you file anything else.</p>
+  </div>
+</section>
+
+<!-- ═══ 08 ROI BY STREAM ═══ -->
+<section>
+  <h2><span class="sec-tag">08</span> ROI per revenue stream — where each rupee of investment earns most</h2>
+  <p style="color:var(--soft);">This is not accounting ROI — it is a strategic priority matrix showing which zones generate the highest return relative to their fit-out investment cost. This should inform which zone to prioritise in a phased build.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Zone</th>
+        <th style="text-align:right;">Fit-out cost</th>
+        <th style="text-align:right;">Yr 3 revenue</th>
+        <th style="text-align:right;">Yr 3 gross profit</th>
+        <th style="text-align:right;">Gross margin</th>
+        <th style="text-align:right;">Simple payback</th>
+        <th>Strategic priority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Study Capsules</td>
+        <td class="num">₹3 cr</td>
+        <td class="num">₹66 L</td>
+        <td class="pos">₹56 L</td>
+        <td class="pos">85%</td>
+        <td class="gold num">5.4 yr</td>
+        <td style="color:var(--pod);">★★★ Highest gross margin; core anchor; build first</td>
+      </tr>
+      <tr>
+        <td>Café</td>
+        <td class="num">₹70 L</td>
+        <td class="num">₹66 L</td>
+        <td class="pos">₹45 L</td>
+        <td class="num">68%</td>
+        <td class="gold num">1.6 yr</td>
+        <td style="color:var(--cafe);">★★★ Fastest payback; footfall driver; build first</td>
+      </tr>
+      <tr>
+        <td>Cyber Café</td>
+        <td class="num">₹98 L + ₹26 L equip.</td>
+        <td class="num">₹26.4 L</td>
+        <td class="pos">₹18.5 L</td>
+        <td class="num">70%</td>
+        <td class="gold num">6.7 yr</td>
+        <td style="color:var(--cyber);">★★ Good margin; slower ramp; build in Phase 2</td>
+      </tr>
+      <tr>
+        <td>Stationery (3 fl.)</td>
+        <td class="num">₹90 L + ₹20 L fix.</td>
+        <td class="num">₹67.6 L (GMV)</td>
+        <td class="pos">₹30.4 L</td>
+        <td class="num">45%</td>
+        <td class="gold num">3.6 yr</td>
+        <td style="color:var(--stat);">★★ Lower margin but high footfall; builds campus identity</td>
+      </tr>
+      <tr>
+        <td>Open Library</td>
+        <td class="num">₹1.88 cr</td>
+        <td class="num">₹0 direct</td>
+        <td class="num">—</td>
+        <td class="num">—</td>
+        <td class="num">∞ (indirect)</td>
+        <td style="color:var(--lib);">★★★ Footfall anchor for all other zones; irreplaceable brand asset</td>
+      </tr>
+      <tr class="total">
+        <td>Campus total</td>
+        <td class="gold">₹8.5 cr</td>
+        <td class="gold">₹244 L</td>
+        <td class="pos">₹180.7 L</td>
+        <td class="pos">74.1%</td>
+        <td class="gold">Yr 3 EBITDA+; full payback Yr 10–13</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ 09 RISKS ═══ -->
+<section>
+  <h2><span class="sec-tag">09</span> Key risks &amp; mitigations</h2>
+
+  <div style="margin-top:10px;">
+    <div class="risk-row">
+      <div class="risk-sev sev-h">High</div>
+      <div class="risk-content">
+        <div class="risk-title">Construction overrun — cost and time</div>
+        <div class="risk-mit">The most common killer of projects like this. A 6-month delay burns ₹55–60L in working capital with zero revenue. Mitigations: fixed-price contract with the main contractor (not cost-plus), a 10% contingency budget built into Phase 1 costs, and a penalty clause for delays beyond agreed milestones. Appoint a Project Management Consultant (PMC) alongside the architect — their fee (typically 1.5–2% of construction cost) pays for itself in the first delay they prevent.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-sev sev-h">High</div>
+      <div class="risk-content">
+        <div class="risk-title">Lal dora title defect on land</div>
+        <div class="risk-mit">If the title is challenged after construction has begun, the entire project stalls. Non-negotiable mitigation: commission a title search from a property-specialised Delhi lawyer before any payment to the seller. Verify that the plot is not sub-judice, that all mutation entries are clear, and that the seller's chain of title goes back at least 30 years. Budget ₹50,000–1 lakh for this legal due diligence — it is the cheapest insurance you will ever buy.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-sev sev-m">Medium</div>
+      <div class="risk-content">
+        <div class="risk-title">Revenue ramp slower than projected</div>
+        <div class="risk-mit">If Year 1 revenue is ₹70L instead of ₹105.8L, the working capital gap widens by ₹35L. Mitigations: begin marketing 3–4 months before opening (social media presence, targeted outreach to UPSC aspirants, DU students, and readers along the Saket metro belt); offer 3-month discounted founding memberships for study capsules before the building opens; partner with a coaching institute for group booking of capsule bays in the first year. Pre-sell at least 10 pod memberships before opening day.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-sev sev-m">Medium</div>
+      <div class="risk-content">
+        <div class="risk-title">Interest rate increase on floating-rate LAP</div>
+        <div class="risk-mit">SBI's MSME rates are RLLR-linked and move with RBI repo rate decisions. A 150 bps rate increase on ₹10 crore raises annual interest cost by ₹15L. Mitigation: model your finances with an additional 150 bps buffer (i.e., assume 11.5% rather than 10%). Alternatively, negotiate a fixed rate for the first 3–5 years with your lender when rates are relatively low.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-sev sev-m">Medium</div>
+      <div class="risk-content">
+        <div class="risk-title">GST misclassification penalties</div>
+        <div class="risk-mit">A multi-stream business with 0%, 5%, and 18% GST treatments across stationery items alone is a compliance trap. A GST notice for wrong classification can result in back-tax demands with 18% interest and penalties. Mitigation: appoint a CA with GST specialisation (not just a general accountant) from day one. Set up HSN-code-level billing software (Busy, Zoho Books, or Tally Prime) before the first sale. Run a GST compliance audit at the end of Year 1.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-sev sev-l">Lower</div>
+      <div class="risk-content">
+        <div class="risk-title">Cyber café hardware obsolescence</div>
+        <div class="risk-mit">Gaming/creative hardware depreciates rapidly — an RTX 4070-tier rig that is premium in 2026 will feel mid-range by 2028. Budget ₹5–8L for a hardware refresh fund from Year 3 onwards, funded from cyber café operating surplus. Structure the cyber café fit-out so that workstation desks are modular — hardware can be upgraded without replacing the entire desk unit.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-sev sev-l">Lower</div>
+      <div class="risk-content">
+        <div class="risk-title">Key staff attrition (especially head barista and campus manager)</div>
+        <div class="risk-mit">The café's identity and the capsule wing's daily operations both depend heavily on 2–3 key people. Build retention into their compensation from Year 2: a profit-linked bonus (5–8% of the zone's EBITDA) is inexpensive when margins are good and powerfully retentive. Document all systems and recipes so that attrition does not mean institutional knowledge walks out the door.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 10 WHAT COMES NEXT ═══ -->
+<section>
+  <h2><span class="sec-tag">10</span> What this model needs before a bank will look at it</h2>
+  <p style="color:var(--soft);">A bank lending ₹10+ crore will require a <strong>Detailed Project Report (DPR)</strong> — a formal document combining this financial model, the architecture brief, the cost estimation, the regulatory compliance record, and a market study. The DPR is what this model becomes after you have: (a) a sanctioned building plan from an architect, (b) three quotations from construction contractors, (c) a formal site valuation from an approved valuer, and (d) a CA-certified balance sheet for the promoter entity. Most PSU banks have a standard DPR format on their SME lending portal — download it early and build toward it.</p>
+
+  <table>
+    <thead><tr><th>#</th><th>Action</th><th>Why it gates what comes next</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Register the entity as a Private Limited Company (MCA portal, ~2 weeks)</td><td>Required before a bank account, MSME loan application, or any statutory registration can be filed in the business's name</td></tr>
+      <tr><td>2</td><td>File Udyam Registration (free, MSME portal, 30 mins)</td><td>Unlocks CGTMSE, priority-sector lending rates, and AGF-subsidised guarantees — saves ₹30–50L in interest over the loan tenure</td></tr>
+      <tr><td>3</td><td>Get a formal site valuation from an RBI-empanelled property valuer</td><td>The bank will not accept your purchase price as collateral value — they need an independent valuation report</td></tr>
+      <tr><td>4</td><td>Appoint a CA and open a current account in the company's name</td><td>All financial projections submitted to the bank must be CA-certified; the current account history (even if short) is reviewed</td></tr>
+      <tr><td>5</td><td>Compile this 3-document set (regulatory dossier + architecture brief + cost + this plan) into a DPR format and have the CA certify the financial projections</td><td>This is the loan application package. Without it, the bank will not process the file past the initial screening stage</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ SOURCES ═══ -->
+<footer>
+  <b>Sources &amp; references (June 2026)</b>
+  <ol>
+    <li>CreditCares — <a href="https://creditcares.in/msme-loan-interest-rate-calculator-india/">MSME loan interest rate India 2026: SBI from 8.80%, HDFC from 10.75% p.a.</a></li>
+    <li>CreditCares — <a href="https://creditcares.in/msme-loan-interest-rate-calculator-hdfc/">HDFC MSME loan rates 10.75–22.50% p.a.; CGTMSE guarantee structure</a></li>
+    <li>Bajaj Markets — <a href="https://www.bajajfinservmarkets.in/business-loan/msme-loan-interest-rates">MSME loan interest rates 2026; SIDBI from 7.82% p.a.</a></li>
+    <li>RestoYantra — <a href="https://restoyantra.com/blog/restaurant-gst-rates-india-5-vs-18">Restaurant GST rates 2026: 5% standalone café, 18% for hotel-based dining</a></li>
+    <li>Busy.in — <a href="https://busy.in/gst-rates/restaurant/">New GST for restaurant 2026 — 5% rate, no ITC on standalone cafés</a></li>
+    <li>Busy.in — <a href="https://busy.in/gst-rates/stationery/">GST on stationery 2026 — 0% on notebooks/pencils, 18% on pens post Sept 22, 2025</a></li>
+    <li>PL India — <a href="https://www.plindia.com/news/gst-rate-cuts-stationery-notebooks-pencils-erasers/">GST rate cuts on stationery: notebooks, pencils, erasers exempt from Sept 22, 2025</a></li>
+    <li>Petpooja Blog — <a href="https://blog.petpooja.com/growth-scaling/cafe-business-model-revenue-profit-explained/">Café business model India 2026: 70–80% beverage gross margin, 5–20% net margin</a></li>
+    <li>BestOfExports — <a href="https://bestofexports.com/is-a-cafe-business-profitable-in-india/">Café profitability India 2026: well-managed café achieves 20–35% net margin</a></li>
+    <li>Dineopen — <a href="https://www.dineopen.com/blog/restaurant-profit-margins-india-guide.html">Restaurant profit margins India 2026: industry average 5–12% net</a></li>
+    <li>Pool Six Coffee Roasters — <a href="https://blog.poolsixcoffeeroasters.com/setting-the-margins-on-your-coffee-menu/">Coffee shop profit margin benchmarks 2025–26: 15–25% overall net for established shops</a></li>
+    <li>Achievers' Library — <a href="https://www.achieverslibrary.com/">Delhi self-study library pricing benchmarks: ₹1,600–3,500/seat/month</a></li>
+    <li>Gaming Nation — <a href="https://gamingnation.in/gaming-cafes-india/">Gaming café pricing India 2026: ₹80–200/hr; premium Delhi tier ₹150–250/hr</a></li>
+    <li>Square Yards — <a href="https://www.squareyards.com/said-ul-ajaib-in-delhi-overview-94994">Said-ul-Ajaib locality data: metro distances, rental rates, Garden of Five Senses proximity</a></li>
+    <li>MSME Portal India — <a href="https://udyamregistration.gov.in/">Udyam Registration — free, mandatory for all MSME scheme access</a></li>
+    <li>CGTMSE — <a href="https://www.cgtmse.in/">Credit Guarantee Fund Trust for MSEs — collateral-free loans up to ₹5 crore; AGF rate 0.37–1.35%</a></li>
+    <li>ClearTax — <a href="https://cleartax.in/s/gst-rates">GST rates India 2026: updated list effective September 22, 2025 (GST 2.0 reform)</a></li>
+  </ol>
+</footer>
+
+</div>
+</body>
+</html>

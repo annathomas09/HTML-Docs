@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCRIPTORIUM — Digital Presence & Organic Growth Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── BRAND TOKENS (from Brand Identity v1.0) ─── */
+:root {
+  --black:     #1C1A18;
+  --parchment: #EDE7D4;
+  --brass:     #B8924A;
+  --kota:      #4A5248;
+  --sandstone: #C8A87A;
+  --sand-deep: #A07850;
+
+  --reads:   #6B5A3E;
+  --capsule: #4A6B7C;
+  --ink:     #8C5535;
+  --studio:  #3A3A52;
+
+  --rule:    rgba(184,146,74,0.35);
+  --rule-h:  rgba(28,26,24,0.12);
+
+  --warn-bg: rgba(140,85,53,0.07);
+  --warn-border: rgba(140,85,53,0.35);
+  --go-bg:   rgba(74,82,72,0.07);
+  --go-border: rgba(74,82,72,0.3);
+  --note-bg: rgba(184,146,74,0.08);
+  --note-border: rgba(184,146,74,0.4);
+}
+
+/* ─── RESET ─── */
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:#D4C9A8;}
+body{
+  background:var(--parchment);
+  color:var(--black);
+  font-family:'EB Garamond',Georgia,'Palatino Linotype',serif;
+  font-size:17px;
+  line-height:1.65;
+  max-width:900px;
+  margin:0 auto;
+  padding:80px 72px 120px;
+  box-shadow:0 0 80px rgba(0,0,0,0.18);
+  min-height:100vh;
+}
+
+/* ─── TYPE SCALE ─── */
+.eyebrow{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--brass);margin-bottom:12px;display:block;
+}
+h1{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:44px;font-weight:500;letter-spacing:0.12em;
+  font-variant:small-caps;line-height:1.1;margin-bottom:10px;
+}
+h2{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:26px;font-weight:500;letter-spacing:0.08em;
+  font-variant:small-caps;color:var(--black);
+  margin-bottom:20px;
+}
+h3{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:18px;font-weight:600;color:var(--black);
+  margin-bottom:10px;font-style:italic;
+}
+p{margin-bottom:14px;color:var(--kota);}
+p b,p strong{color:var(--black);font-weight:600;}
+p em{color:var(--black);}
+
+/* ─── LAYOUT ─── */
+section{
+  margin-bottom:64px;
+  padding-bottom:64px;
+  border-bottom:1px solid var(--rule-h);
+}
+section:last-of-type{border-bottom:none;}
+.rule{height:1px;background:var(--rule);margin:32px 0;}
+.rule-heavy{height:2px;background:var(--brass);margin:40px 0 36px;opacity:0.5;}
+
+/* ─── HEADER ─── */
+.doc-header{
+  margin-bottom:80px;
+  padding-bottom:48px;
+  border-bottom:2px solid var(--black);
+}
+.header-top{
+  display:flex;align-items:flex-start;
+  justify-content:space-between;margin-bottom:28px;
+}
+.header-meta{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;color:var(--kota);
+  line-height:1.7;text-align:right;
+}
+.wordmark-display{
+  font-family:'EB Garamond',Georgia,serif;
+  font-variant:small-caps;
+  font-size:46px;font-weight:500;
+  letter-spacing:0.16em;line-height:1;
+  margin-bottom:10px;
+}
+.tagline-doc{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:16px;color:var(--kota);font-style:italic;
+  letter-spacing:0.02em;
+}
+.revision-notice{
+  background:var(--note-bg);
+  border-left:3px solid var(--brass);
+  padding:14px 20px;
+  border-radius:0 3px 3px 0;
+  margin-top:20px;
+}
+.revision-notice p{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;color:var(--kota);
+  line-height:1.6;margin:0;
+}
+.revision-notice p b{color:var(--black);}
+
+/* ─── ADVISORY BOXES ─── */
+.adv{padding:18px 22px;border-radius:0 4px 4px 0;margin:20px 0;}
+.adv p{margin:0 0 10px;font-size:15.5px;}
+.adv p:last-child{margin:0;}
+.adv.gold{background:var(--note-bg);border-left:3px solid var(--brass);}
+.adv.kota{background:var(--go-bg);border-left:3px solid var(--kota);}
+.adv.ink{background:var(--warn-bg);border-left:3px solid var(--ink);}
+.adv p b{color:var(--black);}
+
+/* ─── PRINCIPLE BLOCK ─── */
+.principle{
+  border:1px solid var(--rule);
+  border-radius:4px;
+  padding:24px 28px;
+  margin:22px 0;
+  background:rgba(237,231,212,0.5);
+}
+.principle .p-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--brass);margin-bottom:10px;
+}
+.principle .p-statement{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:21px;font-weight:500;font-style:italic;
+  color:var(--black);line-height:1.4;margin-bottom:12px;
+}
+.principle .p-note{font-size:15px;color:var(--kota);margin:0;}
+
+/* ─── CHANNEL CARDS ─── */
+.channel-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0;}
+@media(max-width:640px){.channel-grid{grid-template-columns:1fr;}}
+.channel-card{
+  border:1px solid var(--rule);
+  border-radius:4px;overflow:hidden;
+}
+.channel-head{
+  padding:14px 18px;
+  display:flex;align-items:center;gap:12px;
+}
+.channel-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.channel-name{
+  font-family:'EB Garamond',Georgia,serif;
+  font-variant:small-caps;font-size:17px;letter-spacing:0.06em;
+  font-weight:600;flex:1;
+}
+.channel-handle{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;color:var(--kota);
+}
+.channel-body{padding:14px 18px;border-top:1px solid var(--rule-h);}
+.channel-body p{font-size:14.5px;margin-bottom:10px;}
+.channel-body p:last-child{margin:0;}
+.channel-stat{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--brass);margin-bottom:6px;display:block;
+}
+
+/* ─── MOMENT CARDS (the visual triggers) ─── */
+.moments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;}
+@media(max-width:640px){.moments-grid{grid-template-columns:1fr 1fr;}}
+.moment-card{
+  border:1px solid var(--rule);border-radius:4px;
+  padding:16px 16px 14px;
+  background:rgba(200,168,122,0.06);
+}
+.moment-zone{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.moment-name{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:15px;font-weight:600;color:var(--black);
+  margin-bottom:6px;line-height:1.3;
+}
+.moment-why{font-size:13.5px;color:var(--kota);line-height:1.5;}
+
+/* ─── CONTENT PAIRS (right/wrong, like brand identity) ─── */
+.content-pair{margin:22px 0;padding:20px 0;border-bottom:1px solid var(--rule-h);}
+.content-pair:last-child{border-bottom:none;}
+.cp-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--kota);margin-bottom:12px;
+}
+.cp-wrong{
+  background:rgba(140,85,53,0.06);
+  border-left:3px solid rgba(140,85,53,0.4);
+  padding:12px 16px;margin-bottom:10px;
+  font-size:15px;color:var(--kota);font-style:italic;border-radius:0 3px 3px 0;
+}
+.cp-right{
+  background:rgba(74,82,72,0.06);
+  border-left:3px solid rgba(74,82,72,0.45);
+  padding:12px 16px;
+  font-size:15px;color:var(--black);border-radius:0 3px 3px 0;
+}
+
+/* ─── ROLE TABLE ─── */
+table{width:100%;border-collapse:collapse;font-size:14px;margin:14px 0;}
+th{
+  text-align:left;
+  background:rgba(28,26,24,0.05);
+  color:var(--black);
+  padding:9px 14px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  border-bottom:1px solid var(--rule);
+  font-weight:500;
+}
+td{
+  padding:11px 14px;
+  border-bottom:1px solid var(--rule-h);
+  vertical-align:top;
+  color:var(--kota);
+}
+td:first-child{color:var(--black);font-weight:500;}
+tr:last-child td{border-bottom:none;}
+
+/* ─── PHASE TIMELINE ─── */
+.timeline{margin:22px 0;}
+.tl-item{
+  display:flex;align-items:flex-start;gap:20px;
+  padding:18px 0;
+  border-bottom:1px solid var(--rule-h);
+}
+.tl-item:last-child{border-bottom:none;}
+.tl-marker{
+  flex-shrink:0;width:48px;text-align:center;padding-top:2px;
+}
+.tl-phase{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--brass);display:block;margin-bottom:4px;
+}
+.tl-time{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;color:var(--kota);display:block;
+  border:1px solid var(--rule);border-radius:3px;
+  padding:3px 6px;white-space:nowrap;
+}
+.tl-content h3{margin-bottom:6px;}
+.tl-content p{font-size:14.5px;margin-bottom:8px;}
+.tl-content p:last-child{margin:0;}
+
+/* ─── INFLUENCER TIER TABLE ─── */
+.tier-row{
+  display:flex;gap:18px;align-items:flex-start;
+  padding:18px 0;border-bottom:1px solid var(--rule-h);
+}
+.tier-row:last-child{border-bottom:none;}
+.tier-label{
+  flex-shrink:0;width:110px;
+}
+.tier-name{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--brass);margin-bottom:4px;
+}
+.tier-size{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;color:var(--kota);
+}
+.tier-desc{flex:1;}
+.tier-desc p{font-size:14.5px;margin:0;}
+
+/* ─── FORBIDDEN LIST ─── */
+.forbidden-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;
+}
+@media(max-width:640px){.forbidden-grid{grid-template-columns:1fr;}}
+.forbidden-card{
+  background:var(--warn-bg);
+  border:1px solid var(--warn-border);
+  border-radius:4px;padding:14px 16px;
+}
+.fc-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--ink);margin-bottom:6px;
+}
+.fc-item{font-size:14px;color:var(--kota);}
+.fc-reason{font-size:13px;color:var(--sand-deep);margin-top:4px;font-style:italic;}
+
+/* ─── METRICS TABLE ─── */
+.metric-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:12px 0;border-bottom:1px solid var(--rule-h);
+}
+.metric-row:last-child{border-bottom:none;}
+.metric-name{font-size:15px;color:var(--black);font-weight:500;}
+.metric-val{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;color:var(--brass);
+  border:1px solid var(--rule);
+  padding:3px 10px;border-radius:3px;
+}
+
+/* ─── FOOTER ─── */
+footer{
+  margin-top:80px;padding-top:32px;
+  border-top:1px solid var(--black);
+  font-size:13px;color:var(--kota);line-height:1.7;
+}
+.ft-wordmark{
+  font-family:'EB Garamond',Georgia,serif;
+  font-variant:small-caps;font-size:18px;
+  letter-spacing:0.16em;color:var(--black);
+  margin-bottom:8px;
+}
+footer ol{padding-left:18px;margin-top:12px;}
+footer li{margin-bottom:5px;}
+footer a{color:var(--brass);text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="doc-header">
+  <div class="header-top">
+    <div>
+      <span class="eyebrow">Document 07 · Digital Presence &amp; Organic Growth</span>
+      <div class="wordmark-display">Scriptorium</div>
+      <div class="tagline-doc">A place where knowledge is held, worked with, and made.</div>
+    </div>
+    <div class="header-meta">
+      Prepared June 2026<br>
+      Founder: Anna Thomas<br>
+      Campus: Said-ul-Ajaib, South Delhi<br>
+      Scope: Nationwide campus chain<br>
+      Status: Strategy confirmed
+    </div>
+  </div>
+  <div class="revision-notice">
+    <p><b>Scope of this document:</b> This is the founding digital presence and organic growth strategy for SCRIPTORIUM. It covers: the governing principle behind all digital activity, channel selection and rationale, the physical moments that generate organic photography, post format and voice standards, internal ownership of the account, the pre-opening influencer strategy, phased growth milestones, what SCRIPTORIUM never does online, and how to measure whether it is working. This document must be read alongside the Brand Identity Standards (Document 04). Every rule in that document applies here without exception.</p>
+  </div>
+</header>
+
+<!-- ═══ 01 THE GOVERNING PRINCIPLE ═══ -->
+<section>
+  <span class="eyebrow">01 · The Governing Principle</span>
+  <h2>What SCRIPTORIUM does not need</h2>
+
+  <p>SCRIPTORIUM does not need a social media strategy in the conventional sense. It does not need a content calendar, a posting frequency target, a hashtag library, or a dedicated social media manager. These are the instruments of brands that need to manufacture interest in products that would otherwise go unnoticed. SCRIPTORIUM is not that kind of place.</p>
+
+  <p>What SCRIPTORIUM needs is a reason for other people to post about it — and then the discipline to stay out of the way while they do. The building, if built correctly, contains at least nine distinct objects and moments that will be photographed without any prompting whatsoever. The strategy is to ensure those moments exist, to maintain a modest and precise account that represents the campus accurately when people find it, and to do nothing that would make the campus look like every other café or coaching centre attempting to go viral.</p>
+
+  <div class="principle">
+    <div class="p-label">The founding principle</div>
+    <div class="p-statement">SCRIPTORIUM's digital presence is a description of what exists, not an advertisement for what is hoped.</div>
+    <div class="p-note">This is a direct extension of the brand voice established in Document 04, Section 07. The voice on social media is the same voice on the wayfinding plaques — unhurried, precise, warm without being casual. It does not sell. It does not perform enthusiasm. It describes what is there, and it trusts the person reading it.</div>
+  </div>
+
+  <div class="adv gold">
+    <p><b>The practical consequence of this principle:</b> SCRIPTORIUM's own posts will never go viral. That is correct. Viral content requires performance — urgency, emotion, a hook designed to provoke a reaction. None of that is compatible with this brand. What will happen instead, if the campus is built well, is that other people's posts will generate sustained and compounding visibility over months and years. A photograph of the Pen Wall taken by a stationery enthusiast with 8,000 followers will reach the exact audience most likely to make the journey to Said-ul-Ajaib. That photograph costs nothing and cannot be faked.</p>
+  </div>
+</section>
+
+<!-- ═══ 02 THE NINE MOMENTS ═══ -->
+<section>
+  <span class="eyebrow">02 · The Physical Foundation</span>
+  <h2>Nine moments the building already contains</h2>
+
+  <p>Every one of the following is an object or spatial condition described in the Architecture Brief (Document 02) or Cost Estimation (Document 03). They are listed here because the social media strategy depends entirely on them existing as designed. Cutting any of them from the budget is a decision to reduce the campus's organic visibility, not just its aesthetic quality.</p>
+
+  <div class="moments-grid">
+    <div class="moment-card">
+      <div class="moment-zone" style="color:var(--reads);">Scriptorium Reads</div>
+      <div class="moment-name">The rolling brass library ladders</div>
+      <div class="moment-why">No one walks past a brass rolling ladder on a track and does not photograph it. It is the single most recognisable object in the Gothic library tradition and it does not exist anywhere else in Delhi.</div>
+    </div>
+    <div class="moment-card">
+      <div class="moment-zone" style="color:var(--reads);">Scriptorium Reads</div>
+      <div class="moment-name">The mezzanine gallery ring</div>
+      <div class="moment-why">Shot from below looking up through the double-height void, or shot from the mezzanine looking down at readers at the oak tables: this is the image that appears in every "beautiful library" post. The reading lamps at every seat — dark metal arms, fluted glass, warm and a little anachronistic — are its frame.</div>
+    </div>
+    <div class="moment-card">
+      <div class="moment-zone" style="color:var(--reads);">Scriptorium Reads</div>
+      <div class="moment-name">The cast-iron chandeliers</div>
+      <div class="moment-why">Sourced from Moradabad or custom-cast per the Cost Estimation. A dramatic overhead photograph from a seat below one of these, with the bookshelves in soft focus behind, is a specific image with a large pre-existing audience on Instagram and Pinterest.</div>
+    </div>
+    <div class="moment-card">
+      <div class="moment-zone" style="color:var(--ink);">Scriptorium Ink</div>
+      <div class="moment-name">The Pen Wall</div>
+      <div class="moment-why">200 pens in a continuous colour gradient from warm reds to cool blues, individually backlit. The Indian fountain pen and stationery enthusiast following on Instagram is small in absolute numbers but posts obsessively and travels for this. This object alone will bring that entire audience to Said-ul-Ajaib.</div>
+    </div>
+    <div class="moment-card">
+      <div class="moment-zone" style="color:var(--ink);">Scriptorium Ink</div>
+      <div class="moment-name">The Paper Sample Wall</div>
+      <div class="moment-why">A long wall of paper swatches in every weight, texture, and colour. The bookbinding, journalling, and stationery content space on Instagram and Pinterest treats paper texture as a primary photographic subject. A well-lit close-up of this wall is a long-tail image.</div>
+    </div>
+    <div class="moment-card">
+      <div class="moment-zone" style="color:var(--ink);">Scriptorium Ink</div>
+      <div class="moment-name">The open-tread oak stair</div>
+      <div class="moment-why">Descending or ascending, with the brass rail and the stationery floors visible above and below. The staircase as a photographic subject in a beautiful retail space has its own established visual genre. This one is earned by its architecture, not its styling.</div>
+    </div>
+    <div class="moment-card">
+      <div class="moment-zone" style="color:var(--capsule);">A&amp;M Munchies</div>
+      <div class="moment-name">The pond-facing glass wall</div>
+      <div class="moment-why">Full-height pivoting glass panels dissolving the café-garden boundary. The morning light through this glass onto a cup of coffee, with the pond and Arjuna trees visible behind it, is the image that the café-photograph-on-Instagram audience has already decided it wants to see before the campus opens.</div>
+    </div>
+    <div class="moment-card">
+      <div class="moment-zone" style="color:var(--kota);">The Atrium Spine</div>
+      <div class="moment-name">The solar lantern clerestory</div>
+      <div class="moment-why">Natural light flooding the double-height corridor from the skylight above. Shot from below looking up, or from any zone looking toward it: this is the architectural signature of the building and the image that will appear in every piece of press coverage the campus receives.</div>
+    </div>
+    <div class="moment-card">
+      <div class="moment-zone" style="color:var(--sand-deep);">Exterior</div>
+      <div class="moment-name">The sandstone facade at dusk</div>
+      <div class="moment-why">The SCRIPTORIUM wordmark carved in relief into Dholpur sandstone, lit from below as the sky darkens behind it. This image exists nowhere else in Delhi. It will be the thumbnail that every piece of coverage about the campus uses.</div>
+    </div>
+  </div>
+
+  <div class="adv kota" style="margin-top:8px;">
+    <p><b>What this means for the build:</b> The brief to the architect is not merely aesthetic. The brass ladder tracks, the mezzanine ironwork, the backlit Pen Wall, and the chandeliers are marketing infrastructure as much as they are design decisions. Their value cannot be recovered by a content budget if they are cut. The cost estimation budgets ₹25–40 lakh for library furniture — that budget is partly a social media strategy.</p>
+  </div>
+</section>
+
+<!-- ═══ 03 CHANNELS ═══ -->
+<section>
+  <span class="eyebrow">03 · Channel Strategy</span>
+  <h2>Two channels, two different jobs</h2>
+
+  <p>SCRIPTORIUM maintains a presence on two platforms only. Every other platform is either irrelevant to the campus's audience, incompatible with the brand's visual register, or produces content with a lifespan too short to justify the time required. The two chosen platforms have complementary, non-overlapping roles.</p>
+
+  <div class="channel-grid">
+    <div class="channel-card">
+      <div class="channel-head" style="background:rgba(107,90,62,0.06);">
+        <div class="channel-dot" style="background:var(--reads);"></div>
+        <div class="channel-name">Instagram</div>
+        <div class="channel-handle">@scriptorium.delhi</div>
+      </div>
+      <div class="channel-body">
+        <span class="channel-stat">Primary · Real-time · 48-hour content life</span>
+        <p>The account that represents SCRIPTORIUM to people who are deciding whether to visit. Its audience finds it through other people's posts, through the explore page, and through the stationery and book photography networks. The account does not chase followers. It maintains a presence that rewards anyone who finds it.</p>
+        <p>Cadence: three to four posts per month. Stories for time-sensitive information (a workshop tomorrow, a new ink in stock, a change in opening hours). No Reels produced by SCRIPTORIUM — the campus does not perform. If a visitor makes a Reel here and it travels, that is welcome; it is not produced here.</p>
+        <p>Grid aesthetic: warm, precise, never cluttered. A single strong photograph per post. The colour palette of the grid should be legible as SCRIPTORIUM from a distance — parchment, brass, dark walnut, sandstone. Not a white flat-lay. Not neon.</p>
+      </div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-head" style="background:rgba(160,120,80,0.06);">
+        <div class="channel-dot" style="background:var(--sandstone);"></div>
+        <div class="channel-name">Pinterest</div>
+        <div class="channel-handle">@scriptorium</div>
+      </div>
+      <div class="channel-body">
+        <span class="channel-stat">Secondary · Search-driven · 6–24 month content life</span>
+        <p>Pinterest is chosen over YouTube, X, or LinkedIn for one specific reason: Pinterest content is search-indexed and has a lifespan measured in years, not hours. A photograph of the Pen Wall pinned in October 2026 will still be surfaced in searches for "fountain pen shop Delhi" or "Gothic library India" in 2028. No other platform offers this.</p>
+        <p>The Pinterest boards reflect the zones: <em>SCRIPTORIUM Reads</em> (the library and books), <em>SCRIPTORIUM Ink</em> (the stationery and writing instruments), <em>The Capsule Wing</em> (the study pod aesthetic), <em>The Campus</em> (the building, the pond, the spine). Boards are curated with the campus's own photographs plus reference imagery that shares the same aesthetic register.</p>
+        <p>Cadence: no fixed schedule. Pins are added when new photographs of the campus exist. A single good photograph repinned by twenty stationery accounts reaches the right audience without any further effort.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="adv ink" style="margin-top:4px;">
+    <p><b>On every other platform:</b> SCRIPTORIUM does not maintain a presence on YouTube, X (Twitter), Facebook, LinkedIn, Threads, Snapchat, or WhatsApp Channels. These platforms either require a content velocity incompatible with this brand's register, serve audiences that are not SCRIPTORIUM's primary visitors, or produce content whose visual format does not suit a space that depends on photography. A LinkedIn post about "our exciting new campus" is the precise opposite of what this brand sounds like. If a platform is not listed above, the answer to "should we be on it?" is no.</p>
+  </div>
+</section>
+
+<!-- ═══ 04 ACCOUNT OWNERSHIP ═══ -->
+<section>
+  <span class="eyebrow">04 · Internal Ownership</span>
+  <h2>Who runs the account, and how</h2>
+
+  <p>The SCRIPTORIUM Instagram and Pinterest accounts are not managed by a dedicated social media hire in Year 1 or Year 2. A dedicated hire at this stage would either produce content at a frequency that strains the brand's register, or would produce it at the correct low frequency at a cost that cannot be justified before EBITDA is positive.</p>
+
+  <p>The accounts are owned by the Campus Director. The Campus Director posts when something worth photographing exists — not on a schedule, not because the calendar says it is time to post. The Stationery Associates are the best natural source of content from the Ink floors, because the hiring profile for those roles (Document 06, Section 04) already selects for people who photograph pens, paper, and inks as a personal habit. The Head Barista of A&amp;M Munchies will have a natural instinct for the café's photographic moments. None of these people are instructed to "create content." They are trusted to photograph the things they already find worth photographing, and the best of those images pass to the Campus Director for the account.</p>
+
+  <div class="rule"></div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Digital contribution</th>
+        <th>Formal obligation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Campus Director</td>
+        <td>Account owner. Writes all captions. Approves all images. Manages DMs and any press enquiries that arrive via the account.</td>
+        <td>3–4 posts/month minimum. Responds to press enquiries within 48 hours.</td>
+      </tr>
+      <tr>
+        <td>Stationery Associates (all three floors)</td>
+        <td>Photograph the Pen Wall, new ink arrivals, workshop setups, the Try-Table, completed Note Couture orders. Share to Campus Director via internal channel.</td>
+        <td>No formal obligation. This flows from their existing interests; it should not be mandated.</td>
+      </tr>
+      <tr>
+        <td>Head Barista, A&amp;M Munchies</td>
+        <td>Photographs of the café setup, the pond through the glass at different times of day, coffee and food prepared to the correct standard. A&amp;M Munchies maintains its own separate account — cross-tagging with SCRIPTORIUM is permitted and encouraged, but A&amp;M Munchies content lives on its own feed, not SCRIPTORIUM's.</td>
+        <td>No formal obligation for SCRIPTORIUM's account. A&amp;M Munchies' own feed is the Head Barista's separate responsibility.</td>
+      </tr>
+      <tr>
+        <td>Studio Manager (cyber café)</td>
+        <td>SCRIPTORIUM Studio is the one zone that does not need Instagram photography — its audience discovers it through word of mouth among the people who use it, not through a visual social media presence. The Studio Manager does not contribute to the campus feed.</td>
+        <td>None.</td>
+      </tr>
+      <tr>
+        <td>Library Associates</td>
+        <td>Occasional photographs of the reading room, new book arrivals, the mezzanine at different light conditions. Not a primary content source — the library photographs itself through the people who sit in it.</td>
+        <td>No formal obligation.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="adv gold" style="margin-top:20px;">
+    <p><b>When a dedicated content role becomes appropriate:</b> Year 3, at the earliest, when EBITDA is positive and the campus has an established photographic record of itself. At that point, a part-time Content and Documentation role (not a "social media manager") makes sense — someone who photographs the campus systematically, maintains the Pinterest archive, and manages the growing volume of press enquiries and brand collaboration requests. This role does not change the voice or the posting frequency. It professionalises the photography and takes the administrative burden off the Campus Director.</p>
+  </div>
+</section>
+
+<!-- ═══ 05 VOICE ON SCREEN ═══ -->
+<section>
+  <span class="eyebrow">05 · Voice on Screen</span>
+  <h2>How SCRIPTORIUM writes online</h2>
+
+  <p>The brand voice from Document 04, Section 07 applies without modification to every piece of text published on any digital platform. What follows are the specific applications of that voice to the formats that social media requires.</p>
+
+  <div class="adv kota">
+    <p><b>The single most useful rule:</b> Write the caption the way you would write the label on a museum exhibit — it says what the thing is, where it comes from, and what is interesting about it. It does not say how you should feel about it. It does not tell you that it is beautiful. It describes it precisely, and it trusts you to have the reaction you have.</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="content-pair">
+    <div class="cp-label">On a photograph of the Pen Wall</div>
+    <div class="cp-wrong">✗ "We're obsessed with our new Pen Wall 😍 Come try ALL the inks at SCRIPTORIUM Ink — your new favourite stationery destination! 🖊️ #fountainpen #Delhi #stationerylove"</div>
+    <div class="cp-right">✓ "The Pen Wall at SCRIPTORIUM Ink holds 200 writing instruments arranged in a continuous colour gradient. Every pen on the wall is available to try at the central Try-Table. The inks — 40 varieties, from Diamine to Sailor to Ferris Wheel Press — are in glass sample bottles beside it.<br><br>Ground floor. Open daily, 9 to 9."</div>
+  </div>
+
+  <div class="content-pair">
+    <div class="cp-label">On a photograph of the library at dawn</div>
+    <div class="cp-wrong">✗ "Good morning from SCRIPTORIUM 🌅 The most beautiful way to start your day is with a good book in a stunning space! What are YOU reading this week? Drop it in the comments 👇"</div>
+    <div class="cp-right">✓ "The reading room before it opens. The chandeliers are cast iron, sourced from Moradabad. Each table lamp quietly charges your phone while you read — the one modern thing in a room that otherwise doesn't look like it.<br><br>SCRIPTORIUM Reads opens at 9."</div>
+  </div>
+
+  <div class="content-pair">
+    <div class="cp-label">On announcing a bookbinding workshop</div>
+    <div class="cp-wrong">✗ "🎉 EXCITING NEWS! We're hosting a bookbinding workshop this Saturday on the Craft Floor! Limited spots — book NOW before they're gone! Link in bio! 📚✂️"</div>
+    <div class="cp-right">✓ "A bookbinding workshop is on the Craft Floor this Saturday, 11 to 2. The session covers Coptic stitch and basic case binding. Materials are included. Twelve places are available.<br><br>To register: [booking link]"</div>
+  </div>
+
+  <div class="content-pair">
+    <div class="cp-label">On a new book arrival in the open library</div>
+    <div class="cp-wrong">✗ "📚 NEW ARRIVALS just dropped at SCRIPTORIUM Reads! We're always curating the best reads for our visitors — come check out what's new! #books #Delhi #reading"</div>
+    <div class="cp-right">✓ "Thirty-two books arrived in SCRIPTORIUM Reads this week. Among them: Amitav Ghosh's <em>The Nutmeg's Curse</em>, Ursula K. Le Guin's <em>The Dispossessed</em>, and the Penguin Classics edition of Ibn Battuta's <em>Travels</em>. They are on the new-arrivals shelf near the entrance, available to anyone who walks in."</div>
+  </div>
+
+  <div class="content-pair">
+    <div class="cp-label">On a photograph of the pond at evening</div>
+    <div class="cp-wrong">✗ "Our little garden oasis 🌿🪷 Sometimes you need to step away from the grind and just breathe. SCRIPTORIUM is your sanctuary ✨"</div>
+    <div class="cp-right">✓ "The backyard pond at dusk. The water is rainwater-fed — the roof channels directly into it through a first-flush filter. The Arjuna trees were planted before the campus opened; they will be in full canopy by the time SCRIPTORIUM's second location opens.<br><br>The pond is visible from the café and from the reading room's north-facing windows."</div>
+  </div>
+
+  <div class="rule"></div>
+  <h3>What is never in a SCRIPTORIUM caption</h3>
+  <p>The following are banned from all SCRIPTORIUM digital writing, consistent with Document 04, Section 07.</p>
+
+  <div class="forbidden-grid">
+    <div class="forbidden-card">
+      <div class="fc-label">Never write</div>
+      <div class="fc-item">"Community" / "hub" / "ecosystem"</div>
+      <div class="fc-reason">Established in Document 04. These words belong to a different brand register entirely.</div>
+    </div>
+    <div class="forbidden-card">
+      <div class="fc-label">Never write</div>
+      <div class="fc-item">Exclamation marks</div>
+      <div class="fc-reason">One exclamation mark in a caption is the signal that the person writing it has not read the brand voice guidelines.</div>
+    </div>
+    <div class="forbidden-card">
+      <div class="fc-label">Never write</div>
+      <div class="fc-item">"Curated" / "world-class" / "premium"</div>
+      <div class="fc-reason">The campus is what it is. These words are claims. Claims require proof. The building is the proof; it does not need to make the claim as well.</div>
+    </div>
+    <div class="forbidden-card">
+      <div class="fc-label">Never write</div>
+      <div class="fc-item">"Drop it in the comments" / "Tag a friend"</div>
+      <div class="fc-reason">Engagement-bait. It is the precise opposite of the register of a place that trusts the person it speaks to.</div>
+    </div>
+    <div class="forbidden-card">
+      <div class="fc-label">Never write</div>
+      <div class="fc-item">"Link in bio" as a standalone sentence</div>
+      <div class="fc-reason">Write where the link goes: "To book a capsule: [link]." The person reading it is an adult.</div>
+    </div>
+    <div class="forbidden-card">
+      <div class="fc-label">Never write</div>
+      <div class="fc-item">More than four hashtags</div>
+      <div class="fc-reason">A caption with twelve hashtags reads as desperate. SCRIPTORIUM uses between zero and four — only when genuinely relevant to the content.</div>
+    </div>
+    <div class="forbidden-card">
+      <div class="fc-label">Never write</div>
+      <div class="fc-item">"Your next favourite [anything]"</div>
+      <div class="fc-reason">Do not tell people what they will feel. That is for them to determine.</div>
+    </div>
+    <div class="forbidden-card">
+      <div class="fc-label">Never write</div>
+      <div class="fc-item">Emojis beyond one, used as punctuation</div>
+      <div class="fc-reason">A single well-placed emoji (a book, a pen nib, a leaf) is acceptable in a specific context. A string of emojis belongs to a different kind of account entirely.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 06 PRE-OPENING STRATEGY ═══ -->
+<section>
+  <span class="eyebrow">06 · Pre-Opening</span>
+  <h2>Building an audience before the doors open</h2>
+
+  <p>The account opens four months before the campus opens — not on opening day. The pre-opening period serves a specific function: it establishes the visual and tonal register of the account before there is anything to sell, so that by the time the campus opens, the people who follow it already understand what SCRIPTORIUM is and are prepared to visit.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-marker">
+        <span class="tl-phase">Phase</span>
+        <span class="tl-time">M−4 to M−3</span>
+      </div>
+      <div class="tl-content">
+        <h3>The account opens — construction documentation</h3>
+        <p>The first posts are photographs of the campus under construction. Not "exciting progress!" updates — photographs of the materials: the Dholpur sandstone being cut, the brass ladder track being fitted, the rolling library ladder on its first run, the mezzanine ironwork going in. These images have a specific audience — architects, interior design accounts, Gothic revival enthusiasts — and they establish the visual register before any visitor has arrived.</p>
+        <p>No follower count targets. No paid promotion. The account simply opens, begins posting with the correct voice, and waits.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-marker">
+        <span class="tl-phase">Phase</span>
+        <span class="tl-time">M−2</span>
+      </div>
+      <div class="tl-content">
+        <h3>The invited audience — selective pre-opening invitations</h3>
+        <p>Thirty to forty people are invited to visit the campus two weeks before the public opening — not as paid collaborators, but as guests whose genuine interests align with what SCRIPTORIUM is. The invitation list is built from four specific groups.</p>
+        <p><strong>Fountain pen and stationery writers:</strong> Members of the Indian fountain pen following on Instagram whose accounts document inks, nibs, and paper. A 5,000–15,000 follower stationery account whose audience is 60% Indian and actively buys pens posts about the Pen Wall — this reaches the right people at zero cost.</p>
+        <p><strong>Delhi-based readers and book writers:</strong> People who document what they read, where they read it, and what the space feels like. A reader who posts a photograph of themselves in the mezzanine with a Le Guin novel is a natural post, not a paid one.</p>
+        <p><strong>Architecture and interior design accounts:</strong> The Gothic collegiate interior is an unusual object in Delhi. Architecture photographers and accounts that document unusual commercial interiors will photograph the library for its own sake.</p>
+        <p><strong>Two or three academics or writers:</strong> A JNU professor, an author, a historian. Their presence at the pre-opening — documented by them, not by SCRIPTORIUM — signals the register of the campus to the people who follow them.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-marker">
+        <span class="tl-phase">Phase</span>
+        <span class="tl-time">M−1</span>
+      </div>
+      <div class="tl-content">
+        <h3>The soft launch — real visitors, no announcement</h3>
+        <p>As established in the Staff Planning Document (Document 06, Section 10): two weeks of real operations with real visitors, but no public announcement. The campus posts nothing on its own account during this period — but guests do. This creates an organic trail of posts from people who found the place before it officially opened, which is a more powerful signal than any announcement SCRIPTORIUM could make itself. The phrase "I was there before it opened" is the beginning of a genuine word-of-mouth effect.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-marker">
+        <span class="tl-phase">Phase</span>
+        <span class="tl-time">M0</span>
+      </div>
+      <div class="tl-content">
+        <h3>Public opening — one post</h3>
+        <p>On opening day, SCRIPTORIUM posts one photograph and one caption on Instagram. The photograph is of the facade, lit at dusk. The caption states the address, the opening hours, and what is inside. No announcement language. No "we're so thrilled to finally open our doors." Just the facts of what it is and where it is.</p>
+        <p>This is the only post SCRIPTORIUM makes about its own opening.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 07 EARNED PRESS ═══ -->
+<section>
+  <span class="eyebrow">07 · Earned Press &amp; Selective Collaboration</span>
+  <h2>Letting the right people find it</h2>
+
+  <p>SCRIPTORIUM does not send press releases. It does not pitch itself to food bloggers or lifestyle magazines. It does not pay for coverage. A place that is genuinely unusual in its context does not need to ask to be written about — it needs to be remarkable enough that writers who cover spaces come to it on their own.</p>
+
+  <p>What SCRIPTORIUM does instead: it makes itself available. When a journalist, photographer, or writer contacts the campus asking to photograph or write about it, the Campus Director responds within 48 hours, offers a time, and provides accurate information. That is the press strategy. It is not passive — it requires maintaining the campus at the standard the brand identity promises — but it is disciplined in refusing to manufacture coverage that has not been earned.</p>
+
+  <div class="rule"></div>
+  <h3>Selective collaborations — the criteria</h3>
+
+  <p>Once or twice per year, SCRIPTORIUM may invite a specific person to collaborate — not as a paid influencer, but as a genuine guest whose audience is precisely right. The criteria for who qualifies:</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-marker">
+        <span class="tl-phase">Criterion</span>
+        <span class="tl-time">Audience fit</span>
+      </div>
+      <div class="tl-content">
+        <h3>The audience is right before the follower count</h3>
+        <p>A 12,000-follower stationery account whose audience is 55% Indian, 30% based in Delhi NCR, and primarily interested in fountain pens, notebooks, and writing is worth more to SCRIPTORIUM than a 250,000-follower lifestyle account whose audience is distributed across eight countries and interested in restaurants, travel, and fashion. Follower count is not the metric. Audience specificity is.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-marker">
+        <span class="tl-phase">Criterion</span>
+        <span class="tl-time">Genuine interest</span>
+      </div>
+      <div class="tl-content">
+        <h3>They came because they wanted to, not because they were paid</h3>
+        <p>A collaboration is only considered when the person has already expressed interest in SCRIPTORIUM — through a comment, a DM, a repost of something SCRIPTORIUM posted. A paid arrangement with someone who had no prior interest in the campus produces content that reads as paid, and that kind of content is the fastest way to signal to the campus's audience that something is for sale.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-marker">
+        <span class="tl-phase">Criterion</span>
+        <span class="tl-time">Compensation</span>
+      </div>
+      <div class="tl-content">
+        <h3>Product gifting, not fees</h3>
+        <p>Collaborations are compensated with product from SCRIPTORIUM Ink — a curated selection of inks, a custom Note Couture binding, a pen from the Pen Wall. Monetary fees are not paid for any collaboration in Year 1 or Year 2. A person who posts about SCRIPTORIUM because they received a carefully chosen set of inks they genuinely wanted is producing content from a genuine experience. A person who posts because they received a transfer of money is producing an advertisement.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <h3>Influencer tiers — the specific audiences worth reaching</h3>
+
+  <div class="tier-row">
+    <div class="tier-label">
+      <div class="tier-name">Stationery</div>
+      <div class="tier-size">3k–20k followers</div>
+    </div>
+    <div class="tier-desc">
+      <p>The Indian fountain pen and stationery following on Instagram (r/IndiaPens, FPN India, and their Instagram crossover). Accounts that post ink reviews, nib comparisons, paper tests, and haul photographs. This audience makes deliberate journeys to find specific products — they will travel from Gurgaon to Said-ul-Ajaib for a pen wall with 40 ink varieties. These accounts are the highest-priority collaboration targets, regardless of their follower count.</p>
+    </div>
+  </div>
+  <div class="tier-row">
+    <div class="tier-label">
+      <div class="tier-name">Book &amp; Reading</div>
+      <div class="tier-size">5k–30k followers</div>
+    </div>
+    <div class="tier-desc">
+      <p>Delhi-based readers on Bookstagram and BookTok who document what they read and where. The Gothic library is the backdrop this audience has been waiting for in Delhi. A reader photographed at the mezzanine with a book is a natural post that requires nothing from SCRIPTORIUM except the space. These accounts cross into the UPSC and academic preparation audience, but the reading-for-pleasure framing is the priority — it signals that the library is not a coaching centre.</p>
+    </div>
+  </div>
+  <div class="tier-row">
+    <div class="tier-label">
+      <div class="tier-name">Architecture &amp; Design</div>
+      <div class="tier-size">10k–50k followers</div>
+    </div>
+    <div class="tier-desc">
+      <p>Accounts that document unusual interiors, commercial spaces, and architectural moments in Indian cities. The Gothic collegiate library is a rarity in Delhi — these accounts will seek it out without prompting. A feature from a well-regarded architecture photography account reaches interior designers, architects, and developers who will visit SCRIPTORIUM and send others to it.</p>
+    </div>
+  </div>
+  <div class="tier-row">
+    <div class="tier-label">
+      <div class="tier-name">Study &amp; Preparation</div>
+      <div class="tier-size">15k–80k followers</div>
+    </div>
+    <div class="tier-desc">
+      <p>UPSC aspirants and competitive examination candidates who document their preparation process — study routines, locations, stationery, notes. These accounts reach the capsule wing's most natural audience. The collaboration approach here is different: an invitation to use a capsule for a genuine study session, documented honestly, is more valuable than any styled promotional shoot. The capsule is a tool; it should be shown being used as one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 08 WHAT SCRIPTORIUM DOES NOT DO ═══ -->
+<section>
+  <span class="eyebrow">08 · Prohibited Practices</span>
+  <h2>What SCRIPTORIUM never does online</h2>
+
+  <p>These are not stylistic preferences. They are structural decisions about what kind of place SCRIPTORIUM is, expressed through what it refuses to do in the digital space.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Practice</th>
+        <th>Why it is prohibited</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Paid follower growth or boosted posts</td>
+        <td>Follower counts acquired through payment are not an audience — they are a number. An account with 2,000 followers who visited SCRIPTORIUM is worth more than an account with 20,000 followers who clicked a promoted post. SCRIPTORIUM's digital presence grows when SCRIPTORIUM is worth visiting. Not before.</td>
+      </tr>
+      <tr>
+        <td>Reposting visitor photographs to the main feed</td>
+        <td>When a visitor posts a photograph of the campus and tags SCRIPTORIUM, the correct response is a private thank-you message — not a public repost. Reposting visitor content to the feed substitutes their photography for the campus's own visual standard. If their photograph is excellent, it reflects on SCRIPTORIUM already, without needing to be amplified by SCRIPTORIUM's account.</td>
+      </tr>
+      <tr>
+        <td>Paid advertising on any platform</td>
+        <td>In Year 1 and Year 2. SCRIPTORIUM's marketing budget (₹15L in Year 1, reducing thereafter) is allocated to the physical opening, the invitation event, and the one-time brand identity production costs. None of it is allocated to paid digital advertising. A campus that cannot fill its library and café without paying Instagram for reach has a different problem than a marketing budget problem.</td>
+      </tr>
+      <tr>
+        <td>Running giveaways or contests</td>
+        <td>Giveaways attract people who want to win something free, not people who want to visit a specific place. The audience a giveaway builds is not the audience SCRIPTORIUM wants.</td>
+      </tr>
+      <tr>
+        <td>Posting about other businesses or tagging partners unprompted</td>
+        <td>SCRIPTORIUM's account posts about SCRIPTORIUM. Not about the coffee brand used by A&amp;M Munchies, not about the notebook brand stocked at SCRIPTORIUM Ink, not about the architectural firm that designed the campus. These are private relationships. The account is not a platform for partners.</td>
+      </tr>
+      <tr>
+        <td>Responding publicly to negative comments with defensiveness</td>
+        <td>If a comment is critical and specific — a complaint about an experience, a factual correction — respond privately, address it directly, and resolve it. If a comment is hostile and without basis, do not respond at all. A dignified silence is more consistent with this brand's register than any public defence.</td>
+      </tr>
+      <tr>
+        <td>Sharing political opinions or positions</td>
+        <td>SCRIPTORIUM is a library. Libraries do not have political opinions. The campus holds books representing every position on every question and makes them available to everyone who walks in. This is the position, and it requires no digital expression.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ 09 MEASURING WHETHER IT IS WORKING ═══ -->
+<section>
+  <span class="eyebrow">09 · Measurement</span>
+  <h2>How to know if it is working</h2>
+
+  <p>The metrics that matter for SCRIPTORIUM's digital presence are not the metrics that social media platforms present by default. Instagram will show reach, impressions, and follower growth. Those numbers are secondary. The numbers that tell you whether the digital strategy is serving the business are:</p>
+
+  <div class="metric-row">
+    <div class="metric-name">Footfall asking "I saw this on Instagram"</div>
+    <div class="metric-val">Track at reception — monthly</div>
+  </div>
+  <div class="metric-row">
+    <div class="metric-name">Capsule bookings from profile link or bio link</div>
+    <div class="metric-val">Track via booking system — weekly</div>
+  </div>
+  <div class="metric-row">
+    <div class="metric-name">Workshop registrations from Instagram posts</div>
+    <div class="metric-val">Track per event — at close of registration</div>
+  </div>
+  <div class="metric-row">
+    <div class="metric-name">Press enquiries received via DM or profile email</div>
+    <div class="metric-val">Log in a simple register — per occurrence</div>
+  </div>
+  <div class="metric-row">
+    <div class="metric-name">Unsolicited posts tagging @scriptorium.delhi</div>
+    <div class="metric-val">Count monthly — this is the UGC metric</div>
+  </div>
+  <div class="metric-row">
+    <div class="metric-name">Pinterest referral traffic to booking page</div>
+    <div class="metric-val">Google Analytics — monthly</div>
+  </div>
+  <div class="metric-row">
+    <div class="metric-name">Stationery floor revenue in months following Pen Wall posts</div>
+    <div class="metric-val">Cross-reference with business plan P&amp;L — quarterly</div>
+  </div>
+
+  <div class="adv gold" style="margin-top:24px;">
+    <p><b>The single clearest signal that the strategy is working:</b> The volume of photographs taken by visitors inside the campus, without any prompting from SCRIPTORIUM, is increasing month over month. This is the only measurement that cannot be manufactured. If people are photographing the reading room, the Pen Wall, and the pond without being asked to, the building is doing what it was designed to do. The Instagram account is a record of that. It is not the cause of it.</p>
+  </div>
+
+  <div class="rule"></div>
+  <h3>When to reconsider this strategy</h3>
+  <p>If, by Month 18, unsolicited visitor posts are rare, footfall attributable to the digital presence is below 10% of total, and the campus's word-of-mouth growth has stalled, the problem is not the social media strategy — it is the campus itself. The building has not met the standard that generates organic photography, or the experience inside it does not match the physical promise of the space. The correct response is to address the campus, not to increase the posting frequency or pay for advertising. A more active Instagram account does not fix a stationery floor that disappoints in person.</p>
+</section>
+
+<!-- ═══ 10 SUMMARY ═══ -->
+<section>
+  <span class="eyebrow">10 · Summary</span>
+  <h2>The strategy in one page</h2>
+
+  <p><strong>The account:</strong> One Instagram account (@scriptorium.delhi) and one Pinterest profile. No other platforms. The Instagram account is owned by the Campus Director. It posts three to four times per month. Every caption is written in the voice described in Document 04, Section 07, and this document, Section 05.</p>
+
+  <p><strong>The content:</strong> Photographs of the campus, its objects, and its events. Never styled shoots. Never content produced to perform enthusiasm. Never borrowed content from other accounts. The photographs are taken by the Campus Director, the Stationery Associates, and the Head Barista of A&amp;M Munchies — people who are already inside the campus and already find things worth photographing.</p>
+
+  <p><strong>The pre-opening:</strong> The account opens four months before the campus. Construction documentation first, then the invited pre-opening event for thirty to forty stationery writers, readers, and architecture photographers. The soft launch generates the first wave of organic posts. The public opening is announced by a single photograph of the sandstone facade at dusk.</p>
+
+  <p><strong>The growth:</strong> SCRIPTORIUM grows online the same way it grows in person — by being worth the visit, and by the people who make that visit telling others about it in their own words. The nine physical moments listed in Section 02 are the growth strategy. The Instagram account is the address they find when they go looking.</p>
+
+  <p><strong>What it costs:</strong> The ongoing cost of this strategy is the Campus Director's time — approximately four to six hours per month — and the product gifted to the one or two annual collaborators (budgeted from the stationery inventory, not the marketing line). No paid advertising. No agency retainer. No dedicated hire before Year 3.</p>
+
+  <div class="principle" style="margin-top:28px;">
+    <div class="p-label">The final test for any post</div>
+    <div class="p-statement">Would a very good librarian write this?</div>
+    <div class="p-note">Precise, warm, complete. Not selling. Not performing. Saying what is there, how it works, and where to find it. If the answer is no — if the post is urgent, emotional, repetitive, or full of claims the building has to prove — it does not go out. The building is the argument. The post is the address.</div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="ft-wordmark">Scriptorium</div>
+  Digital Presence &amp; Organic Growth Strategy · Document 07 · Version 1.0 · June 2026<br>
+  This document is a founding strategy record. It must be read alongside Brand Identity Standards (Document 04). All decisions about digital presence — platform selection, post frequency, caption voice, collaboration criteria, and measurement — should reference both documents. Deviations require the founder's explicit approval and a version-controlled update.<br><br>
+  <b>Cross-references within the SCRIPTORIUM planning package</b>
+  <ol>
+    <li>Document 01 — Regulatory &amp; Compliance Dossier: licensing requirements that affect operational announcements (FSSAI, cyber café regulations, event permits)</li>
+    <li>Document 02 — Architecture Brief: the nine physical moments in Section 02 of this document are sourced directly from the architecture brief's zone specifications</li>
+    <li>Document 03 — Cost Estimation: library furniture budget (₹25–40L) and stationery fixtures (₹15–22L) are the physical investment that makes Section 02 of this document possible</li>
+    <li>Document 04 — Brand Identity Standards: all voice rules, typeface standards, and colour applications in this document derive from Document 04 and are subordinate to it</li>
+    <li>Document 05 — Business Plan: marketing OpEx line (Year 1: ₹15L, Year 2: ₹14L, Year 3: ₹12L) covers the one-time brand identity production and opening event costs; no portion is allocated to paid digital advertising in Years 1–2</li>
+    <li>Document 06 — Staff Planning: Campus Director ownership of the account and the Content and Documentation role (Year 3+) are consistent with the hiring plan in Document 06</li>
+  </ol>
+</footer>
+
+</div>
+</body>
+</html>
