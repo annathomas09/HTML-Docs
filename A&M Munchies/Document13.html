@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 13: Landscape</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F; --bg-elevated:#1A2016; --bg-elevated-2:#212818;
+    --green:#4A5D3A; --green-soft:#7A9463;
+    --gold:#C9A25C; --gold-soft:#E2C48D;
+    --cream:#EEE7D8; --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C; --ink:#1C1710;
+    --border:rgba(201,162,92,0.22); --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif; --font-body:'Karla', sans-serif; --font-mono:'Space Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--cream); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:var(--gold-soft); }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  .hero{ position:relative; padding:100px 0 84px; text-align:center;
+    background: radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%), linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border); overflow:hidden; }
+  .signature{ width:340px; height:260px; margin:0 auto 18px; }
+  @media (prefers-reduced-motion: no-preference){ .signature .glow-ring{ animation: pulseGlow 5s ease-in-out infinite; } }
+  @keyframes pulseGlow{ 0%,100%{ opacity:1; } 50%{ opacity:0.72; } }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+  .hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(38px, 6vw, 64px); letter-spacing:-0.01em; color:var(--cream); margin-bottom:10px; }
+  .hero .doc-title{ font-family:var(--font-display); font-weight:400; font-style:italic; font-size:clamp(18px, 2.4vw, 24px); color:var(--gold-soft); margin-bottom:22px; }
+  .hero .doc-sub{ max-width:560px; margin:0 auto; color:var(--cream-dim); font-size:15px; }
+  .tag-row{ display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--border-strong); border-radius:100px; color:var(--gold-soft); }
+
+  section.doc-section{ padding:64px 0; border-bottom:1px solid var(--border); }
+  section.doc-section:last-of-type{ border-bottom:none; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:0.06em; margin-bottom:8px; }
+  h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px, 3.4vw, 34px); color:var(--cream); margin-bottom:20px; letter-spacing:-0.01em; }
+  h3{ font-family:var(--font-display); font-weight:500; font-size:19px; color:var(--gold-soft); margin:26px 0 10px; }
+  p{ margin-bottom:14px; max-width:66ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  .lede{ font-family:var(--font-display); font-size:20px; font-weight:400; font-style:italic; color:var(--gold-soft); line-height:1.5; max-width:64ch; margin-bottom:22px; }
+  ul{ margin:0 0 16px 20px; max-width:64ch; } li{ margin-bottom:8px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--bg-elevated); padding:18px 22px; border-radius:2px; margin:18px 0; }
+  .callout.flexible{ border-left:3px dashed var(--green-soft); }
+  .callout-tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .callout.flexible .callout-tag{ color:var(--green-soft); }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+
+  .dna-item{ display:flex; gap:16px; padding:22px 0; border-top:1px solid var(--border); }
+  .dna-item:first-of-type{ border-top:none; }
+  .dna-num{ font-family:var(--font-display); font-size:26px; color:var(--gold); font-weight:400; flex:0 0 42px; }
+  .dna-body h4{ font-family:var(--font-body); font-weight:700; font-size:15.5px; color:var(--cream); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.02em; }
+  .dna-body .ref{ font-family:var(--font-mono); font-size:10.5px; color:var(--cream-dim); display:block; margin-bottom:8px; }
+
+  .guard-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:24px 0; }
+  @media (max-width:680px){ .guard-grid{ grid-template-columns:1fr; } }
+  .guard-col{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:20px 22px; }
+  .guard-col h4{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; color:var(--gold); }
+  .guard-col ul{ margin:0; } .guard-col li{ font-size:14px; margin-bottom:10px; }
+
+  .open-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  .open-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 12px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .open-table td{ padding:12px 12px 12px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+
+  .cost-table{ width:100%; border-collapse:collapse; margin:18px 0 28px; font-size:13.5px; }
+  .cost-table th{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.04em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 10px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .cost-table td{ padding:10px 10px 10px 0; border-bottom:1px solid var(--border); vertical-align:top; }
+  .cost-table td.item{ color:var(--cream); }
+  .cost-table td.val{ color:var(--gold-soft); font-family:var(--font-mono); font-size:12.5px; white-space:nowrap; text-align:right; }
+  .status-pill{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.pending{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+
+  .xref{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{ font-family:var(--font-mono); font-size:12px; color:var(--gold); flex:0 0 130px; }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; } .xref strong{ color:var(--cream); }
+
+  footer{ text-align:center; padding:50px 28px 70px; color:var(--cream-dim); font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; }
+
+  /* --- new for doc 3 --- */
+  .siteplan-card{
+    background:var(--cream); border-radius:10px; padding:20px; margin:24px 0;
+    border:1px solid var(--border-strong);
+  }
+  .siteplan-card .caption{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink); opacity:0.6; margin-top:10px; text-align:center;
+  }
+  .not-yard{
+    display:inline-block; font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--terracotta); border:1px solid var(--terracotta); border-radius:100px; padding:2px 9px; margin-left:8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+    <div class="eyebrow">A&amp;M Munchies — Flagship Tier</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 13 of 17 — Landscape</div>
+    <p class="doc-sub">Frontyard, backyard, and boundary planting for the Flagship building. Builds directly on the site plan and footprint Document 3 resolved — the three documents that follow this one (water harvesting, green energy, indoor planting) build on this one in turn.</p>
+    <div class="tag-row">
+      <span class="tag">Flagship tier only</span>
+      <span class="tag">First of four new environmental documents</span>
+      <span class="tag">Version 1 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">13.1</div>
+    <h2>Scope &amp; Relationship to Document 3</h2>
+    <p>This document covers everything outside the building envelope Document 3 defines: frontyard, backyard, and the boundary buffer running the full perimeter. It does not touch the semi-outdoor Right Extension loggia or the Main Hall's indoor pond — both are Document 3's, already resolved in §3.4 and §3.6.</p>
+    <p>Document 3 §3.7 set a ~15,000 sq ft target plot (mid-covers scenario) against a ~6,000 sq ft built-up footprint. That leaves roughly <strong>9,000 sq ft of actual landscape to design</strong> — a working range of 7,900–10,150 sq ft across the low–high covers scenarios. Everything below assumes the mid figure and scales the same way Document 3's sizing table does.</p>
+    <p class="dim">This is the first of four new environmental documents. Document 14 (Water Harvesting), Document 15 (Green Energy), and Document 16 (Indoor Planting) all build on the zones this document lays out.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">13.2</div>
+    <h2>Design Philosophy</h2>
+    <p>Document 0 §0.3 locks water-paired-with-greenery as the one non-negotiable brand signature, expressed indoors through Document 3's ponds and ring-pendant fixtures. Outdoors, the same DNA reads differently: layered and naturalistic rather than manicured-formal, native-first with ornamental accents carrying color and fragrance, and — because this is a working kitchen's backyard as much as a guest's garden — genuinely useful in places, not purely decorative.</p>
+    <div class="callout">
+      <span class="callout-tag">Core — Fixed Everywhere</span>
+      <p>Every planted zone mixes native species with ornamental ones, per the principle Document 3 §3.7 already set for the boundary: native planting supports local pollinators and holds up on real Delhi water and soil conditions; ornamental planting carries the seasonal color and fragrance a hospitality flagship needs. Neither substitutes for the other.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">13.3</div>
+    <h2>Landscape Plan</h2>
+    <p>Schematic only — relative position and adjacency, not drawn to engineering scale. Building footprint shown dimmed for reference; Document 3 §3.3 is the authority on it.</p>
+    <div class="siteplan-card">
+      <svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; font-family:'Space Mono',monospace;">
+        <rect x="16" y="16" width="668" height="448" rx="6" fill="none" stroke="#1C1710" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.55"/>
+        <rect x="230" y="24" width="240" height="28" fill="#C9D9C4" opacity="0.4" stroke="#4A5D3A" stroke-width="1"/>
+        <text x="350" y="42" text-anchor="middle" font-size="9" font-weight="700" fill="#1C1710">BACKYARD — rose beds facing the terrace</text>
+
+        <g opacity="0.4">
+          <rect x="230" y="56" width="240" height="110" fill="none" stroke="#1C1710" stroke-width="1"/>
+          <rect x="480" y="60" width="190" height="130" fill="none" stroke="#1C1710" stroke-width="1" stroke-dasharray="4 3"/>
+          <rect x="30" y="60" width="190" height="110" fill="none" stroke="#1C1710" stroke-width="1" stroke-dasharray="4 3"/>
+          <rect x="60" y="176" width="150" height="180" fill="none" stroke="#1C1710" stroke-width="1"/>
+          <rect x="230" y="176" width="240" height="180" fill="none" stroke="#1C1710" stroke-width="1"/>
+          <rect x="490" y="196" width="150" height="140" fill="none" stroke="#1C1710" stroke-width="1"/>
+          <rect x="230" y="366" width="240" height="38" fill="none" stroke="#1C1710" stroke-width="1"/>
+          <text x="350" y="270" text-anchor="middle" font-size="9" fill="#1C1710">building footprint</text>
+          <text x="350" y="284" text-anchor="middle" font-size="9" fill="#1C1710">— see Document 3</text>
+        </g>
+
+        <rect x="480" y="60" width="190" height="130" fill="#9C5A3C" opacity="0.18" stroke="#9C5A3C" stroke-width="1" stroke-dasharray="2 3"/>
+        <text x="575" y="112" text-anchor="middle" font-size="9" font-weight="700" fill="#9C5A3C">KITCHEN GARDEN</text>
+        <text x="575" y="126" text-anchor="middle" font-size="7" fill="#9C5A3C">herbs, direct kitchen use</text>
+
+        <rect x="230" y="404" width="240" height="60" fill="#EEE7D8" opacity="0.5" stroke="#1C1710" stroke-width="1.5"/>
+        <text x="350" y="428" text-anchor="middle" font-size="10" font-weight="700" fill="#1C1710">FRONTYARD</text>
+        <text x="350" y="443" text-anchor="middle" font-size="7.5" fill="#1C1710">flowering trees off-axis · glass facade sightline kept clear</text>
+        <path d="M350,464 L350,404" stroke="#9C5A3C" stroke-width="2" stroke-dasharray="1 4"/>
+        <text x="365" y="450" font-size="7" fill="#9C5A3C">path</text>
+
+        <g fill="#4A5D3A" opacity="0.75">
+          <circle cx="45" cy="35" r="7"/><circle cx="100" cy="28" r="6"/><circle cx="160" cy="32" r="7"/>
+          <circle cx="600" cy="32" r="7"/><circle cx="655" cy="28" r="6"/>
+          <circle cx="28" cy="90" r="6"/><circle cx="28" cy="150" r="6"/><circle cx="28" cy="210" r="6"/><circle cx="28" cy="270" r="6"/><circle cx="28" cy="330" r="6"/><circle cx="28" cy="400" r="6"/>
+          <circle cx="672" cy="90" r="6"/><circle cx="672" cy="150" r="6"/><circle cx="672" cy="210" r="6"/><circle cx="672" cy="270" r="6"/><circle cx="672" cy="330" r="6"/><circle cx="672" cy="400" r="6"/>
+          <circle cx="60" cy="450" r="6"/><circle cx="130" cy="455" r="6"/><circle cx="570" cy="455" r="6"/><circle cx="640" cy="450" r="6"/>
+        </g>
+      </svg>
+      <div class="caption">Fig. 13.1 — Landscape zones against the Document 3 footprint, top-down</div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">13.4</div>
+    <h2>Frontyard</h2>
+    <p>The arrival sequence, and the first brand impression before a guest ever reaches the glass facade Document 3 §3.4 built specifically to "announce itself from the street." Landscape's job here is to frame that moment, not compete with it: flowering trees and taller plantings sit off-axis, to the sides of the direct approach, leaving the facade's sightline from the street genuinely clear. A single stone path — same material language as the Main Hall's walkway, per Document 3 §3.4 — leads straight from the street edge to the entrance, wide enough for two people walking side by side.</p>
+    <p>Low, layered planting borders the path itself: groundcover and low ornamentals close to the walking surface, taller flowering shrubs and one or two canopy trees set back near the boundary line, where they contribute to the perimeter ring described in §13.6 rather than crowding the entrance.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">13.5</div>
+    <h2>Backyard</h2>
+    <p>Document 3 §3.4's Back Extension is split into two moods — Jaali + Drape Lounge and Lantern + Rose Terrace — and the terrace half looks directly out over this space. The backyard is designed to reward that view: rose beds facing the terrace, underplanted with lower seasonal color so the terrace's sightline reads as a garden at every time of year, not a bare bed between bloom cycles.</p>
+    <p>Because Document 6 §6.5 already positions the Back Extension for evening social use, backyard planting near the terrace leans toward night-fragrant species — the kind of garden that becomes more present after dark, not less. §13.7's plant palette calls these out specifically.</p>
+    <div class="callout">
+      <span class="callout-tag">Practical — Kitchen Garden</span>
+      <p>The backyard's far corner sits directly against the Kitchen block Document 3 §3.4 placed in the site plan's top-right corner. That adjacency is deliberate: a small kitchen garden — curry leaf, mint, coriander, lemongrass, tulsi — sits at that corner, close enough for kitchen staff to actually use, not just visible from a dining table. It's a working garden first, a pretty one second.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">13.6</div>
+    <h2>Boundary Ring &amp; Plant Palette</h2>
+    <p>Document 3 §3.7 already set the principle — a low wall backed by trees, privacy bushes, and creepers, native mixed with ornamental. Below is the actual species list that principle resolves to, chosen for Delhi/NCR's climate: hot, dry summers, a real monsoon, and winters cold enough for occasional ground frost.</p>
+    <table class="cost-table">
+      <tr><th>Role</th><th>Species</th><th>Why it's here</th></tr>
+      <tr><td class="item">Native canopy / shade</td><td class="val">Neem</td><td class="item">Pollution-tolerant, evergreen, the default Delhi shade tree for good reason</td></tr>
+      <tr><td class="item">Native canopy / shade</td><td class="val">Arjun</td><td class="item">Handsome bark, reliable shade, genuinely native rather than naturalized</td></tr>
+      <tr><td class="item">Seasonal flowering tree</td><td class="val">Amaltas</td><td class="item">Cascading yellow bloom, May–June — the classic Delhi avenue tree in flower</td></tr>
+      <tr><td class="item">Ornamental flowering tree</td><td class="val">Gulmohar</td><td class="item">Naturalized rather than native, but the flame-red bloom is iconic in Delhi gardens</td></tr>
+      <tr><td class="item">Ornamental, fragrant</td><td class="val">Champa (Plumeria)</td><td class="item">Low-maintenance once established, fragrant, elegant form near seating</td></tr>
+      <tr><td class="item">Boundary creeper</td><td class="val">Madhumalti</td><td class="item">Fragrant, blooms shift white→pink→red on the same vine — a lot of color from one plant</td></tr>
+      <tr><td class="item">Boundary creeper</td><td class="val">Bougainvillea</td><td class="item">About as hardy as a Delhi wall-climber gets, vivid color with minimal water</td></tr>
+      <tr><td class="item">Night-fragrant, backyard</td><td class="val">Raat ki Rani</td><td class="item">Intensely fragrant after dark — planted near the Lantern + Rose Terrace specifically</td></tr>
+      <tr><td class="item">Night-fragrant, backyard</td><td class="val">Mogra</td><td class="item">Classic Delhi fragrant shrub, pairs well with Raat ki Rani's evening scent profile</td></tr>
+      <tr><td class="item">Pollinator support</td><td class="val">Marigold + local wildflower mix</td><td class="item">Hardy, low-cost groundcover for any unplanted verge; genuine pollinator value</td></tr>
+      <tr><td class="item">Kitchen garden</td><td class="val">Curry leaf, mint, coriander, lemongrass, tulsi</td><td class="item">Backyard corner, adjacent to Kitchen — for actual kitchen use, per §13.5</td></tr>
+    </table>
+    <p class="dim">Exact tree count, spacing, and planting density are a landscape architect's call once a real site is chosen — this palette fixes species and role, not a planting schedule.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">13.7</div>
+    <h2>Seasonal Notes</h2>
+    <p>Delhi's calendar is unforgiving on planting choices that assume one climate year-round. Amaltas and Gulmohar carry May–June, the hottest and least outdoor-friendly stretch — which is deliberately when the strolling and terrace zones need the most visual reward for the least likely footfall. Roses and the fragrant night-bloomers carry October through February, when Back Extension's evening terrace use is at its most comfortable and most likely to be full. Monsoon (July–September) favors the native canopy trees and groundcover, which tolerate the water load better than the ornamental flowering trees do.</p>
+    <p class="dim">Irrigation demand shifts hard across these same seasons — heavy monsoon runoff to manage, real drought stress by May. That system is Document 14's to design, not this one's; this document only fixes which plants need to be kept alive.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">13.8</div>
+    <h2>Open Items for Sign-Off</h2>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+      <tr><td>Frontyard vehicle drop-off / parking</td><td><span class="status-pill open">Open</span></td><td>Neither this document nor Document 3 has addressed parking anywhere — a real gap worth flagging before a site search, since it affects how much of the ~9,000 sq ft landscape figure is actually plantable</td></tr>
+      <tr><td>Boundary wall height &amp; material</td><td><span class="status-pill open">Open</span></td><td>Carried over from Document 3 §3.8 — belongs in a future cost/materials pass, affects how the creeper planting is detailed against it</td></tr>
+      <tr><td>Exact tree count, spacing, and planting schedule</td><td><span class="status-pill open">Open</span></td><td>Needs a landscape architect once a real site's dimensions are known — this document fixes species and zones, not a planting plan</td></tr>
+      <tr><td>Kitchen garden yield vs. actual kitchen demand</td><td><span class="status-pill proposed">Proposed</span></td><td>Sized as a garnish/accent supply, not a primary sourcing channel — Document 7 (Sourcing) remains the kitchen's real supply line</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">13.9</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">Doc 0<br>Brand Architecture</div>
+      <p>§0.3's water-paired-with-greenery signature is what this whole document extends outdoors; §0.7 governs the real climate and orientation decisions §13.7 works around in schematic terms only.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 3<br>Architecture &amp; Site Design</div>
+      <p><strong>This document's entire foundation.</strong> §3.3's footprint, §3.4's zone adjacency, and §3.7's land-area target and native-plus-ornamental principle are all inherited directly, not re-derived here.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 6<br>Customer Experience</div>
+      <p>§6.5's evening-social positioning for the Back Extension is why §13.5 and §13.6 lean the backyard's plant selection toward night-fragrant species.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 14<br>Water Harvesting</div>
+      <p><strong>Direct dependency, the other direction.</strong> This document names which plants need water and when (§13.7); Document 14 is where the actual irrigation and harvesting system gets designed against that demand.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 13 · LANDSCAPE · FLAGSHIP TIER
+</footer>
+
+</body>
+</html>

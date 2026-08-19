@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 3: Architecture &amp; Site Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F; --bg-elevated:#1A2016; --bg-elevated-2:#212818;
+    --green:#4A5D3A; --green-soft:#7A9463;
+    --gold:#C9A25C; --gold-soft:#E2C48D;
+    --cream:#EEE7D8; --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C; --ink:#1C1710;
+    --border:rgba(201,162,92,0.22); --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif; --font-body:'Karla', sans-serif; --font-mono:'Space Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--cream); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:var(--gold-soft); }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  .hero{ position:relative; padding:100px 0 84px; text-align:center;
+    background: radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%), linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border); overflow:hidden; }
+  .signature{ width:340px; height:260px; margin:0 auto 18px; }
+  @media (prefers-reduced-motion: no-preference){ .signature .glow-ring{ animation: pulseGlow 5s ease-in-out infinite; } }
+  @keyframes pulseGlow{ 0%,100%{ opacity:1; } 50%{ opacity:0.72; } }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+  .hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(38px, 6vw, 64px); letter-spacing:-0.01em; color:var(--cream); margin-bottom:10px; }
+  .hero .doc-title{ font-family:var(--font-display); font-weight:400; font-style:italic; font-size:clamp(18px, 2.4vw, 24px); color:var(--gold-soft); margin-bottom:22px; }
+  .hero .doc-sub{ max-width:560px; margin:0 auto; color:var(--cream-dim); font-size:15px; }
+  .tag-row{ display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--border-strong); border-radius:100px; color:var(--gold-soft); }
+
+  section.doc-section{ padding:64px 0; border-bottom:1px solid var(--border); }
+  section.doc-section:last-of-type{ border-bottom:none; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:0.06em; margin-bottom:8px; }
+  h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px, 3.4vw, 34px); color:var(--cream); margin-bottom:20px; letter-spacing:-0.01em; }
+  h3{ font-family:var(--font-display); font-weight:500; font-size:19px; color:var(--gold-soft); margin:26px 0 10px; }
+  p{ margin-bottom:14px; max-width:66ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  .lede{ font-family:var(--font-display); font-size:20px; font-weight:400; font-style:italic; color:var(--gold-soft); line-height:1.5; max-width:64ch; margin-bottom:22px; }
+  ul{ margin:0 0 16px 20px; max-width:64ch; } li{ margin-bottom:8px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--bg-elevated); padding:18px 22px; border-radius:2px; margin:18px 0; }
+  .callout.flexible{ border-left:3px dashed var(--green-soft); }
+  .callout-tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .callout.flexible .callout-tag{ color:var(--green-soft); }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+
+  .dna-item{ display:flex; gap:16px; padding:22px 0; border-top:1px solid var(--border); }
+  .dna-item:first-of-type{ border-top:none; }
+  .dna-num{ font-family:var(--font-display); font-size:26px; color:var(--gold); font-weight:400; flex:0 0 42px; }
+  .dna-body h4{ font-family:var(--font-body); font-weight:700; font-size:15.5px; color:var(--cream); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.02em; }
+  .dna-body .ref{ font-family:var(--font-mono); font-size:10.5px; color:var(--cream-dim); display:block; margin-bottom:8px; }
+
+  .guard-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:24px 0; }
+  @media (max-width:680px){ .guard-grid{ grid-template-columns:1fr; } }
+  .guard-col{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:20px 22px; }
+  .guard-col h4{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; color:var(--gold); }
+  .guard-col ul{ margin:0; } .guard-col li{ font-size:14px; margin-bottom:10px; }
+
+  .open-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  .open-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 12px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .open-table td{ padding:12px 12px 12px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+
+  .cost-table{ width:100%; border-collapse:collapse; margin:18px 0 28px; font-size:13.5px; }
+  .cost-table th{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.04em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 10px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .cost-table td{ padding:10px 10px 10px 0; border-bottom:1px solid var(--border); vertical-align:top; }
+  .cost-table td.item{ color:var(--cream); }
+  .cost-table td.val{ color:var(--gold-soft); font-family:var(--font-mono); font-size:12.5px; white-space:nowrap; text-align:right; }
+  .status-pill{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.pending{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+
+  .xref{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{ font-family:var(--font-mono); font-size:12px; color:var(--gold); flex:0 0 130px; }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; } .xref strong{ color:var(--cream); }
+
+  footer{ text-align:center; padding:50px 28px 70px; color:var(--cream-dim); font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; }
+
+  /* --- new for doc 3 --- */
+  .siteplan-card{
+    background:var(--cream); border-radius:10px; padding:20px; margin:24px 0;
+    border:1px solid var(--border-strong);
+  }
+  .siteplan-card .caption{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink); opacity:0.6; margin-top:10px; text-align:center;
+  }
+  .not-yard{
+    display:inline-block; font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--terracotta); border:1px solid var(--terracotta); border-radius:100px; padding:2px 9px; margin-left:8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+    <div class="eyebrow">A&amp;M Munchies — Flagship Tier</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 3 of 13 — Architecture &amp; Site Design</div>
+    <p class="doc-sub">The standalone building template. Independent of every other A&amp;M Munchies branch, including Said-ul-Ajaib, the first embedded-tier location within SCRIPTORIUM.</p>
+    <div class="tag-row">
+      <span class="tag">Flagship tier only</span>
+      <span class="tag">Independent of Scriptorium</span>
+      <span class="tag">Version 1 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">3.1</div>
+    <h2>Scope &amp; Independence</h2>
+    <p>This document is scoped entirely to the Flagship tier as a standalone building — a different site, different water features, different boundary from Said-ul-Ajaib in every respect. Where Document 0 marked the Flagship tier "aspirational, not yet built," this is that tier's actual architectural template.</p>
+    <p class="dim">Formerly scoped as "Interior &amp; Fit-Out Design" in Document 0's index — renamed here to Architecture &amp; Site Design, since what follows is full building form and landscape, not interior finishing. Embedded Anchor and Kiosk tiers will get their own, more constrained sections in a later revision of this document.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">3.2</div>
+    <h2>Orientation Principle</h2>
+    <div class="callout flexible">
+      <span class="callout-tag">Flexible — Adapts by Context</span>
+      <p><strong>Front / Right / Left / Back</strong> throughout this document are relative feature labels, not compass directions. Which way the building actually faces at a given site — and how these zones respond to sun path, prevailing wind, and monsoon exposure — is a per-site decision made under Document 0 §0.7's climate guardrails. Nothing here fixes a real-world orientation.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">3.3</div>
+    <h2>Site Plan</h2>
+    <p>Schematic only — relative position and adjacency, not drawn to engineering scale.</p>
+    <div class="siteplan-card">
+      <svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; font-family:'Space Mono',monospace;">
+        <rect x="16" y="16" width="668" height="448" rx="6" fill="none" stroke="#1C1710" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.55"/>
+        <text x="350" y="38" text-anchor="middle" font-size="10" letter-spacing="2" fill="#9C5A3C">BOUNDARY WALL — LOW-RISE, TREE &amp; BUSH BACKED</text>
+
+        <rect x="230" y="56" width="240" height="110" fill="#EDE4C8" stroke="#1C1710" stroke-width="1.5"/>
+        <text x="350" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#1C1710">BACK EXTENSION</text>
+        <text x="290" y="118" text-anchor="middle" font-size="8.5" fill="#1C1710">JAALI + DRAPE</text>
+        <text x="410" y="118" text-anchor="middle" font-size="8.5" fill="#1C1710">LANTERN + ROSE</text>
+        <line x1="350" y1="106" x2="350" y2="156" stroke="#1C1710" stroke-width="1" stroke-dasharray="2 3"/>
+        <text x="350" y="150" text-anchor="middle" font-size="8" fill="#9C5A3C">overlooks backyard ↑</text>
+
+        <rect x="480" y="60" width="190" height="130" fill="#E4DCC0" stroke="#1C1710" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="575" y="112" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710">KITCHEN</text>
+        <text x="575" y="128" text-anchor="middle" font-size="7.5" fill="#1C1710">bakery + hot line</text>
+        <text x="575" y="140" text-anchor="middle" font-size="7.5" fill="#1C1710">exterior wall for exhaust</text>
+
+        <rect x="30" y="60" width="190" height="110" fill="#EDE4C8" stroke="#1C1710" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="125" y="98" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710">WASHROOMS + BOH</text>
+        <text x="125" y="114" text-anchor="middle" font-size="7.5" fill="#1C1710">guest WCs, staff room,</text>
+        <text x="125" y="126" text-anchor="middle" font-size="7.5" fill="#1C1710">dry storage, office</text>
+
+        <rect x="60" y="176" width="150" height="180" fill="#E4DCC0" stroke="#1C1710" stroke-width="1.5"/>
+        <text x="135" y="255" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710">LEFT</text>
+        <text x="135" y="270" text-anchor="middle" font-size="9" fill="#1C1710">EXTENSION</text>
+        <text x="135" y="288" text-anchor="middle" font-size="7.5" fill="#1C1710">enclosed curved</text>
+        <text x="135" y="299" text-anchor="middle" font-size="7.5" fill="#1C1710">glass roof</text>
+
+        <rect x="230" y="176" width="240" height="180" fill="#F4EEDB" stroke="#1C1710" stroke-width="2"/>
+        <text x="350" y="255" text-anchor="middle" font-size="12" font-weight="700" fill="#1C1710">MAIN HALL</text>
+        <text x="350" y="272" text-anchor="middle" font-size="8.5" fill="#1C1710">double-height · counter at entry</text>
+        <ellipse cx="350" cy="298" rx="46" ry="38" fill="#C9D9C4" opacity="0.45"/>
+        <circle cx="350" cy="298" r="4" fill="#4A5D3A"/>
+        <circle cx="350" cy="273" r="6" fill="none" stroke="#C9A25C" stroke-width="1.5"/>
+        <circle cx="374" cy="286" r="6" fill="none" stroke="#C9A25C" stroke-width="1.5"/>
+        <circle cx="365" cy="315" r="6" fill="none" stroke="#C9A25C" stroke-width="1.5"/>
+        <circle cx="335" cy="315" r="6" fill="none" stroke="#C9A25C" stroke-width="1.5"/>
+        <circle cx="326" cy="286" r="6" fill="none" stroke="#C9A25C" stroke-width="1.5"/>
+        <text x="350" y="340" text-anchor="middle" font-size="7.5" fill="#9C5A3C">pond · tree · floating platforms</text>
+
+        <rect x="490" y="196" width="150" height="140" fill="#E4DCC0" stroke="#1C1710" stroke-width="1.5"/>
+        <text x="565" y="255" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710">RIGHT</text>
+        <text x="565" y="270" text-anchor="middle" font-size="9" fill="#1C1710">EXTENSION</text>
+        <text x="565" y="288" text-anchor="middle" font-size="7.5" fill="#1C1710">open-roof water</text>
+        <text x="565" y="299" text-anchor="middle" font-size="7.5" fill="#1C1710">garden + strolling path</text>
+
+        <rect x="230" y="366" width="240" height="38" fill="#1C1710"/>
+        <text x="350" y="390" text-anchor="middle" font-size="10.5" font-weight="700" fill="#EEE7D8">FRONT — GLASS FACADE</text>
+
+        <text x="350" y="432" text-anchor="middle" font-size="9" letter-spacing="1.5" fill="#1C1710" opacity="0.6">FRONTYARD</text>
+        <text x="350" y="70" text-anchor="middle" font-size="9" letter-spacing="1.5" fill="#1C1710" opacity="0.6" style="display:none;"></text>
+
+        <g opacity="0.5">
+          <circle cx="40" cy="40" r="5" fill="#4A5D3A"/><circle cx="80" cy="26" r="5" fill="#4A5D3A"/>
+          <circle cx="620" cy="26" r="5" fill="#4A5D3A"/><circle cx="660" cy="40" r="5" fill="#4A5D3A"/>
+          <circle cx="30" cy="440" r="5" fill="#4A5D3A"/><circle cx="670" cy="440" r="5" fill="#4A5D3A"/>
+        </g>
+      </svg>
+      <div class="caption">Fig. 3.1 — Relative zone adjacency, top-down</div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">3.4</div>
+    <h2>Zone Breakdown</h2>
+
+    <div class="dna-item">
+      <div class="dna-num">01</div>
+      <div class="dna-body">
+        <h4>Front</h4>
+        <span class="ref">Ref: Workstation Coffee-style glass facade</span>
+        <p>Full-glass facade and entrance, in the dramatic angled-glass-and-signage manner of the Workstation Coffee reference — the building announces itself from the street rather than hiding behind a conventional shopfront.</p>
+        <p class="dim">Entrance threshold only — no seating counted here; folds into Main Hall's footprint in the sizing table below.</p>
+      </div>
+    </div>
+
+    <div class="dna-item">
+      <div class="dna-num">02</div>
+      <div class="dna-body">
+        <h4>Right Extension — Open-Roof Strolling Water Garden <span class="not-yard">Not Frontyard / Backyard</span></h4>
+        <span class="ref">Ref: arched windows, stone loggia with reflecting pool, floating flowers</span>
+        <p>Separated from the main hall by full floor-to-ceiling arched windows. Beyond them, an open-roof outdoor strolling area in the manner of a stone arcade beside a long reflecting pool, with seasonal floating flower arrangements on the water surface. A third outdoor zone in its own right — not part of the frontyard or backyard.</p>
+        <p class="dim">~17 seats · ~610 sq ft, including the reflecting pool and loggia walkway (mid-covers scenario — see sizing table below)</p>
+      </div>
+    </div>
+
+    <div class="dna-item">
+      <div class="dna-num">03</div>
+      <div class="dna-body">
+        <h4>Left Extension — Enclosed Glass Conservatory <span class="not-yard">Not Frontyard / Backyard</span></h4>
+        <span class="ref">Ref: curved glass conservatory roof, hanging greenery</span>
+        <p>Reached through a sliding door from the main hall, opening into a fully enclosed space under a curved glass roof — hanging plant life overhead, warm pendant lighting below. Deliberately not a mirror of the Right Extension: enclosed where the right is open-air, a conservatory mood rather than a garden-loggia one.</p>
+        <p class="dim">~20 seats · ~460 sq ft (mid-covers scenario — see sizing table below)</p>
+      </div>
+    </div>
+
+    <div class="dna-item">
+      <div class="dna-num">04</div>
+      <div class="dna-body">
+        <h4>Main Hall</h4>
+        <span class="ref">Double-height ceiling</span>
+        <p>The counter sits in direct sightline from the entrance. Side seating runs in rows along the walls — richer, jewel-toned banquette seating in places, drum-pendant-lit rows elsewhere. At the center, leaving clear walking space on all sides: a real indoor pond with a single small ornamental tree planted at its center, surrounded by several family-size seating pods that read as floating platforms — each carrying its own small winding moss-and-stone table surface. A stone walkway with lantern-topped plinths circles the whole feature at the perimeter.</p>
+        <p class="dim">~45 seats · ~1,650 sq ft, including the pond, walkway, counter and entry threshold (mid-covers scenario — see sizing table below)</p>
+        <div class="callout">
+          <span class="callout-tag">Engineering approach — fixed structure, reads as floating</span>
+          <p>Built as fixed pods with glass tank walls below and around the seating, not genuinely buoyant platforms. This is the actual construction behind Baoding's Koi Pond Restaurant (Food Town, Hebei, China), which achieves the identical "surrounded by fish and water" sensation this way — <a href="https://radii.co/article/koi-pond-restaurant-baoding" target="_blank">round tables sit within colossal glass aquarium tanks</a>, so diners feel immersed without ever touching water or standing on anything that moves. Same effect you're after, far simpler and safer engineering: structural glazing and aquarium filtration are mature, standard fields — marine floating-platform engineering is not. Each pod's tabletop can still genuinely float small serving trays across its own shallow channel, in the spirit of Singapore's Incloud teahouse — lightweight service theater, not load-bearing.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dna-item">
+      <div class="dna-num">05</div>
+      <div class="dna-body">
+        <h4>Back Extension — Two Sections</h4>
+        <span class="ref">Overlooks the backyard</span>
+        <p><strong>Jaali + Drape Lounge:</strong> a terracotta jaali screen ceiling layer — patterned light and shade rather than a solid soffit — paired with flowing fabric drapery in the manner of a jungle-canopy lounge. <strong>Lantern + Rose Terrace:</strong> overhead lanterns under a creeping rose canopy, positioned to look directly out over the backyard.</p>
+        <p class="dim">~27 seats combined · ~750 sq ft, split roughly evenly between the two sub-sections (mid-covers scenario — see sizing table below)</p>
+      </div>
+    </div>
+
+    <div class="dna-item">
+      <div class="dna-num">06</div>
+      <div class="dna-body">
+        <h4>Kitchen <span class="not-yard">Back-of-House</span></h4>
+        <span class="ref">Placement: top-right corner, behind Back Extension</span>
+        <p>Combined bakery-production and full hot-line kitchen — the two build-outs Document 2 §2.9 treats as distinct, sharing one footprint at Café-Restaurant stage. Sits against an exterior wall for exhaust and suppression access, with its own service entrance separate from the guest glass-facade entry, and short travel distance to the Main Hall counter for service flow.</p>
+        <p class="dim">~1,330 sq ft (mid-covers scenario — see sizing table below). Ventilation and suppression design is Document 12's, not this document's — §3.9 flags this as a direct dependency.</p>
+      </div>
+    </div>
+
+    <div class="dna-item">
+      <div class="dna-num">07</div>
+      <div class="dna-body">
+        <h4>Washrooms &amp; Back-of-House <span class="not-yard">Back-of-House</span></h4>
+        <span class="ref">Placement: top-left corner, off the Main Hall–to–Back-Extension path</span>
+        <p>Guest washrooms (separate Ladies, Gents, and one accessible/universal WC), reached via a short corridor branching off the existing Main Hall-to-Back-Extension route rather than cutting through any guest experience zone. Staff washroom, dry storage, and a small manager's office share this block, kept deliberately away from the Left and Right Extensions' guest-facing character.</p>
+        <p class="dim">~400 sq ft (mid-covers scenario — see sizing table below)</p>
+      </div>
+    </div>
+
+    <table class="cost-table" style="margin-top:28px;">
+      <tr><th>Zone</th><th>Low (200 covers/day)</th><th>Mid (250 covers/day)</th><th>High (300 covers/day)</th></tr>
+      <tr><td class="item">Main Hall</td><td class="val">36 seats · 1,410 sqft</td><td class="val">45 seats · 1,650 sqft</td><td class="val">53 seats · 1,864 sqft</td></tr>
+      <tr><td class="item">Left Extension</td><td class="val">16 seats · 388 sqft</td><td class="val">20 seats · 460 sqft</td><td class="val">23 seats · 514 sqft</td></tr>
+      <tr><td class="item">Right Extension</td><td class="val">14 seats · 530 sqft</td><td class="val">17 seats · 590 sqft</td><td class="val">21 seats · 670 sqft</td></tr>
+      <tr><td class="item">Back Extension</td><td class="val">22 seats · 590 sqft</td><td class="val">27 seats · 690 sqft</td><td class="val">33 seats · 810 sqft</td></tr>
+      <tr><td class="item"><strong>Front-of-house total</strong></td><td class="val"><strong>~2,900 sqft</strong></td><td class="val"><strong>~3,330 sqft</strong></td><td class="val"><strong>~3,765 sqft</strong></td></tr>
+      <tr><td class="item">Kitchen (40% of FOH)</td><td class="val">~1,160 sqft</td><td class="val">~1,330 sqft</td><td class="val">~1,510 sqft</td></tr>
+      <tr><td class="item">Back-of-house support</td><td class="val">~350 sqft</td><td class="val">~400 sqft</td><td class="val">~450 sqft</td></tr>
+      <tr><td class="item">Washrooms</td><td class="val">~400 sqft</td><td class="val">~415 sqft</td><td class="val">~425 sqft</td></tr>
+      <tr><td class="item">Circulation buffer (10%)</td><td class="val">~480 sqft</td><td class="val">~545 sqft</td><td class="val">~615 sqft</td></tr>
+      <tr><td class="item"><strong>Total built-up area</strong></td><td class="val"><strong>~5,280 sqft</strong></td><td class="val"><strong>~6,020 sqft</strong></td><td class="val"><strong>~6,765 sqft</strong></td></tr>
+    </table>
+    <p class="dim">Seat counts assume ~2.3 turns per seat per day across an extended-hours café-restaurant, applied to Document 11 §11.5's 200–300 daily covers. Kitchen ratio (40% of FOH) reflects a combined bakery-production-plus-hot-line build, per Document 2 §2.9. All figures are planning-stage estimates, not architect-issued numbers — treat every value in this table as adjustable, not fixed.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">3.5</div>
+    <h2>Lighting &amp; Ceiling Language</h2>
+    <p>Document 0 §0.3 locks the ring-form-plus-greenery fixture as the one non-negotiable signature. Here's how it's expressed across zones that call for different moods:</p>
+    <ul>
+      <li><strong>Main Hall &amp; both extensions:</strong> the ring/drum pendant form is the primary fixture language — clustered overhead installations, greenery worked through them.</li>
+      <li><strong>Back Extension, rose terrace specifically:</strong> traditional overhead lanterns take the lead instead, as a warm garden-party accent — a deliberate, secondary departure from the ring form, used only in this one zone.</li>
+      <li><strong>Counter, main hall:</strong> a green, shredded-fringe curtain treatment overhead, functioning almost as a soft, textured canopy rather than a fixture — distinct from the ring language, reserved for this one spot to mark the counter as a destination within the hall.</li>
+    </ul>
+    <p class="dim">Every one of these stays inside Document 0's warm-light-only rule — no exceptions, in any zone.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">3.6</div>
+    <h2>Water Systems — Two Distinct Ecologies</h2>
+    <p>Two separate water systems, deliberately built to different logic:</p>
+    <div class="guard-grid">
+      <div class="guard-col">
+        <h4>Right Extension — Garden Pond</h4>
+        <ul>
+          <li>Still, clear water</li>
+          <li>Submerged plants only — nothing breaks the surface</li>
+          <li>Small fish, kept for water clarity and mosquito control</li>
+          <li>Floating flower trays as seasonal decoration</li>
+        </ul>
+      </div>
+      <div class="guard-col">
+        <h4>Main Hall — Central Pond</h4>
+        <ul>
+          <li>Structural glass tank construction — seating pods are fixed, not buoyant</li>
+          <li>One small ornamental tree planted at the center, on its own fixed plinth</li>
+          <li>Emergent plants — visibly breaking the surface</li>
+          <li>Larger, more visible fish, safely sealed behind glass</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">3.7</div>
+    <h2>Boundary, Frontyard &amp; Backyard</h2>
+    <p>A low-rise wall — tall enough to mark the property line clearly, short enough that it never hides the building itself. Backed by trees, privacy bushes, and creepers, deliberately mixing native species with ornamental ones: the native planting supports local pollinators and wildlife, the ornamental layer carries the visual softness, and together they buffer the property from street noise without turning the boundary into a solid, closed-off wall.</p>
+    <div class="callout">
+      <span class="callout-tag">Land Area Target — For Site Search</span>
+      <p>Per §3.4's sizing table: roughly <strong>6,000 sq ft of total built-up area</strong> at the mid-covers scenario (5,300–6,800 sq ft across the low–high range). Applying a 40% ground-coverage assumption — generous enough to leave real room for the frontyard, backyard, and boundary planting described above, tight enough to stay realistic for a South Delhi commercial plot — that implies a target plot of roughly <strong>15,000 sq ft (≈1,670 sq yd, ≈0.35 acres)</strong>, with a working range of 13,200–16,900 sq ft (1,470–1,880 sq yd, 0.30–0.39 acres) across the covers range. This is the number to search plots against, not a final figure — actual ground-coverage and FAR norms vary by the specific municipal zone once a candidate site is identified, and would need checking against that site's actual by-laws.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">3.8</div>
+    <h2>Open Items for Sign-Off</h2>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+      <tr><td>Terracotta jaali as a screen layer, not the sole roof (§3.4, item 5)</td><td><span class="status-pill proposed">Proposed</span></td><td>A pure open lattice alone wouldn't hold up through monsoon — flag if a different roof assembly was intended</td></tr>
+      <tr><td>Actual compass orientation, per site</td><td><span class="status-pill open">Open</span></td><td>Decided per Document 0 §0.7 when a real site is chosen</td></tr>
+      <tr><td>Boundary wall height &amp; material</td><td><span class="status-pill open">Open</span></td><td>Belongs in a future cost/materials-specific pass</td></tr>
+      <tr><td>Glass tank structural load &amp; waterproofing, double-height hall</td><td><span class="status-pill open">Open</span></td><td>Still a genuine structural and waterproofing load indoors — needs a structural engineer at the foundation stage, beyond what any planning document can spec</td></tr>
+      <tr><td>Seating pod engineering — fixed structure, reads as floating</td><td><span class="status-pill open">Open</span></td><td>De-risked from marine/buoyancy engineering down to structural glazing + fixed foundations, following the Baoding precedent — a far more standard brief, but still needs a structural engineer's sign-off</td></tr>
+      <tr><td>Water circulation &amp; filtration — tank, fish, tree together</td><td><span class="status-pill open">Open</span></td><td>Aquarium-grade filtration is mature, well-understood engineering — a future MEP/services pass, not decided here</td></tr>
+      <tr><td>Land area target — 15,000 sq ft / 0.35 acres, mid-covers scenario</td><td><span class="status-pill proposed">Proposed</span></td><td>Derived from Document 11 §11.5's covers figure and a 40% ground-coverage assumption — flag if either input should change before this drives the site search</td></tr>
+      <tr><td>Kitchen and Washrooms/BOH placement — top-right and top-left corners</td><td><span class="status-pill proposed">Proposed</span></td><td>Chosen to keep both off the Left/Right Extension guest-experience zones while staying close to Main Hall service flow — the four new environmental documents (landscape, water harvesting, green energy, indoor planting) will build directly on this footprint</td></tr>
+      <tr><td>Food/object hygiene policy near the water feature</td><td><span class="status-pill open">Open</span></td><td>Baoding's restaurant has had to explicitly police guests not throwing food or objects into the tank — worth a house rule in Document 6 (Customer Experience) from day one</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">3.9</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">Doc 0<br>Brand Architecture</div>
+      <p>§0.3 supplies the ring-light signature this document applies zone by zone in §3.5; §0.6 defines the Flagship tier this whole document belongs to; §0.7 governs the real orientation and climate decisions §3.2 leaves open.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 2<br>Menu &amp; F&amp;B</div>
+      <p>Kitchen scale and back-of-house flow need to be sized against the Main Hall footprint defined here.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 12<br>Kitchen &amp; Fire Safety</div>
+      <p><strong>Direct dependency.</strong> A double-height hall with a jaali-screened back section and an open-roof extension changes ventilation and suppression planning meaningfully from a conventional enclosed kitchen — this document's footprint is a required input there.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 13<br>Landscape</div>
+      <p>§3.7's boundary, frontyard, and backyard is where Document 13 picks up — this document sets the land-area envelope and boundary line, Document 13 designs everything living inside it.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 14<br>Water Harvesting</div>
+      <p>§3.4's total built-up area is Document 14's roof-catchment sizing basis; §3.6's two ornamental water features are the only permitted top-up destination for harvested rainwater.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 3 · ARCHITECTURE &amp; SITE DESIGN · FLAGSHIP TIER
+</footer>
+
+</body>
+</html>

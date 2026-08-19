@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 4: Staff Uniform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F; --bg-elevated:#1A2016; --bg-elevated-2:#212818;
+    --green:#4A5D3A; --green-soft:#7A9463; --green-dark:#3A4A2E;
+    --gold:#C9A25C; --gold-soft:#E2C48D;
+    --cream:#EEE7D8; --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C; --ink:#1C1710;
+    --border:rgba(201,162,92,0.22); --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif; --font-body:'Karla', sans-serif; --font-mono:'Space Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--cream); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:var(--gold-soft); }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  .hero{ position:relative; padding:100px 0 84px; text-align:center;
+    background: radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%), linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border); overflow:hidden; }
+  .signature{ width:340px; height:260px; margin:0 auto 18px; }
+  @media (prefers-reduced-motion: no-preference){ .signature .glow-ring{ animation: pulseGlow 5s ease-in-out infinite; } }
+  @keyframes pulseGlow{ 0%,100%{ opacity:1; } 50%{ opacity:0.72; } }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+  .hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(38px, 6vw, 64px); letter-spacing:-0.01em; color:var(--cream); margin-bottom:10px; }
+  .hero .doc-title{ font-family:var(--font-display); font-weight:400; font-style:italic; font-size:clamp(18px, 2.4vw, 24px); color:var(--gold-soft); margin-bottom:22px; }
+  .hero .doc-sub{ max-width:560px; margin:0 auto; color:var(--cream-dim); font-size:15px; }
+  .tag-row{ display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--border-strong); border-radius:100px; color:var(--gold-soft); }
+
+  section.doc-section{ padding:64px 0; border-bottom:1px solid var(--border); }
+  section.doc-section:last-of-type{ border-bottom:none; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:0.06em; margin-bottom:8px; }
+  h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px, 3.4vw, 34px); color:var(--cream); margin-bottom:20px; letter-spacing:-0.01em; }
+  h3{ font-family:var(--font-display); font-weight:500; font-size:19px; color:var(--gold-soft); margin:26px 0 10px; }
+  p{ margin-bottom:14px; max-width:66ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  .lede{ font-family:var(--font-display); font-size:20px; font-weight:400; font-style:italic; color:var(--gold-soft); line-height:1.5; max-width:64ch; margin-bottom:22px; }
+  ul{ margin:0 0 16px 20px; max-width:64ch; } li{ margin-bottom:8px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--bg-elevated); padding:18px 22px; border-radius:2px; margin:18px 0; }
+  .callout.flexible{ border-left:3px dashed var(--green-soft); }
+  .callout-tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .callout.flexible .callout-tag{ color:var(--green-soft); }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+
+  .open-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  .open-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 12px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .open-table td{ padding:12px 12px 12px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+  .status-pill{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.pending{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+
+  .xref{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{ font-family:var(--font-mono); font-size:12px; color:var(--gold); flex:0 0 130px; }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; } .xref strong{ color:var(--cream); }
+
+  footer{ text-align:center; padding:50px 28px 70px; color:var(--cream-dim); font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; }
+
+  .guard-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:24px 0; }
+  @media (max-width:680px){ .guard-grid{ grid-template-columns:1fr; } }
+  .guard-col{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:20px 22px; }
+  .guard-col h4{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; color:var(--gold); }
+  .guard-col ul{ margin:0; } .guard-col li{ font-size:14px; margin-bottom:10px; }
+
+  /* --- new for doc 4 --- */
+  .flat-showcase{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:10px; padding:32px; margin:20px 0; text-align:center; }
+  .flat-showcase svg{ width:170px; height:auto; }
+  .flat-label{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--cream-dim); margin-top:14px; }
+
+  .role-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin:24px 0; }
+  @media (max-width:680px){ .role-grid{ grid-template-columns:1fr; } }
+  .role-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:20px 22px; }
+  .role-card .role-swatch{ width:28px; height:28px; border-radius:6px; margin-bottom:12px; }
+  .role-card h4{ font-family:var(--font-display); font-size:18px; color:var(--cream); margin-bottom:8px; }
+  .role-card p{ font-size:13.5px; color:var(--cream-dim); margin-bottom:6px; }
+  .role-card .role-mark{ font-family:var(--font-mono); font-size:10.5px; color:var(--gold-soft); margin-top:8px; display:block; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+    <div class="eyebrow">A&amp;M Munchies — Global Brand Standard</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 4 of 13 — Staff Uniform</div>
+    <p class="doc-sub">One silhouette, one palette, one mark — differentiated by role, adapted by climate.</p>
+    <div class="tag-row">
+      <span class="tag">Global core + local execution</span>
+      <span class="tag">Worked example — Said-ul-Ajaib</span>
+      <span class="tag">Format tier — Flagship (primary)</span>
+      <span class="tag">Version 2 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">4.1</div>
+    <h2>Scope &amp; Purpose</h2>
+    <p>Document 0 §0.7 already set the rule: silhouette and color are Core, fabric weight and layering are Flexible. This document defines the actual silhouette, builds a role system and a designation-badge layer on top of it so guests can tell staff apart at a glance, sets the climate-adaptation framework globally with the first embedded-tier location, within SCRIPTORIUM, Said-ul-Ajaib, worked through as the reference example, and specifies the hygiene equipment every location holds to regardless of climate or format tier.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">4.2</div>
+    <h2>Role System</h2>
+    <p>Four roles, drawn directly from what Document 2 and Document 3 already established rather than invented fresh: the counter staff visible from the entrance, floor staff working the side seating and extensions, kitchen and bakery staff on production, and a host role for the more composed zones — the arched-window extension, the jaali lounge, the rose terrace.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">4.3</div>
+    <h2>Core Silhouette &amp; Palette — Fixed</h2>
+    <p>The base: a bib apron in Botanical Green over a Parchment shirt, mark embroidered at the chest. This is the Counter role's exact uniform, and the reference silhouette every other role's variation is measured against.</p>
+    <div class="flat-showcase">
+      <svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+        <rect x="18" y="38" width="34" height="90" rx="15" fill="#EEE7D8" stroke="#B8B0A0" stroke-width="1"/>
+        <rect x="148" y="38" width="34" height="90" rx="15" fill="#EEE7D8" stroke="#B8B0A0" stroke-width="1"/>
+        <rect x="48" y="28" width="104" height="215" rx="22" fill="#EEE7D8" stroke="#B8B0A0" stroke-width="1"/>
+        <path d="M92,28 L100,40 L108,28" fill="none" stroke="#B8B0A0" stroke-width="1.5"/>
+        <path d="M75,55 L65,34" fill="none" stroke="#3A4A2E" stroke-width="3" stroke-linecap="round"/>
+        <path d="M125,55 L135,34" fill="none" stroke="#3A4A2E" stroke-width="3" stroke-linecap="round"/>
+        <rect x="73" y="55" width="54" height="58" rx="6" fill="#4A5D3A"/>
+        <rect x="60" y="124" width="80" height="98" rx="8" fill="#4A5D3A"/>
+        <line x1="60" y1="124" x2="140" y2="124" stroke="#3A4A2E" stroke-width="1" stroke-dasharray="3 3"/>
+        <path d="M142,120 L152,124 L142,128 Z" fill="#3A4A2E"/>
+        <circle cx="100" cy="84" r="14" fill="none" stroke="#C9A25C" stroke-width="2.5"/>
+        <ellipse cx="112" cy="76" rx="2.2" ry="3.8" fill="#7A9463" transform="rotate(-30 112 76)"/>
+        <ellipse cx="109" cy="93" rx="2" ry="3.4" fill="#4A5D3A" transform="rotate(35 109 93)"/>
+        <rect x="93" y="79" width="14" height="11" rx="2" fill="#5C3A22"/>
+      </svg>
+      <div class="flat-label">Counter / Barista — reference silhouette</div>
+    </div>
+    <ul>
+      <li><strong>Never changes across roles:</strong> Parchment as the base garment color, Botanical Green as the accent color, the mark's position on the dominant garment panel.</li>
+      <li><strong>Never changes across climate:</strong> the silhouette itself — apron shape, shirt cut, role-to-garment logic.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">4.4</div>
+    <h2>Role Variations</h2>
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-swatch" style="background:#4A5D3A;"></div>
+        <h4>Counter / Barista</h4>
+        <p>Full bib apron, as shown in §4.3. First point of contact — the mark is worn full and visible.</p>
+        <span class="role-mark">Mark: embroidered on bib</span>
+      </div>
+      <div class="role-card">
+        <div class="role-swatch" style="background:#4A5D3A; opacity:0.7;"></div>
+        <h4>Floor / Service</h4>
+        <p>Waist apron only — bib dropped for mobility across side seating and both extensions. Same green, same shirt.</p>
+        <span class="role-mark">Mark: small woven hip tag</span>
+      </div>
+      <div class="role-card">
+        <div class="role-swatch" style="background:#EEE7D8; border:2px solid #4A5D3A;"></div>
+        <h4>Kitchen / Bakery</h4>
+        <p>Base flips to all-Parchment for heat and hygiene practicality, with a Botanical Green neckerchief carrying the accent instead of an apron panel.</p>
+        <span class="role-mark">Mark: cap only</span>
+      </div>
+      <div class="role-card">
+        <div class="role-swatch" style="background:#3A4A2E;"></div>
+        <h4>Host — refined zones</h4>
+        <p>Tailored vest in deep charcoal-green, no apron. For the arched-window extension, jaali lounge, and rose terrace specifically.</p>
+        <span class="role-mark">Mark: small lapel pin</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">4.5</div>
+    <h2>Designation Badges</h2>
+    <p>§4.4 differentiates role at the garment level — apron cut, vest, neckerchief. The designation badge sits a layer finer: a fixed-format badge worn on top of any role's uniform, carrying the individual's name and title rather than just their role category. It's the difference between "someone in a green apron" and "Rohan, Counter" at a glance — a small addition that reads as considerably more polished.</p>
+    <div class="guard-grid">
+      <div class="guard-col">
+        <h4>Format — Fixed</h4>
+        <ul>
+          <li>Engraved brushed-gold metal — the mark's existing gold, not a new material color introduced for badges</li>
+          <li>Two lines: first name, then role title (e.g. "ROHAN" over "Counter")</li>
+          <li>Same shape and engraving style across every role, and unchanged by climate zone (§4.6)</li>
+        </ul>
+      </div>
+      <div class="guard-col">
+        <h4>Placement by Role</h4>
+        <ul>
+          <li>Counter: pinned above the mark on the apron bib</li>
+          <li>Floor: pinned at the shirt collar or breast pocket — no bib to pin to once it's dropped for mobility</li>
+          <li>Kitchen / Bakery: small tag clipped to the cap band, clear of the work surface</li>
+          <li>Host: engraved directly into the lapel pin itself, rather than as a separate badge</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout flexible">
+      <span class="callout-tag">Embedded Anchor — note</span>
+      <p>The Said-ul-Ajaib Embedded Anchor format will likely carry a second badge alongside the designation badge — a collaboration badge, for the co-located partnership itself, along the lines already sketched (Presented By / Co-Branded Stack / Story-Driven Tag, placed at the apron chest, sleeve, or back yoke). That spec belongs to a dedicated Embedded Anchor tier document once one exists; this document's focus is the Flagship tier, and this note is a placeholder rather than a finished design.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">4.6</div>
+    <h2>Climate Adaptation — Global Framework</h2>
+    <p>This is the one part of the system Document 0 §0.7 marked Flexible — fabric weight and layering, never silhouette or color. Said-ul-Ajaib gave the first worked example of that rule below, but a document carrying the "Global Brand Standard" tag needs the rule stated for climate in general, not just the one site it happened to get designed against first.</p>
+    <p class="dim">The table below uses the Köppen climate classification, the standard global reference for grouping climates by temperature and precipitation pattern. Only fabric weight and layering vary by row — Parchment, Botanical Green, and the mark's placement hold across every one of them, exactly as they hold across every role in §4.3.</p>
+    <table class="open-table">
+      <tr><th>Köppen Group</th><th>Character</th><th>Fabric Weight</th><th>Layering</th></tr>
+      <tr>
+        <td><strong>A</strong> — Tropical</td>
+        <td>Warm and humid year-round; little seasonal swing</td>
+        <td>Lightest weight, moisture-wicking cotton-linen</td>
+        <td>None — short sleeves standard across all roles, all year</td>
+      </tr>
+      <tr>
+        <td><strong>B</strong> — Arid / Semi-Arid</td>
+        <td>Low humidity, high daytime heat, sharp day–night swing</td>
+        <td>Lightweight, breathable, tightly-woven against sun exposure</td>
+        <td>Optional light layer for early-morning or evening service</td>
+      </tr>
+      <tr>
+        <td><strong>C</strong> — Temperate</td>
+        <td>Seasonal — mild-to-hot summers, cool-to-cold winters, often a distinct dry season</td>
+        <td>Mid-weight base, swapped seasonally to a heavier weave</td>
+        <td>Optional cardigan/liner layer for the cooler season</td>
+      </tr>
+      <tr>
+        <td><strong>D</strong> — Continental</td>
+        <td>Hot summers, genuinely cold winters — the widest seasonal swing of the realistic set</td>
+        <td>Mid-weight summer fabric, heavier insulated option for winter</td>
+        <td>Full layering system in winter — base shirt, cardigan, then an outer layer for any outdoor-facing role</td>
+      </tr>
+      <tr>
+        <td><strong>E</strong> — Polar</td>
+        <td>Cold year-round, minimal warm season</td>
+        <td colspan="2" style="color:var(--cream-dim);">Not a realistic expansion zone for this format at present — flagged rather than designed for</td>
+      </tr>
+    </table>
+    <p class="dim" style="font-size:13.5px;">Said-ul-Ajaib itself sits in Group C — Cwa specifically, monsoon-influenced humid subtropical with a hot summer and a genuinely dry winter (some datasets place Delhi right at the border with BSh, semi-arid; Cwa is the standard designation and the one used here). The worked example below is that row, applied.</p>
+
+    <h3>Worked Example — Said-ul-Ajaib (Cwa)</h3>
+    <div class="guard-grid">
+      <div class="guard-col">
+        <h4>Summer (into the mid-40s°C)</h4>
+        <ul>
+          <li>Short sleeves, lightweight cotton-linen blend</li>
+          <li>Minimal layering — no vest over apron for floor/counter roles</li>
+        </ul>
+      </div>
+      <div class="guard-col">
+        <h4>Winter (cold, foggy, poor air quality)</h4>
+        <ul>
+          <li>Long sleeves, heavier-weight fabric, same cut</li>
+          <li>An optional Botanical Green cardigan layer, not a silhouette change</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout flexible">
+      <span class="callout-tag">Monsoon</span>
+      <p>Quick-dry fabric treatment across all roles, not just outdoor-facing ones — the Right Extension and Main Hall pond mean "outdoor-facing" isn't a clean category here the way it would be at a fully enclosed branch.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">4.7</div>
+    <h2>Food Safety &amp; Hygiene Equipment — Global Standard</h2>
+    <p>Unlike §4.6, this layer doesn't flex by climate at all — it flexes only by how close a role gets to actual food contact. The World Health Organization estimates 600 million cases of foodborne illness occur globally each year, and of the cases traced back to food-handler behavior, an estimated 89% involve hand contact — which is the actual argument for gloves and mouth covers existing as a fixed category, not a Said-ul-Ajaib-specific add-on.</p>
+    <p>The baseline follows the Codex Alimentarius General Principles of Food Hygiene — the WHO/FAO reference point most national food-safety regulators build from — with FSSAI Schedule 4 as the statutory floor for the Said-ul-Ajaib site specifically. Every future location meets whichever of the two, Codex or the applicable local code, sets the higher bar.</p>
+    <div class="guard-grid">
+      <div class="guard-col">
+        <h4>All Roles</h4>
+        <ul>
+          <li>Hair fully enclosed — cap or hairnet, not just a tie-back</li>
+          <li>Trimmed, unpolished nails; no rings, watches, or loose jewellery</li>
+          <li>Clean uniform per §4.3, changed if visibly soiled mid-shift</li>
+        </ul>
+      </div>
+      <div class="guard-col">
+        <h4>Direct Food-Contact Roles (Counter, Kitchen/Bakery)</h4>
+        <ul>
+          <li>Mouth cover worn during plating and any ready-to-eat handling — surgical-style or a clear anti-fog spit guard, changed at least every six hours or sooner if damp</li>
+          <li>Single-use, food-contact-safe gloves (nitrile, not latex, to avoid allergy exposure), changed between raw and cooked handling</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="callout-tag">Not a substitute</span>
+      <p>Gloves and masks supplement handwashing; they don't replace it. Both Codex and FSSAI are explicit that glove use without proper hand hygiene underneath creates a false sense of security rather than an actual control — training on when to change gloves matters as much as the gloves themselves.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">4.8</div>
+    <h2>Practical &amp; Physical Safety</h2>
+    <ul>
+      <li><strong>Non-slip footwear, mandatory</strong> for any role working near the Right Extension pond or the Main Hall's central glass-tank feature (Document 3 §3.4, §3.6) — standing water and foot traffic are a real combination, not a hypothetical one.</li>
+      <li><strong>Kitchen/Bakery fabrics</strong> should be heat-safe and non-synthetic near open flame or ovens — feeds directly into Document 12's fire safety planning rather than being decided in isolation here.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">4.9</div>
+    <h2>The Mark in Application</h2>
+    <p>Every placement here follows Document 1's simplification rule directly: at this scale, the brownie renders as a solid block with no interior drizzle or chunk detail — exactly the "below 24px, simplify" guidance from Document 1 §1.6, now actually applied rather than just specified.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">4.10</div>
+    <h2>Open Items for Sign-Off</h2>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+      <tr><td>Fabric sourcing / supplier</td><td><span class="status-pill pending">Pending</span></td><td>Document 7 (Sourcing &amp; Procurement), not decided here</td></tr>
+      <tr><td>Footwear brand/spec standard</td><td><span class="status-pill open">Open</span></td><td>Non-slip requirement is fixed; the actual approved shoe list isn't</td></tr>
+      <tr><td>Café-Restaurant stage — server uniform</td><td><span class="status-pill open">Open</span></td><td>Full table service at Document 0 §0.8 Stage 3 may need a fifth role; not designed yet</td></tr>
+      <tr><td>Designation badge vendor / engraving spec</td><td><span class="status-pill pending">Pending</span></td><td>Document 7, same channel as fabric and footwear</td></tr>
+      <tr><td>PPE supplier — masks &amp; gloves, food-contact certification</td><td><span class="status-pill pending">Pending</span></td><td>Document 7; §4.7's material requirements (nitrile, food-contact-safe) are the brief</td></tr>
+      <tr><td>Embedded Anchor collaboration badge — full spec</td><td><span class="status-pill open">Open</span></td><td>Deferred to a dedicated Embedded Anchor tier document; §4.5's note is a placeholder only</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">4.11</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">Doc 0<br>Brand Architecture</div>
+      <p>§0.7 set the fixed-silhouette / flexible-climate rule this entire document executes.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 1<br>Brand Identity</div>
+      <p>§1.6's sub-24px simplification rule is the exact spec used for every mark placement in §4.4.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 3<br>Architecture</div>
+      <p>Role zones in §4.2 and the water-safety flag in §4.8 both trace directly to the Main Hall and extensions.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 7<br>Sourcing &amp; Procurement</div>
+      <p><strong>Blocked on this document.</strong> Fabric, footwear, badge, and PPE vendors need the specs set in §4.3–§4.8 as their brief.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 4 · STAFF UNIFORM · GLOBAL CORE + LOCAL EXECUTION
+</footer>
+
+</body>
+</html>

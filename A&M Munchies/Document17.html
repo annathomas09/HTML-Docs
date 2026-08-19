@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 17: Packaging Code of Conduct &amp; Materials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400..600&family=Karla:ital,wght@0,300..800;1,400..600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6F1E3;
+    --cream-deep:#EEE3C8;
+    --paper:#FFFCF5;
+    --ink:#2A251D;
+    --ink-soft:#5B5340;
+    --forest:#2E4A38;
+    --forest-deep:#1E3226;
+    --terracotta:#BD5B31;
+    --terracotta-deep:#95431F;
+    --brass:#B4872F;
+    --brass-light:#E4C983;
+    --sage:#8C9B77;
+    --line:#DECFA8;
+    --danger:#A6432C;
+    --radius-s:6px;
+    --radius-m:14px;
+    --radius-l:26px;
+    --shadow-card: 0 1px 0 rgba(42,37,29,0.04), 0 8px 24px -14px rgba(42,37,29,0.28);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Karla',sans-serif;
+    font-size:16.5px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(42,37,29,0.05) 1px, transparent 0);
+    background-size:22px 22px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px 120px;position:relative;z-index:1;}
+
+  /* ---------- Suite bar ---------- */
+  .suitebar{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Space Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:.04em;
+  }
+  .suitebar .wrap{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:11px 28px;gap:16px;flex-wrap:wrap;
+  }
+  .suitebar a, .suitebar span{color:var(--brass-light);text-decoration:none;}
+  .suitebar .doccount{color:rgba(246,241,227,0.6);}
+
+  /* ---------- Header / Hero ---------- */
+  header.hero{padding-top:56px;}
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Space Mono',monospace;
+    font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--forest);margin-bottom:18px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--terracotta);}
+  .eyebrow .sep{color:var(--line);}
+
+  h1.doctitle{
+    font-family:'Fraunces',serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(2.1rem, 4.4vw, 3.4rem);
+    line-height:1.05;
+    margin:0 0 14px;
+    color:var(--forest-deep);
+    letter-spacing:-0.01em;
+  }
+  h1.doctitle em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--terracotta);
+  }
+  p.dek{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:1.28rem;
+    color:var(--ink-soft);
+    max-width:640px;
+    margin:0 0 30px;
+  }
+
+  .pillrow{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:44px;}
+  .pill{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.05em;
+    padding:7px 13px;border-radius:999px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink-soft);
+  }
+  .pill b{color:var(--forest-deep);font-weight:700;}
+  .pill.brass{border-color:var(--brass);background:#FBF3DF;color:var(--terracotta-deep);}
+  .pill.brass b{color:var(--terracotta-deep);}
+
+  /* ---------- Hero illustration ---------- */
+  .heroart{
+    background:linear-gradient(180deg, var(--paper) 0%, var(--cream-deep) 100%);
+    border:1px solid var(--line);
+    border-radius:var(--radius-l);
+    padding:10px 10px 0;
+    margin-bottom:52px;
+    box-shadow:var(--shadow-card);
+    overflow:hidden;
+  }
+  .heroart .cap{
+    display:flex;justify-content:space-between;
+    font-family:'Space Mono',monospace;font-size:11px;color:var(--ink-soft);
+    padding:12px 18px 16px;letter-spacing:.03em;
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section.block{margin-top:64px;}
+  .secnum{
+    font-family:'Space Mono',monospace;
+    color:var(--terracotta);
+    font-size:13px;letter-spacing:.06em;
+    margin-bottom:6px;
+    display:block;
+  }
+  h2{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:1.85rem;
+    color:var(--forest-deep);
+    margin:0 0 20px;
+    letter-spacing:-0.005em;
+  }
+  h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:1.27rem;
+    color:var(--terracotta-deep);
+    margin:34px 0 12px;
+  }
+  p{margin:0 0 16px;color:var(--ink);}
+  p.lead{font-size:1.08rem;color:var(--ink-soft);}
+  ul,ol{margin:0 0 18px;padding-left:22px;}
+  li{margin-bottom:8px;}
+  strong{color:var(--forest-deep);}
+  a{color:var(--terracotta-deep);}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  @media (max-width:720px){.twocol{grid-template-columns:1fr;}}
+
+  /* ---------- Callouts ---------- */
+  .callout{
+    border-left:4px solid var(--forest);
+    background:var(--paper);
+    border-radius:0 var(--radius-m) var(--radius-m) 0;
+    padding:18px 22px;
+    margin:24px 0;
+    box-shadow:var(--shadow-card);
+  }
+  .callout .ctitle{
+    font-family:'Space Mono',monospace;
+    font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--forest);margin-bottom:8px;font-weight:700;
+  }
+  .callout.warn{border-left-color:var(--terracotta);}
+  .callout.warn .ctitle{color:var(--terracotta-deep);}
+  .callout.brass{border-left-color:var(--brass);}
+  .callout.brass .ctitle{color:var(--brass);}
+  .callout p:last-child{margin-bottom:0;}
+
+  /* ---------- Tables ---------- */
+  .tablewrap{
+    overflow-x:auto;
+    border-radius:var(--radius-m);
+    border:1px solid var(--line);
+    margin:22px 0 30px;
+    box-shadow:var(--shadow-card);
+  }
+  table{width:100%;border-collapse:collapse;background:var(--paper);font-size:14.5px;min-width:560px;}
+  thead th{
+    text-align:left;
+    font-family:'Space Mono',monospace;
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    background:var(--forest-deep);color:var(--cream);
+    padding:12px 16px;
+  }
+  tbody td{padding:13px 16px;border-top:1px solid var(--line);vertical-align:top;}
+  tbody tr:nth-child(even) td{background:rgba(190,168,110,0.07);}
+  td.tier{font-family:'Space Mono',monospace;font-weight:700;color:var(--forest-deep);white-space:nowrap;}
+  td.num{font-family:'Space Mono',monospace;color:var(--terracotta-deep);white-space:nowrap;}
+
+  /* ---------- Materials legend ---------- */
+  .legend{display:flex;gap:22px;flex-wrap:wrap;margin:18px 0 8px;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-m);}
+  .legend .item{display:flex;align-items:center;gap:9px;font-family:'Space Mono',monospace;font-size:12px;color:var(--ink-soft);}
+  .legend svg{flex-shrink:0;}
+
+  /* ---------- Cards ---------- */
+  .cardgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:22px 0 10px;}
+  @media (max-width:720px){.cardgrid{grid-template-columns:1fr;}}
+  .prodcard{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-m);
+    padding:20px 22px;box-shadow:var(--shadow-card);
+  }
+  .prodcard h4{
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;
+    color:var(--forest-deep);margin:0 0 4px;
+  }
+  .prodcard .sub{font-family:'Space Mono',monospace;font-size:11px;color:var(--terracotta-deep);letter-spacing:.04em;margin-bottom:12px;display:block;}
+  .prodcard dl{margin:0;font-size:14px;}
+  .prodcard dt{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px;}
+  .prodcard dt:first-of-type{margin-top:0;}
+  .prodcard dd{margin:2px 0 0;color:var(--ink);}
+
+  /* ---------- Ring seal motif ---------- */
+  .ringnote{display:flex;gap:20px;align-items:flex-start;margin:26px 0;}
+  .ringnote svg{flex-shrink:0;margin-top:4px;}
+
+  /* ---------- Footer / cross-ref ---------- */
+  .xref{
+    margin-top:80px;padding-top:34px;border-top:1px solid var(--line);
+  }
+  .xref .xtitle{
+    font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:16px;
+  }
+  .xchips{display:flex;flex-wrap:wrap;gap:10px;}
+  .xchip{
+    font-family:'Space Mono',monospace;font-size:12px;
+    border:1px solid var(--line);border-radius:var(--radius-s);
+    padding:9px 13px;color:var(--forest-deep);background:var(--paper);
+  }
+  .xchip b{color:var(--terracotta-deep);}
+  footer.colophon{
+    margin-top:40px;padding-top:24px;border-top:1px dashed var(--line);
+    font-family:'Space Mono',monospace;font-size:11.5px;color:var(--ink-soft);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+
+  @media print{
+    .suitebar{display:none;}
+    body::before{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="suitebar"><div class="wrap">
+  <span>A&amp;M MUNCHIES — PLANNING SUITE</span>
+  <span class="doccount">DOCUMENT 17 OF 18</span>
+</div></div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">PACKAGING <span class="sep">/</span> MATERIALS <span class="sep">/</span> CODE OF CONDUCT <span class="dot"></span> ALL THREE TIERS</div>
+    <h1 class="doctitle">What holds the food<br>is <em>part of</em> the food.</h1>
+    <p class="dek">Packaging Code of Conduct &amp; Materials — the standards, vendor conduct, and branding rules for every box, cup, tin, and pouch A&amp;M Munchies puts into a hand, from the Kiosk counter to a Flagship gift order.</p>
+
+    <div class="pillrow">
+      <span class="pill brass"><b>DOC 17</b> of 18</span>
+      <span class="pill">APPLIES TO <b>FLAGSHIP · KIOSK · EMBEDDED</b></span>
+      <span class="pill">BENCHMARK <b>5-STAR</b> — see Doc 0 §Brand Positioning</span>
+      <span class="pill">STATUS <b>DRAFT v1</b> — pending Doc 10 cost reconciliation</span>
+    </div>
+
+    <div class="heroart">
+      <svg viewBox="0 0 900 300" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four packaging silhouettes: a domed cold-drink cup, a ribbon-tied Brownie Box, a heritage laddoo tin, and a kraft grab-and-go pouch, each marked with the brass ring seal.">
+        <rect x="0" y="0" width="900" height="300" fill="none"/>
+        <line x1="40" y1="248" x2="860" y2="248" stroke="#DECFA8" stroke-width="1.5"/>
+
+        <!-- Cup with dome lid -->
+        <g transform="translate(70,70)">
+          <path d="M18 40 L94 40 L84 168 Q56 178 28 168 Z" fill="#FFFCF5" stroke="#2A251D" stroke-width="2.5"/>
+          <path d="M10 40 Q56 12 102 40 Q56 58 10 40 Z" fill="#E4C983" stroke="#2A251D" stroke-width="2.5"/>
+          <circle cx="56" cy="40" r="7" fill="#FFFCF5" stroke="#2A251D" stroke-width="2"/>
+          <circle cx="56" cy="98" r="15" fill="none" stroke="#B4872F" stroke-width="2.5"/>
+          <circle cx="56" cy="98" r="15" fill="none" stroke="#B4872F" stroke-width="2.5" stroke-dasharray="2 3"/>
+          <text x="56" y="103" font-family="Fraunces, serif" font-size="10" text-anchor="middle" fill="#B4872F" font-weight="600">A&amp;M</text>
+          <path d="M28 168 Q56 178 84 168 L80 196 Q56 204 32 196 Z" fill="#F6F1E3" stroke="#2A251D" stroke-width="2.5"/>
+        </g>
+        <text x="115" y="268" font-family="Space Mono, monospace" font-size="12" text-anchor="middle" fill="#5B5340">COLD &amp; BOBA</text>
+
+        <!-- Brownie box with ribbon -->
+        <g transform="translate(270,90)">
+          <rect x="0" y="30" width="150" height="110" rx="4" fill="#FFFCF5" stroke="#2A251D" stroke-width="2.5"/>
+          <rect x="0" y="30" width="150" height="20" fill="#EEE3C8" stroke="#2A251D" stroke-width="2.5"/>
+          <rect x="66" y="0" width="18" height="140" fill="#BD5B31"/>
+          <rect x="0" y="76" width="150" height="18" fill="#BD5B31"/>
+          <path d="M75 55 Q60 40 75 25 Q90 40 75 55 Z" fill="#BD5B31" stroke="#95431F" stroke-width="1.5"/>
+          <path d="M75 55 Q90 40 75 25 Q60 40 75 55 Z" fill="none" stroke="#95431F" stroke-width="1.5"/>
+          <circle cx="75" cy="85" r="14" fill="none" stroke="#E4C983" stroke-width="2.5"/>
+          <text x="75" y="90" font-family="Fraunces, serif" font-size="9" text-anchor="middle" fill="#FFFCF5" font-weight="600">A&amp;M</text>
+        </g>
+        <text x="345" y="268" font-family="Space Mono, monospace" font-size="12" text-anchor="middle" fill="#5B5340">BROWNIE BOX</text>
+
+        <!-- Heritage laddoo tin -->
+        <g transform="translate(520,60)">
+          <ellipse cx="60" cy="30" rx="58" ry="14" fill="#E4C983" stroke="#2A251D" stroke-width="2.5"/>
+          <rect x="2" y="30" width="116" height="118" fill="#FFFCF5" stroke="#2A251D" stroke-width="2.5"/>
+          <ellipse cx="60" cy="148" rx="58" ry="14" fill="#EEE3C8" stroke="#2A251D" stroke-width="2"/>
+          <ellipse cx="60" cy="30" rx="58" ry="14" fill="none" stroke="#2A251D" stroke-width="2.5"/>
+          <circle cx="60" cy="82" r="17" fill="none" stroke="#B4872F" stroke-width="2.5"/>
+          <text x="60" y="87" font-family="Fraunces, serif" font-size="10" text-anchor="middle" fill="#B4872F" font-weight="600">A&amp;M</text>
+          <path d="M20 108 q40 14 80 0" fill="none" stroke="#8C9B77" stroke-width="2"/>
+        </g>
+        <text x="580" y="268" font-family="Space Mono, monospace" font-size="12" text-anchor="middle" fill="#5B5340">HERITAGE LADDOO</text>
+
+        <!-- Kraft pouch -->
+        <g transform="translate(710,55)">
+          <path d="M8 45 L100 45 L92 168 Q54 178 16 168 Z" fill="#EEE3C8" stroke="#2A251D" stroke-width="2.5"/>
+          <path d="M8 45 L28 15 L80 15 L100 45 Z" fill="#F6F1E3" stroke="#2A251D" stroke-width="2.5"/>
+          <line x1="38" y1="15" x2="38" y2="45" stroke="#2A251D" stroke-width="1.5"/>
+          <line x1="70" y1="15" x2="70" y2="45" stroke="#2A251D" stroke-width="1.5"/>
+          <circle cx="54" cy="95" r="15" fill="none" stroke="#BD5B31" stroke-width="2.5"/>
+          <text x="54" y="100" font-family="Fraunces, serif" font-size="9.5" text-anchor="middle" fill="#BD5B31" font-weight="600">A&amp;M</text>
+        </g>
+        <text x="765" y="268" font-family="Space Mono, monospace" font-size="12" text-anchor="middle" fill="#5B5340">GRAB-AND-GO</text>
+      </svg>
+      <div class="cap">
+        <span>FIG. 17-A — THE FOUR PACKAGING FAMILIES, UNIFIED BY THE RING SEAL</span>
+        <span>ORIGINAL LINE ART — SEE §17.9 FOR SOURCING OF DIRECTION</span>
+      </div>
+    </div>
+
+    <div class="callout brass">
+      <div class="ctitle">A note before you forward this</div>
+      <p>This document was rebuilt in a new working session. I could confirm the exact palette, type scale, and section-numbering pattern from the 19&nbsp;July continuation brief and from what's been described of Docs 0–16, but I did not have direct access to the live document suite (it lives in a OneDrive file this session can't reach) to pull the literal CSS values. The tokens below are a faithful, deliberate reconstruction — Fraunces / Karla / Space&nbsp;Mono, warm cream ground, forest + terracotta + brass accents pulled from the ring-light-and-greenery signature. If you paste Doc 0 or Doc 16 into the next message, I'll true up any drift in one pass rather than you having to eyeball it.</p>
+    </div>
+  </header>
+
+  <section class="block" id="s1">
+    <span class="secnum">17.1</span>
+    <h2>Purpose &amp; scope</h2>
+    <p class="lead">This document sets the material, construction, branding, and vendor-conduct standard for every physical package A&amp;M Munchies hands a customer — across all three tiers. It sits downstream of <strong>Doc 2</strong> (which decides what leaves the kitchen) and upstream of <strong>Doc 10</strong> and <strong>Doc 11</strong> (which price and model what's specified here).</p>
+    <p>Per Doc 0's brand positioning, A&amp;M Munchies benchmarks food quality, food safety, and infrastructure at a <strong>5-star standard throughout</strong> — not only at the Flagship. That standard extends to packaging: a Kiosk grab-and-go bag at a metro station and a Flagship gift order should read as the same brand at the same level of care, even though they carry very different cost ceilings (see §17.3).</p>
+    <p>As a reminder for anyone new to the suite: A&amp;M Munchies is an <strong>independent global café-restaurant brand</strong>, not subordinate to SCRIPTORIUM, built around three formats — <strong>Flagship</strong> (full café-restaurant, the primary planning focus, debuting in Said-ul-Ajaib before expanding to global capitals), <strong>Kiosk</strong> (grab-and-go, airports and metro stations), and <strong>Embedded</strong> (the in-house dining wing inside SCRIPTORIUM, TAU, and EGEB Headquarters). Flagship and Kiosk earn full commercial revenue; the Embedded tier earns revenue only at its first site — the embedded-tier wing within SCRIPTORIUM, Said-ul-Ajaib — while the TAU and EGEB Headquarters locations operate as a non-revenue service wing for students and faculty. That revenue split is the reason §17.3 sets a lower packaging-cost ceiling for TAU/EGEB than for the other three contexts.</p>
+
+    <div class="callout">
+      <div class="ctitle">How this document connects</div>
+      <p><strong>Upstream:</strong> Doc 0 (visual identity, 5-star positioning) → Doc 2 (menu architecture, the six-variety Brownie Box, the heritage laddoo line) → Doc 7 (sourcing philosophy) all feed the decisions here.<br>
+      <strong>Downstream:</strong> §17.8 of this document feeds Doc 10's cost model directly; §17.6's branding rules extend Doc 1's identity system onto physical substrates; §17.5 aligns with the sustainability posture set in Docs 13–15 (landscape, water harvesting, green energy).</p>
+    </div>
+  </section>
+
+  <section class="block" id="s2">
+    <span class="secnum">17.2</span>
+    <h2>The ring seal — packaging's signature device</h2>
+    <div class="ringnote">
+      <svg width="86" height="86" viewBox="0 0 86 86" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="43" cy="43" r="30" fill="none" stroke="#B4872F" stroke-width="3"/>
+        <circle cx="43" cy="43" r="30" fill="none" stroke="#B4872F" stroke-width="3" stroke-dasharray="1 4.5" transform="rotate(8 43 43)"/>
+        <text x="43" y="48" font-family="Fraunces, serif" font-size="13" text-anchor="middle" fill="#B4872F" font-weight="600">A&amp;M</text>
+      </svg>
+      <div>
+        <p>Every Flagship café greets a guest with the same fixed idea: a ring light haloed in greenery at the entrance. Packaging carries that idea in miniature. <strong>Every format — cup, box, tin, or pouch — closes under one small brass-foil ring seal</strong> stamped with the wordmark, sized and placed differently per substrate but never substituted with a different device.</p>
+        <p>It is the one constant across nine very different materials (see §17.4), which is deliberate: it means a Kiosk bag at the airport and a Flagship gift box read as the same brand at a glance, without needing the same box shape, colour, or price point to do it. Vendors are held to the seal's exact placement and minimum size in §17.6 — it is the single non-negotiable branding element in every purchase order.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="s3">
+    <span class="secnum">17.3</span>
+    <h2>Tier-differentiated packaging standards</h2>
+    <p class="lead">The same 5-star materials floor applies everywhere; what changes by context is the cost ceiling relative to item price, and how hard the package has to work (a Kiosk bag survives a security line and a train; a Flagship dine-in tray never leaves the building).</p>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Context</th><th>Primary material logic</th><th>Seal treatment</th><th>Cost ceiling*</th><th>Durability requirement</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tier">FLAGSHIP<br>dine-in</td>
+            <td>Reusable first: ceramic, glass, linen. Packaging in the retail sense barely exists here — this row is really "servingware."</td>
+            <td>Etched or printed directly on reusable ware; no disposable seal needed.</td>
+            <td class="num">n/a — capex, not per-unit</td>
+            <td>Commercial-kitchen durability, 5+ year service life</td>
+          </tr>
+          <tr>
+            <td class="tier">FLAGSHIP<br>to-go &amp; gift</td>
+            <td>Rigid kraft board, glass jars for premium retail lines, FSC-certified stock throughout.</td>
+            <td>Full brass foil-stamped ring seal, printed wordmark, no sticker shortcuts.</td>
+            <td class="num">6–9% of item price</td>
+            <td>Withstands a car ride and a gift shelf; structurally rigid</td>
+          </tr>
+          <tr>
+            <td class="tier">KIOSK<br>grab-and-go</td>
+            <td>PLA-lined paper cups, bagasse clamshells, single-material construction (no laminate mixing, for compostability).</td>
+            <td>Printed ring seal at manufacture (not a separate sticker) — cheaper at Kiosk volumes.</td>
+            <td class="num">4–6% of item price</td>
+            <td>Survives transit, one-hand carry, security-line handling</td>
+          </tr>
+          <tr>
+            <td class="tier">EMBEDDED<br>SCRIPTORIUM</td>
+            <td>Same standard as Flagship to-go — this wing earns revenue and represents the brand to campus visitors.</td>
+            <td>Full brass foil ring seal, as Flagship.</td>
+            <td class="num">6–9% of item price</td>
+            <td>Same as Flagship to-go</td>
+          </tr>
+          <tr>
+            <td class="tier">EMBEDDED<br>TAU + EGEB HQ</td>
+            <td>Non-revenue service wing (see §17.1) — cost-optimised single-material kraft, no gift-tier options offered.</td>
+            <td>Printed ring seal at manufacture, smaller format.</td>
+            <td class="num">2–3% of item price</td>
+            <td>Same functional bar; simplified format only</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--ink-soft);margin-top:-14px;">*Cost ceiling shown as a share of the item's own menu price, not an absolute rupee figure — absolute bands are in §17.8, pending reconciliation against Doc 10.</p>
+  </section>
+
+  <section class="block" id="s4">
+    <span class="secnum">17.4</span>
+    <h2>Material matrix, by product category</h2>
+    <p class="lead">Nine packaging families cover the full menu. Each entry below names the primary vessel, the closure, where the ring seal sits, and its compostability rating.</p>
+
+    <div class="legend">
+      <div class="item"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2C4 2 2 8 2 12c0 4 3.5 6 8 6s8-2 8-6c0-4-2-10-8-10z" fill="none" stroke="#2E4A38" stroke-width="1.6"/><path d="M10 4v14M6 8c2 1 3 2 4 4M14 8c-2 1-3 2-4 4" fill="none" stroke="#2E4A38" stroke-width="1.3"/></svg> COMPOSTABLE</div>
+      <div class="item"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2 L13 6 L10.5 6 L10.5 9 L7.5 9 L7.5 6 L5 6 Z" fill="#B4872F"/><path d="M4 12 a6 6 0 0 1 3-5.2" fill="none" stroke="#B4872F" stroke-width="1.6"/><path d="M16 12 a6 6 0 0 1 -3 5.2" fill="none" stroke="#B4872F" stroke-width="1.6"/><path d="M10 18 a6 6 0 0 1 -5-2.8" fill="none" stroke="#B4872F" stroke-width="1.6"/></svg> RECYCLABLE</div>
+      <div class="item"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="#BD5B31" stroke-width="1.6"/><path d="M10 5 L13 8 L10 8Z" fill="#BD5B31"/></svg> REUSABLE / RETURNABLE</div>
+    </div>
+
+    <div class="cardgrid">
+      <div class="prodcard">
+        <h4>Hot beverage</h4>
+        <span class="sub">Rossette Coffee Lab pours</span>
+        <dl>
+          <dt>Vessel</dt><dd>Double-wall PLA-lined kraft cup, uncoated exterior</dd>
+          <dt>Closure</dt><dd>Sip-through lid, no straw by default</dd>
+          <dt>Seal</dt><dd>Ring printed on the sleeve, not the cup</dd>
+          <dt>Rating</dt><dd>Compostable — industrial facility</dd>
+        </dl>
+      </div>
+      <div class="prodcard">
+        <h4>Cold beverage &amp; boba</h4>
+        <span class="sub">Layered drinks, dalgona-style, mocktails</span>
+        <dl>
+          <dt>Vessel</dt><dd>Clear rPET cup — clarity matters for layered drinks</dd>
+          <dt>Closure</dt><dd>Domed lid, heat-sealed film option at Kiosk</dd>
+          <dt>Seal</dt><dd>Brass ring sticker on the dome, see Fig. 17-A</dd>
+          <dt>Rating</dt><dd>Recyclable — rPET stream</dd>
+        </dl>
+      </div>
+      <div class="prodcard">
+        <h4>Brownie Box <span style="color:var(--terracotta-deep);">★ hero product</span></h4>
+        <span class="sub">Six varieties · Mason &amp; Co chocolate</span>
+        <dl>
+          <dt>Vessel</dt><dd>Rigid two-piece kraft box, six-cavity insert</dd>
+          <dt>Closure</dt><dd>Terracotta ribbon cross, see Fig. 17-A</dd>
+          <dt>Seal</dt><dd>Foil ring at the ribbon knot — the flagship execution of the seal</dd>
+          <dt>Rating</dt><dd>Recyclable board; insert compostable</dd>
+        </dl>
+      </div>
+      <div class="prodcard">
+        <h4>Heritage laddoo line</h4>
+        <span class="sub">Til-gud, dry fruit, ajwain wellness sweets</span>
+        <dl>
+          <dt>Vessel</dt><dd>Steel-rimmed kraft tin, modernised mithai-box logic</dd>
+          <dt>Closure</dt><dd>Press-fit lid, sage-cord tie for gift orders</dd>
+          <dt>Seal</dt><dd>Brass ring embossed on the lid</dd>
+          <dt>Rating</dt><dd>Reusable / returnable tin, deposit-backed at Flagship</dd>
+        </dl>
+      </div>
+      <div class="prodcard">
+        <h4>Bakery &amp; cookies</h4>
+        <span class="sub">Cookie fries, gourmet gift boxes</span>
+        <dl>
+          <dt>Vessel</dt><dd>Window-front kraft box, cellulose window (not plastic)</dd>
+          <dt>Closure</dt><dd>Tuck-flap, no adhesive</dd>
+          <dt>Seal</dt><dd>Ring stamped on the flap</dd>
+          <dt>Rating</dt><dd>Compostable, window included</dd>
+        </dl>
+      </div>
+      <div class="prodcard">
+        <h4>Cakes &amp; desserts</h4>
+        <span class="sub">Parfait cups, bento-style mini-cakes</span>
+        <dl>
+          <dt>Vessel</dt><dd>PLA cup for parfaits; rigid box with base board for cakes</dd>
+          <dt>Closure</dt><dd>Snap-fit dome or box lid</dd>
+          <dt>Seal</dt><dd>Ring sticker, dome or lid-top</dd>
+          <dt>Rating</dt><dd>Compostable</dd>
+        </dl>
+      </div>
+      <div class="prodcard">
+        <h4>Sandwiches &amp; grab-and-go</h4>
+        <span class="sub">Sando, bao, poke boxes</span>
+        <dl>
+          <dt>Vessel</dt><dd>Bagasse clamshell or kraft pouch, see Fig. 17-A</dd>
+          <dt>Closure</dt><dd>Fold-and-seal, no plastic clip</dd>
+          <dt>Seal</dt><dd>Ring sticker at the fold</dd>
+          <dt>Rating</dt><dd>Compostable</dd>
+        </dl>
+      </div>
+      <div class="prodcard">
+        <h4>Smoothies &amp; functional-health</h4>
+        <span class="sub">Protein-forward, iron-forward line</span>
+        <dl>
+          <dt>Vessel</dt><dd>Glass bottle at Flagship (returnable); rPET at Kiosk</dd>
+          <dt>Closure</dt><dd>Tamper-band cap</dd>
+          <dt>Seal</dt><dd>Ring on the neck label, alongside nutrition micro-copy</dd>
+          <dt>Rating</dt><dd>Reusable (glass) / recyclable (rPET)</dd>
+        </dl>
+      </div>
+      <div class="prodcard">
+        <h4>Retail &amp; gift</h4>
+        <span class="sub">Cross-category hampers, corporate orders</span>
+        <dl>
+          <dt>Vessel</dt><dd>Rigid box, tote-bag carrier for multi-item orders</dd>
+          <dt>Closure</dt><dd>Ribbon, matching §17.6 colour-by-family rule</dd>
+          <dt>Seal</dt><dd>Largest permitted ring seal in the system, on the lid</dd>
+          <dt>Rating</dt><dd>Recyclable / reusable tote</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="s5">
+    <span class="secnum">17.5</span>
+    <h2>Sustainability &amp; materials code of conduct</h2>
+    <p class="lead">Five rules, applied without exception across all three tiers:</p>
+    <ol>
+      <li><strong>No virgin single-use plastic</strong> in any customer-facing package, cutlery included. Cutlery defaults to FSC-certified wood or is skipped unless requested.</li>
+      <li><strong>No mixed-material laminates.</strong> A cup is either fully compostable (paper + PLA lining) or fully recyclable (rPET) — never a plastic-coated paper that can't be sorted into either stream. This is the same logic that already excludes composite laminates from the sourcing conversation in Doc 7.</li>
+      <li><strong>FSC-certified paperboard is the floor</strong>, not an upgrade, for every kraft and rigid-board format.</li>
+      <li><strong>Reusable beats recyclable beats compostable beats everything else</strong>, in that order of preference, whenever the format allows it — hence glass at Flagship dine-in and the deposit-backed laddoo tin.</li>
+      <li><strong>Regulatory alignment.</strong> Every format meets FSSAI packaging and labelling requirements ahead of Doc 9's licensing pass, and the compost/recycle ratings above are cross-checked against the sustainability posture already set in Docs 13–15 (landscape, water harvesting, green energy) so the café's back-of-house practice and its packaging tell the same story.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="s6">
+    <span class="secnum">17.6</span>
+    <h2>Branding application standards</h2>
+    <div class="twocol">
+      <div>
+        <h3>The ring seal — placement rules</h3>
+        <ul>
+          <li>Minimum diameter 12mm on any single-serve item, scaling up to the largest execution on gift and hamper boxes (§17.4).</li>
+          <li>Never resized below legibility of the "A&amp;M" mark inside it.</li>
+          <li>Foil-stamped or embossed wherever the unit economics allow it (Flagship, gift, laddoo tins); printed at manufacture for Kiosk volumes.</li>
+          <li>Exactly one seal per package — it is a signature, not a repeating pattern.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Typography on pack</h3>
+        <ul>
+          <li><strong>Fraunces</strong> — wordmark and hero product names only.</li>
+          <li><strong>Karla</strong> — ingredient lists, allergen notes, any customer-facing sentence.</li>
+          <li><strong>Space Mono</strong> — batch codes, dates, weights, anything numeric or regulatory.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Colour-by-family system</h3>
+    <p>Rather than branding every box identically, each product family carries one accent from the core palette, so a customer can sort a mixed order by colour before reading a label:</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Accent</th><th>Family</th><th>Applies to</th></tr></thead>
+        <tbody>
+          <tr><td class="tier" style="color:var(--forest-deep);">FOREST GREEN</td><td>Savory &amp; multi-cuisine</td><td>Sandwiches, grab-and-go, global-cuisine plates</td></tr>
+          <tr><td class="tier" style="color:var(--terracotta-deep);">TERRACOTTA</td><td>Bakery &amp; dessert</td><td>Brownie Box, cookies, cakes</td></tr>
+          <tr><td class="tier" style="color:var(--brass);">BRASS</td><td>Premium, gift &amp; heritage</td><td>Laddoo line, retail hampers, corporate gifting</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" id="s7">
+    <span class="secnum">17.7</span>
+    <h2>Vendor &amp; sourcing code of conduct</h2>
+    <p class="lead">This extends Doc 7's sourcing philosophy from ingredients to substrates.</p>
+    <ul>
+      <li><strong>Local manufacture preference.</strong> Packaging vendors within reach of the Flagship's debut site in Said-ul-Ajaib, South Delhi, are preferred over long-haul suppliers, both to cut transport footprint and to support Delhi-NCR packaging MSMEs.</li>
+      <li><strong>Ethical labour audit.</strong> Every packaging vendor is audited to the same labour standard applied to food suppliers in Doc 7 before a purchase order is placed, repeated annually.</li>
+      <li><strong>Small-batch tooling for the Brownie Box.</strong> Six varieties sharing one box format means the insert tooling, not the box itself, carries the SKU complexity — vendors must support short-run insert changes without re-tooling the outer box.</li>
+      <li><strong>No exclusivity lock-in.</strong> At least two qualified vendors per material category at all times, so a single supplier failure never stops production.</li>
+      <li><strong>Quality-control checkpoint.</strong> Ring-seal placement, board weight, and compostability certification are spot-checked on every incoming batch, not just at vendor onboarding.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="s8">
+    <span class="secnum">17.8</span>
+    <h2>Cost banding</h2>
+    <p class="lead">Shown as relative bands, not final rupee figures — these are placeholders for Doc 10 to firm up under its Indian cost-benchmarking pass (G1), which prices every district against the costliest, most upscale comparable per state.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Category</th><th>Relative band</th><th>Driver</th></tr></thead>
+        <tbody>
+          <tr><td>Kiosk single-serve (cup, pouch, clamshell)</td><td class="num">LOW</td><td>Volume manufacture, printed (not foiled) seal</td></tr>
+          <tr><td>Flagship to-go, single item</td><td class="num">LOW–MID</td><td>Foil seal, FSC board, lower volume than Kiosk</td></tr>
+          <tr><td>Brownie Box, laddoo tin, cake box</td><td class="num">MID–HIGH</td><td>Multi-piece construction, insert tooling, ribbon</td></tr>
+          <tr><td>Retail hamper / corporate gifting</td><td class="num">HIGH</td><td>Largest format, multi-item, premium finish</td></tr>
+          <tr><td>Reusable glass &amp; deposit-backed tins</td><td class="num">CAPEX, amortised</td><td>Upfront cost recovered over the return cycle, not priced per use</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" id="s9">
+    <span class="secnum">17.9</span>
+    <h2>Visual reference direction</h2>
+    <p class="lead">The four silhouettes in Fig. 17-A, and the material choices through §17.4, were directed against a shared image library rather than invented from nothing — the packaging-systems category first indexed across this project's earlier batches (kraft bags, handled paper boxes, clamshells, tins, edible cups, tote-bag carriers, ribbon gift boxes, cocktail-to-go caddies), plus a newer, more specific set: domed sealed cups with printed branding and sticker seals, and individually wrapped, stick-format packs.</p>
+
+    <div class="callout warn">
+      <div class="ctitle">Why the reference photos aren't embedded directly</div>
+      <p>The Drive folder is genuinely useful as a private mood board, but it's a flat, unsorted export of raw phone screenshots — Pinterest and Xiaohongshu app chrome, other people's usernames and comments, and in a few cases a competitor's own trademark and packaging design, still in frame. Reproducing those directly in a document meant to go to contractors, architects, or investors would look unfinished at best and borrow someone else's branding at worst. So the standard through this suite holds: <strong>real image or a written description</strong> — and here, "real image" means an original illustration built in-house from the reference, in A&amp;M Munchies' own palette and mark, not a re-hosted screenshot.</p>
+    </div>
+
+    <p>If a specific reference photo would help a vendor conversation more than the line art does — for instance, showing a manufacturer the exact dome-lid profile — the right move is to open that one image from the Drive folder directly in that conversation, not paste it into this document.</p>
+  </section>
+
+  <section class="block" id="s10">
+    <span class="secnum">17.10</span>
+    <h2>Open items &amp; next steps</h2>
+    <ul>
+      <li><strong>Doc 10 reconciliation</strong> — replace the relative bands in §17.8 with real figures once the G1 Indian cost-benchmarking pass is done.</li>
+      <li><strong>Doc 0 / Doc 16 cross-check</strong> — true up the exact palette and type tokens in this file against the live suite the first time either is shared into a session that can read it.</li>
+      <li><strong>Next in the build queue: Document 18, Discounting &amp; Offers (E6)</strong> — packaging touches that document directly, since promotional stickers and student-discount markers need a defined spot on-pack that doesn't collide with the ring seal.</li>
+      <li><strong>Image-library pass across Docs 0–16</strong> — tracked separately; see the note at the end of this chat rather than in-document, since it depends on where the live files can actually be reached from.</li>
+    </ul>
+  </section>
+
+  <div class="xref">
+    <div class="xtitle">Cross-referenced in this document</div>
+    <div class="xchips">
+      <span class="xchip"><b>Doc 00</b> — Brand Architecture &amp; Identity</span>
+      <span class="xchip"><b>Doc 01</b> — Brand Identity</span>
+      <span class="xchip"><b>Doc 02</b> — Menu &amp; F&amp;B Concept</span>
+      <span class="xchip"><b>Doc 07</b> — Sourcing &amp; Procurement</span>
+      <span class="xchip"><b>Doc 09</b> — Regulatory &amp; Licensing</span>
+      <span class="xchip"><b>Doc 10</b> — Cost Estimation</span>
+      <span class="xchip"><b>Doc 11</b> — Business Plan &amp; Revenue Model</span>
+      <span class="xchip"><b>Docs 13–15</b> — Landscape · Water · Green Energy</span>
+    </div>
+  </div>
+
+  <footer class="colophon">
+    <span>A&amp;M MUNCHIES PLANNING SUITE — DOC 17 / 18</span>
+    <span>DRAFT v1 — PACKAGING CODE OF CONDUCT &amp; MATERIALS</span>
+  </footer>
+
+</div>
+</body>
+</html>

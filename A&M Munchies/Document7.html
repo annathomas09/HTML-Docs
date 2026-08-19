@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 7: Sourcing &amp; Procurement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F; --bg-elevated:#1A2016; --bg-elevated-2:#212818;
+    --green:#4A5D3A; --green-soft:#7A9463; --green-dark:#3A4A2E;
+    --gold:#C9A25C; --gold-soft:#E2C48D;
+    --cream:#EEE7D8; --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C; --ink:#1C1710;
+    --border:rgba(201,162,92,0.22); --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif; --font-body:'Karla', sans-serif; --font-mono:'Space Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--cream); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:var(--gold-soft); }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  .hero{ position:relative; padding:100px 0 84px; text-align:center;
+    background: radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%), linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border); overflow:hidden; }
+  .signature{ width:340px; height:260px; margin:0 auto 18px; }
+  @media (prefers-reduced-motion: no-preference){ .signature .glow-ring{ animation: pulseGlow 5s ease-in-out infinite; } }
+  @keyframes pulseGlow{ 0%,100%{ opacity:1; } 50%{ opacity:0.72; } }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+  .hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(38px, 6vw, 64px); letter-spacing:-0.01em; color:var(--cream); margin-bottom:10px; }
+  .hero .doc-title{ font-family:var(--font-display); font-weight:400; font-style:italic; font-size:clamp(18px, 2.4vw, 24px); color:var(--gold-soft); margin-bottom:22px; }
+  .hero .doc-sub{ max-width:560px; margin:0 auto; color:var(--cream-dim); font-size:15px; }
+  .tag-row{ display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--border-strong); border-radius:100px; color:var(--gold-soft); }
+
+  section.doc-section{ padding:64px 0; border-bottom:1px solid var(--border); }
+  section.doc-section:last-of-type{ border-bottom:none; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:0.06em; margin-bottom:8px; }
+  h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px, 3.4vw, 34px); color:var(--cream); margin-bottom:20px; letter-spacing:-0.01em; }
+  h3{ font-family:var(--font-display); font-weight:500; font-size:19px; color:var(--gold-soft); margin:26px 0 10px; }
+  p{ margin-bottom:14px; max-width:66ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  .lede{ font-family:var(--font-display); font-size:20px; font-weight:400; font-style:italic; color:var(--gold-soft); line-height:1.5; max-width:64ch; margin-bottom:22px; }
+  ul{ margin:0 0 16px 20px; max-width:64ch; } li{ margin-bottom:8px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--bg-elevated); padding:18px 22px; border-radius:2px; margin:18px 0; }
+  .callout.flexible{ border-left:3px dashed var(--green-soft); }
+  .callout-tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .callout.flexible .callout-tag{ color:var(--green-soft); }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+
+  .open-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  .open-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 12px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .open-table td{ padding:12px 12px 12px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+  .status-pill{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.pending{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+
+  .xref{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{ font-family:var(--font-mono); font-size:12px; color:var(--gold); flex:0 0 130px; }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; } .xref strong{ color:var(--cream); }
+
+  footer{ text-align:center; padding:50px 28px 70px; color:var(--cream-dim); font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; }
+
+  .rule-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:20px 0; }
+  @media (max-width:680px){ .rule-grid{ grid-template-columns:1fr; } }
+  .rule-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:16px 18px; }
+  .rule-card .rule-term{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:6px; display:block; }
+  .rule-card p{ font-size:13.5px; margin-bottom:0; }
+
+  .vendor-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin:20px 0; }
+  @media (max-width:680px){ .vendor-grid{ grid-template-columns:1fr; } }
+  .vendor-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:10px; padding:22px; }
+  .vendor-card.primary{ border-color:var(--gold); background:var(--bg-elevated-2); }
+  .vendor-card .v-status{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--green-soft); display:block; margin-bottom:10px; }
+  .vendor-card.primary .v-status{ color:var(--gold); }
+  .vendor-card h4{ font-family:var(--font-display); font-size:20px; color:var(--cream); margin-bottom:4px; }
+  .vendor-card .v-location{ font-family:var(--font-mono); font-size:11px; color:var(--cream-dim); margin-bottom:12px; display:block; }
+  .vendor-card p{ font-size:13.5px; margin-bottom:8px; }
+  .vendor-card p:last-child{ margin-bottom:0; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+    <div class="eyebrow">A&amp;M Munchies — Global Brand Standard</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 7 of 13 — Sourcing &amp; Procurement</div>
+    <p class="doc-sub">Premium isn't a price point here — it's traceable origin, real ingredients, and vendors whose own values hold up next to this brand's.</p>
+    <div class="tag-row">
+      <span class="tag">Global standards + local vendors</span>
+      <span class="tag">Resolves Docs 1, 2 &amp; 4 flags</span>
+      <span class="tag">Version 1 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">7.1</div>
+    <h2>Scope &amp; Purpose</h2>
+    <p>Three explicit dependencies land here: Document 2 §2.8's ingredient philosophy, Document 4 §4.9's fabric and footwear brief, and packaging vendors that were blocked on Document 1's finished mark. This document answers all three, plus sets what "premium" actually means as a sourcing standard rather than a marketing word.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">7.2</div>
+    <h2>What "Premium" Means Here</h2>
+    <div class="rule-grid">
+      <div class="rule-card"><span class="rule-term">Real, never compound</span><p>Couverture chocolate, not compound. Real dairy butter, not vanaspati. Document 2 §2.8's "no cost-driven substitution" rule, made literal.</p></div>
+      <div class="rule-card"><span class="rule-term">Traceable origin</span><p>Single-origin or named-estate wherever the category allows it — not anonymous bulk commodity with a premium label stuck on top.</p></div>
+      <div class="rule-card"><span class="rule-term">Values, not just price</span><p>A vendor whose own story holds up next to this brand's isn't a soft nice-to-have — see §7.3.</p></div>
+      <div class="rule-card"><span class="rule-term">Local-first when local wins</span><p>A Delhi-roasted coffee bean reaching Said-ul-Ajaib — the first embedded-tier location, within SCRIPTORIUM — fresher than an imported one isn't a compromise — it's the actually-premium choice. See §7.4.</p></div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">7.3</div>
+    <h2>Chocolate &amp; Cacao</h2>
+    <p>The Brownie Box's core ingredient, and the one place Document 2 §2.8 called non-negotiable everywhere.</p>
+    <div class="vendor-grid">
+      <div class="vendor-card primary">
+        <span class="v-status">Primary recommendation</span>
+        <h4>Mason &amp; Co</h4>
+        <span class="v-location">Puducherry / South India</span>
+        <p>Bean-to-bar, cacao sourced from organic-certified farms across Kerala, Karnataka, and Tamil Nadu.</p>
+        <p><strong>The real reason this is the primary pick:</strong> Mason &amp; Co's production is carried out by an all-female workforce. Sourcing from them doesn't just clear the ingredient-quality bar — it puts Document 8's entire women's-empowerment thread into the supply chain itself, not only into internal hiring. Bulk supply for restaurants and hotels is already part of their offering.</p>
+      </div>
+      <div class="vendor-card">
+        <span class="v-status">Backup / secondary</span>
+        <h4>Kocoatrait</h4>
+        <span class="v-location">India</span>
+        <p>Organic, single-origin bean-to-bar couverture at multiple cacao percentages — a solid fallback if Mason &amp; Co's capacity doesn't scale with demand.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">7.4</div>
+    <h2>Coffee</h2>
+    <p>The beverage-program anchor from Document 2 §2.5.</p>
+    <div class="vendor-grid">
+      <div class="vendor-card primary">
+        <span class="v-status">Primary — Said-ul-Ajaib</span>
+        <h4>Rossette Coffee Lab</h4>
+        <span class="v-location">Delhi</span>
+        <p>Specialty-grade (SCA 80+), direct-sourced from farmers, roasted in-house on a German Probat roaster. Delhi-based means genuinely shorter supply chain to this branch, not just a marketing claim — and they offer barista training and café consultation alongside supply.</p>
+      </div>
+      <div class="vendor-card">
+        <span class="v-status">National backup / future branches</span>
+        <h4>Blue Tokai</h4>
+        <span class="v-location">Multi-city, India</span>
+        <p>India's most established specialty roaster, single-estate Arabica, small-batch roasted. The right fallback once a branch sits somewhere Rossette can't reach efficiently — the "local-first" principle in §7.2 still applies, just against a different local.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">7.5</div>
+    <h2>Dairy &amp; Seasonal Fruit</h2>
+    <p><strong>Butter:</strong> real dairy butter only, everywhere, full stop — this is Document 2 §2.8's non-negotiable line, and it doesn't get a named vendor here because the principle matters more than the brand; any certified dairy supplier meeting that one bar qualifies.</p>
+    <p><strong>Fruit:</strong> mango and strawberry for the Individual Boxed Desserts source seasonally and locally per branch, exactly as Document 2 §2.8 already set — Delhi's own mango season anchors Said-ul-Ajaib's version rather than year-round imported fruit standing in for it.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">7.6</div>
+    <h2>Packaging</h2>
+    <p>Kraft or window box for the Brownie Box, clear acrylic for the Individual Boxed Desserts — both specified in Document 2 §2.6, both waiting on a vendor. The acrylic-box packaging you referenced at the very start of this project (the newbakekraft reference) is worth revisiting directly as a candidate lead now that Document 1's mark exists to print on it.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">7.7</div>
+    <h2>Uniform Fabric &amp; Footwear</h2>
+    <p>Document 4 §4.9 named this document as the block. Two specs to source against, both already fixed: <strong>fabric</strong> — lightweight cotton-linen blend for summer, heavier weight in the same cut for winter, per Document 4 §4.5's climate guardrails; <strong>footwear</strong> — non-slip sole rating is mandatory for Counter and Floor roles per Document 4 §4.6, not optional or role-dependent. Specific supplier names aren't set here — the spec is complete enough for procurement to shop it out.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">7.8</div>
+    <h2>Vendor Vetting Standard</h2>
+    <p>Global, fixed: real ingredients only, traceable origin preferred, values-alignment weighed alongside price and consistency — never price alone. Local, flexible: the actual vendor roster differs by branch and city, following §7.2's local-first principle rather than defaulting to whichever supplier served the first location.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">7.9</div>
+    <h2>Open Items for Sign-Off</h2>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+      <tr><td>Mason &amp; Co — capacity &amp; pricing confirmation</td><td><span class="status-pill open">Open</span></td><td>Recommended, not yet contacted or contracted</td></tr>
+      <tr><td>Packaging vendor, final selection</td><td><span class="status-pill open">Open</span></td><td>newbakekraft flagged as a lead, not confirmed</td></tr>
+      <tr><td>Fabric &amp; footwear supplier names</td><td><span class="status-pill open">Open</span></td><td>Spec is fixed; supplier isn't</td></tr>
+      <tr><td>Dairy supplier, Said-ul-Ajaib</td><td><span class="status-pill open">Open</span></td><td>Principle set in §7.5, no specific vendor identified</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">7.10</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">Doc 1<br>Brand Identity</div>
+      <p>Packaging in §7.6 needed this document's finished mark before print-ready artwork could be commissioned — no longer blocked.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 2<br>Menu &amp; F&amp;B</div>
+      <p>§2.8's sourcing philosophy is executed directly in §7.3–§7.5.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 4<br>Staff Uniform</div>
+      <p>§7.7 closes the exact gap §4.9 named.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 8<br>Staff Planning</div>
+      <p>§7.3's Mason &amp; Co pick is this document's version of §8.2's compassion philosophy — extended into who gets paid, not just who gets hired.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 7 · SOURCING &amp; PROCUREMENT · GLOBAL STANDARDS + LOCAL VENDORS
+</footer>
+
+</body>
+</html>

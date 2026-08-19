@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 1: Brand Identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F; --bg-elevated:#1A2016; --bg-elevated-2:#212818;
+    --green:#4A5D3A; --green-soft:#7A9463; --green-dark:#3A4A2E;
+    --gold:#C9A25C; --gold-soft:#E2C48D;
+    --cream:#EEE7D8; --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C; --ink:#1C1710;
+    --border:rgba(201,162,92,0.22); --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif; --font-body:'Karla', sans-serif; --font-mono:'Space Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--cream); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:var(--gold-soft); }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  .hero{ position:relative; padding:100px 0 84px; text-align:center;
+    background: radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%), linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border); overflow:hidden; }
+  .signature{ width:340px; height:260px; margin:0 auto 18px; }
+  @media (prefers-reduced-motion: no-preference){ .signature .glow-ring{ animation: pulseGlow 5s ease-in-out infinite; } }
+  @keyframes pulseGlow{ 0%,100%{ opacity:1; } 50%{ opacity:0.72; } }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+  .hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(38px, 6vw, 64px); letter-spacing:-0.01em; color:var(--cream); margin-bottom:10px; }
+  .hero .doc-title{ font-family:var(--font-display); font-weight:400; font-style:italic; font-size:clamp(18px, 2.4vw, 24px); color:var(--gold-soft); margin-bottom:22px; }
+  .hero .doc-sub{ max-width:560px; margin:0 auto; color:var(--cream-dim); font-size:15px; }
+  .tag-row{ display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--border-strong); border-radius:100px; color:var(--gold-soft); }
+
+  section.doc-section{ padding:64px 0; border-bottom:1px solid var(--border); }
+  section.doc-section:last-of-type{ border-bottom:none; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:0.06em; margin-bottom:8px; }
+  h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px, 3.4vw, 34px); color:var(--cream); margin-bottom:20px; letter-spacing:-0.01em; }
+  h3{ font-family:var(--font-display); font-weight:500; font-size:19px; color:var(--gold-soft); margin:26px 0 10px; }
+  p{ margin-bottom:14px; max-width:66ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  .lede{ font-family:var(--font-display); font-size:20px; font-weight:400; font-style:italic; color:var(--gold-soft); line-height:1.5; max-width:64ch; margin-bottom:22px; }
+  ul{ margin:0 0 16px 20px; max-width:64ch; } li{ margin-bottom:8px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--bg-elevated); padding:18px 22px; border-radius:2px; margin:18px 0; }
+  .callout.flexible{ border-left:3px dashed var(--green-soft); }
+  .callout.warn{ border-left:3px solid var(--terracotta); }
+  .callout-tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .callout.flexible .callout-tag{ color:var(--green-soft); }
+  .callout.warn .callout-tag{ color:#D18C6D; }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+
+  .open-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  .open-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 12px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .open-table td{ padding:12px 12px 12px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+  .status-pill{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.pending{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+
+  .xref{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{ font-family:var(--font-mono); font-size:12px; color:var(--gold); flex:0 0 130px; }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; } .xref strong{ color:var(--cream); }
+
+  footer{ text-align:center; padding:50px 28px 70px; color:var(--cream-dim); font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; }
+
+  /* --- new for doc 1 --- */
+  .logo-showcase{ border-radius:10px; padding:40px 20px; margin:16px 0; text-align:center; }
+  .logo-showcase.dark{ background:var(--bg-elevated); border:1px solid var(--border); }
+  .logo-showcase.light{ background:var(--cream); }
+  .showcase-label{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; margin-top:18px; opacity:0.65; }
+  .logo-showcase.dark .showcase-label{ color:var(--cream-dim); }
+  .logo-showcase.light .showcase-label{ color:var(--ink); }
+
+  .lockup-h{ display:inline-flex; align-items:center; gap:16px; }
+  .lockup-v{ display:inline-flex; flex-direction:column; align-items:center; gap:12px; }
+  .mark-icon{ width:56px; height:auto; flex:0 0 auto; }
+  .mark-icon.lg{ width:88px; }
+  .wordmark{ font-family:var(--font-display); font-weight:600; font-size:24px; letter-spacing:0.01em; white-space:nowrap; }
+  .wordmark.lg{ font-size:30px; }
+  .wordmark .amp{ font-style:italic; font-weight:400; }
+  .wordmark.on-dark{ color:var(--cream); }
+  .wordmark.on-light{ color:var(--ink); }
+
+  .showcase-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0; }
+  @media (max-width:680px){ .showcase-row{ grid-template-columns:1fr; } }
+
+  .app-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:24px 0; }
+  @media (max-width:760px){ .app-grid{ grid-template-columns:1fr; } }
+  .app-card{ border-radius:8px; overflow:hidden; border:1px solid var(--border); }
+  .app-card .app-visual{ padding:28px 16px; display:flex; align-items:center; justify-content:center; min-height:130px; }
+  .app-card .app-caption{ background:var(--bg-elevated); padding:10px 14px; font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; letter-spacing:0.05em; color:var(--cream-dim); text-align:center; }
+
+  .dont-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0; }
+  @media (max-width:680px){ .dont-grid{ grid-template-columns:1fr; } }
+  .dont-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:16px 18px; font-size:13.5px; color:var(--cream-dim); }
+  .dont-card::before{ content:'✕'; color:var(--terracotta); font-family:var(--font-mono); margin-right:8px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+    <div class="eyebrow">A&amp;M Munchies — Global Brand Standard</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 1 of 13 — Brand Identity</div>
+    <p class="doc-sub">The mark, the name rules, and how both apply everywhere this brand shows up.</p>
+    <div class="tag-row">
+      <span class="tag">Closes Doc 0 §0.3 item 5</span>
+      <span class="tag">Applies globally</span>
+      <span class="tag">Version 1 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">1.1</div>
+    <h2>Scope &amp; Purpose</h2>
+    <p>Document 0 §0.3 left one piece of Core Visual DNA unresolved: no finished logo or nomenclature system existed yet. This document closes that gap. Everything that touches the name in public — signage, packaging, uniforms, digital, every future branch in every format tier — inherits directly from what's defined here.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">1.2</div>
+    <h2>Nomenclature</h2>
+    <ul>
+      <li><strong>Full name, always:</strong> "A&amp;M Munchies" — ampersand, not "and"; both words capitalized as shown.</li>
+      <li><strong>Standalone "A&amp;M":</strong> acceptable in casual or spoken contexts. The full name appears in every formal, printed, or legal context — signage, packaging, contracts.</li>
+      <li><strong>Branch locators</strong> (e.g. "— Said-ul-Ajaib," the first embedded-tier location within SCRIPTORIUM) are never merged into the wordmark itself. They sit as a separate line or tag beneath it, only where a specific branch needs identifying.</li>
+    </ul>
+    <div class="callout flexible">
+      <span class="callout-tag">Open — needs your input</span>
+      <p>What "A&amp;M" actually stands for isn't something I'll invent — that's yours to supply whenever you want it on record. Nothing downstream depends on the answer; the initials work as a fixed name either way.</p>
+    </div>
+    <div class="callout warn">
+      <span class="callout-tag">Worth knowing before this goes further</span>
+      <p>A quick trademark check: "A&amp;M Munchies" as a combined name doesn't turn up an existing registration. But <a href="https://trademarks.vakilsearch.com/munchies/5786708" target="_blank">"MUNCHIES" alone has a real history of contest in India</a> — several standalone filings show as Objected, Refused, or Opposed, including one specifically in Class 43, which covers restaurant and food services — the exact class this business would file under. That doesn't mean "A&amp;M Munchies" can't be registered cleanly; a distinctive combined mark is generally a stronger position than the bare word alone. But it does mean a proper clearance search through a trademark professional is worth doing before the name gets built into signage, packaging, and everything else in this document. I'm not a lawyer and this isn't legal advice — just what a search surfaces.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">1.3</div>
+    <h2>The Mark</h2>
+    <p>Built directly from Document 0 §0.3: the ring form, reduced to logo scale, with two leaves in place of the full trailing vine — and, at the center, a brownie. A bare ring reads as generic wellness or hospitality iconography; it doesn't say "food" to someone seeing it cold. The brownie fixes that, and it's not an arbitrary bakery symbol — it's been the actual product running through this brand's reference material since the very first images you sent.</p>
+    <div class="callout">
+      <span class="callout-tag">Why the ring recolors but the brownie doesn't</span>
+      <p>Dark-surface and light-surface versions swap the ring and leaves between gold and green, per Document 0's rule that gold represents light itself. The brownie stays the same realistic chocolate-and-caramel color in both versions — it's a literal object, not an abstract signature, so it doesn't get reinterpreted by context the way the ring does.</p>
+    </div>
+    <div class="callout flexible">
+      <span class="callout-tag">Considered and rejected</span>
+      <p>A coffee cup — the single most overused cafe icon there is. A croissant — increasingly a cliché of its own for anywhere European-leaning. A chef's hat — reads catering, not cafe. Crossed fork and knife — generic fine-dining shorthand that says nothing specific. The brownie wins over all of them for one reason: it's not a borrowed category symbol for "what bakeries usually use" — it's the actual product this brand has been built around since your first reference images.</p>
+    </div>
+
+    <div class="showcase-row">
+      <div class="logo-showcase dark">
+        <div class="lockup-v">
+          <svg class="mark-icon lg" viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="95" r="58" fill="none" stroke="#C9A25C" stroke-width="6"/>
+            <ellipse cx="152" cy="68" rx="8" ry="15" fill="#7A9463" transform="rotate(-30 152 68)"/>
+            <ellipse cx="145" cy="128" rx="7" ry="13" fill="#4A5D3A" transform="rotate(35 145 128)"/>
+            <rect x="68" y="68" width="64" height="54" rx="7" fill="#5C3A22" stroke="#3D2615" stroke-width="1.5"/>
+            <path d="M76,81 Q88,75 100,81 Q112,87 124,81" fill="none" stroke="#C9A25C" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M78,93 Q90,87 102,93 Q114,99 124,93" fill="none" stroke="#E2C48D" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+            <ellipse cx="86" cy="105" rx="4" ry="3" fill="#3D2615" transform="rotate(20 86 105)"/>
+            <ellipse cx="110" cy="108" rx="3.5" ry="2.5" fill="#3D2615" transform="rotate(-15 110 108)"/>
+            <circle cx="80" cy="75" r="1.4" fill="#EEE7D8" opacity="0.75"/>
+            <circle cx="94" cy="72" r="1.2" fill="#EEE7D8" opacity="0.7"/>
+            <circle cx="112" cy="76" r="1.5" fill="#EEE7D8" opacity="0.8"/>
+            <circle cx="120" cy="71" r="1.1" fill="#EEE7D8" opacity="0.65"/>
+          </svg>
+          <div class="wordmark lg on-dark">A<span class="amp">&amp;</span>M MUNCHIES</div>
+        </div>
+        <div class="showcase-label">Primary lockup — dark surfaces</div>
+      </div>
+      <div class="logo-showcase light">
+        <div class="lockup-v">
+          <svg class="mark-icon lg" viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="95" r="58" fill="none" stroke="#3A4A2E" stroke-width="6"/>
+            <ellipse cx="152" cy="68" rx="8" ry="15" fill="#6B8552" transform="rotate(-30 152 68)"/>
+            <ellipse cx="145" cy="128" rx="7" ry="13" fill="#4A5D3A" transform="rotate(35 145 128)"/>
+            <rect x="68" y="68" width="64" height="54" rx="7" fill="#5C3A22" stroke="#3D2615" stroke-width="1.5"/>
+            <path d="M76,81 Q88,75 100,81 Q112,87 124,81" fill="none" stroke="#C9A25C" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M78,93 Q90,87 102,93 Q114,99 124,93" fill="none" stroke="#E2C48D" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+            <ellipse cx="86" cy="105" rx="4" ry="3" fill="#3D2615" transform="rotate(20 86 105)"/>
+            <ellipse cx="110" cy="108" rx="3.5" ry="2.5" fill="#3D2615" transform="rotate(-15 110 108)"/>
+            <circle cx="80" cy="75" r="1.4" fill="#EEE7D8" opacity="0.75"/>
+            <circle cx="94" cy="72" r="1.2" fill="#EEE7D8" opacity="0.7"/>
+            <circle cx="112" cy="76" r="1.5" fill="#EEE7D8" opacity="0.8"/>
+            <circle cx="120" cy="71" r="1.1" fill="#EEE7D8" opacity="0.65"/>
+          </svg>
+          <div class="wordmark lg on-light">A<span class="amp">&amp;</span>M MUNCHIES</div>
+        </div>
+        <div class="showcase-label">Primary lockup — light / print surfaces</div>
+      </div>
+    </div>
+
+    <div class="showcase-row">
+      <div class="logo-showcase dark">
+        <div class="lockup-h">
+          <svg class="mark-icon" viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="95" r="58" fill="none" stroke="#C9A25C" stroke-width="6"/>
+            <ellipse cx="152" cy="68" rx="8" ry="15" fill="#7A9463" transform="rotate(-30 152 68)"/>
+            <ellipse cx="145" cy="128" rx="7" ry="13" fill="#4A5D3A" transform="rotate(35 145 128)"/>
+            <rect x="68" y="68" width="64" height="54" rx="7" fill="#5C3A22" stroke="#3D2615" stroke-width="1.5"/>
+            <path d="M76,81 Q88,75 100,81 Q112,87 124,81" fill="none" stroke="#C9A25C" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M78,93 Q90,87 102,93 Q114,99 124,93" fill="none" stroke="#E2C48D" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+            <ellipse cx="86" cy="105" rx="4" ry="3" fill="#3D2615" transform="rotate(20 86 105)"/>
+            <ellipse cx="110" cy="108" rx="3.5" ry="2.5" fill="#3D2615" transform="rotate(-15 110 108)"/>
+            <circle cx="80" cy="75" r="1.4" fill="#EEE7D8" opacity="0.75"/>
+            <circle cx="94" cy="72" r="1.2" fill="#EEE7D8" opacity="0.7"/>
+            <circle cx="112" cy="76" r="1.5" fill="#EEE7D8" opacity="0.8"/>
+            <circle cx="120" cy="71" r="1.1" fill="#EEE7D8" opacity="0.65"/>
+          </svg>
+          <div class="wordmark on-dark">A<span class="amp">&amp;</span>M MUNCHIES</div>
+        </div>
+        <div class="showcase-label">Horizontal lockup — signage, letterhead</div>
+      </div>
+      <div class="logo-showcase dark">
+        <svg class="mark-icon lg" viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="95" r="58" fill="none" stroke="#C9A25C" stroke-width="6"/>
+          <ellipse cx="152" cy="68" rx="8" ry="15" fill="#7A9463" transform="rotate(-30 152 68)"/>
+          <ellipse cx="145" cy="128" rx="7" ry="13" fill="#4A5D3A" transform="rotate(35 145 128)"/>
+            <rect x="68" y="68" width="64" height="54" rx="7" fill="#5C3A22" stroke="#3D2615" stroke-width="1.5"/>
+            <path d="M76,81 Q88,75 100,81 Q112,87 124,81" fill="none" stroke="#C9A25C" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M78,93 Q90,87 102,93 Q114,99 124,93" fill="none" stroke="#E2C48D" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+            <ellipse cx="86" cy="105" rx="4" ry="3" fill="#3D2615" transform="rotate(20 86 105)"/>
+            <ellipse cx="110" cy="108" rx="3.5" ry="2.5" fill="#3D2615" transform="rotate(-15 110 108)"/>
+            <circle cx="80" cy="75" r="1.4" fill="#EEE7D8" opacity="0.75"/>
+            <circle cx="94" cy="72" r="1.2" fill="#EEE7D8" opacity="0.7"/>
+            <circle cx="112" cy="76" r="1.5" fill="#EEE7D8" opacity="0.8"/>
+            <circle cx="120" cy="71" r="1.1" fill="#EEE7D8" opacity="0.65"/>
+        </svg>
+        <div class="showcase-label">Icon-only — favicon, avatar, embossing</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">1.4</div>
+    <h2>Construction &amp; Clear Space</h2>
+    <p>Simple rule, easy to enforce across vendors who'll never read the full document: keep clear space equal to at least half the ring's radius on every side, measured from the ring's outer edge — including past the leaves, which are allowed to breach the ring itself but never the clear-space zone.</p>
+    <div class="logo-showcase dark">
+      <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg" style="width:220px; height:auto;">
+        <rect x="21" y="8" width="258" height="244" fill="none" stroke="#C9A25C" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+        <circle cx="150" cy="130" r="58" fill="none" stroke="#C9A25C" stroke-width="6"/>
+        <ellipse cx="202" cy="103" rx="8" ry="15" fill="#7A9463" transform="rotate(-30 202 103)"/>
+        <ellipse cx="195" cy="163" rx="7" ry="13" fill="#4A5D3A" transform="rotate(35 195 163)"/>
+        <rect x="118" y="103" width="64" height="54" rx="7" fill="#5C3A22" stroke="#3D2615" stroke-width="1.5"/>
+        <path d="M126,116 Q138,110 150,116 Q162,122 174,116" fill="none" stroke="#C9A25C" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M128,128 Q140,122 152,128 Q164,134 174,128" fill="none" stroke="#E2C48D" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+        <ellipse cx="136" cy="140" rx="4" ry="3" fill="#3D2615" transform="rotate(20 136 140)"/>
+        <ellipse cx="160" cy="143" rx="3.5" ry="2.5" fill="#3D2615" transform="rotate(-15 160 143)"/>
+        <circle cx="130" cy="110" r="1.4" fill="#EEE7D8" opacity="0.75"/>
+        <circle cx="144" cy="107" r="1.2" fill="#EEE7D8" opacity="0.7"/>
+        <circle cx="162" cy="111" r="1.5" fill="#EEE7D8" opacity="0.8"/>
+        <circle cx="170" cy="106" r="1.1" fill="#EEE7D8" opacity="0.65"/>
+        <line x1="150" y1="72" x2="150" y2="8" stroke="#E2C48D" stroke-width="1"/>
+        <text x="158" y="42" font-family="Space Mono" font-size="10" fill="#E2C48D">≥ 29px clear</text>
+      </svg>
+      <div class="showcase-label">Clear-space zone, dashed — scales with the mark</div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">1.5</div>
+    <h2>Color Application</h2>
+    <ul>
+      <li><strong>Dark surfaces:</strong> ring in Signature Gold, leaves in the two Document 0 greens, wordmark in Parchment.</li>
+      <li><strong>Light / print surfaces:</strong> ring and leaves shift to a deeper, darker green range — gold stays reserved for the illuminated, dark-surface version only, consistent with Document 0's rule that gold represents the light form specifically.</li>
+      <li><strong>Single-color contexts</strong> (embossing, one-ink printing, foil stamping): the whole mark renders in one flat color — gold, ink, or cream depending on the surface — ring and leaves undifferentiated.</li>
+      <li><strong>Never:</strong> Terracotta as a primary mark color. It stays a minor accent per Document 0, not a brand color for the logo itself.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">1.6</div>
+    <h2>Minimum Size &amp; Don'ts</h2>
+    <p class="dim">Icon-only mark: never below 24px digital / 15mm print. Horizontal lockup: never below 120px digital wide.</p>
+    <div class="callout flexible">
+      <span class="callout-tag">Below 24px — simplify</span>
+      <p>The drizzle lines and chunk texture on the brownie won't hold at favicon scale. Below 24px, drop them: ring, leaves, and a solid brownie block with no interior detail. Never shrink the full detailed version — swap to the simplified one instead.</p>
+    </div>
+    <div class="dont-grid">
+      <div class="dont-card">Stretch or distort the ring into an oval</div>
+      <div class="dont-card">Recolor outside the palette defined in §1.5</div>
+      <div class="dont-card">Add drop shadows, bevels, or 3D effects</div>
+      <div class="dont-card">Rotate the ring off its horizontal axis</div>
+      <div class="dont-card">Place on a busy background without a solid-color holding shape behind it</div>
+      <div class="dont-card">Bake a branch name into the wordmark itself</div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">1.7</div>
+    <h2>Applications Preview</h2>
+    <div class="app-grid">
+      <div class="app-card">
+        <div class="app-visual" style="background:#0D100B;">
+          <div class="lockup-h">
+            <svg class="mark-icon" viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="95" r="58" fill="none" stroke="#C9A25C" stroke-width="6"/>
+              <ellipse cx="152" cy="68" rx="8" ry="15" fill="#7A9463" transform="rotate(-30 152 68)"/>
+              <ellipse cx="145" cy="128" rx="7" ry="13" fill="#4A5D3A" transform="rotate(35 145 128)"/>
+            <rect x="68" y="68" width="64" height="54" rx="7" fill="#5C3A22" stroke="#3D2615" stroke-width="1.5"/>
+            <path d="M76,81 Q88,75 100,81 Q112,87 124,81" fill="none" stroke="#C9A25C" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M78,93 Q90,87 102,93 Q114,99 124,93" fill="none" stroke="#E2C48D" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+            <ellipse cx="86" cy="105" rx="4" ry="3" fill="#3D2615" transform="rotate(20 86 105)"/>
+            <ellipse cx="110" cy="108" rx="3.5" ry="2.5" fill="#3D2615" transform="rotate(-15 110 108)"/>
+            <circle cx="80" cy="75" r="1.4" fill="#EEE7D8" opacity="0.75"/>
+            <circle cx="94" cy="72" r="1.2" fill="#EEE7D8" opacity="0.7"/>
+            <circle cx="112" cy="76" r="1.5" fill="#EEE7D8" opacity="0.8"/>
+            <circle cx="120" cy="71" r="1.1" fill="#EEE7D8" opacity="0.65"/>
+            </svg>
+            <div class="wordmark on-dark" style="font-size:18px;">A<span class="amp">&amp;</span>M MUNCHIES</div>
+          </div>
+        </div>
+        <div class="app-caption">Front facade signage, backlit — Doc 3 §3.4</div>
+      </div>
+      <div class="app-card">
+        <div class="app-visual" style="background:var(--cream);">
+          <svg class="mark-icon" viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="95" r="58" fill="none" stroke="#3A4A2E" stroke-width="6"/>
+            <ellipse cx="152" cy="68" rx="8" ry="15" fill="#6B8552" transform="rotate(-30 152 68)"/>
+            <ellipse cx="145" cy="128" rx="7" ry="13" fill="#4A5D3A" transform="rotate(35 145 128)"/>
+            <rect x="68" y="68" width="64" height="54" rx="7" fill="#5C3A22" stroke="#3D2615" stroke-width="1.5"/>
+            <path d="M76,81 Q88,75 100,81 Q112,87 124,81" fill="none" stroke="#C9A25C" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M78,93 Q90,87 102,93 Q114,99 124,93" fill="none" stroke="#E2C48D" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+            <ellipse cx="86" cy="105" rx="4" ry="3" fill="#3D2615" transform="rotate(20 86 105)"/>
+            <ellipse cx="110" cy="108" rx="3.5" ry="2.5" fill="#3D2615" transform="rotate(-15 110 108)"/>
+            <circle cx="80" cy="75" r="1.4" fill="#EEE7D8" opacity="0.75"/>
+            <circle cx="94" cy="72" r="1.2" fill="#EEE7D8" opacity="0.7"/>
+            <circle cx="112" cy="76" r="1.5" fill="#EEE7D8" opacity="0.8"/>
+            <circle cx="120" cy="71" r="1.1" fill="#EEE7D8" opacity="0.65"/>
+          </svg>
+        </div>
+        <div class="app-caption">Packaging stamp — brownie box, acrylic packaging</div>
+      </div>
+      <div class="app-card">
+        <div class="app-visual" style="background:#0D100B; border-radius:8px;">
+          <svg class="mark-icon" viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="95" r="58" fill="none" stroke="#C9A25C" stroke-width="7"/>
+            <ellipse cx="152" cy="68" rx="9" ry="16" fill="#7A9463" transform="rotate(-30 152 68)"/>
+            <ellipse cx="145" cy="128" rx="8" ry="14" fill="#4A5D3A" transform="rotate(35 145 128)"/>
+            <rect x="66" y="66" width="68" height="58" rx="7" fill="#5C3A22" stroke="#3D2615" stroke-width="1.5"/>
+            <path d="M75,80 Q88,73 100,80 Q112,87 125,80" fill="none" stroke="#C9A25C" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M77,93 Q90,86 102,93 Q114,100 125,93" fill="none" stroke="#E2C48D" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+            <ellipse cx="85" cy="106" rx="4.5" ry="3.5" fill="#3D2615" transform="rotate(20 85 106)"/>
+            <ellipse cx="111" cy="109" rx="4" ry="3" fill="#3D2615" transform="rotate(-15 111 109)"/>
+            <circle cx="79" cy="73" r="1.5" fill="#EEE7D8" opacity="0.75"/>
+            <circle cx="94" cy="70" r="1.3" fill="#EEE7D8" opacity="0.7"/>
+            <circle cx="113" cy="74" r="1.6" fill="#EEE7D8" opacity="0.8"/>
+            <circle cx="121" cy="69" r="1.2" fill="#EEE7D8" opacity="0.65"/>
+          </svg>
+        </div>
+        <div class="app-caption">Digital / social avatar — icon only</div>
+      </div>
+      <div class="app-card">
+        <div class="app-visual" style="background:#B8956A; border-radius:8px 8px 0 0;">
+          <svg class="mark-icon" viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="95" r="58" fill="none" stroke="#3A4A2E" stroke-width="6"/>
+            <ellipse cx="152" cy="68" rx="8" ry="15" fill="#6B8552" transform="rotate(-30 152 68)"/>
+            <ellipse cx="145" cy="128" rx="7" ry="13" fill="#4A5D3A" transform="rotate(35 145 128)"/>
+            <rect x="68" y="68" width="64" height="54" rx="7" fill="#5C3A22" stroke="#3D2615" stroke-width="1.5"/>
+            <path d="M76,81 Q88,75 100,81 Q112,87 124,81" fill="none" stroke="#C9A25C" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M78,93 Q90,87 102,93 Q114,99 124,93" fill="none" stroke="#E2C48D" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+            <ellipse cx="86" cy="105" rx="4" ry="3" fill="#3D2615" transform="rotate(20 86 105)"/>
+            <ellipse cx="110" cy="108" rx="3.5" ry="2.5" fill="#3D2615" transform="rotate(-15 110 108)"/>
+            <circle cx="80" cy="75" r="1.4" fill="#EEE7D8" opacity="0.75"/>
+            <circle cx="94" cy="72" r="1.2" fill="#EEE7D8" opacity="0.7"/>
+            <circle cx="112" cy="76" r="1.5" fill="#EEE7D8" opacity="0.8"/>
+            <circle cx="120" cy="71" r="1.1" fill="#EEE7D8" opacity="0.65"/>
+          </svg>
+        </div>
+        <div class="app-caption">Cup sleeve, kraft stock — icon only</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">1.8</div>
+    <h2>Open Items for Sign-Off</h2>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+      <tr><td>What "A&amp;M" stands for (§1.2)</td><td><span class="status-pill open">Open</span></td><td>Yours to supply whenever you want it on record — nothing else depends on it</td></tr>
+      <tr><td>Professional trademark clearance search (§1.2)</td><td><span class="status-pill open">Open</span></td><td>"MUNCHIES" alone has contest history in Class 43 — get this checked before heavy investment in signage/packaging</td></tr>
+      <tr><td>Palette &amp; typography final sign-off</td><td><span class="status-pill proposed">Proposed</span></td><td>Carried forward from Document 0 §0.4–0.5, now in active use across three documents — worth an explicit yes at some point</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">1.9</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">Doc 0<br>Brand Architecture</div>
+      <p>Source of the ring signature this mark simplifies, and the palette/typography this document applies directly.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 3<br>Architecture</div>
+      <p>The Front zone's glass facade is where the horizontal lockup gets built as real signage.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 7<br>Sourcing &amp; Procurement</div>
+      <p><strong>Blocked on this document.</strong> Packaging vendors (boxes, acrylic containers) need a finished mark before print-ready artwork can be commissioned.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 1 · BRAND IDENTITY · GLOBAL STANDARD
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 5: Digital Strategy &amp; Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F; --bg-elevated:#1A2016; --bg-elevated-2:#212818;
+    --green:#4A5D3A; --green-soft:#7A9463; --green-dark:#3A4A2E;
+    --gold:#C9A25C; --gold-soft:#E2C48D;
+    --cream:#EEE7D8; --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C; --ink:#1C1710;
+    --border:rgba(201,162,92,0.22); --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif; --font-body:'Karla', sans-serif; --font-mono:'Space Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--cream); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:var(--gold-soft); }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  .hero{ position:relative; padding:100px 0 84px; text-align:center;
+    background: radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%), linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border); overflow:hidden; }
+  .signature{ width:340px; height:260px; margin:0 auto 18px; }
+  @media (prefers-reduced-motion: no-preference){ .signature .glow-ring{ animation: pulseGlow 5s ease-in-out infinite; } }
+  @keyframes pulseGlow{ 0%,100%{ opacity:1; } 50%{ opacity:0.72; } }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+  .hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(38px, 6vw, 64px); letter-spacing:-0.01em; color:var(--cream); margin-bottom:10px; }
+  .hero .doc-title{ font-family:var(--font-display); font-weight:400; font-style:italic; font-size:clamp(18px, 2.4vw, 24px); color:var(--gold-soft); margin-bottom:22px; }
+  .hero .doc-sub{ max-width:560px; margin:0 auto; color:var(--cream-dim); font-size:15px; }
+  .tag-row{ display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--border-strong); border-radius:100px; color:var(--gold-soft); }
+
+  section.doc-section{ padding:64px 0; border-bottom:1px solid var(--border); }
+  section.doc-section:last-of-type{ border-bottom:none; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:0.06em; margin-bottom:8px; }
+  h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px, 3.4vw, 34px); color:var(--cream); margin-bottom:20px; letter-spacing:-0.01em; }
+  h3{ font-family:var(--font-display); font-weight:500; font-size:19px; color:var(--gold-soft); margin:26px 0 10px; }
+  p{ margin-bottom:14px; max-width:66ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  .lede{ font-family:var(--font-display); font-size:20px; font-weight:400; font-style:italic; color:var(--gold-soft); line-height:1.5; max-width:64ch; margin-bottom:22px; }
+  ul{ margin:0 0 16px 20px; max-width:64ch; } li{ margin-bottom:8px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--bg-elevated); padding:18px 22px; border-radius:2px; margin:18px 0; }
+  .callout.flexible{ border-left:3px dashed var(--green-soft); }
+  .callout.warn{ border-left:3px solid var(--terracotta); }
+  .callout-tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .callout.flexible .callout-tag{ color:var(--green-soft); }
+  .callout.warn .callout-tag{ color:#D18C6D; }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+  .prompt-block{ font-family:var(--font-display); font-style:italic; font-size:15.5px; color:var(--gold-soft); line-height:1.7; }
+
+  .open-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  .open-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 12px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .open-table td{ padding:12px 12px 12px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+  .status-pill{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.pending{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+
+  .xref{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{ font-family:var(--font-mono); font-size:12px; color:var(--gold); flex:0 0 130px; }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; } .xref strong{ color:var(--cream); }
+
+  footer{ text-align:center; padding:50px 28px 70px; color:var(--cream-dim); font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; }
+
+  /* --- new for doc 5 --- */
+  .rule-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:20px 0; }
+  @media (max-width:680px){ .rule-grid{ grid-template-columns:1fr; } }
+  .rule-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:16px 18px; }
+  .rule-card .rule-term{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:6px; display:block; }
+  .rule-card p{ font-size:13.5px; margin-bottom:0; }
+
+  .align-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:13.5px; }
+  .align-table th{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 10px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .align-table td{ padding:11px 10px 11px 0; border-bottom:1px solid var(--border); vertical-align:top; }
+  .align-table td.ref{ color:var(--cream); font-weight:600; white-space:nowrap; }
+  .align-table td.take{ color:var(--green-soft); }
+  .align-table td.leave{ color:#D18C6D; }
+
+  .phone-mockup{ width:230px; margin:0 auto; background:#0A0D08; border-radius:30px; padding:10px; border:2px solid var(--border-strong); }
+  .phone-screen{ background:var(--bg-elevated); border-radius:20px; padding:18px 14px; min-height:360px; }
+  .phone-header{ display:flex; align-items:center; gap:8px; margin-bottom:20px; }
+  .phone-header .ph-wordmark{ font-family:var(--font-display); font-weight:600; font-size:13px; color:var(--cream); }
+  .phone-card{ background:var(--bg-elevated-2); border:1px solid var(--border); border-radius:12px; padding:14px; }
+  .phone-card .pc-name{ font-family:var(--font-display); font-size:15px; color:var(--cream); margin:10px 0 3px; }
+  .phone-card .pc-sub{ font-family:var(--font-body); font-size:11px; color:var(--cream-dim); margin-bottom:10px; }
+  .phone-btn{ background:var(--gold); color:var(--ink); font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:0.05em; text-align:center; padding:9px; border-radius:8px; font-weight:700; }
+  .phone-nav{ display:flex; justify-content:space-around; margin-top:22px; }
+  .phone-nav span{ width:16px; height:16px; border-radius:4px; border:1.5px solid var(--border-strong); }
+  .phone-nav span.active{ border-color:var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+    <div class="eyebrow">A&amp;M Munchies — Global Brand Standard</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 5 of 13 — Digital Strategy &amp; Marketing</div>
+    <p class="doc-sub">Ads, posts, website, and app — one visual grammar, applied everywhere it shows up.</p>
+    <div class="tag-row">
+      <span class="tag">Global voice + local execution</span>
+      <span class="tag">Covers 4 touchpoints</span>
+      <span class="tag">Version 1 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">5.1</div>
+    <h2>Scope &amp; Purpose</h2>
+    <p>Document 0 §0.6 left this loose on purpose: "brand grammar fixed; aggregators/local social per branch." This document is where that grammar actually gets fixed — translated from "pinteresty, instagrammable, eye-appealing, smooth, classy, 5-star" into rules specific enough to check a draft post against, rather than general social-media advice that could apply to anyone.</p>
+    <p class="dim">Website and app get a direction here, not a full spec — wireframes and user flows are their own separate effort once this direction is agreed.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">5.2</div>
+    <h2>What "Pinteresty &amp; Instagrammable" Means Here</h2>
+    <p>Six words, translated into six checkable rules — each one tied to a decision this suite has already made, not invented fresh.</p>
+    <div class="rule-grid">
+      <div class="rule-card"><span class="rule-term">On-palette, always</span><p>Every post uses the five Document 0 colors. Nothing borrows a palette from a reference image, however good that image is — see §5.5.</p></div>
+      <div class="rule-card"><span class="rule-term">Warm light, no exceptions</span><p>Document 0's rule extended to photography specifically: no cool or blue-toned product shots, ever, in any post or ad.</p></div>
+      <div class="rule-card"><span class="rule-term">Negative space is the rule</span><p>"Classy" mostly means empty space used on purpose. One dominant subject per post, not a collage.</p></div>
+      <div class="rule-card"><span class="rule-term">Motion is slow, not busy</span><p>"Smooth" means deliberate, unhurried transitions — the dessert-slider reference (§5.6) is the pace to match, not a fast-cut Reel style.</p></div>
+      <div class="rule-card"><span class="rule-term">The mark appears once</span><p>One small, correctly-scaled placement per asset, per Document 1's own rules — never stamped repeatedly across a single image.</p></div>
+      <div class="rule-card"><span class="rule-term">Real product, real texture</span><p>"5-star" reads as specificity — real drizzle, real crumb, real steam — not glossy stock-photo abstraction.</p></div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">5.3</div>
+    <h2>Photography &amp; Videography Direction</h2>
+    <p>The AI-prompt reference you sent is a genuinely useful technique — single dramatic light source, matte surfaces, controlled shadow, no noise — but its actual color grade runs cold (asphalt grey into asphalt blue), which breaks §5.2's warm-light rule outright. Same technique, rebuilt in this brand's own light:</p>
+    <div class="callout">
+      <span class="callout-tag">Adapted prompt — Brownie Box hero shot</span>
+      <p class="prompt-block">"A single brownie from the Assorted Brownie Box, caramel drizzle catching warm golden light from one angled source above; resting on a dark botanical-green ceramic plate against a deep charcoal backdrop; entirely matte, no harsh reflections; a single out-of-focus trailing leaf visible at the frame's edge; the shadow falls long and warm across the surface; every light source warm-toned, nothing cool or blue anywhere in frame."</p>
+    </div>
+    <p>The short product-footage clip you sent is the right pace and mood for video content generally — dramatic, unhurried, single-subject. Same warm-light correction applies there too.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">5.4</div>
+    <h2>Content Formats</h2>
+    <h3>Variety Showcase</h3>
+    <p>The cheesecake pin's format — several versions of one product in a single graphic — is exactly what Document 2 §2.2 already built for the six Brownie Box varieties. That content is effectively ready to become a real post; it just needs A&amp;M's palette in place of red-and-checkerboard.</p>
+    <h3>Labeled Cross-Section</h3>
+    <p>The matcha cake reference — a clean product photo with layer callouts, plus a small practical note about lead time — is a strong, reusable format for the Individual Boxed Desserts, and honest in a way that photographs well: it shows the product is actually made a certain way, not just styled to look like it.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">5.5</div>
+    <h2>Aesthetic Alignment Check</h2>
+    <p>What to take from each reference, and what to leave behind:</p>
+    <table class="align-table">
+      <tr><th>Reference</th><th>Take</th><th>Leave</th></tr>
+      <tr><td class="ref">Figma slider ad + clip</td><td class="take">The smooth, slow product-carousel pattern — into the website (§5.6)</td><td class="leave">—</td></tr>
+      <tr><td class="ref">Coffee app prototype</td><td class="take">Dark, minimal app UI approach</td><td class="leave">—</td></tr>
+      <tr><td class="ref">Matcha cake</td><td class="take">Labeled cross-section format</td><td class="leave">—</td></tr>
+      <tr><td class="ref">Cheesecake pin</td><td class="take">Multi-variety showcase format</td><td class="leave">Red / cream checkerboard palette — off-brand entirely</td></tr>
+      <tr><td class="ref">Food delivery app</td><td class="take">Glassmorphic card treatment as one app UI option</td><td class="leave">Any cool tones in the background gradient</td></tr>
+      <tr><td class="ref">AI photography prompt</td><td class="take">Single-light, matte, controlled-shadow technique</td><td class="leave">The cold asphalt-grey-to-blue color grade</td></tr>
+      <tr><td class="ref">Leemo poster</td><td class="take">Bold editorial type as a hero/ad treatment — Fraunces can carry this</td><td class="leave">—</td></tr>
+      <tr><td class="ref">Moody product clip</td><td class="take">Dramatic, unhurried video pacing</td><td class="leave">Cool-toned lighting where present</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">5.6</div>
+    <h2>Website Direction</h2>
+    <p>One signature interaction, borrowed directly from the Figma reference: a slow, smooth product carousel on the homepage — the six Brownie Box varieties or a hero sequence from the Flagship's Main Hall (Document 3) sliding past at an unhurried pace, not a fast auto-rotating banner. Beyond that one moment, the site should read as this document suite already looks: dark, warm-lit, Fraunces for headlines, generous space around every image.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">5.7</div>
+    <h2>App Direction</h2>
+    <p>One brand-wide app, not a per-branch build — a customer who knows A&amp;M Munchies in one city should recognize it instantly in another. What's exposed inside it can still vary by branch and format tier:</p>
+    <ul>
+      <li><strong>Embedded Anchor (Said-ul-Ajaib, within SCRIPTORIUM):</strong> pre-order and pickup has real, specific value here — someone studying in a Capsule pod shouldn't have to leave it to queue at the counter.</li>
+      <li><strong>Kiosk (future):</strong> app ordering is lower-priority by design — the format is built to be low-friction without it.</li>
+      <li><strong>Flagship (future):</strong> full functionality, including reservations once Café-Restaurant stage is reached.</li>
+    </ul>
+    <div class="phone-mockup">
+      <div class="phone-screen">
+        <div class="phone-header">
+          <svg width="20" height="19" viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="95" r="58" fill="none" stroke="#C9A25C" stroke-width="10"/>
+            <rect x="68" y="68" width="64" height="54" rx="10" fill="#5C3A22"/>
+          </svg>
+          <span class="ph-wordmark">A&amp;M MUNCHIES</span>
+        </div>
+        <div class="phone-card">
+          <svg width="100%" height="90" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="200" height="130" rx="10" fill="#12160F"/>
+            <rect x="68" y="38" width="64" height="54" rx="7" fill="#5C3A22" stroke="#3D2615" stroke-width="1.5"/>
+            <path d="M76,51 Q88,45 100,51 Q112,57 124,51" fill="none" stroke="#C9A25C" stroke-width="2.5" stroke-linecap="round"/>
+            <ellipse cx="86" cy="75" rx="4" ry="3" fill="#3D2615" transform="rotate(20 86 75)"/>
+          </svg>
+          <div class="pc-name">Assorted Brownie Box</div>
+          <div class="pc-sub">Box of 6 · Pickup in 15 min</div>
+          <div class="phone-btn">Add to Order</div>
+        </div>
+        <div class="phone-nav">
+          <span class="active"></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    <p class="dim" style="text-align:center; margin-top:10px;">Conceptual ordering screen — dark UI, warm accent, mark simplified per Document 1 §1.6</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">5.8</div>
+    <h2>Open Items for Sign-Off</h2>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+      <tr><td>Full website wireframe / page map</td><td><span class="status-pill pending">Pending</span></td><td>This document sets direction, not the build spec</td></tr>
+      <tr><td>App feature list, full build</td><td><span class="status-pill pending">Pending</span></td><td>Same — direction here, product spec separately</td></tr>
+      <tr><td>Ad spend / platform mix</td><td><span class="status-pill open">Open</span></td><td>Not a creative decision — belongs with Document 10/11 once budgets exist</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">5.9</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">Doc 0<br>Brand Architecture</div>
+      <p>Warm-light and palette rules in §5.2–§5.3 are §0.4's colors and §0.3's lighting rule, applied to photography specifically.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 1<br>Brand Identity</div>
+      <p>The app mockup's icon uses the exact sub-24px simplification rule from §1.6.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 2<br>Menu &amp; F&amp;B</div>
+      <p>The variety-showcase format in §5.4 is the six Brownie Box varieties already built in §2.2 — content, not just format, is ready.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 3<br>Architecture</div>
+      <p>The Main Hall is the candidate hero sequence for the website's homepage slider (§5.6).</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 5 · DIGITAL STRATEGY &amp; MARKETING · GLOBAL VOICE + LOCAL EXECUTION
+</footer>
+
+</body>
+</html>

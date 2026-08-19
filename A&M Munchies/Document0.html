@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 0: Brand Architecture &amp; Identity Framework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F;
+    --bg-elevated:#1A2016;
+    --bg-elevated-2:#212818;
+    --green:#4A5D3A;
+    --green-soft:#7A9463;
+    --gold:#C9A25C;
+    --gold-soft:#E2C48D;
+    --cream:#EEE7D8;
+    --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C;
+    --ink:#1C1710;
+    --border:rgba(201,162,92,0.22);
+    --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif;
+    --font-body:'Karla', sans-serif;
+    --font-mono:'Space Mono', monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--gold); color:var(--ink); }
+
+  a{ color:var(--gold-soft); }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:100px 0 84px;
+    text-align:center;
+    background:
+      radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%),
+      linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border);
+    overflow:hidden;
+  }
+
+  .signature{
+    width:340px;
+    height:260px;
+    margin:0 auto 18px;
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .signature .glow-ring{
+      animation: pulseGlow 5s ease-in-out infinite;
+    }
+  }
+  @keyframes pulseGlow{
+    0%,100%{ opacity:1; }
+    50%{ opacity:0.72; }
+  }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:18px;
+  }
+
+  .hero h1{
+    font-family:var(--font-display);
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6vw, 64px);
+    letter-spacing:-0.01em;
+    color:var(--cream);
+    margin-bottom:10px;
+  }
+
+  .hero .doc-title{
+    font-family:var(--font-display);
+    font-weight:400;
+    font-style:italic;
+    font-size:clamp(18px, 2.4vw, 24px);
+    color:var(--gold-soft);
+    margin-bottom:22px;
+  }
+
+  .hero .doc-sub{
+    max-width:520px;
+    margin:0 auto;
+    color:var(--cream-dim);
+    font-size:15px;
+  }
+
+  .tag-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:28px;
+    flex-wrap:wrap;
+  }
+  .tag{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:6px 12px;
+    border:1px solid var(--border-strong);
+    border-radius:100px;
+    color:var(--gold-soft);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section.doc-section{
+    padding:64px 0;
+    border-bottom:1px solid var(--border);
+  }
+  section.doc-section:last-of-type{ border-bottom:none; }
+
+  .sec-num{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--gold);
+    letter-spacing:0.06em;
+    margin-bottom:8px;
+  }
+
+  h2{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(26px, 3.4vw, 34px);
+    color:var(--cream);
+    margin-bottom:20px;
+    letter-spacing:-0.01em;
+  }
+
+  h3{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:19px;
+    color:var(--gold-soft);
+    margin:26px 0 10px;
+  }
+
+  p{ margin-bottom:14px; max-width:66ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  .lede{
+    font-family:var(--font-display);
+    font-size:20px;
+    font-weight:400;
+    font-style:italic;
+    color:var(--gold-soft);
+    line-height:1.5;
+    max-width:64ch;
+    margin-bottom:22px;
+  }
+
+  ul{ margin:0 0 16px 20px; max-width:64ch; }
+  li{ margin-bottom:8px; }
+
+  /* ---------- CALLOUTS ---------- */
+  .callout{
+    border-left:3px solid var(--gold);
+    background:var(--bg-elevated);
+    padding:18px 22px;
+    border-radius:2px;
+    margin:18px 0;
+  }
+  .callout.flexible{
+    border-left:3px dashed var(--green-soft);
+  }
+  .callout-tag{
+    display:inline-block;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+  .callout.flexible .callout-tag{ color:var(--green-soft); }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+
+  .dna-item{
+    display:flex;
+    gap:16px;
+    padding:20px 0;
+    border-top:1px solid var(--border);
+  }
+  .dna-item:first-of-type{ border-top:none; }
+  .dna-num{
+    font-family:var(--font-display);
+    font-size:26px;
+    color:var(--gold);
+    font-weight:400;
+    flex:0 0 42px;
+  }
+  .dna-body h4{
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:15.5px;
+    color:var(--cream);
+    margin-bottom:4px;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- PALETTE ---------- */
+  .swatch-row{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+    margin:24px 0;
+  }
+  .swatch{
+    border-radius:6px;
+    overflow:hidden;
+    border:1px solid var(--border);
+  }
+  .swatch-color{ height:78px; }
+  .swatch-label{
+    background:var(--bg-elevated);
+    padding:9px 10px;
+    font-family:var(--font-mono);
+    font-size:10px;
+  }
+  .swatch-label .name{ display:block; color:var(--cream); font-size:11px; margin-bottom:2px;}
+  .swatch-label .hex{ color:var(--cream-dim); }
+
+  @media (max-width:680px){
+    .swatch-row{ grid-template-columns:repeat(2,1fr); }
+  }
+
+  /* ---------- TYPE SPECIMENS ---------- */
+  .type-spec{
+    border-top:1px solid var(--border);
+    padding:20px 0;
+    display:flex;
+    align-items:baseline;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .type-spec:last-child{ border-bottom:1px solid var(--border); }
+  .type-role{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+    flex:0 0 140px;
+  }
+  .type-sample-display{ font-family:'Fraunces', serif; font-size:30px; color:var(--cream); }
+  .type-sample-body{ font-family:'Karla', sans-serif; font-size:18px; color:var(--cream); }
+  .type-sample-mono{ font-family:'Space Mono', monospace; font-size:15px; color:var(--cream); letter-spacing:0.02em;}
+
+  /* ---------- TIER CARDS ---------- */
+  .tier-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin:26px 0;
+  }
+  @media (max-width:760px){ .tier-grid{ grid-template-columns:1fr; } }
+
+  .tier-card{
+    background:var(--bg-elevated);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:22px 20px;
+  }
+  .tier-card.active{
+    border-color:var(--gold);
+    background:var(--bg-elevated-2);
+  }
+  .tier-card .tier-status{
+    font-family:var(--font-mono);
+    font-size:9.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--green-soft);
+    margin-bottom:10px;
+    display:block;
+  }
+  .tier-card.active .tier-status{ color:var(--gold); }
+  .tier-card h4{
+    font-family:var(--font-display);
+    font-size:21px;
+    font-weight:600;
+    color:var(--cream);
+    margin-bottom:14px;
+  }
+  .tier-row{
+    padding:9px 0;
+    border-top:1px solid var(--border);
+    font-size:13.5px;
+  }
+  .tier-row:first-of-type{ border-top:none; }
+  .tier-row .k{
+    font-family:var(--font-mono);
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--cream-dim);
+    display:block;
+    margin-bottom:3px;
+  }
+
+  /* ---------- GUARDRAILS TWO-COL ---------- */
+  .guard-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    margin:24px 0;
+  }
+  @media (max-width:680px){ .guard-grid{ grid-template-columns:1fr; } }
+  .guard-col{
+    background:var(--bg-elevated);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:20px 22px;
+  }
+  .guard-col h4{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .guard-col.never h4{ color:var(--gold); }
+  .guard-col.adapts h4{ color:var(--green-soft); }
+  .guard-col ul{ margin:0; }
+  .guard-col li{ font-size:14px; margin-bottom:10px; padding-left:2px; }
+
+  /* ---------- PROCESS STEPS ---------- */
+  .process-steps{
+    display:flex;
+    gap:0;
+    margin:30px 0 10px;
+    position:relative;
+  }
+  @media (max-width:760px){ .process-steps{ flex-direction:column; } }
+  .p-step{
+    flex:1;
+    position:relative;
+    padding:0 18px 0 0;
+  }
+  .p-step-badge{
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1.5px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--gold-soft);
+    margin-bottom:14px;
+    background:var(--bg);
+    position:relative;
+    z-index:2;
+  }
+  .p-step:not(:last-child)::after{
+    content:'';
+    position:absolute;
+    top:17px; left:34px; right:-10px;
+    height:1px;
+    background:var(--border-strong);
+  }
+  @media (max-width:760px){
+    .p-step:not(:last-child)::after{ display:none; }
+    .p-step{ padding-bottom:26px; }
+  }
+  .p-step h4{
+    font-family:var(--font-display);
+    font-size:17px;
+    color:var(--cream);
+    margin-bottom:6px;
+    font-weight:600;
+  }
+  .p-step p{ font-size:13.5px; color:var(--cream-dim); }
+
+  /* ---------- OPEN ITEMS ---------- */
+  .open-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+    font-size:14px;
+  }
+  .open-table th{
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    text-align:left;
+    padding:0 12px 10px 0;
+    border-bottom:1px solid var(--border-strong);
+  }
+  .open-table td{
+    padding:12px 12px 12px 0;
+    border-bottom:1px solid var(--border);
+    vertical-align:top;
+    color:var(--cream);
+  }
+  .status-pill{
+    font-family:var(--font-mono);
+    font-size:9.5px;
+    text-transform:uppercase;
+    padding:3px 9px;
+    border-radius:100px;
+    white-space:nowrap;
+  }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.pending{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+
+  /* ---------- CROSS REF ---------- */
+  .xref{
+    display:flex;
+    gap:16px;
+    padding:16px 0;
+    border-top:1px solid var(--border);
+    align-items:flex-start;
+  }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--gold);
+    flex:0 0 130px;
+  }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; }
+  .xref strong{ color:var(--cream); }
+
+  footer{
+    text-align:center;
+    padding:50px 28px 70px;
+    color:var(--cream-dim);
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.04em;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <!-- trailing vines -->
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+
+    <div class="eyebrow">A&amp;M Munchies — Global Brand Standard</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 0 of 13 — Brand Architecture &amp; Identity Framework</div>
+    <p class="doc-sub">The reference every A&amp;M Munchies branch — any city, any climate, any format — is built against.</p>
+    <div class="tag-row">
+      <span class="tag">Applies globally</span>
+      <span class="tag">Independent of Scriptorium</span>
+      <span class="tag">Version 1 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">0.1</div>
+    <h2>Purpose &amp; How to Read This Document</h2>
+    <p>This document is the constitution the rest of the A&amp;M Munchies suite is written against — the first branch's document set (starting with Document 9, Regulatory &amp; Licensing Compliance, for the first embedded-tier location, within SCRIPTORIUM, Said-ul-Ajaib) and every branch set that follows it, in any city.</p>
+    <p>Two labels are used throughout:</p>
+    <div class="callout">
+      <span class="callout-tag">Core — Fixed Everywhere</span>
+      <p>True at every branch, in every climate, at every format tier, with no exceptions. If a future document contradicts a Core statement here, the future document is what needs correcting.</p>
+    </div>
+    <div class="callout flexible">
+      <span class="callout-tag">Flexible — Adapts by Context</span>
+      <p>The principle is fixed; the execution is expected to change by branch, climate, or format. Branch-specific documents own the actual adapted values.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">0.2</div>
+    <h2>Brand Positioning</h2>
+    <p class="lede">"A bakery-led café brand built around one repeatable sensory signature — warm light, living greenery, and water — expressed at whatever scale a location allows. Built to travel: from a full flagship to a single counter inside someone else's building, without losing the thing that makes it recognizably A&amp;M Munchies. It starts as a café. It's built to become a café-restaurant wherever the market supports it, without ever needing to be redesigned from zero to get there."</p>
+    <p class="dim">Proposed wording — this is the one section in Document 0 that should carry your voice directly rather than mine. Treat it as a first draft to mark up, not a finished statement.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">0.3</div>
+    <h2>Core Visual DNA</h2>
+    <p class="dim">Five elements. Four are locked. One is still an open gap — flagged honestly rather than invented.</p>
+
+    <div class="dna-item">
+      <div class="dna-num">01</div>
+      <div class="dna-body">
+        <h4>Signature Light Form</h4>
+        <p>A circular / ring-form fixture with greenery physically integrated into or trailing through it — present at every branch, in a scale-appropriate form. Chandelier-scale sculptural ring at flagship. A single pendant ring above the counter at kiosk scale. This is the one visual thread that repeated across nearly every piece of inspiration you've sent — it's the strongest, clearest signature candidate the brand has.</p>
+      </div>
+    </div>
+    <div class="dna-item">
+      <div class="dna-num">02</div>
+      <div class="dna-body">
+        <h4>Light Temperature</h4>
+        <p>Warm white only, roughly 2700–3000K. No branch, in any format or climate, uses cool or blue-white light anywhere a customer can see it — not in the kitchen pass, not in the signage, not in the washrooms.</p>
+      </div>
+    </div>
+    <div class="dna-item">
+      <div class="dna-num">03</div>
+      <div class="dna-body">
+        <h4>Water Paired With Green</h4>
+        <p>Wherever physically possible, greenery is paired with visible water. The principle is Core; the execution is Flexible. Flagship and Embedded Anchor formats can run a real water feature — Said-ul-Ajaib already satisfies this without building anything new, since the unit's glass wall faces straight onto SCRIPTORIUM's koi pond and granite waterfall. Kiosk format compresses this to a living green wall with a slim water channel or misting element.</p>
+      </div>
+    </div>
+    <div class="dna-item">
+      <div class="dna-num">04</div>
+      <div class="dna-body">
+        <h4>Signature Menu Anchors</h4>
+        <p>A small, fixed set of items appear on every branch's menu regardless of local adaptation — the bakery-box format is the strongest early candidate given what you've sourced so far. The exact items get finalized in Document 2; what's locked here is the principle that some items never disappear, anywhere.</p>
+      </div>
+    </div>
+    <div class="dna-item">
+      <div class="dna-num">05</div>
+      <div class="dna-body">
+        <h4>Nomenclature &amp; Logo Lockup <span style="color:var(--terracotta); font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:0.05em;">— Open</span></h4>
+        <p>No finished logo asset exists yet. This is the one piece of Core Visual DNA still outstanding, and it should be the first deliverable once we get to Document 1 (Brand Identity) — everything downstream (signage, packaging, uniforms, digital) is waiting on it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">0.4</div>
+    <h2>Palette <span style="color:var(--terracotta); font-family:var(--font-mono); font-size:13px; text-transform:uppercase;">— Proposed</span></h2>
+    <p>Pulled directly from the reference material — the deep, warm-lit botanical interiors, not the daytime bakery shots. Confirm or redirect before it locks.</p>
+    <div class="swatch-row">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#12160F;"></div>
+        <div class="swatch-label"><span class="name">Depth</span><span class="hex">#12160F</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#4A5D3A;"></div>
+        <div class="swatch-label"><span class="name">Botanical Green</span><span class="hex">#4A5D3A</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C9A25C;"></div>
+        <div class="swatch-label"><span class="name">Signature Gold</span><span class="hex">#C9A25C</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#EEE7D8;"></div>
+        <div class="swatch-label"><span class="name">Parchment</span><span class="hex">#EEE7D8</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#9C5A3C;"></div>
+        <div class="swatch-label"><span class="name">Terracotta</span><span class="hex">#9C5A3C</span></div>
+      </div>
+    </div>
+    <p class="dim">Depth is the environment — walls, ceilings, night-mode signage. Gold is reserved for the signature light form and key accents, never used as a flat fill. Parchment carries text and menu surfaces. Terracotta is a minor accent only — one detail per space, not a second dominant color.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">0.5</div>
+    <h2>Typography <span style="color:var(--terracotta); font-family:var(--font-mono); font-size:13px; text-transform:uppercase;">— Proposed</span></h2>
+    <p>Deliberately not Scriptorium Reads' Gothic-collegiate register — A&amp;M Munchies needs its own voice: warm and a little artisanal rather than academic.</p>
+    <div class="type-spec">
+      <div class="type-role">Display</div>
+      <div class="type-sample-display">Fraunces</div>
+    </div>
+    <div class="type-spec">
+      <div class="type-role">Body</div>
+      <div class="type-sample-body">Karla — set in sentence case, plain and legible</div>
+    </div>
+    <div class="type-spec">
+      <div class="type-role">Labels / Spec Data</div>
+      <div class="type-sample-mono">SPACE MONO — TAGS, HEX CODES, DOC NUMBERS</div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">0.6</div>
+    <h2>Format Tiers</h2>
+    <p>Three tiers, not one fixed shape. <strong>Flagship is the primary tier — the reference format this entire framework is written around.</strong> Embedded Anchor and Kiosk are compressions of it, built for sites that can't support a full standalone unit. Every future branch gets classified into one of these before its own document set starts.</p>
+    <div class="tier-grid">
+      <div class="tier-card active">
+        <span class="tier-status">Primary tier — not yet built</span>
+        <h4>Flagship</h4>
+        <div class="tier-row"><span class="k">Footprint</span>Full standalone building or ground-up unit</div>
+        <div class="tier-row"><span class="k">Seating</span>Full dine-in, bar + tables, evening service capable</div>
+        <div class="tier-row"><span class="k">Kitchen</span>Full production kitchen on site</div>
+        <div class="tier-row"><span class="k">DNA expression</span>Sculptural ring-light installation, real water feature, extensive planting</div>
+      </div>
+      <div class="tier-card">
+        <span class="tier-status">First build, in progress — Said-ul-Ajaib</span>
+        <h4>Embedded Anchor</h4>
+        <div class="tier-row"><span class="k">Footprint</span>Significant leased/tenant footprint inside a larger host institution</div>
+        <div class="tier-row"><span class="k">Seating</span>Dine-in + counter, day-service focus</div>
+        <div class="tier-row"><span class="k">Kitchen</span>Production kitchen scaled to the unit</div>
+        <div class="tier-row"><span class="k">DNA expression</span>Full ring-light form; real water + greenery already provided by the host site</div>
+      </div>
+      <div class="tier-card">
+        <span class="tier-status">Future tier</span>
+        <h4>Kiosk</h4>
+        <div class="tier-row"><span class="k">Footprint</span>Compact counter, little to no seating of its own</div>
+        <div class="tier-row"><span class="k">Seating</span>Grab-and-go; borrows host venue's seating if any</div>
+        <div class="tier-row"><span class="k">Kitchen</span>Prep / finishing only, no full production kitchen</div>
+        <div class="tier-row"><span class="k">DNA expression</span>Single pendant ring fixture; green wall in place of a water feature</div>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="callout-tag">Ownership &amp; Revenue — Core</span>
+      <p>A&amp;M Munchies is a fully independent business at every tier — its revenue, P&amp;L, and ownership sit entirely outside SCRIPTORIUM, Thomas Aldenmere University, and the Equitas Global Education Board. At an Embedded Anchor location, SCRIPTORIUM's only relationship to A&amp;M Munchies is as landlord: it earns lease revenue from the space, the same as it would from any other tenant, and nothing more. TAU and EGEB have no revenue relationship to A&amp;M Munchies at all, at Said-ul-Ajaib or any future location. Exact lease terms are Document 9 and Document 10's to define, not this document's.</p>
+    </div>
+    <p class="dim">Said-ul-Ajaib is the working example throughout this framework because it's the only branch with a real site: floor-to-ceiling glass, north-facing, opening directly onto Scriptorium's backyard.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">0.7</div>
+    <h2>Climate &amp; Regional Adaptation Guardrails</h2>
+    <p>What a branch is allowed to change when it isn't Delhi, and what it never is.</p>
+    <div class="guard-grid">
+      <div class="guard-col never">
+        <h4>Never Flexes</h4>
+        <ul>
+          <li>Signature ring-light form</li>
+          <li>Warm-light-only rule</li>
+          <li>Signature menu anchors</li>
+          <li>Logo / nomenclature</li>
+        </ul>
+      </div>
+      <div class="guard-col adapts">
+        <h4>Always Adapts by Region</h4>
+        <ul>
+          <li>Indoor/outdoor seating ratio</li>
+          <li>Plant species (climate-appropriate, not a fixed species list)</li>
+          <li>Material weight &amp; finish</li>
+          <li>HVAC and enclosure strategy</li>
+          <li>Seasonal / regional menu items</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="callout-tag">Worked Example — Said-ul-Ajaib</span>
+      <p>Delhi swings from summer heat well into the 40s°C, through a monsoon season, into a cold, fog-heavy winter with sharply worse air quality. A glass-forward, indoor/outdoor-blurred format that reads beautifully in a Mediterranean or tropical reference image needs real HVAC load planning for summer and an enclosed or seasonal fallback for winter here — it can't stay open-air year-round the way the same concept might elsewhere. This is a live input for Document 3 (Interior &amp; Fit-Out), not something to settle in isolation at the brand-framework level.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">0.8</div>
+    <h2>Format Evolution: Café → Café-Restaurant</h2>
+    <p>What changes when a branch scales up — and what doesn't.</p>
+    <div class="process-steps">
+      <div class="p-step">
+        <div class="p-step-badge">1</div>
+        <h4>Café <span style="font-family:var(--font-mono); font-size:10px; color:var(--green-soft);">(current)</span></h4>
+        <p>Counter service, day hours, bakery-led menu.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-badge">2</div>
+        <h4>Extended Café</h4>
+        <p>Light table service added alongside the counter; hours extend into early evening.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-badge">3</div>
+        <h4>Café-Restaurant</h4>
+        <p>Full table service, expanded kitchen, dinner program, reservations.</p>
+      </div>
+    </div>
+    <div class="callout flexible">
+      <span class="callout-tag">Open — needs your input</span>
+      <p>What actually triggers a branch moving from one step to the next — footfall thresholds, lease renegotiation, local demand — is a business-planning call, not a design one. Flagging it here rather than inventing numbers; this belongs in Document 10 (Business Plan &amp; Revenue Model) once you've got a view on it.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">0.9</div>
+    <h2>Open Items for Your Sign-Off</h2>
+    <p>Everything in this document that was a judgment call rather than a fact already established, in one place.</p>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Where it's resolved</th></tr>
+      <tr><td>Palette (§0.4)</td><td><span class="status-pill proposed">Proposed</span></td><td>Confirm here, or redirect</td></tr>
+      <tr><td>Typography (§0.5)</td><td><span class="status-pill proposed">Proposed</span></td><td>Confirm here, or redirect</td></tr>
+      <tr><td>Positioning statement wording (§0.2)</td><td><span class="status-pill proposed">Proposed</span></td><td>Confirm here, or redirect</td></tr>
+      <tr><td>Logo / nomenclature lockup (§0.3, item 5)</td><td><span class="status-pill open">Open</span></td><td>Document 1 — Brand Identity</td></tr>
+      <tr><td>Exact signature menu items (§0.3, item 4)</td><td><span class="status-pill pending">Pending</span></td><td>Document 2 — Menu &amp; F&amp;B Concept</td></tr>
+      <tr><td>Café→Café-Restaurant triggers (§0.8)</td><td><span class="status-pill open">Open</span></td><td>Document 10 — Business Plan &amp; Revenue Model</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">0.10</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">Doc 1<br>Brand Identity</div>
+      <p>Executes the logo/nomenclature gap flagged in §0.3, item 5.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 2<br>Menu &amp; F&amp;B</div>
+      <p>Finalizes the signature menu anchors named in principle in §0.3, item 4.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 3<br>Interior &amp; Fit-Out</div>
+      <p>Applies §0.6 and §0.7 to each branch's physical space. Said-ul-Ajaib's version must show the koi pond and waterfall satisfying §0.3's water-and-green rule.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 9<br>Regulatory &amp; Licensing</div>
+      <p><strong>Next in the queue.</strong> Must scope Said-ul-Ajaib's licensing to the Embedded Anchor tier's seating and kitchen profile as defined in §0.6 — a kiosk-scale license category would understate what this branch actually needs.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 0 · BRAND ARCHITECTURE &amp; IDENTITY FRAMEWORK · GLOBAL STANDARD
+</footer>
+
+</body>
+</html>

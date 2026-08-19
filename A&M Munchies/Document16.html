@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 16: Indoor Planting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F; --bg-elevated:#1A2016; --bg-elevated-2:#212818;
+    --green:#4A5D3A; --green-soft:#7A9463;
+    --gold:#C9A25C; --gold-soft:#E2C48D;
+    --cream:#EEE7D8; --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C; --ink:#1C1710;
+    --border:rgba(201,162,92,0.22); --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif; --font-body:'Karla', sans-serif; --font-mono:'Space Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--cream); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:var(--gold-soft); }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  .hero{ position:relative; padding:100px 0 84px; text-align:center;
+    background: radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%), linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border); overflow:hidden; }
+  .signature{ width:340px; height:260px; margin:0 auto 18px; }
+  @media (prefers-reduced-motion: no-preference){ .signature .glow-ring{ animation: pulseGlow 5s ease-in-out infinite; } }
+  @keyframes pulseGlow{ 0%,100%{ opacity:1; } 50%{ opacity:0.72; } }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+  .hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(38px, 6vw, 64px); letter-spacing:-0.01em; color:var(--cream); margin-bottom:10px; }
+  .hero .doc-title{ font-family:var(--font-display); font-weight:400; font-style:italic; font-size:clamp(18px, 2.4vw, 24px); color:var(--gold-soft); margin-bottom:22px; }
+  .hero .doc-sub{ max-width:560px; margin:0 auto; color:var(--cream-dim); font-size:15px; }
+  .tag-row{ display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--border-strong); border-radius:100px; color:var(--gold-soft); }
+
+  section.doc-section{ padding:64px 0; border-bottom:1px solid var(--border); }
+  section.doc-section:last-of-type{ border-bottom:none; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:0.06em; margin-bottom:8px; }
+  h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px, 3.4vw, 34px); color:var(--cream); margin-bottom:20px; letter-spacing:-0.01em; }
+  h3{ font-family:var(--font-display); font-weight:500; font-size:19px; color:var(--gold-soft); margin:26px 0 10px; }
+  p{ margin-bottom:14px; max-width:66ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  .lede{ font-family:var(--font-display); font-size:20px; font-weight:400; font-style:italic; color:var(--gold-soft); line-height:1.5; max-width:64ch; margin-bottom:22px; }
+  ul{ margin:0 0 16px 20px; max-width:64ch; } li{ margin-bottom:8px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--bg-elevated); padding:18px 22px; border-radius:2px; margin:18px 0; }
+  .callout.flexible{ border-left:3px dashed var(--green-soft); }
+  .callout-tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .callout.flexible .callout-tag{ color:var(--green-soft); }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+
+  .dna-item{ display:flex; gap:16px; padding:22px 0; border-top:1px solid var(--border); }
+  .dna-item:first-of-type{ border-top:none; }
+  .dna-num{ font-family:var(--font-display); font-size:26px; color:var(--gold); font-weight:400; flex:0 0 42px; }
+  .dna-body h4{ font-family:var(--font-body); font-weight:700; font-size:15.5px; color:var(--cream); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.02em; }
+  .dna-body .ref{ font-family:var(--font-mono); font-size:10.5px; color:var(--cream-dim); display:block; margin-bottom:8px; }
+
+  .guard-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:24px 0; }
+  @media (max-width:680px){ .guard-grid{ grid-template-columns:1fr; } }
+  .guard-col{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:20px 22px; }
+  .guard-col h4{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; color:var(--gold); }
+  .guard-col ul{ margin:0; } .guard-col li{ font-size:14px; margin-bottom:10px; }
+
+  .open-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  .open-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 12px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .open-table td{ padding:12px 12px 12px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+
+  .cost-table{ width:100%; border-collapse:collapse; margin:18px 0 28px; font-size:13.5px; }
+  .cost-table th{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.04em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 10px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .cost-table td{ padding:10px 10px 10px 0; border-bottom:1px solid var(--border); vertical-align:top; }
+  .cost-table td.item{ color:var(--cream); }
+  .cost-table td.val{ color:var(--gold-soft); font-family:var(--font-mono); font-size:12.5px; white-space:nowrap; text-align:right; }
+  .status-pill{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.pending{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+  .status-pill.excluded{ background:rgba(184,176,160,0.15); color:var(--cream-dim); }
+
+  .xref{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{ font-family:var(--font-mono); font-size:12px; color:var(--gold); flex:0 0 130px; }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; } .xref strong{ color:var(--cream); }
+
+  footer{ text-align:center; padding:50px 28px 70px; color:var(--cream-dim); font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; }
+
+  .siteplan-card{
+    background:var(--cream); border-radius:10px; padding:20px; margin:24px 0;
+    border:1px solid var(--border-strong);
+  }
+  .siteplan-card .caption{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink); opacity:0.6; margin-top:10px; text-align:center;
+  }
+  .not-yard{
+    display:inline-block; font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--terracotta); border:1px solid var(--terracotta); border-radius:100px; padding:2px 9px; margin-left:8px;
+  }
+  .legend{ display:flex; gap:18px; flex-wrap:wrap; justify-content:center; margin-top:14px; font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink); opacity:0.75; }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .legend i{ width:11px; height:11px; border-radius:3px; display:inline-block; }
+  .flower-tag{ display:inline-block; font-family:var(--font-mono); font-size:9px; letter-spacing:0.04em; text-transform:uppercase; padding:2px 8px; border-radius:100px; }
+  .flower-tag.flowering{ background:rgba(201,162,92,0.18); color:var(--gold-soft); }
+  .flower-tag.foliage{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+    <div class="eyebrow">A&amp;M Munchies — Flagship Tier</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 16 of 17 — Indoor Planting</div>
+    <p class="doc-sub">Trailing, flowering greenery for Document 3's enclosed zones — the plant half of Document 0's water-paired-with-green signature, wherever a pond isn't already carrying it. The ring-light chandelier was never meant to stay empty; this is where it actually gets planted.</p>
+    <div class="tag-row">
+      <span class="tag">Flagship tier only</span>
+      <span class="tag">Fourth of four new environmental documents</span>
+      <span class="tag">Version 1 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">16.1</div>
+    <h2>Scope &amp; Relationship to Document 3</h2>
+    <p>This document covers potted and integrated planting inside the building envelope, in zones Document 3 hasn't already resolved with a water feature of its own. It does not touch the Right Extension's garden pond or the Main Hall's central pond planting — both already specified in Document 3 §3.6 — and it does not touch anything outside the envelope, which is Document 13's, resolved on its own species list in §13.6.</p>
+    <p class="dim">The Kitchen is out of scope entirely — food-safety zones don't carry ornamental planting, full stop. Washrooms/BOH gets one brief mention in §16.3 and nothing more; it's functional space, not a design focus.</p>
+    <div class="callout flexible">
+      <span class="callout-tag">Flexible — No Overlap With Document 13</span>
+      <p>Every species below was checked against Document 13 §13.6's outdoor list before inclusion. Where a plant already does outdoor duty there — Mogra and Raat ki Rani are both already placed near the Back Extension's outdoor terrace — it isn't repeated indoors here, even where it would otherwise fit, to keep the two lists legible as distinct rather than one list split awkwardly in half.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">16.2</div>
+    <h2>Design Philosophy</h2>
+    <p>Document 0 §0.3 fixes the ring-light chandelier as Core, non-negotiable brand DNA: greenery "physically integrated into or trailing through it," at chandelier scale specifically for Flagship. This document is where that instruction becomes an actual plant, not a rendering. The same section fixes water paired with green as the brand's other constant — Document 3 §3.6 already built the water half in the Main Hall and Right Extension ponds; this document is the green half wherever those ponds don't already carry it on their own.</p>
+    <p>Flowering, not just foliage, is the standing brief for this palette. Foliage plants still earn their place — for structure, resilience, and the corners bright bloomers won't tolerate — but color is the point here, not an afterthought bolted on.</p>
+    <div class="callout">
+      <span class="callout-tag">Core — Fixed Everywhere</span>
+      <p>The chandelier planting in Main Hall isn't optional or a later add-on. Document 0 marks the integration itself Core, meaning every Flagship, wherever it's eventually built, carries a planted ring-light. Species can vary by climate; the fact of a living chandelier doesn't.</p>
+    </div>
+    <p class="dim">One more filter runs under everything below that Document 0 didn't need to apply: this is a dining room, often with children in it. §16.7 explains how that shaped the list.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">16.3</div>
+    <h2>Zone-by-Zone Planting Plan</h2>
+    <div class="siteplan-card">
+      <svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; font-family:'Space Mono',monospace;">
+        <rect x="16" y="16" width="668" height="448" rx="6" fill="none" stroke="#1C1710" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.55"/>
+        <text x="350" y="38" text-anchor="middle" font-size="10" letter-spacing="2" fill="#9C5A3C">BOUNDARY WALL</text>
+
+        <rect x="230" y="56" width="240" height="110" fill="#EDE4C8" stroke="#4A5D3A" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="350" y="98" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710">BACK EXTENSION</text>
+        <text x="350" y="114" text-anchor="middle" font-size="8" fill="#1C1710">jaali-filtered, dappled light</text>
+        <text x="350" y="126" text-anchor="middle" font-size="7.5" fill="#4A5D3A">SUPPLEMENTARY</text>
+
+        <rect x="480" y="60" width="190" height="130" fill="#E4DCC0" stroke="#1C1710" stroke-width="1.5" opacity="0.5"/>
+        <text x="575" y="112" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710" opacity="0.75">KITCHEN</text>
+        <text x="575" y="128" text-anchor="middle" font-size="7.5" fill="#9C5A3C">EXCLUDED — food safety</text>
+
+        <rect x="30" y="60" width="190" height="110" fill="#E4DCC0" stroke="#1C1710" stroke-width="1.5" opacity="0.5"/>
+        <text x="125" y="98" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710" opacity="0.75">WASHROOMS + BOH</text>
+        <text x="125" y="114" text-anchor="middle" font-size="7.5" fill="#9C5A3C">minor mention only</text>
+
+        <rect x="60" y="176" width="150" height="180" fill="#C9D9C4" stroke="#4A5D3A" stroke-width="2"/>
+        <text x="135" y="248" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710">LEFT</text>
+        <text x="135" y="263" text-anchor="middle" font-size="9" fill="#1C1710">EXTENSION</text>
+        <text x="135" y="281" text-anchor="middle" font-size="7.5" fill="#1C1710">glass roof — brightest zone</text>
+        <text x="135" y="296" text-anchor="middle" font-size="8" font-weight="700" fill="#4A5D3A">PRIMARY</text>
+
+        <rect x="230" y="176" width="240" height="180" fill="#EDE4C8" stroke="#9C5A3C" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="350" y="248" text-anchor="middle" font-size="12" font-weight="700" fill="#1C1710">MAIN HALL</text>
+        <text x="350" y="266" text-anchor="middle" font-size="8.5" fill="#1C1710">double-height · ring-light chandelier</text>
+        <text x="350" y="282" text-anchor="middle" font-size="8.5" fill="#1C1710">pond already planted — Doc 3 §3.6</text>
+        <text x="350" y="298" text-anchor="middle" font-size="7.5" fill="#4A5D3A">SUPPLEMENTARY — chandelier is the focus</text>
+
+        <rect x="490" y="196" width="150" height="140" fill="#E4DCC0" stroke="#1C1710" stroke-width="1.5" opacity="0.5"/>
+        <text x="565" y="255" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710" opacity="0.75">RIGHT</text>
+        <text x="565" y="270" text-anchor="middle" font-size="9" fill="#1C1710" opacity="0.75">EXTENSION</text>
+        <text x="565" y="288" text-anchor="middle" font-size="7.5" fill="#9C5A3C">EXCLUDED — Doc 3's own pond</text>
+
+        <rect x="230" y="366" width="240" height="38" fill="#1C1710"/>
+        <text x="350" y="390" text-anchor="middle" font-size="10.5" font-weight="700" fill="#EEE7D8">FRONT — GLASS FACADE</text>
+
+        <text x="350" y="432" text-anchor="middle" font-size="9" letter-spacing="1.5" fill="#1C1710" opacity="0.6">FRONTYARD — Document 13's, not counted here</text>
+      </svg>
+      <div class="legend">
+        <span><i style="background:#C9D9C4; border:1px solid #4A5D3A;"></i>Primary</span>
+        <span><i style="background:#EDE4C8; border:1px solid #9C5A3C;"></i>Supplementary</span>
+        <span><i style="background:#E4DCC0; opacity:0.5; border:1px solid #1C1710;"></i>Excluded / minor</span>
+      </div>
+      <div class="caption">Fig. 16.1 — Indoor planting focus by zone, mapped onto Document 3 §3.3's site plan</div>
+    </div>
+
+    <h3>Left Extension — Primary</h3>
+    <p>The only zone with a conventional glass roof and no existing water/planting feature of its own (Document 3 §3.3), which makes it the obvious anchor for a genuine indoor-conservatory treatment — the brightest, most flower-forward room in the building. Ranged planters along the curved glass line, mixed heights, color held all year rather than seasonal.</p>
+    <p class="dim">The same glass roof that makes this zone bright also means real solar heat gain through a Delhi summer — worth checking against Document 3's glazing spec once one exists, not assumed away here. See §16.8.</p>
+
+    <h3>Main Hall — Supplementary, Chandelier-Led</h3>
+    <p>The pond and its single ornamental tree are already Document 3's, fully resolved in §3.6 — this document doesn't touch either. What it adds is the ring-light chandelier itself: a trailing, partly-flowering planting worked into the fixture's structure at the double-height scale Document 0 calls for. A handful of floor-level accents around the hall's perimeter round this zone out without competing with the pond as the room's visual center.</p>
+
+    <h3>Back Extension — Supplementary</h3>
+    <p>Jaali-filtered, dappled light rather than direct sun — lower-light flowering species here rather than the Left Extension's bright-light ones. Kept deliberately understated next to the jaali-and-drape lounge treatment already established, rather than adding a second competing visual layer.</p>
+
+    <p class="dim">Washrooms/BOH: one hardy, low-light foliage accent at the corridor transition is enough — not a design focus, just enough to avoid a dead patch of hallway.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">16.4</div>
+    <h2>Plant Palette — Flowering &amp; Foliage</h2>
+    <p>Ten species, weighted toward flowering as instructed, chosen for indoor/bright-shade tolerance in a Delhi climate and cross-checked against Document 13 §13.6 for zero overlap.</p>
+    <table class="cost-table">
+      <tr><th>Plant</th><th>Type</th><th>Zone</th><th>Light Need</th><th>Note</th></tr>
+      <tr><td class="item">Lipstick Plant <span class="dim">(Aeschynanthus radicans)</span></td><td><span class="flower-tag flowering">Flowering</span></td><td>Main Hall — chandelier</td><td>Bright indirect</td><td>Trailing habit and tubular red blooms — the chandelier's hero plant</td></tr>
+      <tr><td class="item">Golden Pothos / Money Plant</td><td><span class="flower-tag foliage">Foliage</span></td><td>Main Hall — chandelier</td><td>Low–bright, tolerant</td><td>Mixed into the chandelier for resilience — forgives the inconsistent watering a hanging fixture gets</td></tr>
+      <tr><td class="item">Phalaenopsis Orchid</td><td><span class="flower-tag flowering">Flowering</span></td><td>Left Extension</td><td>Bright indirect</td><td>Long-blooming, minimal fragrance — won't compete with food aromas</td></tr>
+      <tr><td class="item">Bromeliad <span class="dim">(Guzmania)</span></td><td><span class="flower-tag flowering">Flowering</span></td><td>Left Extension</td><td>Bright indirect</td><td>Color from the bract, not a true flower, but reads as bloom year-round</td></tr>
+      <tr><td class="item">Potted Hibiscus</td><td><span class="flower-tag flowering">Flowering</span></td><td>Left Extension</td><td>Bright / direct</td><td>Needs the glass roof's direct light specifically — won't hold blooms in the other zones</td></tr>
+      <tr><td class="item">Ixora <span class="dim">(Rangan)</span></td><td><span class="flower-tag flowering">Flowering</span></td><td>Left Extension</td><td>Bright / direct</td><td>Clustered red-orange bloom, common Indian ornamental, non-toxic</td></tr>
+      <tr><td class="item">Croton</td><td><span class="flower-tag foliage">Foliage</span></td><td>Left Extension</td><td>Bright light</td><td>Colour without needing bloom — sap is a mild skin irritant, elevate out of easy reach</td></tr>
+      <tr><td class="item">Peace Lily <span class="dim">(Spathiphyllum)</span></td><td><span class="flower-tag flowering">Flowering</span></td><td>Main Hall, Back Extension</td><td>Low–moderate</td><td>Tolerates the dimmer rooms well; mildly toxic if chewed in quantity — see §16.7</td></tr>
+      <tr><td class="item">Anthurium</td><td><span class="flower-tag flowering">Flowering</span></td><td>Back Extension</td><td>Bright indirect</td><td>Waxy red/pink spathes hold for weeks; sap is a mild irritant — see §16.7</td></tr>
+      <tr><td class="item">Areca Palm</td><td><span class="flower-tag foliage">Foliage</span></td><td>Main Hall</td><td>Bright indirect</td><td>Vertical structure for the double-height volume; non-toxic</td></tr>
+      <tr><td class="item">Boston Fern</td><td><span class="flower-tag foliage">Foliage</span></td><td>Main Hall — pond edge</td><td>Bright indirect, humid</td><td>Thrives on the pond's ambient humidity; non-toxic</td></tr>
+      <tr><td class="item">Snake Plant <span class="dim">(Sansevieria)</span></td><td><span class="flower-tag foliage">Foliage</span></td><td>Back Extension, Washrooms corridor</td><td>Low light, tolerant</td><td>The hardiest thing on this list — does the corridor accent duty alone</td></tr>
+    </table>
+    <p class="dim">Species and zone are fixed here; exact quantities, planter sizing, and a real planting layout are an interior/landscape designer's call once real room dimensions exist — this table sets direction, not a shopping list.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">16.5</div>
+    <h2>Watering &amp; Maintenance</h2>
+    <p>Indoor pots draw from mains water, not the harvested-rainwater system Document 14 built. That system is plumbed to Document 13's outdoor irrigation and the two ornamental ponds only (Document 14 §14.2) — extending it indoors would mean a second distribution line this document isn't specifying, and mixing harvested water into guest-facing indoor zones raises its own cleanliness questions this document isn't equipped to wave through.</p>
+    <p class="dim">A simple hand-watering routine covers the floor-level planting; anything above easy reach — the chandelier specifically — realistically needs either a small drip line on a timer or a scheduled staff routine with the right equipment to reach it safely. Who actually does this — housekeeping, a dedicated role, or an outsourced plant-maintenance contract — is Document 8's call, not this document's.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">16.6</div>
+    <h2>Light — Resolving Document 15's Open Item</h2>
+    <p>Document 15 §15.9 flagged this forward: "Any supplemental grow-lighting Document 16 specifies for its flowering varieties is a load this document hasn't yet counted." Resolved here — none needed, by design. The palette in §16.4 is matched to each zone's actual light rather than applied uniformly: the Left Extension's glass roof carries the brightest bloomers (hibiscus, ixora, orchid) on natural light alone, while Main Hall and the Back Extension get the lower-light-tolerant flowering species (peace lily, anthurium, the chandelier's lipstick plant) instead of forcing sun-lovers into dimmer rooms. Document 15's electrical load estimate stands as written — no revision needed.</p>
+    <p class="dim">This assumes daylight levels typical of a glass-roofed, double-height space at Delhi's latitude — a real light-meter reading once a site exists is the actual check, not this document's estimate. Main Hall's roof type is itself still Open in Document 15 §15.3; if it turns out considerably dimmer than assumed once resolved, supplemental lighting for that zone specifically may need revisiting.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">16.7</div>
+    <h2>Safety Filter</h2>
+    <p>This is a dining room, and family-sized seating is part of the brand plan — so every species on the list was run through one more filter before inclusion. Anything seriously toxic if ingested is off the list entirely: no Oleander, no Dieffenbachia, no Sago Palm, whatever their design appeal. A smaller group — Peace Lily, Anthurium, Croton — carries only mild irritation if chewed in real quantity, which is a real but low-severity risk common enough that most 5-star hospitality interiors carry at least one of them. These stay on the list, placed at counter height or above rather than at a child's reach, not removed outright.</p>
+    <p class="dim">If a zero-tolerance policy is preferred instead of a placement-based one, all three are easy to swap for equally on-brand safer substitutes — flagged as a real decision in §16.8, not assumed either way.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">16.8</div>
+    <h2>Open Items for Sign-Off</h2>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+      <tr><td>Ring-light chandelier planting integration</td><td><span class="status-pill proposed">Proposed</span></td><td>Needs the fixture's structural engineer to confirm it can carry planted weight plus watering access at height — Document 3's territory, not this document's</td></tr>
+      <tr><td>Left Extension glass-roof heat gain, Delhi summer</td><td><span class="status-pill open">Open</span></td><td>May need a shading or glazing treatment to protect both the planting and guest comfort — see §16.3</td></tr>
+      <tr><td>Mildly toxic-if-ingested species (Peace Lily, Anthurium, Croton)</td><td><span class="status-pill proposed">Proposed</span></td><td>Included with placement guidance rather than excluded outright — flag if zero-tolerance is preferred instead, per §16.7</td></tr>
+      <tr><td>Watering &amp; maintenance staffing</td><td><span class="status-pill open">Open</span></td><td>Who does this and on what schedule is Document 8's call, not fixed here</td></tr>
+      <tr><td>Guest-facing house rule — no touching/picking the planting</td><td><span class="status-pill open">Open</span></td><td>Especially the chandelier planting, within easy reach of nothing but worth stating explicitly — flagged forward to Document 6</td></tr>
+      <tr><td>Exact quantities, planter spec, and layout</td><td><span class="status-pill open">Open</span></td><td>Needs an interior/landscape designer once real room dimensions exist — this document fixes species and zone, not a shopping list</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">16.9</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">Doc 0<br>Brand Architecture</div>
+      <p><strong>Direct dependency.</strong> §0.3's Core Visual DNA — the planted ring-light and water-paired-with-green principle — is this entire document's reason to exist.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 3<br>Architecture &amp; Site Design</div>
+      <p><strong>Direct dependency.</strong> §3.3's roof/zone types set which rooms get which light treatment; §3.6's ponds are the boundary this document doesn't cross.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 6<br>Customer Experience</div>
+      <p><strong>Forward dependency.</strong> A house rule against touching or picking the planting — the chandelier especially — belongs in Document 6, not here (§16.8).</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 13<br>Landscape</div>
+      <p>The outdoor counterpart to this document. §13.6's species list and this document's §16.4 were cross-checked against each other specifically to avoid overlap.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 14<br>Water Harvesting</div>
+      <p>§14.2 confirms harvested rainwater stays outdoor-and-pond only — this document's watering (§16.5) deliberately draws from mains instead, not that system.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 15<br>Green Energy</div>
+      <p><strong>Direct dependency resolved.</strong> §15.9's forward-flagged grow-light question is closed in §16.6 — no supplemental load, by zone-matched design.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 16 · INDOOR PLANTING · FLAGSHIP TIER
+</footer>
+
+</body>
+</html>

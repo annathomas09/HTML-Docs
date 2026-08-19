@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 15: Green Energy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F; --bg-elevated:#1A2016; --bg-elevated-2:#212818;
+    --green:#4A5D3A; --green-soft:#7A9463;
+    --gold:#C9A25C; --gold-soft:#E2C48D;
+    --cream:#EEE7D8; --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C; --ink:#1C1710;
+    --border:rgba(201,162,92,0.22); --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif; --font-body:'Karla', sans-serif; --font-mono:'Space Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--cream); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:var(--gold-soft); }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  .hero{ position:relative; padding:100px 0 84px; text-align:center;
+    background: radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%), linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border); overflow:hidden; }
+  .signature{ width:340px; height:260px; margin:0 auto 18px; }
+  @media (prefers-reduced-motion: no-preference){ .signature .glow-ring{ animation: pulseGlow 5s ease-in-out infinite; } }
+  @keyframes pulseGlow{ 0%,100%{ opacity:1; } 50%{ opacity:0.72; } }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+  .hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(38px, 6vw, 64px); letter-spacing:-0.01em; color:var(--cream); margin-bottom:10px; }
+  .hero .doc-title{ font-family:var(--font-display); font-weight:400; font-style:italic; font-size:clamp(18px, 2.4vw, 24px); color:var(--gold-soft); margin-bottom:22px; }
+  .hero .doc-sub{ max-width:560px; margin:0 auto; color:var(--cream-dim); font-size:15px; }
+  .tag-row{ display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--border-strong); border-radius:100px; color:var(--gold-soft); }
+
+  section.doc-section{ padding:64px 0; border-bottom:1px solid var(--border); }
+  section.doc-section:last-of-type{ border-bottom:none; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:0.06em; margin-bottom:8px; }
+  h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px, 3.4vw, 34px); color:var(--cream); margin-bottom:20px; letter-spacing:-0.01em; }
+  h3{ font-family:var(--font-display); font-weight:500; font-size:19px; color:var(--gold-soft); margin:26px 0 10px; }
+  p{ margin-bottom:14px; max-width:66ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  .lede{ font-family:var(--font-display); font-size:20px; font-weight:400; font-style:italic; color:var(--gold-soft); line-height:1.5; max-width:64ch; margin-bottom:22px; }
+  ul{ margin:0 0 16px 20px; max-width:64ch; } li{ margin-bottom:8px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--bg-elevated); padding:18px 22px; border-radius:2px; margin:18px 0; }
+  .callout.flexible{ border-left:3px dashed var(--green-soft); }
+  .callout-tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .callout.flexible .callout-tag{ color:var(--green-soft); }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+
+  .dna-item{ display:flex; gap:16px; padding:22px 0; border-top:1px solid var(--border); }
+  .dna-item:first-of-type{ border-top:none; }
+  .dna-num{ font-family:var(--font-display); font-size:26px; color:var(--gold); font-weight:400; flex:0 0 42px; }
+  .dna-body h4{ font-family:var(--font-body); font-weight:700; font-size:15.5px; color:var(--cream); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.02em; }
+  .dna-body .ref{ font-family:var(--font-mono); font-size:10.5px; color:var(--cream-dim); display:block; margin-bottom:8px; }
+
+  .guard-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:24px 0; }
+  @media (max-width:680px){ .guard-grid{ grid-template-columns:1fr; } }
+  .guard-col{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:20px 22px; }
+  .guard-col h4{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; color:var(--gold); }
+  .guard-col ul{ margin:0; } .guard-col li{ font-size:14px; margin-bottom:10px; }
+
+  .open-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  .open-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 12px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .open-table td{ padding:12px 12px 12px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+
+  .cost-table{ width:100%; border-collapse:collapse; margin:18px 0 28px; font-size:13.5px; }
+  .cost-table th{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.04em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 10px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .cost-table td{ padding:10px 10px 10px 0; border-bottom:1px solid var(--border); vertical-align:top; }
+  .cost-table td.item{ color:var(--cream); }
+  .cost-table td.val{ color:var(--gold-soft); font-family:var(--font-mono); font-size:12.5px; white-space:nowrap; text-align:right; }
+  .status-pill{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.pending{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+  .status-pill.excluded{ background:rgba(184,176,160,0.15); color:var(--cream-dim); }
+
+  .xref{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{ font-family:var(--font-mono); font-size:12px; color:var(--gold); flex:0 0 130px; }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; } .xref strong{ color:var(--cream); }
+
+  footer{ text-align:center; padding:50px 28px 70px; color:var(--cream-dim); font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; }
+
+  .siteplan-card{
+    background:var(--cream); border-radius:10px; padding:20px; margin:24px 0;
+    border:1px solid var(--border-strong);
+  }
+  .siteplan-card .caption{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink); opacity:0.6; margin-top:10px; text-align:center;
+  }
+  .not-yard{
+    display:inline-block; font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--terracotta); border:1px solid var(--terracotta); border-radius:100px; padding:2px 9px; margin-left:8px;
+  }
+  .legend{ display:flex; gap:18px; flex-wrap:wrap; justify-content:center; margin-top:14px; font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink); opacity:0.75; }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .legend i{ width:11px; height:11px; border-radius:3px; display:inline-block; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+    <div class="eyebrow">A&amp;M Munchies — Flagship Tier</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 15 of 17 — Green Energy</div>
+    <p class="doc-sub">Rooftop solar, backup power, and the electrical load they need to cover — sized against Document 3's footprint and the pump load Document 14 already flagged forward. Delhi's grid and air-quality rules shape this as much as the roof does.</p>
+    <div class="tag-row">
+      <span class="tag">Flagship tier only</span>
+      <span class="tag">Third of four new environmental documents</span>
+      <span class="tag">Version 1 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">15.1</div>
+    <h2>Scope &amp; Relationship to Document 3</h2>
+    <p>This document covers on-site electricity generation and the backup-power question for the Flagship building: what the roof can actually carry, how much of the connected load it realistically offsets, and what Delhi's grid and air-quality rules permit. It is not a full electrical design — panel schedules, inverter placement, cable runs, and distribution-board sizing are an MEP consultant's task once a real site exists, the same boundary Document 12 and Document 14 already drew for fire suppression and plumbing respectively.</p>
+    <p class="dim">Ground-mounted solar isn't considered here. Document 13 has already claimed the frontyard and backyard for landscape and boundary planting — competing with that for the same square footage isn't this document's call to make.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">15.2</div>
+    <h2>Design Philosophy</h2>
+    <p>Document 0 §0.3 fixes water paired with greenery as the Flagship's one visible signature. Energy infrastructure deliberately isn't a second one — panels belong on the Kitchen and Washrooms/BOH roofs, both back-of-house zones already, not on the Left Extension's curved glass roof or the Right Extension's open-air water garden, both guest-facing design features in their own right (Document 3 §3.4). The brief here is efficiency first, generation second: LED fixtures throughout — including the ring-light signature Document 3 §3.5 applies zone by zone — right-sized refrigeration, and decent insulation reduce the load a solar system then has to chase, rather than oversizing generation to cover a load nobody examined first.</p>
+    <div class="callout">
+      <span class="callout-tag">Core — Fixed Everywhere</span>
+      <p>Solar here is sized to meaningfully offset daytime baseline load — lighting, refrigeration, POS, a share of HVAC — not to run the kitchen. At this roof scale, that's an honest ceiling, not a shortfall. §15.4 and §15.5 show the math side by side rather than quietly picking one number that flatters the other.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">15.3</div>
+    <h2>Roof Analysis — What's Actually Usable</h2>
+    <p>Document 3's six roof zones don't share one answer. Two are conventional and open for solar. Two are genuinely undecided. Two are excluded on purpose, not by oversight — they're guest-facing daylighting features, and covering them in panels would undo what Document 3 built them for.</p>
+    <div class="siteplan-card">
+      <svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; font-family:'Space Mono',monospace;">
+        <rect x="16" y="16" width="668" height="448" rx="6" fill="none" stroke="#1C1710" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.55"/>
+        <text x="350" y="38" text-anchor="middle" font-size="10" letter-spacing="2" fill="#9C5A3C">BOUNDARY WALL</text>
+
+        <rect x="230" y="56" width="240" height="110" fill="#EDE4C8" stroke="#9C5A3C" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="350" y="98" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710">BACK EXTENSION</text>
+        <text x="350" y="114" text-anchor="middle" font-size="8" fill="#1C1710">jaali screen over a real roof</text>
+        <text x="350" y="126" text-anchor="middle" font-size="7.5" fill="#9C5A3C">OPEN — integration unconfirmed</text>
+
+        <rect x="480" y="60" width="190" height="130" fill="#C9D9C4" stroke="#4A5D3A" stroke-width="1.5"/>
+        <text x="575" y="112" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710">KITCHEN</text>
+        <text x="575" y="128" text-anchor="middle" font-size="7.5" fill="#1C1710">conventional roof</text>
+        <text x="575" y="140" text-anchor="middle" font-size="7.5" fill="#4A5D3A">USABLE — primary candidate</text>
+
+        <rect x="30" y="60" width="190" height="110" fill="#C9D9C4" stroke="#4A5D3A" stroke-width="1.5"/>
+        <text x="125" y="98" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710">WASHROOMS + BOH</text>
+        <text x="125" y="114" text-anchor="middle" font-size="7.5" fill="#1C1710">conventional roof</text>
+        <text x="125" y="126" text-anchor="middle" font-size="7.5" fill="#4A5D3A">USABLE — secondary</text>
+
+        <rect x="60" y="176" width="150" height="180" fill="#E4DCC0" stroke="#1C1710" stroke-width="1.5" opacity="0.55"/>
+        <text x="135" y="255" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710" opacity="0.75">LEFT</text>
+        <text x="135" y="270" text-anchor="middle" font-size="9" fill="#1C1710" opacity="0.75">EXTENSION</text>
+        <text x="135" y="288" text-anchor="middle" font-size="7.5" fill="#1C1710" opacity="0.75">curved glass roof</text>
+        <text x="135" y="300" text-anchor="middle" font-size="7.5" fill="#9C5A3C">EXCLUDED — by design</text>
+
+        <rect x="230" y="176" width="240" height="180" fill="#EDE4C8" stroke="#9C5A3C" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="350" y="255" text-anchor="middle" font-size="12" font-weight="700" fill="#1C1710">MAIN HALL</text>
+        <text x="350" y="272" text-anchor="middle" font-size="8.5" fill="#1C1710">double-height · roof type unspecified</text>
+        <text x="350" y="288" text-anchor="middle" font-size="7.5" fill="#9C5A3C">OPEN — needs Doc 3 to confirm</text>
+
+        <rect x="490" y="196" width="150" height="140" fill="#E4DCC0" stroke="#1C1710" stroke-width="1.5" opacity="0.55"/>
+        <text x="565" y="255" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1C1710" opacity="0.75">RIGHT</text>
+        <text x="565" y="270" text-anchor="middle" font-size="9" fill="#1C1710" opacity="0.75">EXTENSION</text>
+        <text x="565" y="288" text-anchor="middle" font-size="7.5" fill="#1C1710" opacity="0.75">open roof — none built</text>
+        <text x="565" y="300" text-anchor="middle" font-size="7.5" fill="#9C5A3C">EXCLUDED — by design</text>
+
+        <rect x="230" y="366" width="240" height="38" fill="#1C1710"/>
+        <text x="350" y="390" text-anchor="middle" font-size="10.5" font-weight="700" fill="#EEE7D8">FRONT — GLASS FACADE</text>
+
+        <text x="350" y="432" text-anchor="middle" font-size="9" letter-spacing="1.5" fill="#1C1710" opacity="0.6">FRONTYARD — Document 13's, not counted here</text>
+      </svg>
+      <div class="legend">
+        <span><i style="background:#C9D9C4; border:1px solid #4A5D3A;"></i>Usable</span>
+        <span><i style="background:#EDE4C8; border:1px solid #9C5A3C;"></i>Open — needs confirmation</span>
+        <span><i style="background:#E4DCC0; opacity:0.6; border:1px solid #1C1710;"></i>Excluded by design</span>
+      </div>
+      <div class="caption">Fig. 15.1 — Roof usability by zone, mapped onto Document 3 §3.3's site plan</div>
+    </div>
+    <table class="open-table">
+      <tr><th>Zone</th><th>Roof Type</th><th>Solar Status</th></tr>
+      <tr><td class="item">Kitchen</td><td>Conventional, exhaust-vented</td><td><span class="status-pill pending">Usable</span></td></tr>
+      <tr><td class="item">Washrooms + BOH</td><td>Conventional</td><td><span class="status-pill pending">Usable</span></td></tr>
+      <tr><td class="item">Back Extension</td><td>Terracotta jaali screen over a structural roof (Doc 3 §3.8)</td><td><span class="status-pill open">Open</span></td></tr>
+      <tr><td class="item">Main Hall</td><td>Double-height; roof type not specified in Doc 3</td><td><span class="status-pill open">Open</span></td></tr>
+      <tr><td class="item">Left Extension</td><td>Enclosed curved glass roof — daylights the garden pond</td><td><span class="status-pill excluded">Excluded</span></td></tr>
+      <tr><td class="item">Right Extension</td><td>Open-roof water garden — no roof structure exists</td><td><span class="status-pill excluded">Excluded</span></td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">15.4</div>
+    <h2>Solar PV Sizing &amp; Expected Generation</h2>
+    <p>Conservative basis: only the Kitchen and Washrooms/BOH roofs from §15.3 count toward usable area. If Main Hall and Back Extension are confirmed usable later, treat everything below as a floor, not a ceiling — roughly a 75–100% upside if both come through.</p>
+    <table class="cost-table">
+      <tr><th>Item</th><th>Low (200 covers/day)</th><th>Mid (250 covers/day)</th><th>High (300 covers/day)</th></tr>
+      <tr><td class="item">Usable roof area (Kitchen + Washrooms/BOH, Doc 3 §3.4)</td><td class="val">1,910 sqft · 177 sqm</td><td class="val">2,145 sqft · 199 sqm</td><td class="val">2,385 sqft · 222 sqm</td></tr>
+      <tr><td class="item">Estimated system size</td><td class="val">~19 kWp</td><td class="val">~21 kWp</td><td class="val">~24 kWp</td></tr>
+      <tr><td class="item">Estimated annual generation</td><td class="val">~27,500 kWh</td><td class="val">~30,500 kWh</td><td class="val">~34,800 kWh</td></tr>
+    </table>
+    <p class="dim">~100 sqft per kWp (spacing, tilt frames, and access walkways included) and ~1,450 kWh per kWp per year are planning-stage benchmarks for flat-roof crystalline panels at Delhi's ~5–5.5 peak sun hours — consistent with published Northern India rooftop performance studies and current installer-quoted ranges. Real yield depends on final panel spec, tilt, shading, and inverter sizing an installer confirms at feasibility stage, not this document.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">15.5</div>
+    <h2>Electrical Load — A Planning-Stage Estimate</h2>
+    <p>No equipment schedule exists yet for the kitchen (Document 2's territory) or for the pond-filtration and irrigation pumps (Document 3 §3.8 and Document 14 §14.7, both still Open). The figures below are industry planning benchmarks by zone type — useful for a first DISCOM feasibility conversation, not for ordering an inverter.</p>
+    <table class="cost-table">
+      <tr><th>Zone</th><th>Basis</th><th>Mid-covers connected load</th></tr>
+      <tr><td class="item">Kitchen (bakery + hot-line)</td><td>~45 W/sqft</td><td class="val">~60 kW</td></tr>
+      <tr><td class="item">Front-of-house (Main Hall, Left/Right/Back Ext.)</td><td>~15 W/sqft</td><td class="val">~50 kW</td></tr>
+      <tr><td class="item">Washrooms + back-of-house</td><td>~10 W/sqft</td><td class="val">~8 kW</td></tr>
+      <tr><td class="item">Water systems — pond filtration + irrigation pump</td><td>placeholder</td><td class="val">~3–5 kW</td></tr>
+      <tr><td class="item"><strong>Total connected (mid scenario)</strong></td><td></td><td class="val"><strong>~122 kW</strong></td></tr>
+    </table>
+    <p class="dim">This is nameplate capacity, not simultaneous draw — commercial kitchens typically run at 40–60% of connected load at any given moment, and W/sqft figures here are commonly cited commercial-foodservice planning ranges, not a measured or vendor-specified load. Treat every number in this table as adjustable once Document 2's equipment list and an MEP consultant's input exist.</p>
+    <p>Set against §15.4's ~21 kWp mid-scenario system: rooftop generation here offsets a real share of daytime baseline draw — lighting, refrigeration, POS — but was never going to cover kitchen peak load at this roof scale. That's the honest read of a roof-constrained site, not a design failure; see §15.2.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">15.6</div>
+    <h2>Backup Power — Why Delhi Makes This Harder Than It Looks</h2>
+    <p>Two things rule out the obvious answers. First: net-metering rules require mandatory anti-islanding protection, so a standard grid-tied solar system shuts down automatically during a power cut — §15.4's system does nothing for backup unless paired with battery storage and a hybrid inverter, a materially different and costlier spec. Second: diesel gensets, Delhi's traditional backup answer, are restricted under the Graded Response Action Plan (GRAP) during the region's worst pollution episodes — restrictions that have historically clustered in the same October–February window a restaurant most wants reliable dinner-service backup for. A genset that can't legally run on the nights AQI is worst is a real planning gap, not a theoretical one.</p>
+    <div class="callout flexible">
+      <span class="callout-tag">Flexible — Needs a Decision</span>
+      <p>Three real options, not one obvious answer: battery storage paired with the solar system (cleanest, most expensive, immune to GRAP staging); a CNG- or PNG-fuelled genset (GRAP has historically treated gas-fuelled sets more leniently than diesel, though exact terms shift stage by stage — confirm current CAQM directions before relying on this); or grid-only supply with no backup, treating outages as an operational risk to plan around rather than an engineering problem to solve. This document doesn't pick one — §15.8 flags it for a decision once real cost quotes exist.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">15.7</div>
+    <h2>Net Metering, Compliance &amp; Financial Incentives</h2>
+    <p>Document 3 §3.7 leaves the Flagship's real site undecided — a plot search against the ~15,000 sqft target, not a fixed address — so this section stays deliberately DISCOM-agnostic. Delhi runs three distribution companies (BSES Rajdhani, BSES Yamuna, Tata Power-DDL), but all three sit under the same Delhi Electricity Regulatory Commission (DERC) rulebook, so the policy mechanics below hold regardless of which one the eventual site lands under; only the exact tariff slab and application portal are DISCOM-specific.</p>
+    <p>Any system here is governed by the Delhi Solar Energy Policy 2023 (notified March 2024), which targets 750 MW of rooftop solar citywide by 2026–27 and applies to any system 1 kWp or larger, residential or commercial. Net metering banks daytime export against night-time draw on an annual true-up; anything beyond 90% of yearly consumption offset is treated as free energy exported to the grid — not carried forward, not paid out. Solar modules must come from MNRE's ALMM List-II as of June 2026, a real sourcing constraint rather than a formality: a non-compliant module means the net-metering application is refused outright, not merely delayed.</p>
+    <div class="callout">
+      <span class="callout-tag">Commercial, Not Residential</span>
+      <p>PM Surya Ghar's subsidy is residential-only — A&amp;M Munchies doesn't qualify. The real financial lever for a commercial system is 40% first-year accelerated depreciation on the written-down-value method under Section 32 of the Income Tax Act, plus whatever Generation-Based Incentive the current DERC schedule sets for commercial consumers. The policy makes commercial and industrial consumers eligible for GBI; the exact per-unit rate needs confirming at application, not assumed here.</p>
+    </div>
+    <p class="dim">Delhi's effective commercial (C&amp;I) electricity tariff runs roughly ₹12.5–15.6 per unit across the three DISCOMs as of 2026 — the gap that makes offsetting daytime draw worth doing. A real payback calculation against installed system cost belongs in Document 10, once actual installer quotes exist, not here.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">15.8</div>
+    <h2>Open Items for Sign-Off</h2>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+      <tr><td>Main Hall &amp; Back Extension roof usability</td><td><span class="status-pill open">Open</span></td><td>Would raise §15.4's system size by roughly 75–100% if confirmed — needs a structural/roofing answer, not a planning assumption</td></tr>
+      <tr><td>Kitchen gas vs. electric equipment split</td><td><span class="status-pill open">Open</span></td><td>Document 2 and Document 12's territory; materially changes §15.5's kitchen load figure in either direction</td></tr>
+      <tr><td>Backup power approach — battery, gas genset, or grid-only</td><td><span class="status-pill open">Open</span></td><td>A real cost/resilience trade-off, not resolved here — see §15.6</td></tr>
+      <tr><td>Connected-load benchmarks (W/sqft by zone)</td><td><span class="status-pill proposed">Proposed</span></td><td>Industry planning figures, not a load schedule — needs MEP validation once equipment is real</td></tr>
+      <tr><td>Net-metering capacity cap for this connection</td><td><span class="status-pill open">Open</span></td><td>Depends on sanctioned load and final DISCOM — confirm at feasibility-application stage</td></tr>
+      <tr><td>Pond filtration &amp; irrigation pump load</td><td><span class="status-pill open">Open</span></td><td>Carried over unresolved from Document 3 §3.8 and Document 14 §14.7</td></tr>
+      <tr><td>Grow-light load for Document 16</td><td><span class="status-pill open">Open</span></td><td>Only if the flowering-plant palette needs supplemental indoor lighting — flagged forward, not resolved here</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">15.9</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">Doc 3<br>Architecture &amp; Site Design</div>
+      <p><strong>Direct dependency.</strong> §3.4's zone footprints are this document's roof-area and load basis throughout; §3.8's unresolved water-filtration item is a load this document inherits, not resolves.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 9<br>Regulatory &amp; Licensing</div>
+      <p>DERC net-metering application and MNRE ALMM compliance belong in Document 9's licensing checklist alongside Document 14's DJB work.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 12<br>Kitchen &amp; Fire Safety</div>
+      <p><strong>Direct dependency.</strong> The kitchen equipment list, once specified, is this document's single largest load input — §15.5's figure is a placeholder until then.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 14<br>Water Harvesting</div>
+      <p><strong>Direct dependency resolved.</strong> The pump load §14.7 flagged forward is accounted for in §15.5, at the same placeholder resolution Document 14 left it at.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 16<br>Indoor Planting</div>
+      <p><strong>Forward dependency.</strong> Any supplemental grow-lighting Document 16 specifies for its flowering varieties is a load this document hasn't yet counted.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 10<br>Cost Estimation</div>
+      <p><strong>Forward dependency.</strong> System cost, the accelerated-depreciation benefit, and real payback math belong in Document 10's numbers, not this one's.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 15 · GREEN ENERGY · FLAGSHIP TIER
+</footer>
+
+</body>
+</html>

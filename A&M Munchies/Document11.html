@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 11: Business Plan &amp; Revenue Model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F; --bg-elevated:#1A2016; --bg-elevated-2:#212818;
+    --green:#4A5D3A; --green-soft:#7A9463; --green-dark:#3A4A2E;
+    --gold:#C9A25C; --gold-soft:#E2C48D;
+    --cream:#EEE7D8; --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C; --ink:#1C1710;
+    --border:rgba(201,162,92,0.22); --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif; --font-body:'Karla', sans-serif; --font-mono:'Space Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--cream); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:var(--gold-soft); }
+  .wrap{ max-width:960px; margin:0 auto; padding:0 28px; }
+
+  .hero{ position:relative; padding:100px 0 84px; text-align:center;
+    background: radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%), linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border); overflow:hidden; }
+  .signature{ width:340px; height:260px; margin:0 auto 18px; }
+  @media (prefers-reduced-motion: no-preference){ .signature .glow-ring{ animation: pulseGlow 5s ease-in-out infinite; } }
+  @keyframes pulseGlow{ 0%,100%{ opacity:1; } 50%{ opacity:0.72; } }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+  .hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(38px, 6vw, 64px); letter-spacing:-0.01em; color:var(--cream); margin-bottom:10px; }
+  .hero .doc-title{ font-family:var(--font-display); font-weight:400; font-style:italic; font-size:clamp(18px, 2.4vw, 24px); color:var(--gold-soft); margin-bottom:22px; }
+  .hero .doc-sub{ max-width:580px; margin:0 auto; color:var(--cream-dim); font-size:15px; }
+  .tag-row{ display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--border-strong); border-radius:100px; color:var(--gold-soft); }
+
+  section.doc-section{ padding:60px 0; border-bottom:1px solid var(--border); }
+  section.doc-section:last-of-type{ border-bottom:none; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:0.06em; margin-bottom:8px; }
+  h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px, 3.4vw, 34px); color:var(--cream); margin-bottom:20px; letter-spacing:-0.01em; }
+  h3{ font-family:var(--font-display); font-weight:500; font-size:19px; color:var(--gold-soft); margin:26px 0 10px; }
+  p{ margin-bottom:14px; max-width:70ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  ul{ margin:0 0 16px 20px; max-width:66ch; } li{ margin-bottom:8px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--bg-elevated); padding:18px 22px; border-radius:2px; margin:18px 0; }
+  .callout.warn{ border-left:3px solid var(--terracotta); }
+  .callout.verdict{ background:var(--bg-elevated-2); padding:24px 26px; }
+  .callout-tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .callout.warn .callout-tag{ color:#D18C6D; }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+  .callout p + p{ margin-top:10px; }
+
+  .open-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  .open-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 12px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .open-table td{ padding:12px 12px 12px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+  .status-pill{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+
+  .xref{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{ font-family:var(--font-mono); font-size:12px; color:var(--gold); flex:0 0 130px; }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; } .xref strong{ color:var(--cream); }
+
+  footer{ text-align:center; padding:50px 28px 70px; color:var(--cream-dim); font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; }
+
+  .cost-table{ width:100%; border-collapse:collapse; margin:18px 0 28px; font-size:13.5px; }
+  .cost-table th{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.04em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 10px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .cost-table td{ padding:10px 10px 10px 0; border-bottom:1px solid var(--border); vertical-align:top; }
+  .cost-table td.item{ color:var(--cream); }
+  .cost-table td.val{ color:var(--gold-soft); font-family:var(--font-mono); font-size:12.5px; white-space:nowrap; text-align:right; }
+  .cost-table tr.total td{ border-top:1.5px solid var(--border-strong); border-bottom:none; padding-top:14px; font-weight:700; }
+  .cost-table tr.total td.item{ color:var(--cream); font-family:var(--font-display); font-size:15px; }
+  .cost-table tr.total td.val{ color:var(--gold); font-size:15px; }
+
+  .stream-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:20px 0; }
+  @media (max-width:760px){ .stream-grid{ grid-template-columns:1fr; } }
+  .stream-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:18px; }
+  .stream-card .s-term{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:6px; display:block; }
+  .stream-card p{ font-size:13px; margin-bottom:0; max-width:none; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+    <div class="eyebrow">A&amp;M Munchies — Financial Framework</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 11 of 13 — Business Plan &amp; Revenue Model</div>
+    <p class="doc-sub">The last document in the suite — where every other document's numbers finally meet a revenue line.</p>
+    <div class="tag-row">
+      <span class="tag">Kiosk / Embedded Anchor / Flagship</span>
+      <span class="tag">Built on Document 10's real cost figures</span>
+      <span class="tag">Version 1 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">11.1</div>
+    <h2>Scope &amp; Purpose</h2>
+    <p>Document 10 §10.6 named this document as blocked on its cost figures — this is where those figures finally meet a revenue line. Every number below is a modeling assumption, clearly labeled as one, not a forecast to raise money against without real sales data behind it eventually replacing it.</p>
+    <div class="callout warn">
+      <span class="callout-tag">Not financial advice</span>
+      <p>This is a planning model, not investment guidance — the assumptions are stated so they can be checked and replaced with real numbers as they come in, not treated as a promise.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">11.2</div>
+    <h2>Revenue Streams</h2>
+    <div class="stream-grid">
+      <div class="stream-card"><span class="s-term">Dine-in</span><p>Coffee, light bites, and single servings from the Brownie Box — Document 2's day-to-day menu.</p></div>
+      <div class="stream-card"><span class="s-term">Retail boxes</span><p>Whole Brownie Boxes and Individual Boxed Desserts sold as takeaway or gifting purchases — a separate transaction pattern from a dine-in ticket.</p></div>
+      <div class="stream-card"><span class="s-term">Delivery aggregators</span><p>Zomato/Swiggy per Document 5 — real incremental revenue, net of typical 18–30% platform commission.</p></div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">11.3</div>
+    <h2>Kiosk — Revenue Model</h2>
+    <table class="cost-table">
+      <tr><th>Assumption</th><th>Value</th></tr>
+      <tr><td class="item">Daily transactions (host-venue foot traffic dependent)</td><td class="val">60–100</td></tr>
+      <tr><td class="item">Average ticket (limited menu — Brownie Box item + coffee)</td><td class="val">₹200–280</td></tr>
+      <tr><td class="item">Estimated monthly revenue</td><td class="val">₹3.6–8.4 L</td></tr>
+    </table>
+    <p class="dim">Capex from Document 10 §10.2 (₹5.2–8.4 L) makes this the fastest-payback tier on paper — but it's the one most dependent on a variable this document can't set: whichever host venue it ends up in.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">11.4</div>
+    <h2>Embedded Anchor — Revenue Model &amp; Breakeven</h2>
+    <p class="dim">Said-ul-Ajaib, the first embedded-tier location within SCRIPTORIUM — the only tier with a real breakeven worth calculating.</p>
+    <table class="cost-table">
+      <tr><th>Assumption</th><th>Value</th></tr>
+      <tr><td class="item">Daily covers (study-campus community, not high-street walk-in)</td><td class="val">80–150</td></tr>
+      <tr><td class="item">Average ticket (coffee + bakery case + light bites mix)</td><td class="val">₹350–450</td></tr>
+      <tr><td class="item">Estimated monthly gross revenue</td><td class="val">₹8.4–20.3 L</td></tr>
+      <tr><td class="item">Less COGS (30–35%, per Doc 10)</td><td class="val">−₹2.5–7.1 L</td></tr>
+      <tr><td class="item">Less fixed Opex incl. modeled rent-equivalent (Doc 10 §10.3, + placeholder rent)</td><td class="val">−₹3.2–5.6 L</td></tr>
+      <tr class="total"><td class="item">Estimated monthly net contribution</td><td class="val">₹2.2–7.6 L</td></tr>
+    </table>
+    <div class="callout">
+      <span class="callout-tag">Breakeven, on this model</span>
+      <p>Against Document 10's ₹23.6–41 L Capex range, this monthly contribution implies roughly 5–18 months to breakeven — consistent with the 12–24 month range typical for small-to-mid Indian cafés, landing toward the faster end given the premium ticket size. The rent figure driving this is a modeled placeholder (§10.3's open item), not Said-ul-Ajaib's actual tenancy terms — real breakeven shifts once that number is real.</p>
+    </div>
+    <div class="callout">
+      <span class="callout-tag">Ownership &amp; Revenue — Core</span>
+      <p>Document 0 §0.6 sets this structurally, worth restating here where the actual number lives: the placeholder rent line above is the <em>entire</em> extent of SCRIPTORIUM's financial relationship to A&amp;M Munchies — lease revenue only, the same as any other tenant, with the real figure this document's and Document 10's to pin down. Thomas Aldenmere University and the Equitas Global Education Board have no revenue relationship to A&amp;M Munchies at all, at this or any future location. Every net contribution figure on this page belongs to A&amp;M Munchies alone.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">11.5</div>
+    <h2>Flagship — Revenue Model</h2>
+    <table class="cost-table">
+      <tr><th>Assumption, Café stage</th><th>Value</th></tr>
+      <tr><td class="item">Daily covers (larger footprint, four zones, per Doc 3)</td><td class="val">200–300</td></tr>
+      <tr><td class="item">Average ticket</td><td class="val">₹400–550</td></tr>
+      <tr><td class="item">Estimated monthly gross revenue</td><td class="val">₹24–49.5 L</td></tr>
+    </table>
+    <div class="callout">
+      <span class="callout-tag">Café-Restaurant stage changes the model, not just the size</span>
+      <p>Document 0 §0.8's Stage 3 doesn't just add covers — it adds an entirely new evening ticket at a meaningfully higher average, likely ₹800–1,500 for a dinner cover given the Back Extension's evening-social positioning (Document 6 §6.5). That's a second revenue curve stacked on top of the daytime one, not a scaled version of it — worth modeling separately once that stage is actually approached, not blended into one annual average now.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">11.6</div>
+    <h2>The Bloom Internship as a Business Asset</h2>
+    <p>Document 10 priced the Bloom Internship (§10.3) as a cost line. It's worth naming the other side of that ledger directly: an intern who rotates through all three operational roles and converts to Staff, per Document 8 §8.4's pathway, arrives already trained on this brand's specific systems — a real reduction in hiring and onboarding cost versus recruiting a Staff hire cold from the outside market. The stipend isn't only the compassion commitment Document 8 §8.2 describes; it's also this brand's cheapest reliable pipeline into trained Staff, and worth tracking as one in whatever hiring-cost metrics get built later.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">11.7</div>
+    <h2>Open Items for Sign-Off</h2>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+      <tr><td>Said-ul-Ajaib actual footfall &amp; ticket size</td><td><span class="status-pill open">Open</span></td><td>§11.4's model needs real sales data to replace the assumption</td></tr>
+      <tr><td>Café-Restaurant stage dinner-ticket model</td><td><span class="status-pill open">Open</span></td><td>Flagged in §11.5 as needing separate modeling, not built here</td></tr>
+      <tr><td>Delivery aggregator commission &amp; volume split</td><td><span class="status-pill proposed">Proposed</span></td><td>18–30% commission range assumed; not confirmed per-platform</td></tr>
+      <tr><td>Kiosk host-venue revenue-share terms</td><td><span class="status-pill open">Open</span></td><td>Model in §11.3 can't finalize without a real host venue</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">11.8</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">Doc 10<br>Cost Estimation</div>
+      <p><strong>This document's entire foundation.</strong> Every Opex and Capex figure referenced here traces directly back to §10.2–§10.4.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 5<br>Digital Strategy</div>
+      <p>Delivery aggregator and app pre-order channels in §11.2 are the commercial half of what §5.7 designed.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 6<br>Customer Experience</div>
+      <p>The Back Extension's evening positioning (§6.5) is the basis for §11.5's separate dinner-ticket assumption.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 8<br>Staff Planning</div>
+      <p>§11.6 reframes the Bloom Internship's cost as a pipeline asset — the same program, read financially rather than philosophically.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 11 · BUSINESS PLAN &amp; REVENUE MODEL · KIOSK / EMBEDDED ANCHOR / FLAGSHIP
+</footer>
+
+</body>
+</html>

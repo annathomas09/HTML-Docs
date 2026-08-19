@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 8: Staff Planning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F; --bg-elevated:#1A2016; --bg-elevated-2:#212818;
+    --green:#4A5D3A; --green-soft:#7A9463; --green-dark:#3A4A2E;
+    --gold:#C9A25C; --gold-soft:#E2C48D;
+    --cream:#EEE7D8; --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C; --ink:#1C1710;
+    --border:rgba(201,162,92,0.22); --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif; --font-body:'Karla', sans-serif; --font-mono:'Space Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--cream); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:var(--gold-soft); }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  .hero{ position:relative; padding:100px 0 84px; text-align:center;
+    background: radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%), linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border); overflow:hidden; }
+  .signature{ width:340px; height:260px; margin:0 auto 18px; }
+  @media (prefers-reduced-motion: no-preference){ .signature .glow-ring{ animation: pulseGlow 5s ease-in-out infinite; } }
+  @keyframes pulseGlow{ 0%,100%{ opacity:1; } 50%{ opacity:0.72; } }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+  .hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(38px, 6vw, 64px); letter-spacing:-0.01em; color:var(--cream); margin-bottom:10px; }
+  .hero .doc-title{ font-family:var(--font-display); font-weight:400; font-style:italic; font-size:clamp(18px, 2.4vw, 24px); color:var(--gold-soft); margin-bottom:22px; }
+  .hero .doc-sub{ max-width:560px; margin:0 auto; color:var(--cream-dim); font-size:15px; }
+  .tag-row{ display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--border-strong); border-radius:100px; color:var(--gold-soft); }
+
+  section.doc-section{ padding:64px 0; border-bottom:1px solid var(--border); }
+  section.doc-section:last-of-type{ border-bottom:none; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:0.06em; margin-bottom:8px; }
+  h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px, 3.4vw, 34px); color:var(--cream); margin-bottom:20px; letter-spacing:-0.01em; }
+  h3{ font-family:var(--font-display); font-weight:500; font-size:19px; color:var(--gold-soft); margin:26px 0 10px; }
+  p{ margin-bottom:14px; max-width:66ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  .lede{ font-family:var(--font-display); font-size:20px; font-weight:400; font-style:italic; color:var(--gold-soft); line-height:1.5; max-width:64ch; margin-bottom:22px; }
+  ul{ margin:0 0 16px 20px; max-width:64ch; } li{ margin-bottom:8px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--bg-elevated); padding:18px 22px; border-radius:2px; margin:18px 0; }
+  .callout.flexible{ border-left:3px dashed var(--green-soft); }
+  .callout.warn{ border-left:3px solid var(--terracotta); }
+  .callout-tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .callout.flexible .callout-tag{ color:var(--green-soft); }
+  .callout.warn .callout-tag{ color:#D18C6D; }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+
+  .open-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  .open-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 12px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .open-table td{ padding:12px 12px 12px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+  .status-pill{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.pending{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+
+  .xref{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{ font-family:var(--font-mono); font-size:12px; color:var(--gold); flex:0 0 130px; }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; } .xref strong{ color:var(--cream); }
+
+  footer{ text-align:center; padding:50px 28px 70px; color:var(--cream-dim); font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; }
+
+  .process-steps{ display:flex; gap:0; margin:30px 0 10px; position:relative; }
+  @media (max-width:760px){ .process-steps{ flex-direction:column; } }
+  .p-step{ flex:1; position:relative; padding:0 18px 0 0; }
+  .p-step-badge{ width:34px; height:34px; border-radius:50%; border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:13px; color:var(--gold-soft); margin-bottom:14px; background:var(--bg); position:relative; z-index:2; }
+  .p-step:not(:last-child)::after{ content:''; position:absolute; top:17px; left:34px; right:-10px; height:1px; background:var(--border-strong); }
+  @media (max-width:760px){ .p-step:not(:last-child)::after{ display:none; } .p-step{ padding-bottom:26px; } }
+  .p-step h4{ font-family:var(--font-display); font-size:16px; color:var(--cream); margin-bottom:6px; font-weight:600; }
+  .p-step p{ font-size:13px; color:var(--cream-dim); }
+
+  .tier-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:26px 0; }
+  @media (max-width:760px){ .tier-grid{ grid-template-columns:1fr; } }
+  .tier-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:22px 20px; }
+  .tier-card.active{ border-color:var(--gold); background:var(--bg-elevated-2); }
+  .tier-card .tier-status{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--green-soft); margin-bottom:10px; display:block; }
+  .tier-card.active .tier-status{ color:var(--gold); }
+  .tier-card h4{ font-family:var(--font-display); font-size:20px; font-weight:600; color:var(--cream); margin-bottom:14px; }
+  .tier-row{ padding:9px 0; border-top:1px solid var(--border); font-size:13.5px; }
+  .tier-row:first-of-type{ border-top:none; }
+  .tier-row .k{ font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--cream-dim); display:block; margin-bottom:3px; }
+
+  .ic-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:20px 0; }
+  @media (max-width:680px){ .ic-grid{ grid-template-columns:repeat(2,1fr); } }
+  .ic-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:14px; text-align:center; }
+  .ic-card .ic-role{ font-family:var(--font-mono); font-size:9px; text-transform:uppercase; letter-spacing:0.04em; color:var(--gold-soft); margin-bottom:6px; }
+  .ic-card p{ font-size:12px; color:var(--cream-dim); margin:0; }
+
+  /* ---- Role cards: Who to Hire ---- */
+  .role-tier-tag{ display:inline-block; font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.07em; text-transform:uppercase; padding:3px 10px; border-radius:100px; margin-right:8px; }
+  .role-tier-tag.both{ background:rgba(201,162,92,0.14); color:var(--gold-soft); border:1px solid var(--border-strong); }
+  .role-tier-tag.flagship-only{ background:rgba(201,162,92,0.1); color:var(--gold); border:1px solid rgba(201,162,92,0.4); }
+  .role-tier-tag.kiosk-only{ background:rgba(122,148,99,0.15); color:var(--green-soft); border:1px solid rgba(122,148,99,0.4); }
+  .role-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; margin:22px 0; overflow:hidden; }
+  .role-card-head{ display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:14px; padding:18px 22px; background:var(--bg-elevated-2); border-bottom:1px solid var(--border); }
+  .role-card-head h4{ font-family:var(--font-display); font-size:21px; font-weight:600; color:var(--cream); margin:6px 0 0; }
+  .role-card-meta{ font-family:var(--font-mono); font-size:11px; color:var(--gold-soft); text-align:right; line-height:1.7; white-space:nowrap; }
+  .role-card-meta b{ color:var(--gold); }
+  .role-card-body{ padding:20px 22px 22px; }
+  .role-card-note{ font-size:13.5px; color:var(--cream-dim); margin-bottom:16px; max-width:70ch; }
+  .role-cols{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:6px; }
+  @media (max-width:680px){ .role-cols{ grid-template-columns:1fr; } }
+  .role-col h5{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--cream-dim); margin:0 0 10px; }
+  .role-col h5:not(:first-child){ margin-top:18px; }
+  .role-col ul{ margin:0; padding:0; list-style:none; max-width:none; }
+  .role-col li{ font-size:13px; color:var(--cream); padding:6px 0 6px 12px; border-left:2px solid var(--border); margin-bottom:6px; line-height:1.5; }
+  .role-col li b{ color:var(--gold-soft); }
+  .role-col li.deal{ border-left-color:var(--terracotta); }
+  .role-col li.deal b{ color:#D18C6D; }
+
+  /* ---- Pay table: What to Pay ---- */
+  .pay-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:13.5px; }
+  .pay-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 10px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .pay-table th.num, .pay-table td.num{ text-align:right; }
+  .pay-table td{ padding:11px 10px 11px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+  .pay-table td.figure{ font-family:var(--font-mono); color:var(--gold); white-space:nowrap; text-align:right; }
+  .pay-table td.dash{ color:var(--cream-dim); font-family:var(--font-mono); text-align:right; }
+  .pay-table tr.total td{ border-top:1px solid var(--border-strong); border-bottom:none; font-weight:600; color:var(--gold-soft); padding-top:14px; }
+  .pay-table tr.zone td{ padding-top:18px; padding-bottom:4px; border-bottom:none; font-family:var(--font-mono); font-size:10px; letter-spacing:0.07em; text-transform:uppercase; color:var(--cream-dim); }
+  .pay-table tr.zone:first-child td{ padding-top:0; }
+
+  /* ---- Two-tier comparison cards (Kiosk vs Flagship) ---- */
+  .tier2-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0; }
+  @media (max-width:680px){ .tier2-grid{ grid-template-columns:1fr; } }
+  .tier2-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:20px 22px; }
+  .tier2-card.flagship{ border-color:var(--border-strong); background:var(--bg-elevated-2); }
+  .tier2-card .t2-label{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--green-soft); margin-bottom:8px; display:block; }
+  .tier2-card.flagship .t2-label{ color:var(--gold); }
+  .tier2-card h4{ font-family:var(--font-display); font-size:19px; color:var(--cream); margin-bottom:14px; }
+  .tier2-card .t2-row{ padding:9px 0; border-top:1px solid var(--border); font-size:13px; color:var(--cream); }
+  .tier2-card .t2-row:first-of-type{ border-top:none; }
+  .tier2-card .t2-row .k{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; letter-spacing:0.05em; color:var(--cream-dim); display:block; margin-bottom:3px; }
+
+  /* ---- Hours / leave / festival blocks ---- */
+  .hr-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0; }
+  @media (max-width:680px){ .hr-grid{ grid-template-columns:1fr; } }
+  .hr-block{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:18px 20px; }
+  .hr-block h5{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--cream-dim); margin:0 0 12px; }
+  .hr-block ul{ margin:0; padding:0; list-style:none; max-width:none; }
+  .hr-block li{ font-size:13px; color:var(--cream); padding:7px 0; border-bottom:1px solid var(--border); line-height:1.55; }
+  .hr-block li:last-child{ border-bottom:none; }
+  .hr-block li b{ color:var(--gold-soft); }
+  .hr-block li.hl{ border-left:2px solid var(--green-soft); padding-left:10px; margin-left:-2px; }
+
+  /* ---- Hiring process: vertical stages ---- */
+  .stage-list{ margin:24px 0 10px; }
+  .stage{ display:flex; gap:20px; padding:20px 0; border-top:1px solid var(--border); }
+  .stage:first-of-type{ border-top:none; padding-top:4px; }
+  .stage-num{ font-family:var(--font-mono); font-size:20px; font-weight:700; color:var(--gold); flex:0 0 34px; }
+  .stage-body{ flex:1; }
+  .stage-tiers{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--green-soft); margin-bottom:8px; }
+  .stage-body h4{ font-family:var(--font-display); font-size:17px; font-weight:600; color:var(--cream); margin-bottom:6px; }
+  .stage-body p{ font-size:13.5px; color:var(--cream-dim); max-width:64ch; margin-bottom:0; line-height:1.6; }
+  .stage-body p b{ color:var(--cream); }
+
+  /* ---- Sources ---- */
+  .sources{ margin:44px 0 4px; padding-top:26px; border-top:1px solid var(--border); }
+  .sources > p{ font-size:12.5px; color:var(--cream-dim); font-style:italic; max-width:none; margin-bottom:18px; }
+  .src-group{ margin-bottom:18px; }
+  .src-group-label{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.07em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:8px; }
+  .sources ol{ margin:0; padding-left:20px; }
+  .sources li{ font-size:12px; color:var(--cream-dim); line-height:1.7; margin-bottom:4px; }
+  .sources li a{ color:var(--green-soft); text-decoration:none; border-bottom:1px dotted var(--border-strong); }
+  .sources li a:hover{ color:var(--gold-soft); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+    <div class="eyebrow">A&amp;M Munchies — Global Brand Standard</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 8 of 13 — Staff Planning</div>
+    <p class="doc-sub">Compassion for every being, made operational — not just stated.</p>
+    <div class="tag-row">
+      <span class="tag">Global role structure + local hiring</span>
+      <span class="tag">Applies at every format tier</span>
+      <span class="tag">Version 1 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">8.1</div>
+    <h2>Scope &amp; Purpose</h2>
+    <p>Document 0 §0.6 scoped this as "global role structure + local hiring." This document does three things: sets the people-philosophy every hiring decision answers to, builds real organizational structure on top of the four roles Document 4 already defined, and designs the women's-empowerment internship program you asked for — applying at Flagship, Embedded Anchor, and Kiosk alike, not only at Said-ul-Ajaib, the first embedded-tier location within SCRIPTORIUM.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.2</div>
+    <h2>People Philosophy — "Compassion for Every Being"</h2>
+    <p>Worth being specific about what the Tata comparison actually means, rather than just invoking the name. Tata's version of this isn't a slogan either — it traces to the Zoroastrian ethical triad the founding family were raised on, <em>humata, hukhta, hvarshta</em>: good thoughts, good words, good deeds. It's expressed structurally, not just rhetorically — over two-thirds of Tata Sons is held by Tata Trusts specifically so that profit channels back into social welfare rather than only to shareholders. And it's stated almost word-for-word by Tata's own hospitality arm: IHCL, which runs the Taj hotels, says employee wellbeing there is "safeguarded... crafted with compassion."</p>
+    <p>A&amp;M Munchies doesn't have Tata's scale or trust structure. But "every being" is deliberately wider than "every employee" — it's the same ethic already built into Document 3's water systems, where the extension pond and the Main Hall tank are engineered on genuinely different logic because the life in each deserves different care, not identical treatment. A people philosophy that stopped at "be nice to staff" would be narrower than what this brand already does for its fish. The internship program below is this document's version of Tata Trusts' structural instinct: when profit comes, some of it is built to flow back out, on purpose, not left to discretion.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.3</div>
+    <h2>Role Structure</h2>
+    <p>Built directly on Document 4's four roles, with a seniority ladder added on top of each:</p>
+    <div class="process-steps">
+      <div class="p-step">
+        <div class="p-step-badge">1</div>
+        <h4>Intern</h4>
+        <p>The Bloom Internship (§8.4) — fixed term, rotates across roles.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-badge">2</div>
+        <h4>Staff</h4>
+        <p>Settled into one of the four roles from Document 4.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-badge">3</div>
+        <h4>Senior / Lead</h4>
+        <p>Owns training and shift supervision within their role.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step-badge">4</div>
+        <h4>Branch Manager</h4>
+        <p>All four roles report up to one manager at Embedded Anchor and Kiosk scale.</p>
+      </div>
+    </div>
+    <div class="callout flexible">
+      <span class="callout-tag">Flexible — Café-Restaurant stage</span>
+      <p>Once Document 0 §0.8's Stage 3 is reached at a Flagship branch, the expanded hot kitchen likely needs its own Kitchen Lead reporting alongside, not under, the Branch Manager — flagged here, not decided, since it depends on a kitchen that doesn't exist yet.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.4</div>
+    <h2>Women's Empowerment Internship Program</h2>
+    <p class="dim">Proposed name: <strong>The Bloom Internship</strong> — open to rename.</p>
+    <ul>
+      <li><strong>Open to:</strong> students in culinary, hospitality, or related fields — priority given to female applicants specifically, not merely "equal consideration."</li>
+      <li><strong>Structure:</strong> a fixed term rotating across Counter, Floor, and Kitchen/Bakery, so every intern leaves with real range, not one narrow task repeated.</li>
+      <li><strong>Compensation:</strong> paid, set above the typical Indian F&amp;B internship norm — where unpaid or token-stipend placements are still common — as a deliberate choice, not a baseline. Exact figure belongs in Document 10 once real budgets exist; the principle doesn't wait for that number.</li>
+      <li><strong>Mentorship:</strong> every intern is paired with a senior staff member; senior female staff are prioritized as mentors for female interns specifically, wherever one is available.</li>
+      <li><strong>Certification:</strong> a basic food-safety credential as a portable, resume-real takeaway — not just "experience," something an intern can point to afterward.</li>
+      <li><strong>Safety:</strong> no unsupervised late solo shifts for interns; transport support for any shift ending after dark; direct, known access to the Internal Committee in §8.5.</li>
+      <li><strong>Pathway:</strong> strong performers get priority consideration for a real Staff-level offer at the end of term.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.5</div>
+    <h2>Legal Foundation — POSH Act &amp; the Internal Committee</h2>
+    <p>Given §8.4's explicit focus, this isn't background reading — it's the structure that makes the empowerment claim real rather than aspirational. The Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013 requires any workplace with 10 or more people — and this explicitly includes interns, not only full-time staff — to constitute an Internal Committee.</p>
+    <div class="ic-grid">
+      <div class="ic-card"><div class="ic-role">Presiding Officer</div><p>A senior woman employee, chairs the committee</p></div>
+      <div class="ic-card"><div class="ic-role">Internal Member</div><p>Employee with legal, HR, or social-work grounding</p></div>
+      <div class="ic-card"><div class="ic-role">Internal Member</div><p>Same criteria — at least 50% of the IC must be women</p></div>
+      <div class="ic-card"><div class="ic-role">External Member</div><p>From an NGO or with direct expertise in the issue — mandatory, not optional</p></div>
+    </div>
+    <div class="callout warn">
+      <span class="callout-tag">Real, common failure — worth naming</span>
+      <p>A 2024 survey of senior HR professionals found 59% of companies hadn't constituted a legally compliant Internal Committee at all — most failures are the external-member seat left empty or unqualified, which courts have ruled invalidates the committee entirely. Non-compliance itself carries a fine up to ₹50,000, doubling on repeat.</p>
+    </div>
+    <div class="callout">
+      <span class="callout-tag">Recommendation — ahead of the legal trigger</span>
+      <p>Kiosk-tier and early Said-ul-Ajaib headcount may sit under the 10-person threshold where an IC isn't yet legally required. Given §8.2's actual claim, waiting for the threshold to force the issue would be the wrong instinct — voluntary early adoption is the more consistent choice, and it's cheap relative to what it protects.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.6</div>
+    <h2>Hiring &amp; Execution by Format Tier</h2>
+    <div class="tier-grid">
+      <div class="tier-card">
+        <span class="tier-status">Future tier</span>
+        <h4>Kiosk</h4>
+        <div class="tier-row"><span class="k">Headcount</span>Smallest — likely under the POSH threshold at launch</div>
+        <div class="tier-row"><span class="k">Bloom Internship</span>Runs at reduced scale — Counter role only, given limited rotation options</div>
+      </div>
+      <div class="tier-card">
+        <span class="tier-status">First build, in progress — Said-ul-Ajaib</span>
+        <h4>Embedded Anchor</h4>
+        <div class="tier-row"><span class="k">Headcount</span>Four roles staffed — likely at or near the 10-person IC threshold</div>
+        <div class="tier-row"><span class="k">Bloom Internship</span>Full rotation across all three operational roles</div>
+      </div>
+      <div class="tier-card active">
+        <span class="tier-status">Primary tier</span>
+        <h4>Flagship</h4>
+        <div class="tier-row"><span class="k">Headcount</span>Largest, growing further at Café-Restaurant stage</div>
+        <div class="tier-row"><span class="k">Bloom Internship</span>Full rotation, plus dedicated hot-kitchen exposure once Stage 3 is reached</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.7</div>
+    <h2>Who to Hire — Role-by-Role, Flagship &amp; Kiosk</h2>
+    <p>§8.3 set the ladder and §8.6 set headcount by tier in outline. This section makes both concrete: actual people, actual criteria, for the two tiers this document owns. Embedded Anchor hiring is specified separately — see the <strong>SCRIPTORIUM Staff Planning &amp; Hiring Guide, §07</strong>, since that café sits inside SCRIPTORIUM's own campus structure and reports through its Campus Director, not through anything built in this document.</p>
+
+    <div class="callout flexible">
+      <span class="callout-tag">Working assumption — flagged for confirmation</span>
+      <p>Document 4 defined four roles, but this document doesn't repeat their names verbatim — §8.4 refers to interns rotating across "Counter, Floor, and Kitchen/Bakery." This section reads that as <strong>Counter, Floor, Kitchen, and Bakery</strong>: four distinct roles, with Kitchen and Bakery sharing one internship rotation block without being the same job. If Document 4 names them differently, every role card below maps one-to-one onto whatever the real names are — only the labels change. Carried to §8.12 as an open item.</p>
+    </div>
+
+    <h3>Why Kiosk and Flagship don't staff the same roles</h3>
+    <p>§8.6 already notes Embedded runs "all three operational roles" — no separate Floor position, because a campus café inside SCRIPTORIUM doesn't need one the way a seated restaurant does. The same logic sets Kiosk and Flagship apart from each other, more sharply still:</p>
+
+    <div class="tier2-grid">
+      <div class="tier2-card">
+        <span class="t2-label">Kiosk</span>
+        <h4>Two roles, no seating</h4>
+        <div class="t2-row"><span class="k">Roles staffed</span>Counter, and a combined Kitchen/Bakery prep role — no Floor, because a kiosk is grab-and-go by definition</div>
+        <div class="t2-row"><span class="k">Management layer</span>No separate Branch Manager. A Kiosk Lead — the Senior/Lead rung from §8.3 — doubles as site-in-charge</div>
+        <div class="t2-row"><span class="k">Typical headcount</span>4 people: 1 Kiosk Lead, 2 Counter Staff, 1 Kitchen/Bakery Staff</div>
+      </div>
+      <div class="tier2-card flagship">
+        <span class="t2-label">Flagship</span>
+        <h4>All four roles, in two stages</h4>
+        <div class="t2-row"><span class="k">Roles staffed</span>Counter, Floor, Kitchen, and Bakery — the full set, because seated service and a proper dessert case both need dedicated hands</div>
+        <div class="t2-row"><span class="k">Management layer</span>A full Branch Manager from opening day; a dedicated Kitchen Lead joins once Document 0 §0.8's Stage 3 hot kitchen is built, per the flexible note already in §8.3</div>
+        <div class="t2-row"><span class="k">Typical headcount</span>~7 at opening (lean, combined Kitchen/Bakery), growing to ~12 at Stage 3 with dedicated Kitchen and Bakery Leads</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-head">
+        <div><span class="role-tier-tag flagship-only">Flagship only</span><h4>Branch Manager</h4></div>
+        <div class="role-card-meta"><b>1 person</b> at Stage 3<br>Pay in §8.8</div>
+      </div>
+      <div class="role-card-body">
+        <p class="role-card-note">Kiosk has no equivalent post — see the Kiosk Lead card below. At Flagship, this is A&amp;M Munchies' complete local expression of the brand, unsupported by any campus structure to lean on the way Embedded is. The wrong person here is a worse failure than the wrong person in any single role, because there's no Campus Director layer above them to catch it early.</p>
+        <div class="role-cols">
+          <div class="role-col">
+            <h5>What you're looking for</h5>
+            <ul>
+              <li><b>Has run service and kitchen together</b>, not managed one while a separate head chef ran the other — Flagship's Branch Manager owns both at once</li>
+              <li><b>Can speak to §8.2's philosophy</b> in their own words, not recite it back — ask how they'd apply "compassion for every being" on a bad Tuesday shift, not a good one</li>
+              <li>P&amp;L literate: stock ordering, wastage control, vendor terms, daily reconciliation, without a back-office team to hand it to</li>
+              <li>Genuinely comfortable being the public face of the brand with no one more senior on-site to defer to</li>
+            </ul>
+          </div>
+          <div class="role-col">
+            <h5>Dealbreakers</h5>
+            <ul>
+              <li class="deal"><b>Chain-only background</b> (QSR corporate ops) with no independent-restaurant experience — chain management follows a playbook; a standalone Flagship needs someone who can write one</li>
+              <li class="deal">No experience managing front-of-house and kitchen at the same time, only one or the other</li>
+              <li class="deal">Talks about the Bloom Internship as free labour rather than the training pipeline §8.4 designed it to be</li>
+            </ul>
+            <h5>Where to find them</h5>
+            <ul>
+              <li>Senior managers at established independent Delhi restaurant-cafés — not chains — ready to run their own site</li>
+              <li>IHM Pusa and similar hospitality-management graduates with 4+ years' operating experience, not fresh placements</li>
+              <li>Personal network first, same as SCRIPTORIUM's own Campus Director search — a hire this consequential shouldn't come from a cold job-board post alone</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-head">
+        <div><span class="role-tier-tag kiosk-only">Kiosk only</span><h4>Kiosk Lead</h4></div>
+        <div class="role-card-meta"><b>1 person</b><br>Pay in §8.8</div>
+      </div>
+      <div class="role-card-body">
+        <p class="role-card-note">Not a smaller Branch Manager — a Senior/Lead (§8.3) carrying site-in-charge duties on top of their own station. At a 4-person headcount, splitting "runs the counter" from "runs the site" would just be two part-time jobs pretending to be different roles.</p>
+        <div class="role-cols">
+          <div class="role-col">
+            <h5>What you're looking for</h5>
+            <ul>
+              <li><b>Trustworthy alone</b> — this person opens, closes, reconciles cash, and orders stock with no one else senior on-site, most days</li>
+              <li>Strong at Counter specifically, since that's almost always the role they staff themselves when short-handed</li>
+              <li>Can train a Bloom intern one-on-one — Kiosk's internship rotation is Counter-only (§8.6), and the Kiosk Lead is the only person positioned to run it</li>
+            </ul>
+          </div>
+          <div class="role-col">
+            <h5>Dealbreakers</h5>
+            <ul>
+              <li class="deal">No prior cash-handling or stock-ordering responsibility anywhere</li>
+              <li class="deal">Wants a management title without wanting the solo accountability that comes with it at this headcount</li>
+            </ul>
+            <h5>Where to find them</h5>
+            <ul>
+              <li>Internal promotion from Counter Staff with 12+ months' tenure, once a Kiosk has been open long enough to have any</li>
+              <li>Shift supervisors at QSR or specialty-coffee chains ready to run something smaller but genuinely their own</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-head">
+        <div><span class="role-tier-tag both">Both tiers</span><h4>Counter</h4></div>
+        <div class="role-card-meta"><b>Kiosk:</b> 2 Staff<br><b>Flagship:</b> 1 Lead + 2 Staff</div>
+      </div>
+      <div class="role-card-body">
+        <p class="role-card-note">The first physical contact almost every visitor has with A&amp;M Munchies, at either tier — more so at Kiosk, where there's no Floor role to soften a bad first interaction.</p>
+        <div class="role-cols">
+          <div class="role-col">
+            <h5>What you're looking for</h5>
+            <ul>
+              <li><b>Speaks in complete sentences</b>, not "what do you want" — "Good morning, what can I get started for you?"</li>
+              <li>Knows the full menu from memory, brownie included — can't hedge on the signature item</li>
+              <li>Stays unhurried in a queue; Kiosk especially lives or dies on this since there's no seating to absorb a wait</li>
+            </ul>
+          </div>
+          <div class="role-col">
+            <h5>Dealbreakers</h5>
+            <ul>
+              <li class="deal">Phone-checking or flat affect in the practical trial (§8.10 covers how this gets tested)</li>
+              <li class="deal">Has to check the menu when asked what's in something</li>
+            </ul>
+            <h5>Where to find them</h5>
+            <ul>
+              <li>IHM Pusa and similar institutes for structured, trained candidates</li>
+              <li>Local hires near whichever site is opening — the same logic Said-ul-Ajaib already applies for Embedded, extended here: proximity beats a longer commute on the mornings that matter</li>
+              <li>Apna, Indeed, and JobHai for active local listings — all three surfaced genuine current Delhi café-staff demand in the research behind §8.8's figures</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-head">
+        <div><span class="role-tier-tag flagship-only">Flagship only</span><h4>Floor</h4></div>
+        <div class="role-card-meta"><b>1 Lead + 2 Staff</b><br>at Stage 3</div>
+      </div>
+      <div class="role-card-body">
+        <p class="role-card-note">Doesn't exist at Kiosk — there's no seating to serve. This is the role that turns "café" into "café-restaurant" once Document 0 §0.8's Stage 3 is reached.</p>
+        <div class="role-cols">
+          <div class="role-col">
+            <h5>What you're looking for</h5>
+            <ul>
+              <li><b>Reads a table's pace</b> without being asked — knows the difference between a couple who wants to linger and a solo diner on a lunch break</li>
+              <li>Can describe and suggest the Bakery case's items unprompted, as a natural part of service rather than a scripted upsell</li>
+              <li>Comfortable on a closing shift that can run past 10pm at a full-service Flagship — see §8.9 for exactly how late, and what that means for scheduling women on that shift</li>
+            </ul>
+          </div>
+          <div class="role-col">
+            <h5>Dealbreakers</h5>
+            <ul>
+              <li class="deal">Treats table service as purely transactional — order in, food out, bill</li>
+            </ul>
+            <h5>Where to find them</h5>
+            <ul>
+              <li>IHM Pusa and similar institutes</li>
+              <li>Departing floor staff from established independent Delhi cafés — turnover at that level is a known, poachable pool</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-head">
+        <div><span class="role-tier-tag both">Both tiers</span><h4>Kitchen</h4></div>
+        <div class="role-card-meta"><b>Kiosk:</b> combined w/ Bakery<br><b>Flagship:</b> Lead + 2 Staff at Stage 3</div>
+      </div>
+      <div class="role-card-body">
+        <p class="role-card-note">At Kiosk, one person covers Kitchen and Bakery prep together at small batch size. At Flagship, the two split into dedicated roles once Stage 3's hot kitchen is built — §8.3 already flagged that a Kitchen Lead would report alongside, not under, the Branch Manager once that happens.</p>
+        <div class="role-cols">
+          <div class="role-col">
+            <h5>What you're looking for</h5>
+            <ul>
+              <li><b>FSSAI-literate</b> without being prompted every time — hygiene discipline that's automatic, not performed for an inspection</li>
+              <li>Consistency over creativity — the menu is fixed; the job is executing it identically on order 4 and order 400</li>
+              <li>For the Lead specifically: has run a hot line before, not just a prep station</li>
+            </ul>
+          </div>
+          <div class="role-col">
+            <h5>Dealbreakers</h5>
+            <ul>
+              <li class="deal">Poor knife or surface hygiene in the practical trial</li>
+              <li class="deal">Lead candidates with no experience managing other kitchen staff under service pressure</li>
+            </ul>
+            <h5>Where to find them</h5>
+            <ul>
+              <li>JobHai and Indeed kitchen-staff listings — both showed active, current Delhi demand at this level</li>
+              <li>Culinary training institutes across Delhi NCR for structured Staff-level candidates; independent-restaurant kitchens for Lead-level hires</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-head">
+        <div><span class="role-tier-tag both">Both tiers</span><h4>Bakery</h4></div>
+        <div class="role-card-meta"><b>Kiosk:</b> combined w/ Kitchen<br><b>Flagship:</b> Lead + 1 Staff at Stage 3</div>
+      </div>
+      <div class="role-card-body">
+        <p class="role-card-note">Worth more hiring care than headcount alone would suggest. The brownie isn't one item on the menu — it's the anchor of the logo direction itself, which means whoever makes it is, in a real sense, making the brand's visual identity edible. A brownie that varies batch to batch is a brand inconsistency, not just a kitchen one.</p>
+        <div class="role-cols">
+          <div class="role-col">
+            <h5>What you're looking for</h5>
+            <ul>
+              <li><b>Real baking fundamentals</b>, not decorating skill alone — precision with ratios and bake times, since the brownie has to be identical on a Tuesday and a Saturday</li>
+              <li>For the Lead specifically: can document a recipe precisely enough that a Staff-level hire or a Bloom intern reproduces it without tasting the original first</li>
+              <li>Genuine interest in the craft — the same "obsessed with the work" instinct SCRIPTORIUM looks for in its own Head Barista</li>
+            </ul>
+          </div>
+          <div class="role-col">
+            <h5>Dealbreakers</h5>
+            <ul>
+              <li class="deal">Inconsistent output across a multi-batch trial — this is the one role where "good most of the time" is a real disqualifier</li>
+            </ul>
+            <h5>Where to find them</h5>
+            <ul>
+              <li>Delhi's home-baker-to-professional pipeline — a real and growing hiring pool; several premium standalone patisseries now hire on technique and portfolio rather than a culinary degree alone</li>
+              <li>Pastry-specific training programs, for Staff-level candidates without a home-baking track record yet</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.8</div>
+    <h2>What to Pay — Compensation by Role &amp; Tier</h2>
+    <p>All figures below are Delhi NCR market benchmarks as of July 2026, drawn from current listings and salary-aggregator data across Indeed, Apna, JobHai, Glassdoor, and PayScale — the same category of sources SCRIPTORIUM's own staff plan cites, checked fresh for this document rather than reused. Full sources are listed at the end of this document.</p>
+
+    <div class="callout warn">
+      <span class="callout-tag">The floor these bands are set against</span>
+      <p>Delhi's statutory minimum wage — revised twice yearly against the Consumer Price Index — sits at approximately <strong>₹18,500–19,900/month for unskilled work and ₹22,400–23,900/month for skilled work</strong> as of the April 2026 revision. A meaningful share of the Delhi café-staff listings surveyed for this section advertise below that unskilled floor, which is a real and common gap in the city's informal F&amp;B sector, not a rounding difference. Every A&amp;M Munchies band below is set to clear the relevant floor with real margin, not sit on top of it — the same instinct as §8.2's Tata comparison, made out of payroll rather than prose.</p>
+    </div>
+
+    <table class="pay-table">
+      <tr><th>Role</th><th>Level</th><th class="num">Kiosk</th><th class="num">Flagship</th></tr>
+      <tr class="zone"><td colspan="4">Management</td></tr>
+      <tr><td>Branch Manager</td><td>—</td><td class="dash">n/a</td><td class="figure">₹48,000–68,000</td></tr>
+      <tr><td>Kiosk Lead</td><td>Senior/Lead + site-in-charge</td><td class="figure">₹27,000–33,000</td><td class="dash">n/a</td></tr>
+      <tr class="zone"><td colspan="4">Counter</td></tr>
+      <tr><td>Counter</td><td>Senior/Lead</td><td class="dash">—</td><td class="figure">₹27,000–32,000</td></tr>
+      <tr><td>Counter</td><td>Staff</td><td class="figure">₹19,000–23,000</td><td class="figure">₹19,000–23,000</td></tr>
+      <tr class="zone"><td colspan="4">Floor <span style="font-weight:400; text-transform:none; letter-spacing:0; color:var(--cream-dim);">(Flagship only)</span></td></tr>
+      <tr><td>Floor</td><td>Senior/Lead</td><td class="dash">n/a</td><td class="figure">₹26,000–31,000</td></tr>
+      <tr><td>Floor</td><td>Staff</td><td class="dash">n/a</td><td class="figure">₹19,000–23,000</td></tr>
+      <tr class="zone"><td colspan="4">Kitchen</td></tr>
+      <tr><td>Kitchen</td><td>Lead <span style="color:var(--cream-dim);">(Flagship, Stage 3)</span></td><td class="dash">n/a</td><td class="figure">₹36,000–48,000</td></tr>
+      <tr><td>Kitchen</td><td>Staff</td><td class="figure">₹19,000–24,000</td><td class="figure">₹19,000–24,000</td></tr>
+      <tr class="zone"><td colspan="4">Bakery</td></tr>
+      <tr><td>Bakery</td><td>Lead <span style="color:var(--cream-dim);">(Flagship, Stage 3)</span></td><td class="dash">n/a</td><td class="figure">₹32,000–44,000</td></tr>
+      <tr><td>Bakery</td><td>Staff</td><td class="figure">₹19,000–24,000</td><td class="figure">₹19,000–24,000</td></tr>
+      <tr class="zone"><td colspan="4">Bloom Internship</td></tr>
+      <tr><td colspan="2">Stipend</td><td colspan="2" style="color:var(--cream-dim); font-family:var(--font-body);">Still pending Document 10 per §8.12 — set above the unpaid/token-stipend F&amp;B norm on the same principle as the staff bands above, once real budgets exist</td></tr>
+    </table>
+
+    <div class="tier2-grid">
+      <div class="tier2-card">
+        <span class="t2-label">Kiosk — full team estimate</span>
+        <h4>4 people</h4>
+        <div class="t2-row"><span class="k">Composition</span>1 Kiosk Lead, 2 Counter Staff, 1 combined Kitchen/Bakery Staff</div>
+        <div class="t2-row"><span class="k">Monthly payroll</span>approximately ₹90,000–1,10,000</div>
+      </div>
+      <div class="tier2-card flagship">
+        <span class="t2-label">Flagship — full team estimate</span>
+        <h4>~7 at opening → ~12 at Stage 3</h4>
+        <div class="t2-row"><span class="k">Opening composition</span>Branch Manager, 2 Counter, 2 Floor, 2 combined Kitchen/Bakery Staff</div>
+        <div class="t2-row"><span class="k">Stage 3 composition</span>Branch Manager, Counter Lead + 2 Staff, Floor Lead + 2 Staff, Kitchen Lead + 2 Staff, Bakery Lead + 1 Staff</div>
+        <div class="t2-row"><span class="k">Monthly payroll</span>approximately ₹1.7–2.0 lakh at opening, rising to ₹3.3–3.9 lakh at Stage 3</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-tag">Statutory bonus — the floor, not the plan</span>
+      <p>The Payment of Bonus Act applies once an establishment carries 20 or more employees, and requires a minimum 8.33% annual bonus for anyone earning ₹21,000/month or less in basic + DA. At full Stage 3 headcount, Flagship's team of about 12 sits under that trigger; Kiosk, at 4, sits well under it. Per the precedent already set in §8.5 for the Internal Committee, A&amp;M Munchies doesn't wait for headcount to force this — the festival bonus structure in §8.9 applies at both tiers regardless of whether the statutory trigger is technically met.</p>
+    </div>
+
+    <p class="dim">These bands are a starting model, not a locked figure — built for a Delhi NCR opening, and due for recalibration once an actual Kiosk or Flagship site, and its city, is confirmed. Carried to §8.12 and, once locked, to Document 10.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.9</div>
+    <h2>Working Hours, Leave, Holidays &amp; Festival Bonuses</h2>
+    <p>Both tiers sit under the Delhi Shops and Establishments Act, 1954, which currently caps work at <strong>9 hours a day and 48 hours a week</strong>, requires a break after no more than 5 continuous hours, and sets overtime at <strong>twice the normal rate</strong> — not 1.5×; that figure appears in the SCRIPTORIUM staff plan and is worth revisiting there, since Section 8 of the Act itself specifies double time, confirmed directly against the Delhi Labour Department's own published text.</p>
+
+    <div class="callout warn">
+      <span class="callout-tag">A law mid-change — worth tracking, not yet acting on</span>
+      <p>The Delhi Shops and Establishments (Amendment) Act, 2026 was passed and gazetted on 11 March 2026, but had not been brought into force as of this writing — it takes effect only on a separate commencement date the Delhi government has not yet notified. Until then, the original 1954 terms above govern. Once commenced, the amendment raises the daily cap to 10 hours (inclusive of breaks), raises the continuous-work limit to 6 hours, and — most relevant here — narrows the Act's applicability to establishments with 20 or more employees, which would technically exempt both Kiosk and, most of the time, Flagship. A&amp;M Munchies' policy below is written to the stricter, currently-active standard, which also happens to satisfy the looser one that's coming — so nothing here needs to change when the amendment commences. Confirm current status with a labour law consultant before the first hire, the same standing instruction SCRIPTORIUM's own document already carries.</p>
+    </div>
+
+    <div class="hr-grid">
+      <div class="hr-block">
+        <h5>Operating hours &amp; shifts</h5>
+        <ul>
+          <li><b>Kiosk:</b> 7:30am–9:00pm. A single overlapping pair of shifts covers this without anyone approaching the 9-hour cap.</li>
+          <li><b>Flagship:</b> 8:00am–11:00pm, breakfast through late dessert service. Two 9-hour shifts (opening 7:30am–4:30pm, closing 2:00pm–11:00pm) with a 2–4:30pm overlap for handover.</li>
+          <li>No one works more than 6 consecutive days without a day off, at either tier.</li>
+          <li>Rosters published at least two weeks ahead; changed only with 48 hours' notice barring a genuine emergency — the same standard SCRIPTORIUM already holds itself to.</li>
+        </ul>
+      </div>
+      <div class="hr-block">
+        <h5>Annual leave</h5>
+        <ul>
+          <li><b>Earned Leave: 18 days/year</b> — 3 above the Delhi S&amp;E Act's 15-day floor</li>
+          <li><b>Casual Leave: 8 days/year</b>, per the Act</li>
+          <li><b>Sick Leave: 12 days/year</b>; a medical certificate is asked for only after 3 consecutive days</li>
+          <li><b>National &amp; Restricted Holidays: 14/year</b>, per Central Government notification</li>
+          <li class="hl"><b>Total: 52 days off a year</b> — roughly 1 day in 7, identical to the standard already set for SCRIPTORIUM, arrived at independently for the same reason</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Female staff provisions</h3>
+    <p>§8.4 and §8.5 already put the Bloom Internship's female-priority intake and the Internal Committee at the centre of this document's people-philosophy. This is where that focus becomes a set of hours and dates, not just an intake and a committee:</p>
+    <div class="hr-grid">
+      <div class="hr-block">
+        <h5>Leave &amp; scheduling</h5>
+        <ul>
+          <li class="hl"><b>Maternity leave: 26 weeks paid</b>, per the Maternity Benefit Act 2017, for the first two children — full salary throughout, no exceptions by tier or role</li>
+          <li class="hl"><b>Menstrual leave: 2 days/month, paid, self-certified</b> — from Day 1, no medical certificate, no accumulation, tracked confidentially by the Branch Manager or Kiosk Lead</li>
+          <li><b>No forced late shift without written consent</b> — matters more at Flagship, whose 11pm close runs later than Kiosk's 9pm</li>
+          <li class="hl"><b>Evening transport support: ₹600/month</b> at Flagship for any female staff member on a shift ending past 8pm; not needed at Kiosk, which closes before that threshold</li>
+        </ul>
+      </div>
+      <div class="hr-block">
+        <h5>Facilities</h5>
+        <ul>
+          <li>Period products stocked at no cost in staff restrooms at both tiers — a negligible line item against what it signals daily</li>
+          <li>POSH Internal Committee coverage as already set out in §8.5, extended to both tiers regardless of whether headcount clears the legal 10-person trigger</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Festival bonuses — every festival, every person, no exceptions</h3>
+    <p>§8.2 already made the case for why "every being" is the operative word, not "every employee." The same reasoning applies here in payroll form: no one is asked their religion, and no one's bonus depends on the answer. A Hindu staff member receives an Eid bonus; a Muslim staff member receives a Diwali bonus. The Payment of Bonus Act sets a statutory floor of 8.33% of annual salary for staff earning under ₹21,000/month basic — A&amp;M Munchies treats that as the floor, not the plan, and extends the same structure to Kiosk-tier staff voluntarily, ahead of the 20-employee threshold that would otherwise make it optional, on the same logic §8.5 already applies to the Internal Committee.</p>
+    <div class="hr-grid">
+      <div class="hr-block">
+        <h5>Target: 1.25 months' gross salary/year, across festivals</h5>
+        <ul>
+          <li><b>Diwali</b> (Oct/Nov) — 35% of the annual bonus</li>
+          <li><b>Eid-ul-Fitr</b> — 20%</li>
+          <li><b>Christmas</b> — 15%</li>
+          <li><b>Holi</b> — 15%</li>
+          <li><b>Harvest season</b> (Baisakhi/Onam, whichever applies) — 10%, with the remaining 5% as smaller gift tokens across the rest of the gazetted calendar</li>
+        </ul>
+      </div>
+      <div class="hr-block">
+        <h5>Estimated annual cost</h5>
+        <ul>
+          <li><b>Kiosk</b> (4 people): approximately ₹1.1–1.4 lakh/year</li>
+          <li><b>Flagship</b> (12 people, Stage 3): approximately ₹4.1–4.9 lakh/year</li>
+          <li>Both figures already follow from §8.8's payroll estimates and should carry through to Document 10 alongside them</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.10</div>
+    <h2>How to Hire Them — Recruitment Channels &amp; Hiring Process</h2>
+    <p>§8.7 already covers where to look for each role. This section covers what §8.7 doesn't: who actually conducts the hiring, and what a candidate goes through once they've applied.</p>
+
+    <div class="callout">
+      <span class="callout-tag">Who hires, without a Campus Director to lean on</span>
+      <p>Embedded Anchor benefits from SCRIPTORIUM's Campus Director handling Tier 2 and Tier 3 hiring, per that document's own §09a. Kiosk and Flagship have no equivalent layer — they're standalone A&amp;M Munchies sites. Until a second standalone site exists to justify a dedicated regional hire, <strong>Anna hires every Branch Manager and every Kiosk Lead directly</strong>, the same way she hires every Tier 1 role at SCRIPTORIUM. Branch Managers and Kiosk Leads then hire their own Staff-level teams once confirmed — they know the role better than a founder hiring at a distance ever could.</p>
+    </div>
+
+    <h3>Process by seniority</h3>
+    <p>Not every hire carries the same risk. A wrong Staff-level hire is correctable inside a trial period; a wrong Branch Manager or Kiosk Lead runs an entire site badly for months before it's obvious. The process scales accordingly:</p>
+
+    <div class="stage-list">
+      <div class="stage">
+        <div class="stage-num">01</div>
+        <div class="stage-body">
+          <div class="stage-tiers">All roles, all tiers</div>
+          <h4>Structured interview</h4>
+          <p>Every candidate, at every level, gets a real conversation before anything else: relevant experience, a role-specific knowledge check (for Counter — walk me through the menu as if I'm a first-time visitor; for Kitchen or Bakery — what would you change about this recipe and why; for a Branch Manager or Kiosk Lead candidate — how would you apply §8.2's philosophy on a bad shift, not a good one), and a direct read on whether they've actually engaged with what A&amp;M Munchies is, not just that they want a job.</p>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">02</div>
+        <div class="stage-body">
+          <div class="stage-tiers">All roles, all tiers</div>
+          <h4>Paid practical trial</h4>
+          <p>A half-day, paid at the relevant hourly rate. Counter candidates work a real queue; Kitchen and Bakery candidates cook or bake under observation — Bakery's trial runs across more than one batch specifically to test the consistency §8.7 flags as its one hard dealbreaker; Branch Manager and Kiosk Lead candidates run a full shift with real authority over it, not a shadow shift. <b>This stage is never skipped</b>, on the same principle SCRIPTORIUM's own hiring process already states: what someone does in half a day reveals more than any interview answer.</p>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">03</div>
+        <div class="stage-body">
+          <div class="stage-tiers">Senior/Lead, Kiosk Lead, Branch Manager only</div>
+          <h4>References — two, by phone</h4>
+          <p>Direct managers only, not colleagues. Three questions, every time: would you hire them again and why; what were they like on a bad day; what would they need to improve. A reference with no honest qualification anywhere in the answer is a flag, not a reassurance.</p>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">04</div>
+        <div class="stage-body">
+          <div class="stage-tiers">All roles, all tiers</div>
+          <h4>90-day probation, reviewed at Day 30 and Day 60</h4>
+          <p>Day 30 asks whether the physical systems have been learned — the till, the machines, the recipes. Day 60 asks whether decisions are being made independently or still deferred upward. Day 90 is confirmation. For a Branch Manager or Kiosk Lead, Anna conducts the Day 90 review personally, mirroring the standard SCRIPTORIUM already holds for its own Tier 1 hires.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="dim">Counter, Floor, Kitchen, and Bakery Staff go through Stages 1, 2, and 4. Senior/Lead, Kiosk Lead, and Branch Manager go through all four.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.11</div>
+    <h2>Training &amp; Progression</h2>
+    <p>The Bloom Internship's rotation and certification (§8.4) is deliberately the same on-ramp as Staff-level training, not a separate track — an intern who converts to Staff isn't starting over. Senior/Lead promotion criteria and formal review cadence aren't decided here; they're a Branch Manager tool once Said-ul-Ajaib has real tenure data to build them from.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.12</div>
+    <h2>Open Items for Sign-Off</h2>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+      <tr><td>Bloom Internship — exact stipend figure</td><td><span class="status-pill pending">Pending</span></td><td>Document 10, once real budgets exist</td></tr>
+      <tr><td>Program name</td><td><span class="status-pill proposed">Proposed</span></td><td>"The Bloom Internship" — confirm or rename</td></tr>
+      <tr><td>Internship term length</td><td><span class="status-pill open">Open</span></td><td>Not yet fixed</td></tr>
+      <tr><td>Said-ul-Ajaib IC member identification</td><td><span class="status-pill open">Open</span></td><td>Needs real names once headcount is confirmed</td></tr>
+      <tr><td>Document 4's four-role names</td><td><span class="status-pill open">Open</span></td><td>§8.7 assumes Counter/Floor/Kitchen/Bakery from this document's own references (§8.1, §8.4); confirm against Document 4 directly</td></tr>
+      <tr><td>Kiosk &amp; Flagship pay bands</td><td><span class="status-pill proposed">Proposed</span></td><td>Delhi NCR benchmarks, July 2026 (§8.8) — recalibrate once a real site and city are confirmed, then lock into Document 10</td></tr>
+      <tr><td>SCRIPTORIUM doc's overtime multiplier</td><td><span class="status-pill open">Open</span></td><td>§8.9 sources 2× directly from the Delhi S&amp;E Act; SCRIPTORIUM's staff plan currently states 1.5× — flagged there for correction, not fixed here</td></tr>
+      <tr><td>Branch Manager / Kiosk Lead hiring owner beyond one site</td><td><span class="status-pill pending">Pending</span></td><td>Anna hires directly per §8.10 until a second standalone site exists</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">8.13</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">SCRIPTORIUM<br>Staff Planning &amp; Hiring Guide</div>
+      <p><strong>Where Embedded Anchor lives.</strong> Its §07 covers that café's own hiring, pay, and hours in full — this document's §8.7–§8.10 deliberately don't repeat it. Its §09d overtime figure (1.5×) is worth reconciling against this document's §8.9, which sources 2× directly from the Act's own text.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 0<br>Brand Architecture</div>
+      <p>§0.6's role-structure principle and the three format tiers §8.6 executes against.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 3<br>Architecture</div>
+      <p>The water-systems logic in §3.6 is the direct precedent §8.2 draws "every being" from.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 4<br>Staff Uniform</div>
+      <p>The four roles this document's ladder is built on — read in §8.7 as Counter, Floor, Kitchen, and Bakery; confirm the exact names against this document directly.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 9<br>Regulatory (Said-ul-Ajaib)</div>
+      <p><strong>Direct dependency.</strong> POSH Act compliance belongs in that branch's actual regulatory filing, not just named here.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 10<br>Cost Estimation</div>
+      <p><strong>Blocked on this document.</strong> Bloom Internship stipends, IC operating costs, and now the full Kiosk/Flagship payroll model in §8.7–§8.9 all need budgeting against what's set here.</p>
+    </div>
+  </section>
+
+  <div class="sources">
+    <p>Salary figures are Delhi NCR market benchmarks gathered July 2026 for this document specifically — not carried over from SCRIPTORIUM's — and should be reviewed each April and October alongside the minimum-wage revision cycle. All statutory compliance (EPF, ESIC, Shops &amp; Establishments registration, Payment of Bonus Act, the pending 2026 Amendment) must be confirmed with a labour law consultant before the first hire is made.</p>
+
+    <div class="src-group">
+      <div class="src-group-label">Salary benchmarks</div>
+      <ol>
+        <li>Indeed India — <a href="https://in.indeed.com/career/barista/salaries/Delhi">Barista average salary Delhi: ₹20,011/month</a></li>
+        <li>Apna — <a href="https://apna.co/jobs/title_barista-jobs-in-delhi_ncr">Barista jobs Delhi NCR: ₹20,000–₹25,000/month range</a></li>
+        <li>Indeed India — <a href="https://in.indeed.com/q-restaurant-manager-l-delhi,-delhi-jobs.html">Restaurant/café manager Delhi listings: ₹22,000–₹45,000/month</a></li>
+        <li>PayScale India — <a href="https://www.payscale.com/research/IN/Job=Restaurant_Manager/Salary/26d983c8/Delhi">Restaurant Manager Delhi average: ₹4,80,000/year (₹40,000/month)</a></li>
+        <li>Indeed India — <a href="https://in.indeed.com/career/cook/salaries/Delhi--Delhi">Cook average salary Delhi: ₹15,786/month</a></li>
+        <li>JobHai — <a href="https://www.jobhai.com/kitchen-staff-jobs-in-delhi-cjrl">Kitchen staff Delhi listings: ₹14,000–₹35,000/month by experience</a></li>
+        <li>Indeed India — <a href="https://in.indeed.com/career/pastry-cook/salaries/Delhi">Pastry cook average salary Delhi: ₹13,461/month</a></li>
+        <li>Florence Academy of World Cuisines — <a href="https://www.florenceawc.com/pastry-chef-career-path-india/">Pastry chef salary India 2026: ₹12,000/month (Commis) to ₹2,50,000+/month (Executive); Indeed India average ₹23,077/month across Delhi/NCR submissions</a></li>
+        <li>JobHai — <a href="https://www.jobhai.com/cafe-staff-jobs-in-delhi-cjrl">Café staff Delhi listings: ₹17,000–₹25,000/month</a></li>
+        <li>IIHCA Khatima — <a href="https://iihca.in/what-is-the-salary-of-chef-in-india-per-month/">Junior Chef ₹25,000–₹40,000/month; Sous Chef ₹40,000–₹70,000/month, India-wide</a></li>
+      </ol>
+    </div>
+
+    <div class="src-group">
+      <div class="src-group-label">Delhi minimum wage</div>
+      <ol>
+        <li>TeamLease RegTech — <a href="https://www.teamleaseregtech.com/updates/article/55057/govt-of-delhi-notified-regarding-the-revision-of-minimum-wages-in-delh/">Delhi Labour Department notification: unskilled ₹18,456, semi-skilled ₹20,371, skilled ₹22,411/month</a></li>
+        <li>Futurex Solutions — <a href="https://futurexsolutions.com/delhi-minimum-wage-2026/">Delhi minimum wage effective 1 April 2026: unskilled ₹19,846/month, skilled ₹23,905/month, revised biannually against CPI-IW</a></li>
+      </ol>
+    </div>
+
+    <div class="src-group">
+      <div class="src-group-label">Working hours &amp; the 2026 amendment</div>
+      <ol>
+        <li>Delhi Labour Department (Government of NCT of Delhi) — <a href="https://labour.delhi.gov.in/labour/delhi-shops-act-1954">The Delhi Shops Act, 1954: 9 hours/day, 48 hours/week, overtime at twice the normal rate</a></li>
+        <li>DLA Piper GENIE — <a href="https://knowledge.dlapiper.com/dlapiperknowledge/globalemploymentlatestdevelopments/2025/delhi-eases-commercial-operations-with-a-24_7-economy-goal">Delhi S&amp;E Act exemption notification: 9-hour/48-hour cap confirmed, overtime at twice the normal rate</a></li>
+        <li>ELP Law — <a href="https://elplaw.in/leadership/delhi-shops-and-establishments-amendment-act-2026-overview-of-key-amendments-and-compliance-implications/">Delhi Shops and Establishments (Amendment) Act, 2026: gazetted 11 March 2026, daily cap raised to 10 hours inclusive of breaks</a></li>
+        <li>AscentHR — <a href="https://ascent-hr.com/notification/delhi-shops-and-establishments-amendment-act-2026/">Amendment Act 2026: will apply only to establishments with 20+ employees; effective date not yet separately notified</a></li>
+        <li>HRM Thread — <a href="https://www.hrmthread.com/delhi-shops-and-establishments-amendment-act-2026-key-changes/">Confirms the amendment remains not-in-force until a separate Gazette commencement notification is issued</a></li>
+      </ol>
+    </div>
+
+    <div class="src-group">
+      <div class="src-group-label">Statutory bonus &amp; social security</div>
+      <ol>
+        <li>greytHR — <a href="https://www.greythr.com/blog/payment-of-bonus-act-applicability-calculation-eligibility/">Payment of Bonus Act: applies at 20+ employees; eligibility ≤₹21,000/month basic+DA; minimum 8.33%</a></li>
+        <li>SalaryBox — <a href="https://salarybox.in/blog/bonus-calculation-under-payment-of-bonus-act-formula-eligibility-examples/">Bonus ceiling confirmed unchanged at ₹21,000/month as of 2026</a></li>
+        <li>EPFO — <a href="https://www.epfindia.gov.in">Employee Provident Fund Organisation: employer contribution 12% of basic pay</a></li>
+        <li>ESIC — <a href="https://www.esic.gov.in">Employees State Insurance Corporation: 3.25% employer / 0.75% employee, wage ceiling ₹21,000/month gross</a></li>
+        <li>Labour Law Reporter — <a href="https://labourlawreporter.com/esi.asp">ESIC contribution rates confirmed current as of 2026: 4% combined</a></li>
+      </ol>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 8 · STAFF PLANNING · GLOBAL ROLE STRUCTURE + LOCAL HIRING
+</footer>
+
+</body>
+</html>

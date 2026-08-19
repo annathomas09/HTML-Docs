@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&amp;M Munchies — Document 12: Kitchen &amp; Fire Safety</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12160F; --bg-elevated:#1A2016; --bg-elevated-2:#212818;
+    --green:#4A5D3A; --green-soft:#7A9463; --green-dark:#3A4A2E;
+    --gold:#C9A25C; --gold-soft:#E2C48D;
+    --cream:#EEE7D8; --cream-dim:#B8B0A0;
+    --terracotta:#9C5A3C; --ink:#1C1710;
+    --border:rgba(201,162,92,0.22); --border-strong:rgba(201,162,92,0.5);
+    --font-display:'Fraunces', serif; --font-body:'Karla', sans-serif; --font-mono:'Space Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--cream); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:var(--gold-soft); }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  .hero{ position:relative; padding:100px 0 84px; text-align:center;
+    background: radial-gradient(ellipse 700px 420px at 50% 0%, rgba(201,162,92,0.14), transparent 70%), linear-gradient(180deg, #0D100B, var(--bg) 85%);
+    border-bottom:1px solid var(--border); overflow:hidden; }
+  .signature{ width:340px; height:260px; margin:0 auto 18px; }
+  @media (prefers-reduced-motion: no-preference){ .signature .glow-ring{ animation: pulseGlow 5s ease-in-out infinite; } }
+  @keyframes pulseGlow{ 0%,100%{ opacity:1; } 50%{ opacity:0.72; } }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+  .hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(38px, 6vw, 64px); letter-spacing:-0.01em; color:var(--cream); margin-bottom:10px; }
+  .hero .doc-title{ font-family:var(--font-display); font-weight:400; font-style:italic; font-size:clamp(18px, 2.4vw, 24px); color:var(--gold-soft); margin-bottom:22px; }
+  .hero .doc-sub{ max-width:560px; margin:0 auto; color:var(--cream-dim); font-size:15px; }
+  .tag-row{ display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border:1px solid var(--border-strong); border-radius:100px; color:var(--gold-soft); }
+
+  section.doc-section{ padding:64px 0; border-bottom:1px solid var(--border); }
+  section.doc-section:last-of-type{ border-bottom:none; }
+  .sec-num{ font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:0.06em; margin-bottom:8px; }
+  h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px, 3.4vw, 34px); color:var(--cream); margin-bottom:20px; letter-spacing:-0.01em; }
+  h3{ font-family:var(--font-display); font-weight:500; font-size:19px; color:var(--gold-soft); margin:26px 0 10px; }
+  p{ margin-bottom:14px; max-width:66ch; color:var(--cream); }
+  p.dim{ color:var(--cream-dim); }
+  .lede{ font-family:var(--font-display); font-size:20px; font-weight:400; font-style:italic; color:var(--gold-soft); line-height:1.5; max-width:64ch; margin-bottom:22px; }
+  ul{ margin:0 0 16px 20px; max-width:64ch; } li{ margin-bottom:8px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--bg-elevated); padding:18px 22px; border-radius:2px; margin:18px 0; }
+  .callout.flexible{ border-left:3px dashed var(--green-soft); }
+  .callout.warn{ border-left:3px solid var(--terracotta); }
+  .callout.verdict{ border-left:3px solid var(--gold); background:var(--bg-elevated-2); padding:24px 26px; }
+  .callout-tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .callout.flexible .callout-tag{ color:var(--green-soft); }
+  .callout.warn .callout-tag{ color:#D18C6D; }
+  .callout p{ margin-bottom:0; color:var(--cream); }
+  .callout p + p{ margin-top:10px; }
+
+  .open-table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  .open-table th{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); text-align:left; padding:0 12px 10px 0; border-bottom:1px solid var(--border-strong); }
+  .open-table td{ padding:12px 12px 12px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--cream); }
+  .status-pill{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+  .status-pill.proposed{ background:rgba(201,162,92,0.15); color:var(--gold-soft); }
+  .status-pill.open{ background:rgba(156,90,60,0.22); color:#D18C6D; }
+  .status-pill.pending{ background:rgba(122,148,99,0.18); color:var(--green-soft); }
+
+  .xref{ display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .xref:first-of-type{ border-top:none; }
+  .xref .doc-id{ font-family:var(--font-mono); font-size:12px; color:var(--gold); flex:0 0 130px; }
+  .xref p{ font-size:13.5px; color:var(--cream-dim); margin:0; } .xref strong{ color:var(--cream); }
+
+  footer{ text-align:center; padding:50px 28px 70px; color:var(--cream-dim); font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; }
+
+  .vendor-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin:20px 0; }
+  @media (max-width:680px){ .vendor-grid{ grid-template-columns:1fr; } }
+  .vendor-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:10px; padding:22px; }
+  .vendor-card.primary{ border-color:var(--gold); background:var(--bg-elevated-2); }
+  .vendor-card .v-status{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--green-soft); display:block; margin-bottom:10px; }
+  .vendor-card.primary .v-status{ color:var(--gold); }
+  .vendor-card h4{ font-family:var(--font-display); font-size:20px; color:var(--cream); margin-bottom:4px; }
+  .vendor-card .v-location{ font-family:var(--font-mono); font-size:11px; color:var(--cream-dim); margin-bottom:12px; display:block; }
+  .vendor-card p{ font-size:13.5px; margin-bottom:8px; }
+  .vendor-card p:last-child{ margin-bottom:0; }
+
+  .guard-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:24px 0; }
+  @media (max-width:680px){ .guard-grid{ grid-template-columns:1fr; } }
+  .guard-col{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:20px 22px; }
+  .guard-col h4{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; color:var(--gold); }
+  .guard-col ul{ margin:0; } .guard-col li{ font-size:14px; margin-bottom:10px; }
+
+  .tier-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:26px 0; }
+  @media (max-width:760px){ .tier-grid{ grid-template-columns:1fr; } }
+  .tier-card{ background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:20px 18px; }
+  .tier-card.active{ border-color:var(--gold); background:var(--bg-elevated-2); }
+  .tier-card .tier-status{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--green-soft); margin-bottom:10px; display:block; }
+  .tier-card.active .tier-status{ color:var(--gold); }
+  .tier-card h4{ font-family:var(--font-display); font-size:19px; font-weight:600; color:var(--cream); margin-bottom:12px; }
+  .tier-row{ padding:8px 0; border-top:1px solid var(--border); font-size:12.5px; }
+  .tier-row:first-of-type{ border-top:none; }
+  .tier-row .k{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; letter-spacing:0.04em; color:var(--cream-dim); display:block; margin-bottom:2px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <svg class="signature" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <ellipse class="glow-ring" cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#C9A25C" stroke-width="3" filter="url(#ringGlow)" opacity="0.95"/>
+      <ellipse cx="170" cy="62" rx="92" ry="16" fill="none" stroke="#E2C48D" stroke-width="1"/>
+      <g stroke="#4A5D3A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M95,66 C88,110 100,140 92,180 C86,205 96,225 90,245"/>
+        <path d="M130,72 C126,120 138,150 128,200"/>
+        <path d="M170,78 C170,130 162,160 172,215 C178,238 168,250 174,258"/>
+        <path d="M212,72 C216,118 204,148 214,196"/>
+        <path d="M248,66 C256,108 244,138 252,178 C258,202 248,220 254,240"/>
+      </g>
+      <g fill="#6B8552">
+        <ellipse cx="90" cy="96" rx="7" ry="12" transform="rotate(-25 90 96)"/>
+        <ellipse cx="97" cy="150" rx="6" ry="10" transform="rotate(20 97 150)"/>
+        <ellipse cx="88" cy="205" rx="6" ry="11" transform="rotate(-15 88 205)"/>
+        <ellipse cx="132" cy="105" rx="6" ry="11" transform="rotate(15 132 105)"/>
+        <ellipse cx="126" cy="165" rx="6" ry="10" transform="rotate(-20 126 165)"/>
+        <ellipse cx="169" cy="112" rx="7" ry="12" transform="rotate(-8 169 112)"/>
+        <ellipse cx="165" cy="180" rx="6" ry="11" transform="rotate(18 165 180)"/>
+        <ellipse cx="213" cy="100" rx="6" ry="11" transform="rotate(20 213 100)"/>
+        <ellipse cx="217" cy="160" rx="6" ry="10" transform="rotate(-18 217 160)"/>
+        <ellipse cx="250" cy="94" rx="7" ry="12" transform="rotate(22 250 94)"/>
+        <ellipse cx="245" cy="148" rx="6" ry="10" transform="rotate(-15 245 148)"/>
+        <ellipse cx="253" cy="200" rx="6" ry="11" transform="rotate(12 253 200)"/>
+      </g>
+    </svg>
+    <div class="eyebrow">A&amp;M Munchies — Regulatory Framework</div>
+    <h1>A&amp;M MUNCHIES</h1>
+    <div class="doc-title">Document 12 of 13 — Kitchen &amp; Fire Safety</div>
+    <p class="doc-sub">Where the Sonic Fire Tech question finally gets a real answer, and the kitchen gets a suppression standard that can actually be built.</p>
+    <div class="tag-row">
+      <span class="tag">Grounded in NFPA / UL300 / NBC standards</span>
+      <span class="tag">Kiosk / Embedded Anchor / Flagship</span>
+      <span class="tag">Version 1 — Draft for review</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="doc-section">
+    <div class="sec-num">12.1</div>
+    <h2>Scope &amp; Purpose</h2>
+    <p>Three explicit dependencies converge here: Document 3 §3.9's direct flag on the Main Hall's ventilation and suppression needs, Document 2 §2.7's two-stage kitchen structure, and Document 4 §4.6's fabric-near-flame rule. This document also finally resolves the Sonic Fire Tech thread that's been open since the first inspiration image you sent for this brand.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">12.2</div>
+    <h2>Sonic Fire Tech — Final Determination</h2>
+    <p>Back when this first came up, the read was "worth tracking, not specifying" — US-only deployment, no India pathway visible. Checking again now, the answer is firmer, not softer.</p>
+    <div class="callout verdict">
+      <span class="callout-tag">Not specifiable — for a different reason than before</span>
+      <p>Sonic Fire Tech's own current messaging states interior applications remain limited to <strong>non-occupied environments</strong>, with occupied-space certification described as a "long-term vision" still pending code approval — and that's for <em>residential</em> use. A commercial kitchen is occupied, interior, and cooking-specific: further from certification than even the occupied-home case they're still working toward. Their actual current commercial deployment is exterior wildfire defense for homes in high-risk California communities — a genuinely different product category from a kitchen hood system. Nothing in their public materials mentions India, NBC compliance, or commercial kitchen certification of any kind.</p>
+      <p>This isn't "check back later" anymore. It's a real, specific gap between what the product does today and what an occupied commercial kitchen needs — worth remembering as a category to watch as fire-tech matures, not something to build a real kitchen's compliance around.</p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">12.3</div>
+    <h2>The Standard — What Gets Specified Instead</h2>
+    <p>UL300-compliant wet chemical hood suppression, designed to NFPA 17A, integrated with NFPA 96-compliant hood/duct/plenum ventilation — the actual, current, India-available standard. Two real options:</p>
+    <div class="vendor-grid">
+      <div class="vendor-card primary">
+        <span class="v-status">Primary — premium tier</span>
+        <h4>Ansul K-Guard / PIRANHA</h4>
+        <span class="v-location">Aster Technologies — authorized India dealer</span>
+        <p>The globally trusted Ansul name, certified to NBC and NFPA standards. The PIRANHA hybrid system specifically is worth naming: agent-plus-water, cools grease roughly 15× faster than single-agent wet systems in UL300 testing, with better coverage and less chemical needed. Consistent with Document 7 §7.2's "premium, not just expensive" standard — this is the better system, not just the pricier name.</p>
+      </div>
+      <div class="vendor-card">
+        <span class="v-status">Secondary / comparison</span>
+        <h4>Ceasefire India</h4>
+        <span class="v-location">India, LPCB certified</span>
+        <p>Wet chemical system rated for Class A, B, and F (cooking oil) fires, full hood/duct/plenum coverage, in-house design support. A strong Indian-origin alternative worth quoting alongside Ansul before final selection.</p>
+      </div>
+    </div>
+    <p class="dim">Multiple Delhi-based installers exist for either system (several NCR-based suppliers found, GST-registered, 8–15 years in the trade) — genuinely local execution, not an imported-only solution.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">12.4</div>
+    <h2>Two Kitchen Profiles</h2>
+    <p>Document 2 §2.7 already drew this line — it matters again here because the two profiles carry different fire risk, not just different equipment.</p>
+    <div class="guard-grid">
+      <div class="guard-col">
+        <h4>Bakery-Production (current)</h4>
+        <ul>
+          <li>Ovens, proofing, cold storage — no open flame cooking surface</li>
+          <li>Lighter suppression need, but not zero — confirm against actual equipment once specified, not assumed exempt</li>
+        </ul>
+      </div>
+      <div class="guard-col">
+        <h4>Full Hot-Line (Café-Restaurant stage)</h4>
+        <ul>
+          <li>Fryers, griddles, open flame — grease-laden vapor becomes a real factor</li>
+          <li>Full UL300 wet-chemical hood system genuinely mandatory here, not optional</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">12.5</div>
+    <h2>Architecture-Specific Risk Factors</h2>
+    <p>Document 3's own design choices, read for fire risk rather than aesthetics:</p>
+    <ul>
+      <li><strong>Jaali + drape lounge (Back Extension):</strong> flowing fabric near a dining zone needs fire-retardant treatment as a baseline spec, not an afterthought — this is the same fabric §3.4 already flagged as needing a proper weatherproof roof underneath, and now it needs a flame-rating spec too.</li>
+      <li><strong>Green fringe curtain over the counter (Main Hall):</strong> fabric installed close to a food-service zone — same fire-retardant treatment requirement applies.</li>
+      <li><strong>Double-height Main Hall:</strong> smoke behaves differently in tall spaces than in a standard single-story room — detector placement needs real engineering input, not standard single-story spacing assumptions.</li>
+      <li><strong>Open-roof Right Extension:</strong> different ventilation dynamics than the enclosed zones — likely favorable for smoke dispersal, but not a substitute for proper detection where it adjoins the enclosed Main Hall.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">12.6</div>
+    <h2>By Format Tier</h2>
+    <div class="tier-grid">
+      <div class="tier-card">
+        <span class="tier-status">Future tier</span>
+        <h4>Kiosk</h4>
+        <div class="tier-row"><span class="k">Kitchen</span>Prep/finishing only — likely no open flame</div>
+        <div class="tier-row"><span class="k">Suppression</span>Portable extinguishers + smoke detection likely sufficient — confirm once equipment is chosen</div>
+      </div>
+      <div class="tier-card">
+        <span class="tier-status">First build, in progress — Said-ul-Ajaib</span>
+        <h4>Embedded Anchor</h4>
+        <div class="tier-row"><span class="k">Kitchen</span>Bakery-production</div>
+        <div class="tier-row"><span class="k">Suppression</span>UL300 system recommended even at this stage if any grease-producing equipment exists — don't wait for Café-Restaurant to install it</div>
+      </div>
+      <div class="tier-card active">
+        <span class="tier-status">Primary tier</span>
+        <h4>Flagship</h4>
+        <div class="tier-row"><span class="k">Kitchen</span>Bakery-production → full hot-line at Café-Restaurant stage</div>
+        <div class="tier-row"><span class="k">Suppression</span>Full UL300 system mandatory once the hot-line is added — budget it into that stage's build, not as a later retrofit</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">12.7</div>
+    <h2>Staff &amp; Training</h2>
+    <p>Document 4 §4.6's heat-safe, non-synthetic fabric rule for Kitchen/Bakery roles now has real teeth given §12.4's hot-line trajectory. Every role gets basic evacuation training regardless of whether they work near the kitchen; the Branch Manager (Document 8 §8.3) owns scheduling NFPA 17A's mandatory semi-annual inspection — a real recurring line item, not a one-time install-and-forget purchase.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">12.8</div>
+    <h2>Regulatory Alignment</h2>
+    <p>The suppression system specified here is part of what a Fire NOC application documents, not a separate track from Document 9's compliance work — the first embedded-tier location, within SCRIPTORIUM, Said-ul-Ajaib, and its open fire-NOC determination (Document 9 §9.4) inform this document's system choice, and vice versa, rather than either proceeding independently.</p>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">12.9</div>
+    <h2>Open Items for Sign-Off</h2>
+    <table class="open-table">
+      <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+      <tr><td>Ansul vs. Ceasefire, final selection</td><td><span class="status-pill open">Open</span></td><td>Both quoted as real options; no decision made here</td></tr>
+      <tr><td>Said-ul-Ajaib bakery-kitchen suppression need</td><td><span class="status-pill open">Open</span></td><td>Depends on actual equipment list — not yet specified</td></tr>
+      <tr><td>Fabric flame-rating spec, jaali lounge &amp; counter curtain</td><td><span class="status-pill open">Open</span></td><td>Requirement is set in §12.5; exact rated product isn't</td></tr>
+      <tr><td>Double-height smoke detection engineering</td><td><span class="status-pill open">Open</span></td><td>Needs a fire engineer, not resolvable in a planning document</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="sec-num">12.10</div>
+    <h2>Cross-References</h2>
+    <div class="xref">
+      <div class="doc-id">Doc 2<br>Menu &amp; F&amp;B</div>
+      <p>§2.7's two kitchen stages are the direct basis for §12.4 and §12.6's tier logic.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 3<br>Architecture</div>
+      <p><strong>This document resolves §3.9's direct flag.</strong> §12.5 reads straight off the Main Hall and Back Extension's actual design.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 4<br>Staff Uniform</div>
+      <p>§4.6's fabric rule is executed, not just referenced, in §12.7.</p>
+    </div>
+    <div class="xref">
+      <div class="doc-id">Doc 9<br>Regulatory</div>
+      <p>§9.4's open fire-NOC determination for Said-ul-Ajaib and this document's suppression choice are a two-way dependency, per §12.8.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  A&amp;M MUNCHIES — DOCUMENT 12 · KITCHEN &amp; FIRE SAFETY · KIOSK / EMBEDDED ANCHOR / FLAGSHIP
+</footer>
+
+</body>
+</html>
